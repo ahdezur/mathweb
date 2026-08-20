@@ -285,22 +285,49 @@ export function MetodoResolucionCard({ title, steps, fullExample }: MetodoResolu
     const headers: string[] = [];
     const footers: string[] = [];
 
-    const lines = fullExample.split(/\\n+|\n+/g);
+    let activeContext: { type: 'header' | 'footer' | 'step'; stepNum?: number } = { type: 'header' };
+
+    const lines = fullExample.split('\n');
     lines.forEach((line) => {
       const trimmed = line.trim();
-      if (!trimmed) return;
+      if (!trimmed) {
+        // Preservar salto de párrafo dentro del contexto activo
+        if (activeContext.type === 'step' && activeContext.stepNum) {
+          const existing = map.get(activeContext.stepNum) || '';
+          if (existing && !existing.endsWith('\n\n')) {
+            map.set(activeContext.stepNum, existing + '\n\n');
+          }
+        } else if (activeContext.type === 'header' && headers.length > 0) {
+          if (!headers[headers.length - 1].endsWith('\n\n')) {
+            headers[headers.length - 1] += '\n\n';
+          }
+        }
+        return;
+      }
 
       const match = trimmed.match(/^(?:Paso\s+(\d+)|Step\s+(\d+))[:\.]?\s*(.*)/i);
       if (match) {
         const num = parseInt(match[1] || match[2], 10);
         const content = match[3];
-        map.set(num, content);
+        activeContext = { type: 'step', stepNum: num };
+        const existing = map.get(num) || '';
+        map.set(num, existing ? `${existing.trim()}\n\n${content}` : content);
       } else if (trimmed.toLowerCase().startsWith('problema')) {
+        activeContext = { type: 'header' };
         headers.push(trimmed);
       } else if (trimmed.toLowerCase().startsWith('resultado')) {
+        activeContext = { type: 'footer' };
         footers.push(trimmed);
       } else {
-        headers.push(trimmed);
+        // Línea de continuación: pertenece al contexto activo (Paso actual o Header)
+        if (activeContext.type === 'step' && activeContext.stepNum) {
+          const existing = map.get(activeContext.stepNum) || '';
+          map.set(activeContext.stepNum, existing ? `${existing.endsWith('\n\n') ? existing : existing + ' '}${trimmed}` : trimmed);
+        } else if (activeContext.type === 'footer') {
+          footers.push(trimmed);
+        } else {
+          headers.push(trimmed);
+        }
       }
     });
 

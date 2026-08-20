@@ -320,11 +320,7 @@ export default function CourseClassroomPage() {
                 {/* 🎯 SECCIÓN INTERACTIVA DE PRÁCTICA CON HEADER UNIFICADO (TÍTULO + PRECISIÓN Y REINICIAR) */}
                 <InteractivePractice
                   fontScale={fontScale}
-                  exercises={
-                    activeChapter.practica?.exercises && activeChapter.practica.exercises.length > 0
-                      ? activeChapter.practica.exercises
-                      : defaultPracticeExercises
-                  }
+                  exercises={activeChapter.practica?.exercises || []}
                 />
 
                 {/* Video & PDF Media Components */}
@@ -579,29 +575,4 @@ export default function CourseClassroomPage() {
   );
 }
 
-const defaultPracticeExercises: PracticeExercise[] = [
-  {
-    id: 'ex-1',
-    type: 'true_false',
-    title: 'Ejercicio 1: Diferenciabilidad y Continuidad',
-    statement: 'Si una función $f(x)$ es continua en $x_0 = 0$, entonces es necesariamente diferenciable en $x_0 = 0$.',
-    correctAnswer: false,
-    explanation: 'Falso. La continuidad es una condición necesaria pero NO suficiente para la diferenciabilidad. Un contraejemplo clásico es $f(x) = |x|$, la cual es continua en $x=0$ pero no posee derivada en dicho punto debido a un punto anguloso (las derivadas laterales valen $-1$ y $1$).',
-    trueFeedback: '¡Incorrecto! La continuidad no garantiza la diferenciabilidad.',
-    falseFeedback: '¡Correcto! La continuidad es necesaria pero no suficiente.'
-  },
-  {
-    id: 'ex-2',
-    type: 'single_choice',
-    title: 'Ejercicio 2: Regla de la Cadena',
-    question: 'Dada la función compuesta $g(x) = \\sin(x^2 + 1)$, ¿cuál es la expresión correcta para su derivada $g\'(x)$?',
-    options: [
-      { id: 'A', text: '$\\cos(x^2 + 1)$', feedback: 'Incorrecto. Olvidaste multiplicar por la derivada de la función interna.' },
-      { id: 'B', text: '$2x \\cdot \\cos(x^2 + 1)$', feedback: '¡Excelente! Aplicaste correctamente la regla de la cadena.' },
-      { id: 'C', text: '$2x \\cdot \\sin(x^2 + 1)$', feedback: 'Incorrecto. La derivada del seno es el coseno.' },
-      { id: 'D', text: '$-2x \\cdot \\cos(x^2 + 1)$', feedback: 'Incorrecto. Atento al signo.' }
-    ],
-    correctOptionId: 'B',
-    explanation: 'Aplicando la regla de la cadena $\\frac{d}{dx}[f(u(x))] = f\'(u(x)) \\cdot u\'(x)$. Tomando $u(x) = x^2 + 1$, su derivada interna es $u\'(x) = 2x$. Por lo tanto, $g\'(x) = \\cos(x^2 + 1) \\cdot 2x$.'
-  }
-];
+

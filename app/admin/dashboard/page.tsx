@@ -106,7 +106,8 @@ export default function AdminDashboardPage() {
       const res = await fetch(`/api/admin/courses?t=${Date.now()}`, { cache: 'no-store' });
       const data = await res.json();
       if (data.success && Array.isArray(data.courses)) {
-        setClassroomCourses(data.courses);
+        const sorted = data.courses.slice().sort((a: CourseContent, b: CourseContent) => (a.number || 0) - (b.number || 0));
+        setClassroomCourses(sorted);
       }
     } catch (err) {
       console.error('Error fetching admin classroom courses:', err);
@@ -530,6 +531,27 @@ export default function AdminDashboardPage() {
     }
   };
 
+  const handleUpdateCourseNumber = async (courseSlug: string, newNumber: number) => {
+    const updatedCourses = classroomCourses.map((c) => {
+      if (c.slug === courseSlug) {
+        return { ...c, number: newNumber };
+      }
+      return c;
+    }).sort((a, b) => (a.number || 0) - (b.number || 0));
+
+    setClassroomCourses(updatedCourses);
+
+    try {
+      await fetch('/api/admin/courses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courses: updatedCourses })
+      });
+    } catch (err) {
+      console.error('Error updating course number:', err);
+    }
+  };
+
 
 
   // Booking Handlers
@@ -630,7 +652,7 @@ export default function AdminDashboardPage() {
             }`}
             onClick={() => setActiveTab('courses')}
           >
-            <i className="fa-solid fa-graduation-cap"></i> Gestor de Cursos ({courses.length})
+            <i className="fa-solid fa-graduation-cap"></i> Gestor de Cursos ({classroomCourses.length})
           </button>
           <button
             className={`px-4 py-2 text-sm font-semibold rounded-t-lg transition-all flex items-center gap-2 border-b-2 cursor-pointer ${
@@ -663,7 +685,7 @@ export default function AdminDashboardPage() {
                   <span className="text-xs font-bold uppercase text-slate-500">Total Cursos</span>
                   <i className="fa-solid fa-graduation-cap text-cyan-600 text-lg"></i>
                 </div>
-                <span className="text-3xl font-extrabold text-slate-900">{courses.length}</span>
+                <span className="text-3xl font-extrabold text-slate-900">{classroomCourses.length}</span>
                 <p className="text-xs text-slate-500 mt-1">Cursos activos en catálogo</p>
               </div>
 
@@ -762,6 +784,17 @@ export default function AdminDashboardPage() {
                 <div className="bg-gradient-to-r from-slate-100 via-cyan-50/70 to-indigo-50/70 text-slate-900 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200/80">
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
+                      <div className="flex items-center gap-1.5 bg-white/90 border border-slate-200 rounded-lg px-2.5 py-1 shadow-2xs">
+                        <span className="text-[11px] font-bold text-slate-500">Curso N°</span>
+                        <input
+                          type="number"
+                          min={1}
+                          value={cContent.number || 1}
+                          onChange={(e) => handleUpdateCourseNumber(cContent.slug, parseInt(e.target.value) || 1)}
+                          className="w-12 text-center text-xs font-bold text-cyan-800 bg-cyan-50 border border-cyan-200 rounded px-1 py-0.5 focus:outline-none focus:ring-1 focus:ring-cyan-500 font-title"
+                          title="Cambiar número de orden del curso"
+                        />
+                      </div>
                       <h3 className="text-2xl font-black text-slate-900 font-title flex items-center gap-2.5">
                         <i className="fa-solid fa-graduation-cap text-cyan-600"></i>
                         <span>{cContent.title}</span>

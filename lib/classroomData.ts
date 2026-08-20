@@ -47,6 +47,7 @@ export interface UnitData {
 export interface CourseContent {
   id: string;
   slug: string;
+  number?: number;
   title: string;
   category: string;
   level: string;

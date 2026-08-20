@@ -245,19 +245,31 @@ export function InteractivePractice({ exercises, fontScale = 1.0 }: InteractiveP
       </div>
 
       {/* Lista de Ejercicios (Escalable con fontScale) */}
-      <div style={{ zoom: fontScale }} className="space-y-8 transition-all duration-200">
-        {exercises.map((ex, idx) => (
-          <ExerciseCard
-            key={ex.id}
-            index={idx + 1}
-            exercise={ex}
-            userAnswer={answers[ex.id]}
-            isChecked={!!checked[ex.id]}
-            onAnswerChange={(val) => handleAnswerChange(ex.id, val)}
-            onCheck={() => handleCheckAnswer(ex.id)}
-          />
-        ))}
-      </div>
+      {exercises.length === 0 ? (
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-12 text-center shadow-xs">
+          <div className="w-14 h-14 rounded-2xl bg-cyan-50 dark:bg-cyan-950/50 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800 flex items-center justify-center text-2xl mx-auto mb-4">
+            <i className="fa-solid fa-pen-ruler"></i>
+          </div>
+          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200 mb-1 font-title">No hay ejercicios interactivos cargados</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+            El profesor aún no ha publicado ejercicios interactivos para este capítulo.
+          </p>
+        </div>
+      ) : (
+        <div style={{ zoom: fontScale }} className="space-y-8 transition-all duration-200">
+          {exercises.map((ex, idx) => (
+            <ExerciseCard
+              key={ex.id}
+              index={idx + 1}
+              exercise={ex}
+              userAnswer={answers[ex.id]}
+              isChecked={!!checked[ex.id]}
+              onAnswerChange={(val) => handleAnswerChange(ex.id, val)}
+              onCheck={() => handleCheckAnswer(ex.id)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,7 +1,286 @@
 [
   {
+    "id": "course_introduccion-calculo",
+    "slug": "introduccion-calculo",
+    "number": 1,
+    "title": "Introducción Cálculo",
+    "category": "Cálculo",
+    "level": "Pregrado",
+    "description": "Programa de estudio completo e interactivo para Introducción Cálculo.",
+    "units": [
+      {
+        "id": "u-1",
+        "number": 1,
+        "title": "Unidad 1: Módulos Principales de Introducción Cálculo",
+        "summary": "Contenido estructurado del curso de Introducción Cálculo.",
+        "chapters": [
+          {
+            "id": "cap-1",
+            "number": 1,
+            "displayNumber": "1.1",
+            "title": "Fundamentos y Definiciones de Introducción Cálculo",
+            "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
+            "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
+            "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Cálculo con rigor académico y visión intuitiva.</p>\n      ",
+            "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
+            "practica": {
+              "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        ",
+              "exercises": [
+                {
+                  "id": "ex-1787214727266",
+                  "type": "true_false",
+                  "title": "Ejercicio 1: Verdadero o Falso",
+                  "statement": "$1+1=2$",
+                  "correctAnswer": true,
+                  "explanation": "La afirmación es verdadera. \n",
+                  "trueFeedback": "¡Correcto! así se suma",
+                  "falseFeedback": "¡Incorrecto! revisa la suma"
+                }
+              ]
+            },
+            "ejercicios": {
+              "problems": [
+                "Demuestre la propiedad fundamental del capítulo 1 de Introducción Cálculo.",
+                "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Principal",
+                  "latex": "A = P D P^{-1}"
+                },
+                {
+                  "label": "Criterio de Convergencia",
+                  "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-2",
+            "number": 2,
+            "displayNumber": "1.2",
+            "title": "Aplicaciones Avanzadas en Introducción Cálculo",
+            "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
+            "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
+            "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
+            "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
+            "practica": {
+              "text": "<p>Resolución detallada de ejercicios complejos.</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                "Desarrolle el cálculo matricial para el sistema 3x3."
+              ],
+              "formulasClave": [
+                {
+                  "label": "Ecuación Característica",
+                  "latex": "\\det(A - \\lambda I) = 0"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "chapters": [
+      {
+        "id": "cap-1",
+        "number": 1,
+        "displayNumber": "1.1",
+        "title": "Fundamentos y Definiciones de Introducción Cálculo",
+        "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
+        "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
+        "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Cálculo con rigor académico y visión intuitiva.</p>\n      ",
+        "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
+        "practica": {
+          "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        ",
+          "exercises": [
+            {
+              "id": "ex-1787214727266",
+              "type": "true_false",
+              "title": "Ejercicio 1: Verdadero o Falso",
+              "statement": "$1+1=2$",
+              "correctAnswer": true,
+              "explanation": "La afirmación es verdadera. \n",
+              "trueFeedback": "¡Correcto! así se suma",
+              "falseFeedback": "¡Incorrecto! revisa la suma"
+            }
+          ]
+        },
+        "ejercicios": {
+          "problems": [
+            "Demuestre la propiedad fundamental del capítulo 1 de Introducción Cálculo.",
+            "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Principal",
+              "latex": "A = P D P^{-1}"
+            },
+            {
+              "label": "Criterio de Convergencia",
+              "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-2",
+        "number": 2,
+        "displayNumber": "1.2",
+        "title": "Aplicaciones Avanzadas en Introducción Cálculo",
+        "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
+        "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
+        "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
+        "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
+        "practica": {
+          "text": "<p>Resolución detallada de ejercicios complejos.</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            "Desarrolle el cálculo matricial para el sistema 3x3."
+          ],
+          "formulasClave": [
+            {
+              "label": "Ecuación Característica",
+              "latex": "\\det(A - \\lambda I) = 0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "course_introduccion-algebra",
+    "slug": "introduccion-algebra",
+    "number": 2,
+    "title": "Introducción Álgebra",
+    "category": "Álgebra Lineal",
+    "level": "Pregrado",
+    "description": "Programa de estudio completo e interactivo para Introducción Álgebra.",
+    "units": [
+      {
+        "id": "u-1",
+        "number": 1,
+        "title": "Unidad 1: Sumatorias e Inducción",
+        "summary": "Contenido estructurado del curso de Introducción Álgebra.",
+        "chapters": [
+          {
+            "id": "cap-1",
+            "number": 1,
+            "displayNumber": "1.1",
+            "title": "Sumatorias",
+            "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
+            "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
+            "motivacion": "\\begin{card}\n<p><strong>El poder de la compresión matemática</strong></p>\n<p>Imagina que estás analizando datos y necesitas sumar los ingresos diarios de una empresa durante todo un año, o que estás calculando el área bajo una curva dividiéndola en cientos de pequeños rectángulos. Escribir la suma elemento por elemento, como \n$$a_1 + a_2 + a_3 + \\dots + a_{365}$$\nno solo es tedioso y poco elegante, sino que resulta inútil si queremos manipular esa cadena de números algebraicamente.</p>\n<p>\nAquí es donde el álgebra introduce una de sus herramientas más potentes: el operador sumatoria.</p>\n<p>Piensa en este operador como el equivalente matemático a un archivo comprimido o a un ciclo repetitivo en programación. Su propósito no es simplemente abreviar la escritura, sino encapsular patrones numéricos extensos en una estructura compacta. Al aprender las reglas de este operador, seremos capaces de manipular, simplificar y calcular bloques gigantes de información en apenas un par de líneas de desarrollo.</p>\n\n\n\\begin{pregunta}\n¿Cómo podemos diseñar un lenguaje matemático que nos permita empaquetar una suma de mil términos, operar con ella y luego desempaquetarla sin perder ninguna pieza de información en el proceso?\n\\end{pregunta}\n\\end{card}\n",
+            "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
+            "practica": {
+              "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
+            },
+            "ejercicios": {
+              "problems": [
+                "Demuestre la propiedad fundamental del capítulo 1 de Introducción Álgebra.",
+                "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Principal",
+                  "latex": "A = P D P^{-1}"
+                },
+                {
+                  "label": "Criterio de Convergencia",
+                  "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-2",
+            "number": 2,
+            "displayNumber": "1.2",
+            "title": "Aplicaciones Avanzadas en Introducción Álgebra",
+            "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
+            "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
+            "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
+            "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
+            "practica": {
+              "text": "<p>Resolución detallada de ejercicios complejos.</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                "Desarrolle el cálculo matricial para el sistema 3x3."
+              ],
+              "formulasClave": [
+                {
+                  "label": "Ecuación Característica",
+                  "latex": "\\det(A - \\lambda I) = 0"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "chapters": [
+      {
+        "id": "cap-1",
+        "number": 1,
+        "displayNumber": "1.1",
+        "title": "Sumatorias",
+        "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
+        "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
+        "motivacion": "\\begin{card}\n<p><strong>El poder de la compresión matemática</strong></p>\n<p>Imagina que estás analizando datos y necesitas sumar los ingresos diarios de una empresa durante todo un año, o que estás calculando el área bajo una curva dividiéndola en cientos de pequeños rectángulos. Escribir la suma elemento por elemento, como \n$$a_1 + a_2 + a_3 + \\dots + a_{365}$$\nno solo es tedioso y poco elegante, sino que resulta inútil si queremos manipular esa cadena de números algebraicamente.</p>\n<p>\nAquí es donde el álgebra introduce una de sus herramientas más potentes: el operador sumatoria.</p>\n<p>Piensa en este operador como el equivalente matemático a un archivo comprimido o a un ciclo repetitivo en programación. Su propósito no es simplemente abreviar la escritura, sino encapsular patrones numéricos extensos en una estructura compacta. Al aprender las reglas de este operador, seremos capaces de manipular, simplificar y calcular bloques gigantes de información en apenas un par de líneas de desarrollo.</p>\n\n\n\\begin{pregunta}\n¿Cómo podemos diseñar un lenguaje matemático que nos permita empaquetar una suma de mil términos, operar con ella y luego desempaquetarla sin perder ninguna pieza de información en el proceso?\n\\end{pregunta}\n\\end{card}\n",
+        "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
+        "practica": {
+          "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
+        },
+        "ejercicios": {
+          "problems": [
+            "Demuestre la propiedad fundamental del capítulo 1 de Introducción Álgebra.",
+            "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Principal",
+              "latex": "A = P D P^{-1}"
+            },
+            {
+              "label": "Criterio de Convergencia",
+              "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-2",
+        "number": 2,
+        "displayNumber": "1.2",
+        "title": "Aplicaciones Avanzadas en Introducción Álgebra",
+        "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
+        "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
+        "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
+        "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
+        "practica": {
+          "text": "<p>Resolución detallada de ejercicios complejos.</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            "Desarrolle el cálculo matricial para el sistema 3x3."
+          ],
+          "formulasClave": [
+            {
+              "label": "Ecuación Característica",
+              "latex": "\\det(A - \\lambda I) = 0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
     "id": "c1",
     "slug": "calculo-diferencial",
+    "number": 3,
     "title": "Cálculo Diferencial",
     "category": "Cálculo",
     "level": "Pregrado",
@@ -206,7 +485,7 @@
                 {
                   "label": "Regla del Producto",
                   "latex": "(u \\cdot v)' = u'v + uv'",
-                  "description": "Fórmula de derivación directa para determinar el cambio del producto de dos funciones $u(x)$ y $v(x)$."
+                  "description": "Fórmula de derivación directa para determinar el cambio del producto de dos funciones $u(x)$ and $v(x)$."
                 },
                 {
                   "label": "Regla del Cociente",
@@ -605,7 +884,7 @@
             {
               "label": "Regla del Producto",
               "latex": "(u \\cdot v)' = u'v + uv'",
-              "description": "Fórmula de derivación directa para determinar el cambio del producto de dos funciones $u(x)$ y $v(x)$."
+              "description": "Fórmula de derivación directa para determinar el cambio del producto de dos funciones $u(x)$ and $v(x)$."
             },
             {
               "label": "Regla del Cociente",
@@ -618,8 +897,7 @@
               "description": "Regla fundamental de composición para diferenciar funciones compuestas complejas $f(g(x))$."
             }
           ]
-        },
-        "displayNumber": "1.1"
+        }
       },
       {
         "id": "cap-2",
@@ -796,6 +1074,7 @@
   {
     "id": "course_calculo-integral",
     "slug": "calculo-integral",
+    "number": 4,
     "title": "Cálculo Integral",
     "category": "Cálculo",
     "level": "Intermedio",
@@ -922,6 +1201,7 @@
   {
     "id": "course_algebra-lineal",
     "slug": "algebra-lineal",
+    "number": 5,
     "title": "Álgebra Lineal",
     "category": "Álgebra Lineal",
     "level": "Intermedio",
@@ -930,14 +1210,14 @@
       {
         "id": "u-1",
         "number": 1,
-        "title": "Unidad 1: Módulos Principales de Álgebra Lineal",
+        "title": "Unidad 1: Introducción al Álgebra Matricial",
         "summary": "Contenido estructurado del curso de Álgebra Lineal.",
         "chapters": [
           {
             "id": "cap-1",
             "number": 1,
             "displayNumber": "1.1",
-            "title": "Fundamentos y Definiciones de Álgebra Lineal",
+            "title": "Introducción a las matrices y notación matricial",
             "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
             "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
             "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Álgebra Lineal con rigor académico y visión intuitiva.</p>\n      ",
@@ -966,7 +1246,7 @@
             "id": "cap-2",
             "number": 2,
             "displayNumber": "1.2",
-            "title": "Aplicaciones Avanzadas en Álgebra Lineal",
+            "title": "Matriz cuadrada, diagonal y transpuesta",
             "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
             "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
             "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
@@ -985,6 +1265,319 @@
                 }
               ]
             }
+          },
+          {
+            "id": "cap-1787217675641",
+            "number": 3,
+            "displayNumber": "3",
+            "title": "Matrices cuadradas especiales: identidad, triangulares, simétricas y antisimétricas",
+            "summary": "Resumen introductorio del nuevo capítulo.",
+            "mathKey": "f(x) = ...",
+            "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+            "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+                  "pauta": "1. Solución paso a paso...",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Concepto Clave"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-1787217725076",
+            "number": 4,
+            "displayNumber": "4",
+            "title": "Operaciones con matrices",
+            "summary": "Resumen introductorio del nuevo capítulo.",
+            "mathKey": "f(x) = ...",
+            "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+            "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+                  "pauta": "1. Solución paso a paso...",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Concepto Clave"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-1787217765595",
+            "number": 5,
+            "displayNumber": "5",
+            "title": "Matriz inversa (sin cálculo general)",
+            "summary": "Resumen introductorio del nuevo capítulo.",
+            "mathKey": "f(x) = ...",
+            "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+            "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+                  "pauta": "1. Solución paso a paso...",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Concepto Clave"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "unit-1787218357078-2",
+        "number": 2,
+        "title": "Unidad 2: Sistemas de Ecuaciones Lineales y Escalonamiento",
+        "chapters": [
+          {
+            "id": "cap-1787218380470",
+            "number": 1,
+            "displayNumber": "1",
+            "title": "Ecuaciones lineales, sistemas homogéneos y no homogéneos",
+            "summary": "Resumen introductorio del nuevo capítulo.",
+            "mathKey": "f(x) = ...",
+            "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+            "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+                  "pauta": "1. Solución paso a paso...",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Concepto Clave"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-1787218410994",
+            "number": 2,
+            "displayNumber": "2",
+            "title": "Operaciones elementales y Algoritmo de Gauss: Rango y Sistemas Lineales",
+            "summary": "Resumen introductorio del nuevo capítulo.",
+            "mathKey": "f(x) = ...",
+            "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+            "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+                  "pauta": "1. Solución paso a paso...",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Concepto Clave"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-1787218433526",
+            "number": 3,
+            "displayNumber": "3",
+            "title": "Matrices elementales",
+            "summary": "Resumen introductorio del nuevo capítulo.",
+            "mathKey": "f(x) = ...",
+            "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+            "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+                  "pauta": "1. Solución paso a paso...",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Concepto Clave"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-1787218472899",
+            "number": 4,
+            "displayNumber": "4",
+            "title": "Sistemas simultáneos",
+            "summary": "Resumen introductorio del nuevo capítulo.",
+            "mathKey": "f(x) = ...",
+            "motivacion": "\\begin{card}\n¿Para qué aplicar el Algoritmo de Gauss diez veces si puedes hacerlo solo una vez? En esta lección aprenderemos a resolver múltiples sistemas de ecuaciones en paralelo cuando comparten la misma matriz de coeficientes. Descubre cómo este poderoso 'atajo' matemático no solo te ahorrará horas de cálculo, sino que es el secreto detrás del método más eficiente para encontrar la matriz inversa.\n\\begin{pregunta}\nSi cambiar los resultados de un sistema no altera las operaciones que aplicamos sobre su matriz principal, ¿cómo podemos organizar nuestro cálculo para encontrar todas las soluciones posibles al mismo tiempo?\n\\end{pregunta}\n\\end{card}",
+            "teoria": "\\begin{card}\nEn muchas aplicaciones de ingeniería y ciencias, surge la necesidad de resolver $k$ sistemas de ecuaciones lineales que comparten exactamente la misma matriz de coeficientes $A$, pero que tienen diferentes vectores de términos independientes $\\vec{b}_1, \\vec{b}_2, \\dots, \\vec{b}_k$. \n\\begin{definicion}{Sistemas Simultáneos}\nUn sistema simultáneo consiste en plantear simultáneamente:\n$$A\\vec{x} = \\vec{b}_1, \\quad A\\vec{x} = \\vec{b}_2, \\quad \\dots, \\quad A\\vec{x} = \\vec{b}_k$$\ndonde $A\\in M_{m \\times n}$ y $\\vec b_i\\in\\mathbb R^m$\n\\end{definicion}\n\\end{card}\n\\begin{card}\n\\begin{metodo}{Resolución de Sistemas Simultáneos}\n\n\\problema{Un ingeniero evalúa las fuerzas en una estructura bajo dos escenarios de carga, los cuales comparten la matriz principal $A$:\nEscenario 1: $\\begin{cases}x + y + z = 3\\\\\n2y + z = 3\\\\\nx + z = 2\\end{cases}$\nEscenario 2:$\\begin{cases}x + y + z = 0\n\\\\2y + z = -1\\\\\nx + z = 0\\end{cases}$\nResuelva ambos sistemas de forma simultánea.}\n\n\\paso{1}{Planteamiento de la matriz expandida}\nPara resolver múltiples sistemas que comparten matriz principal, construimos una gran matriz aumentada donde colocamos la matriz $A$ a la izquierda y todos los vectores $\\vec{b}_i$ como columnas en el lado derecho.\n\n\\ejemplo{En notación matricial, identificamos $A$, $\\vec{b}_1$ y $\\vec{b}_2$, y armamos la matriz extendida juntando ambos escenarios: $[A \\ | \\ \\vec{b}_1 \\ \\ \\vec{b}_2] = \\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 1 & 0 & 1 & 2 & 0 \\end{array} \\right]$}\n\n\\paso{2}{Escalonamiento}\nAplicamos el método de Gauss-Jordan (operaciones elementales por fila) para llevar la matriz $A$ de la izquierda a su forma escalonada reducida. Las operaciones alterarán toda la fila extendida.\n\n\\ejemplo{Aplicamos operaciones elementales a nuestra matriz aumentada:\n\n1. Hacemos cero bajo el primer pivote ($F_3 \\rightarrow F_3 - F_1$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 0 & -1 & 0 & -1 & 0 \\end{array} \\right]$\n\n2. Ajustamos el segundo pivote ($F_2 \\leftrightarrow F_3$ y luego $F_2 \\rightarrow -F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\end{array} \\right]$ \n\n3. Hacemos ceros arriba y abajo del segundo pivote ($F_3 \\rightarrow F_3 - 2F_2$ y $F_1 \\rightarrow F_1 - F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 1 & 2 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$ \n\n4. Hacemos cero arriba del tercer pivote ($F_1 \\rightarrow F_1 - F_3$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 0 & 1 & 1 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$}\n\n\\paso{3}{Interpretación del resultado}\nAl llegar a la forma escalonada reducida (y si $A$ es cuadrada, a la matriz identidad), cada columna de la derecha representa la solución directa de su respectivo sistema original.\n\n\\ejemplo{La matriz del lado izquierdo se transformó en la identidad. Por lo tanto, las soluciones se leen directamente de las columnas derechas correspondientes:\n\nEscenario 1: $\\vec{x}_1 = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$. \n\nEscenario 2: $\\vec{x}_2 = \\begin{pmatrix} 1 \\\\ 0 \\\\ -1 \\end{pmatrix}$.}\n\\end{metodo}\n\\end{card}",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+                  "pauta": "1. Solución paso a paso...",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Concepto Clave"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-1787218458767",
+            "number": 5,
+            "displayNumber": "5",
+            "title": "Cálculo de la matriz inversa mediante el método de Gauss-Jordan",
+            "summary": "Resumen introductorio del nuevo capítulo.",
+            "mathKey": "f(x) = ...",
+            "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+            "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+                  "pauta": "1. Solución paso a paso...",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Concepto Clave"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-1787218507323",
+            "number": 6,
+            "displayNumber": "6",
+            "title": "Factorización LU",
+            "summary": "Resumen introductorio del nuevo capítulo.",
+            "mathKey": "f(x) = ...",
+            "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+            "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+                  "pauta": "1. Solución paso a paso...",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Concepto Clave"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
           }
         ]
       }
@@ -994,7 +1587,7 @@
         "id": "cap-1",
         "number": 1,
         "displayNumber": "1.1",
-        "title": "Fundamentos y Definiciones de Álgebra Lineal",
+        "title": "Introducción a las matrices y notación matricial",
         "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
         "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
         "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Álgebra Lineal con rigor académico y visión intuitiva.</p>\n      ",
@@ -1023,7 +1616,7 @@
         "id": "cap-2",
         "number": 2,
         "displayNumber": "1.2",
-        "title": "Aplicaciones Avanzadas en Álgebra Lineal",
+        "title": "Matriz cuadrada, diagonal y transpuesta",
         "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
         "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
         "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
@@ -1042,12 +1635,319 @@
             }
           ]
         }
+      },
+      {
+        "id": "cap-1787217675641",
+        "number": 3,
+        "displayNumber": "3",
+        "title": "Matrices cuadradas especiales: identidad, triangulares, simétricas y antisimétricas",
+        "summary": "Resumen introductorio del nuevo capítulo.",
+        "mathKey": "f(x) = ...",
+        "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+        "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+              "pauta": "1. Solución paso a paso...",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Concepto Clave"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-1787217725076",
+        "number": 4,
+        "displayNumber": "4",
+        "title": "Operaciones con matrices",
+        "summary": "Resumen introductorio del nuevo capítulo.",
+        "mathKey": "f(x) = ...",
+        "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+        "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+              "pauta": "1. Solución paso a paso...",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Concepto Clave"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-1787217765595",
+        "number": 5,
+        "displayNumber": "5",
+        "title": "Matriz inversa (sin cálculo general)",
+        "summary": "Resumen introductorio del nuevo capítulo.",
+        "mathKey": "f(x) = ...",
+        "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+        "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+              "pauta": "1. Solución paso a paso...",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Concepto Clave"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-1787218380470",
+        "number": 1,
+        "displayNumber": "1",
+        "title": "Ecuaciones lineales, sistemas homogéneos y no homogéneos",
+        "summary": "Resumen introductorio del nuevo capítulo.",
+        "mathKey": "f(x) = ...",
+        "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+        "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+              "pauta": "1. Solución paso a paso...",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Concepto Clave"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-1787218410994",
+        "number": 2,
+        "displayNumber": "2",
+        "title": "Operaciones elementales y Algoritmo de Gauss: Rango y Sistemas Lineales",
+        "summary": "Resumen introductorio del nuevo capítulo.",
+        "mathKey": "f(x) = ...",
+        "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+        "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+              "pauta": "1. Solución paso a paso...",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Concepto Clave"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-1787218433526",
+        "number": 3,
+        "displayNumber": "3",
+        "title": "Matrices elementales",
+        "summary": "Resumen introductorio del nuevo capítulo.",
+        "mathKey": "f(x) = ...",
+        "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+        "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+              "pauta": "1. Solución paso a paso...",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Concepto Clave"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-1787218472899",
+        "number": 4,
+        "displayNumber": "4",
+        "title": "Sistemas simultáneos",
+        "summary": "Resumen introductorio del nuevo capítulo.",
+        "mathKey": "f(x) = ...",
+        "motivacion": "\\begin{card}\n¿Para qué aplicar el Algoritmo de Gauss diez veces si puedes hacerlo solo una vez? En esta lección aprenderemos a resolver múltiples sistemas de ecuaciones en paralelo cuando comparten la misma matriz de coeficientes. Descubre cómo este poderoso 'atajo' matemático no solo te ahorrará horas de cálculo, sino que es el secreto detrás del método más eficiente para encontrar la matriz inversa.\n\\begin{pregunta}\nSi cambiar los resultados de un sistema no altera las operaciones que aplicamos sobre su matriz principal, ¿cómo podemos organizar nuestro cálculo para encontrar todas las soluciones posibles al mismo tiempo?\n\\end{pregunta}\n\\end{card}",
+        "teoria": "\\begin{card}\nEn muchas aplicaciones de ingeniería y ciencias, surge la necesidad de resolver $k$ sistemas de ecuaciones lineales que comparten exactamente la misma matriz de coeficientes $A$, pero que tienen diferentes vectores de términos independientes $\\vec{b}_1, \\vec{b}_2, \\dots, \\vec{b}_k$. \n\\begin{definicion}{Sistemas Simultáneos}\nUn sistema simultáneo consiste en plantear simultáneamente:\n$$A\\vec{x} = \\vec{b}_1, \\quad A\\vec{x} = \\vec{b}_2, \\quad \\dots, \\quad A\\vec{x} = \\vec{b}_k$$\ndonde $A\\in M_{m \\times n}$ y $\\vec b_i\\in\\mathbb R^m$\n\\end{definicion}\n\\end{card}\n\\begin{card}\n\\begin{metodo}{Resolución de Sistemas Simultáneos}\n\n\\problema{Un ingeniero evalúa las fuerzas en una estructura bajo dos escenarios de carga, los cuales comparten la matriz principal $A$:\nEscenario 1: $\\begin{cases}x + y + z = 3\\\\\n2y + z = 3\\\\\nx + z = 2\\end{cases}$\nEscenario 2:$\\begin{cases}x + y + z = 0\n\\\\2y + z = -1\\\\\nx + z = 0\\end{cases}$\nResuelva ambos sistemas de forma simultánea.}\n\n\\paso{1}{Planteamiento de la matriz expandida}\nPara resolver múltiples sistemas que comparten matriz principal, construimos una gran matriz aumentada donde colocamos la matriz $A$ a la izquierda y todos los vectores $\\vec{b}_i$ como columnas en el lado derecho.\n\n\\ejemplo{En notación matricial, identificamos $A$, $\\vec{b}_1$ y $\\vec{b}_2$, y armamos la matriz extendida juntando ambos escenarios: $[A \\ | \\ \\vec{b}_1 \\ \\ \\vec{b}_2] = \\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 1 & 0 & 1 & 2 & 0 \\end{array} \\right]$}\n\n\\paso{2}{Escalonamiento}\nAplicamos el método de Gauss-Jordan (operaciones elementales por fila) para llevar la matriz $A$ de la izquierda a su forma escalonada reducida. Las operaciones alterarán toda la fila extendida.\n\n\\ejemplo{Aplicamos operaciones elementales a nuestra matriz aumentada:\n\n1. Hacemos cero bajo el primer pivote ($F_3 \\rightarrow F_3 - F_1$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 0 & -1 & 0 & -1 & 0 \\end{array} \\right]$\n\n2. Ajustamos el segundo pivote ($F_2 \\leftrightarrow F_3$ y luego $F_2 \\rightarrow -F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\end{array} \\right]$ \n\n3. Hacemos ceros arriba y abajo del segundo pivote ($F_3 \\rightarrow F_3 - 2F_2$ y $F_1 \\rightarrow F_1 - F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 1 & 2 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$ \n\n4. Hacemos cero arriba del tercer pivote ($F_1 \\rightarrow F_1 - F_3$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 0 & 1 & 1 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$}\n\n\\paso{3}{Interpretación del resultado}\nAl llegar a la forma escalonada reducida (y si $A$ es cuadrada, a la matriz identidad), cada columna de la derecha representa la solución directa de su respectivo sistema original.\n\n\\ejemplo{La matriz del lado izquierdo se transformó en la identidad. Por lo tanto, las soluciones se leen directamente de las columnas derechas correspondientes:\n\nEscenario 1: $\\vec{x}_1 = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$. \n\nEscenario 2: $\\vec{x}_2 = \\begin{pmatrix} 1 \\\\ 0 \\\\ -1 \\end{pmatrix}$.}\n\\end{metodo}\n\\end{card}",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+              "pauta": "1. Solución paso a paso...",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Concepto Clave"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-1787218458767",
+        "number": 5,
+        "displayNumber": "5",
+        "title": "Cálculo de la matriz inversa mediante el método de Gauss-Jordan",
+        "summary": "Resumen introductorio del nuevo capítulo.",
+        "mathKey": "f(x) = ...",
+        "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+        "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+              "pauta": "1. Solución paso a paso...",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Concepto Clave"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-1787218507323",
+        "number": 6,
+        "displayNumber": "6",
+        "title": "Factorización LU",
+        "summary": "Resumen introductorio del nuevo capítulo.",
+        "mathKey": "f(x) = ...",
+        "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
+        "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
+              "pauta": "1. Solución paso a paso...",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Concepto Clave"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
       }
     ]
   },
   {
     "id": "course_calculo-multivariable",
     "slug": "calculo-multivariable",
+    "number": 6,
     "title": "Cálculo Multivariable",
     "category": "Cálculo",
     "level": "Avanzado",
@@ -1174,6 +2074,7 @@
   {
     "id": "course_ecuaciones-diferenciales",
     "slug": "ecuaciones-diferenciales",
+    "number": 7,
     "title": "Ecuaciones Diferenciales",
     "category": "Ecuaciones Diferenciales",
     "level": "Intermedio",
@@ -1298,260 +2199,9 @@
     ]
   },
   {
-    "id": "course_introduccion-calculo",
-    "slug": "introduccion-calculo",
-    "title": "Introducción Cálculo",
-    "category": "Cálculo",
-    "level": "Pregrado",
-    "description": "Programa de estudio completo e interactivo para Introducción Cálculo.",
-    "units": [
-      {
-        "id": "u-1",
-        "number": 1,
-        "title": "Unidad 1: Módulos Principales de Introducción Cálculo",
-        "summary": "Contenido estructurado del curso de Introducción Cálculo.",
-        "chapters": [
-          {
-            "id": "cap-1",
-            "number": 1,
-            "displayNumber": "1.1",
-            "title": "Fundamentos y Definiciones de Introducción Cálculo",
-            "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-            "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-            "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Cálculo con rigor académico y visión intuitiva.</p>\n      ",
-            "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
-            "practica": {
-              "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
-            },
-            "ejercicios": {
-              "problems": [
-                "Demuestre la propiedad fundamental del capítulo 1 de Introducción Cálculo.",
-                "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
-              ],
-              "formulasClave": [
-                {
-                  "label": "Fórmula Principal",
-                  "latex": "A = P D P^{-1}"
-                },
-                {
-                  "label": "Criterio de Convergencia",
-                  "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
-                }
-              ]
-            }
-          },
-          {
-            "id": "cap-2",
-            "number": 2,
-            "displayNumber": "1.2",
-            "title": "Aplicaciones Avanzadas en Introducción Cálculo",
-            "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-            "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-            "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-            "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
-            "practica": {
-              "text": "<p>Resolución detallada de ejercicios complejos.</p>"
-            },
-            "ejercicios": {
-              "problems": [
-                "Desarrolle el cálculo matricial para el sistema 3x3."
-              ],
-              "formulasClave": [
-                {
-                  "label": "Ecuación Característica",
-                  "latex": "\\det(A - \\lambda I) = 0"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ],
-    "chapters": [
-      {
-        "id": "cap-1",
-        "number": 1,
-        "displayNumber": "1.1",
-        "title": "Fundamentos y Definiciones de Introducción Cálculo",
-        "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-        "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-        "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Cálculo con rigor académico y visión intuitiva.</p>\n      ",
-        "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
-        "practica": {
-          "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
-        },
-        "ejercicios": {
-          "problems": [
-            "Demuestre la propiedad fundamental del capítulo 1 de Introducción Cálculo.",
-            "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
-          ],
-          "formulasClave": [
-            {
-              "label": "Fórmula Principal",
-              "latex": "A = P D P^{-1}"
-            },
-            {
-              "label": "Criterio de Convergencia",
-              "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
-            }
-          ]
-        }
-      },
-      {
-        "id": "cap-2",
-        "number": 2,
-        "displayNumber": "1.2",
-        "title": "Aplicaciones Avanzadas en Introducción Cálculo",
-        "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-        "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-        "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-        "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
-        "practica": {
-          "text": "<p>Resolución detallada de ejercicios complejos.</p>"
-        },
-        "ejercicios": {
-          "problems": [
-            "Desarrolle el cálculo matricial para el sistema 3x3."
-          ],
-          "formulasClave": [
-            {
-              "label": "Ecuación Característica",
-              "latex": "\\det(A - \\lambda I) = 0"
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "id": "course_introduccion-algebra",
-    "slug": "introduccion-algebra",
-    "title": "Introducción Álgebra",
-    "category": "Álgebra Lineal",
-    "level": "Pregrado",
-    "description": "Programa de estudio completo e interactivo para Introducción Álgebra.",
-    "units": [
-      {
-        "id": "u-1",
-        "number": 1,
-        "title": "Unidad 1: Módulos Principales de Introducción Álgebra",
-        "summary": "Contenido estructurado del curso de Introducción Álgebra.",
-        "chapters": [
-          {
-            "id": "cap-1",
-            "number": 1,
-            "displayNumber": "1.1",
-            "title": "Fundamentos y Definiciones de Introducción Álgebra",
-            "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-            "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-            "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Álgebra con rigor académico y visión intuitiva.</p>\n      ",
-            "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
-            "practica": {
-              "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
-            },
-            "ejercicios": {
-              "problems": [
-                "Demuestre la propiedad fundamental del capítulo 1 de Introducción Álgebra.",
-                "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
-              ],
-              "formulasClave": [
-                {
-                  "label": "Fórmula Principal",
-                  "latex": "A = P D P^{-1}"
-                },
-                {
-                  "label": "Criterio de Convergencia",
-                  "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
-                }
-              ]
-            }
-          },
-          {
-            "id": "cap-2",
-            "number": 2,
-            "displayNumber": "1.2",
-            "title": "Aplicaciones Avanzadas en Introducción Álgebra",
-            "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-            "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-            "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-            "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
-            "practica": {
-              "text": "<p>Resolución detallada de ejercicios complejos.</p>"
-            },
-            "ejercicios": {
-              "problems": [
-                "Desarrolle el cálculo matricial para el sistema 3x3."
-              ],
-              "formulasClave": [
-                {
-                  "label": "Ecuación Característica",
-                  "latex": "\\det(A - \\lambda I) = 0"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ],
-    "chapters": [
-      {
-        "id": "cap-1",
-        "number": 1,
-        "displayNumber": "1.1",
-        "title": "Fundamentos y Definiciones de Introducción Álgebra",
-        "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-        "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-        "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Álgebra con rigor académico y visión intuitiva.</p>\n      ",
-        "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
-        "practica": {
-          "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
-        },
-        "ejercicios": {
-          "problems": [
-            "Demuestre la propiedad fundamental del capítulo 1 de Introducción Álgebra.",
-            "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
-          ],
-          "formulasClave": [
-            {
-              "label": "Fórmula Principal",
-              "latex": "A = P D P^{-1}"
-            },
-            {
-              "label": "Criterio de Convergencia",
-              "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
-            }
-          ]
-        }
-      },
-      {
-        "id": "cap-2",
-        "number": 2,
-        "displayNumber": "1.2",
-        "title": "Aplicaciones Avanzadas en Introducción Álgebra",
-        "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-        "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-        "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-        "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
-        "practica": {
-          "text": "<p>Resolución detallada de ejercicios complejos.</p>"
-        },
-        "ejercicios": {
-          "problems": [
-            "Desarrolle el cálculo matricial para el sistema 3x3."
-          ],
-          "formulasClave": [
-            {
-              "label": "Ecuación Característica",
-              "latex": "\\det(A - \\lambda I) = 0"
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
     "id": "course_topologia-rn",
     "slug": "topologia-rn",
+    "number": 8,
     "title": "Topología Rn",
     "category": "Topología",
     "level": "Avanzado",
@@ -1678,6 +2328,7 @@
   {
     "id": "course_calculo-avanzado",
     "slug": "calculo-avanzado",
+    "number": 9,
     "title": "Cálculo Avanzado",
     "category": "Cálculo",
     "level": "Avanzado",

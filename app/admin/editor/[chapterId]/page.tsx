@@ -9,6 +9,7 @@ import { TagAutocompleteSelector } from '@/components/admin/TagAutocompleteSelec
 import { PedagogicalToolbar } from '@/components/admin/PedagogicalToolbar';
 import { LaTeXPedagogicalParser } from '@/components/math/LaTeXPedagogicalParser';
 import { InteractivePractice, PracticeExercise } from '@/components/classroom/InteractivePractice';
+import { ExerciseImportModal } from '@/components/admin/ExerciseImportModal';
 
 export default function ChapterEditorPage() {
   const router = useRouter();
@@ -111,6 +112,8 @@ export default function ChapterEditorPage() {
       formulasClave: []
     }
   });
+
+  const [importModalOpen, setImportModalOpen] = useState(false);
 
   const syncAvailableTags = (chData: ChapterData) => {
     if (!chData.ejercicios?.problems) return;
@@ -355,6 +358,20 @@ export default function ChapterEditorPage() {
         practica: {
           ...prev.practica,
           exercises: [...currentList, newEx]
+        }
+      };
+    });
+  };
+
+  const handleBatchImportExercises = (newExercises: PracticeExercise[]) => {
+    setChapter((prev) => {
+      if (!prev) return null as any;
+      const currentList: PracticeExercise[] = prev.practica?.exercises || [];
+      return {
+        ...prev,
+        practica: {
+          ...prev.practica,
+          exercises: [...currentList, ...newExercises]
         }
       };
     });
@@ -839,6 +856,13 @@ export default function ChapterEditorPage() {
                     className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-1.5 font-title cursor-pointer"
                   >
                     <i className="fa-solid fa-plus"></i> Emparejamiento
+                  </button>
+                  <button
+                    onClick={() => setImportModalOpen(true)}
+                    className="px-3.5 py-1.5 bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-1.5 font-title cursor-pointer ml-1"
+                    title="Importar varios ejercicios en bloque usando etiquetas LaTeX"
+                  >
+                    <i className="fa-solid fa-file-import"></i> 📥 Importar en Bloque (LaTeX)
                   </button>
                 </div>
               </div>
@@ -1687,6 +1711,13 @@ export default function ChapterEditorPage() {
           </div>
         )}
       </div>
+
+      {/* Modal de Importación Masiva por Sintaxis LaTeX */}
+      <ExerciseImportModal
+        isOpen={importModalOpen}
+        onClose={() => setImportModalOpen(false)}
+        onImportExercises={handleBatchImportExercises}
+      />
     </div>
   );
 }
