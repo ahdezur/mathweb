@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChapterData, UnitData } from '@/lib/classroomData';
+import { MathText } from '@/components/math/MathFormula';
 
 interface ClassroomSidebarProps {
   courseTitle: string;
@@ -222,7 +223,7 @@ const ClassroomSidebarComponent: React.FC<ClassroomSidebarProps> = ({
                           Unidad {unit.number}
                         </span>
                         <span className="text-sm font-extrabold font-title break-words whitespace-normal leading-snug text-[#1e293b] dark:text-slate-100">
-                          {unit.title.replace(/^Unidad \d+:\s*/i, '')}
+                          <MathText text={unit.title.replace(/^Unidad \d+:\s*/i, '')} />
                         </span>
                       </div>
                     )}
@@ -268,7 +269,7 @@ const ClassroomSidebarComponent: React.FC<ClassroomSidebarProps> = ({
 
                             <div className={`flex-1 min-w-0 transition-all duration-500 ease-in-out ${collapsed ? 'max-w-0 opacity-0 overflow-hidden' : 'max-w-full opacity-100'}`}>
                               <span className="font-bold text-sm block leading-snug font-title mb-1">
-                                {chap.title}
+                                <MathText text={chap.title} />
                               </span>
                               <span className={`text-xs line-clamp-2 leading-relaxed ${isActive ? 'text-cyan-900 dark:text-cyan-200 opacity-90' : 'opacity-75'}`}>
                                 {chap.summary}

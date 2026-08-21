@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { CourseContent, ChapterData, MOCK_CLASSROOM_DATA, getCourseContentBySlug } from './classroomData';
+import { CourseContent, ChapterData, UnitData, MOCK_CLASSROOM_DATA, getCourseContentBySlug } from './classroomData';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const STORAGE_FILE = path.join(DATA_DIR, 'courses_storage.json');
@@ -25,33 +25,19 @@ function getAllDefaultCourses(): CourseContent[] {
 async function ensureStorageFile(): Promise<CourseContent[]> {
   try {
     await fs.mkdir(DATA_DIR, { recursive: true });
-    let existing: CourseContent[] = [];
     try {
       const data = await fs.readFile(STORAGE_FILE, 'utf-8');
       const parsed = JSON.parse(data);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        existing = parsed;
+        return parsed;
       }
     } catch {
       // File doesn't exist or is invalid
     }
 
     const defaultCourses = getAllDefaultCourses();
-    const merged: CourseContent[] = [...existing];
-
-    defaultCourses.forEach((defCourse) => {
-      const existingIdx = merged.findIndex((c) => c.slug === defCourse.slug);
-      if (existingIdx === -1) {
-        merged.push(defCourse);
-      } else {
-        merged[existingIdx].title = defCourse.title;
-        merged[existingIdx].category = defCourse.category;
-        merged[existingIdx].level = defCourse.level;
-      }
-    });
-
-    await fs.writeFile(STORAGE_FILE, JSON.stringify(merged, null, 2), 'utf-8');
-    return merged;
+    await fs.writeFile(STORAGE_FILE, JSON.stringify(defaultCourses, null, 2), 'utf-8');
+    return defaultCourses;
   } catch (error) {
     console.error('Error in ensureStorageFile:', error);
     return getAllDefaultCourses();
@@ -71,8 +57,38 @@ export async function getStoredCourses(): Promise<CourseContent[]> {
     topChapters.forEach((ch) => chapterMap.set(ch.id, ch));
 
     const finalChapters = Array.from(chapterMap.values());
+
+    let units: UnitData[] = (course.units && course.units.length > 0)
+      ? course.units
+      : [
+          {
+            id: 'u-1',
+            number: 1,
+            title: `Unidad 1: Módulos Principales de ${course.title}`,
+            summary: `Contenido estructurado del curso de ${course.title}.`,
+            chapters: finalChapters
+          }
+        ];
+
+    // Ensure all chapters exist inside units so none are hidden from the sidebar
+    const assignedChapterIds = new Set(units.flatMap((u) => (u.chapters || []).map((c) => c.id)));
+    const unassignedChapters = finalChapters.filter((c) => !assignedChapterIds.has(c.id));
+
+    if (unassignedChapters.length > 0 && units.length > 0) {
+      units = units.map((u, idx) => {
+        if (idx === 0) {
+          return {
+            ...u,
+            chapters: [...(u.chapters || []), ...unassignedChapters].sort((a, b) => (a.number || 0) - (b.number || 0))
+          };
+        }
+        return u;
+      });
+    }
+
     return {
       ...course,
+      units,
       chapters: finalChapters
     };
   });
@@ -88,7 +104,36 @@ export async function getStoredCourseBySlug(slug: string): Promise<CourseContent
 export async function saveStoredCourses(courses: CourseContent[]): Promise<boolean> {
   try {
     await fs.mkdir(DATA_DIR, { recursive: true });
-    await fs.writeFile(STORAGE_FILE, JSON.stringify(courses, null, 2), 'utf-8');
+    
+    const normalized = courses.map((course) => {
+      const allChaps = (course.chapters || []).length > 0
+        ? course.chapters
+        : (course.units || []).flatMap((u) => u.chapters || []);
+
+      let units = (course.units && course.units.length > 0)
+        ? course.units
+        : [{ id: 'u-1', number: 1, title: `Unidad 1: Módulos Principales`, chapters: allChaps }];
+
+      const assignedIds = new Set(units.flatMap((u) => (u.chapters || []).map((c: ChapterData) => c.id)));
+      const unassigned = allChaps.filter((c: ChapterData) => !assignedIds.has(c.id));
+
+      if (unassigned.length > 0 && units.length > 0) {
+        units = units.map((u, idx) => {
+          if (idx === 0) {
+            return { ...u, chapters: [...(u.chapters || []), ...unassigned].sort((a, b) => (a.number || 0) - (b.number || 0)) };
+          }
+          return u;
+        });
+      }
+
+      return {
+        ...course,
+        units,
+        chapters: allChaps
+      };
+    });
+
+    await fs.writeFile(STORAGE_FILE, JSON.stringify(normalized, null, 2), 'utf-8');
     return true;
   } catch (error) {
     console.error('Error saving stored courses:', error);

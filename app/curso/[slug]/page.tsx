@@ -74,9 +74,11 @@ export default function CourseClassroomPage() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [fontScale, setFontScale] = useState<number>(1.0);
 
-  const allChapters: ChapterData[] = (courseData.chapters && courseData.chapters.length > 0)
-    ? courseData.chapters
-    : (courseData.units || []).flatMap((u) => u.chapters || []);
+  const hasUnits = Array.isArray(courseData.units) && courseData.units.length > 0;
+  const unitChapters = hasUnits ? courseData.units!.flatMap((u) => u.chapters || []) : [];
+  const allChapters: ChapterData[] = unitChapters.length > 0
+    ? unitChapters
+    : (courseData.chapters || []);
 
   const activeChapter: ChapterData = allChapters.find((c) => c.id === activeChapterId) || allChapters[0];
   const activeUnit: UnitData | undefined = courseData.units?.find((u) =>
@@ -146,7 +148,8 @@ export default function CourseClassroomPage() {
               <div className="flex items-center gap-3.5 min-w-0 flex-1 flex-wrap">
                 {activeUnit && (
                   <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 shrink-0 font-title">
-                    Unidad {activeUnit.number}
+                    Unidad {activeUnit.number}{activeUnit.title ? `: ` : ''}
+                    {activeUnit.title && <MathText text={activeUnit.title.replace(/^Unidad \d+:\s*/i, '')} />}
                   </span>
                 )}
                 <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800 shrink-0 font-title">

@@ -340,6 +340,30 @@ function renderPedagogicalEnvironment(raw: string, key: string): React.ReactNode
     );
   }
 
+function extractBraceContentAt(text: string, startBraceIndex: number): { content: string; endIndex: number } | null {
+  if (text[startBraceIndex] !== '{') return null;
+  let depth = 1;
+  let content = '';
+  let i = startBraceIndex + 1;
+
+  while (i < text.length && depth > 0) {
+    const char = text[i];
+    if (char === '{' && text[i - 1] !== '\\') {
+      depth++;
+    } else if (char === '}' && text[i - 1] !== '\\') {
+      depth--;
+    }
+
+    if (depth > 0) {
+      content += char;
+    }
+    i++;
+  }
+
+  if (depth !== 0) return null;
+  return { content, endIndex: i - 1 };
+}
+
   // 4. Método de Resolución: \begin{metodo}{Title} \problema{...} \paso{N}{Title} body \ejemplo{...} \end{metodo}
   if (envType === 'metodo') {
     const { title, body: initialBody } = extractEnvironmentTitle(raw, 'metodo');
@@ -352,20 +376,54 @@ function renderPedagogicalEnvironment(raw: string, key: string): React.ReactNode
       body = probExtraction.remainingText.trim();
     }
 
-    // Parse \paso{N}{Title} description \ejemplo{...}
-    const pasoRegex = /\\paso\{([^}]+)\}\{([^}]+)\}([\s\S]*?)(?=\\paso\{|\\end\{metodo\}|$)/g;
-    const steps: { step: number; title: string; description: string }[] = [];
+    const steps: { step: number; stepLabel?: string; title: string; description: string }[] = [];
     const exampleParts: string[] = [];
 
     if (problemaHeader) {
       exampleParts.push(problemaHeader);
     }
 
-    let pasoMatch;
-    while ((pasoMatch = pasoRegex.exec(body)) !== null) {
-      const stepNum = parseInt(pasoMatch[1], 10) || (steps.length + 1);
-      const stepTitle = pasoMatch[2].trim();
-      let stepDesc = pasoMatch[3].trim();
+    // Parse \paso{Label}{Title} description \ejemplo{...} with balanced brace extraction
+    let pos = 0;
+    let defaultStepNum = 1;
+
+    while (pos < body.length) {
+      const pasoIndex = body.indexOf('\\paso', pos);
+      if (pasoIndex === -1) break;
+
+      let curr = pasoIndex + 5;
+      while (curr < body.length && /\s/.test(body[curr])) curr++;
+
+      if (curr >= body.length || body[curr] !== '{') {
+        pos = pasoIndex + 5;
+        continue;
+      }
+
+      const arg1 = extractBraceContentAt(body, curr);
+      if (!arg1) { pos = pasoIndex + 5; continue; }
+      curr = arg1.endIndex + 1;
+
+      while (curr < body.length && /\s/.test(body[curr])) curr++;
+
+      let arg2Content = '';
+      if (curr < body.length && body[curr] === '{') {
+        const arg2 = extractBraceContentAt(body, curr);
+        if (arg2) {
+          arg2Content = arg2.content;
+          curr = arg2.endIndex + 1;
+        }
+      }
+
+      const nextPasoIndex = body.indexOf('\\paso', curr);
+      const stepBodyRaw = nextPasoIndex !== -1 ? body.substring(curr, nextPasoIndex) : body.substring(curr);
+
+      const rawLabel = arg1.content.trim();
+      const parsedNum = parseInt(rawLabel, 10);
+      const stepNum = isNaN(parsedNum) ? defaultStepNum : parsedNum;
+      const stepLabel = isNaN(parsedNum) ? rawLabel : undefined;
+      const stepTitle = arg2Content.trim();
+
+      let stepDesc = stepBodyRaw.trim();
       let stepExample = '';
 
       const ejExtraction = extractBalancedBraces(stepDesc, 'ejemplo');
@@ -376,6 +434,7 @@ function renderPedagogicalEnvironment(raw: string, key: string): React.ReactNode
 
       steps.push({
         step: stepNum,
+        stepLabel,
         title: stepTitle,
         description: stepDesc
       });
@@ -383,6 +442,9 @@ function renderPedagogicalEnvironment(raw: string, key: string): React.ReactNode
       if (stepExample) {
         exampleParts.push(`Paso ${stepNum}: ${stepExample}`);
       }
+
+      defaultStepNum++;
+      pos = nextPasoIndex !== -1 ? nextPasoIndex : body.length;
     }
 
     const fullExample = exampleParts.length > (problemaHeader ? 1 : 0) ? exampleParts.join('\n\n') : undefined;

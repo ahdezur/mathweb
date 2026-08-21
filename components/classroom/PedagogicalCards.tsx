@@ -47,16 +47,23 @@ function renderKaTeX(text: string) {
       }
     }
 
-    // Render plain text with multiline \n support
+    // Render plain text with inline HTML formatting & multiline \n support
     const lines = part.split('\n');
     return (
       <React.Fragment key={index}>
-        {lines.map((line, lIdx) => (
-          <React.Fragment key={lIdx}>
-            {lIdx > 0 && <br />}
-            {line}
-          </React.Fragment>
-        ))}
+        {lines.map((line, lIdx) => {
+          const formattedLine = line
+            .replace(/\\textit\{([^\}]+)\}/g, '<i>$1</i>')
+            .replace(/\\emph\{([^\}]+)\}/g, '<i>$1</i>')
+            .replace(/\\textbf\{([^\}]+)\}/g, '<b>$1</b>');
+
+          return (
+            <React.Fragment key={lIdx}>
+              {lIdx > 0 && <br />}
+              <span dangerouslySetInnerHTML={{ __html: formattedLine }} />
+            </React.Fragment>
+          );
+        })}
       </React.Fragment>
     );
   });
@@ -107,7 +114,7 @@ export function DefinicionCard({ title, content }: DefinicionCardProps) {
     >
       <div className="flex items-center gap-3 mb-2">
         <h4 className="font-bold text-base md:text-lg text-cyan-900 dark:text-cyan-200 tracking-tight">
-          📌 Definición: <span className="font-medium">{title}</span>
+          📌 Definición: <span className="font-medium">{renderKaTeX(title)}</span>
         </h4>
       </div>
       <div className="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed pl-1">
@@ -174,7 +181,7 @@ export function TheoreticalCard({ type, title, content, demostration, properties
     >
       <div className="flex items-center gap-3 mb-2">
         <h4 className={`font-bold text-base md:text-lg ${config.text} tracking-tight`}>
-          {config.badge}: <span className="font-medium">{title}</span>
+          {config.badge}: <span className="font-medium">{renderKaTeX(title)}</span>
         </h4>
       </div>
 
@@ -271,7 +278,7 @@ export function TheoreticalCard({ type, title, content, demostration, properties
 // -----------------------------------------------------------------------------
 export interface MetodoResolucionCardProps {
   title: string;
-  steps: { step: number; title: string; description: string }[];
+  steps: { step: number; stepLabel?: string; title: string; description: string }[];
   fullExample?: string;
 }
 
@@ -342,7 +349,7 @@ export function MetodoResolucionCard({ title, steps, fullExample }: MetodoResolu
       <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
         <div className="flex items-center gap-3">
           <h4 className="font-bold text-base md:text-lg text-orange-900 dark:text-orange-200 tracking-tight">
-            ⚙️ Método de resolución: <span className="font-medium">{title}</span>
+            ⚙️ Método de resolución: <span className="font-medium">{renderKaTeX(title)}</span>
           </h4>
         </div>
 
@@ -370,11 +377,13 @@ export function MetodoResolucionCard({ title, steps, fullExample }: MetodoResolu
               style={{ paddingLeft: '32px', paddingRight: '32px', paddingTop: '20px', paddingBottom: '20px' }}
               className="bg-white dark:bg-slate-900 border-2 border-orange-200/90 dark:border-orange-900/60 rounded-2xl shadow-md hover:shadow-lg transition-all space-y-2.5"
             >
-              <div className="font-bold text-sm md:text-base text-orange-950 dark:text-orange-100 flex items-center gap-2.5">
-                <span className="w-5.5 h-5.5 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-black shrink-0">
-                  {s.step}
+              <div className="font-bold text-sm md:text-base text-orange-950 dark:text-orange-100 flex items-start gap-2.5">
+                <span className="min-w-6 px-1.5 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-black shrink-0 font-title mt-0.5">
+                  {s.stepLabel ? renderKaTeX(s.stepLabel) : s.step}
                 </span>
-                {s.title}
+                <span className="flex-1 min-w-0 leading-snug">
+                  {renderKaTeX(s.title)}
+                </span>
               </div>
               <div className="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed pl-1">
                 {renderKaTeX(s.description)}
@@ -407,11 +416,13 @@ export function MetodoResolucionCard({ title, steps, fullExample }: MetodoResolu
                   style={{ paddingLeft: '32px', paddingRight: '32px', paddingTop: '20px', paddingBottom: '20px' }}
                   className="bg-white dark:bg-slate-900 border-2 border-orange-200/90 dark:border-orange-900/60 rounded-2xl shadow-md space-y-2.5 flex flex-col justify-start h-full"
                 >
-                  <div className="font-bold text-sm md:text-base text-orange-950 dark:text-orange-100 flex items-center gap-2.5">
-                    <span className="w-5.5 h-5.5 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-black shrink-0">
-                      {s.step}
+                  <div className="font-bold text-sm md:text-base text-orange-950 dark:text-orange-100 flex items-start gap-2.5">
+                    <span className="min-w-6 px-1.5 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-black shrink-0 font-title mt-0.5">
+                      {s.stepLabel ? renderKaTeX(s.stepLabel) : s.step}
                     </span>
-                    {s.title}
+                    <span className="flex-1 min-w-0 leading-snug">
+                      {renderKaTeX(s.title)}
+                    </span>
                   </div>
                   <div className="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed pl-1">
                     {renderKaTeX(s.description)}
@@ -469,7 +480,7 @@ export function TrampaCognitivaCard({ title = 'Error Frecuente de Certamen', err
     >
       <div className="flex items-center gap-3 mb-2">
         <h4 className="font-bold text-base md:text-lg text-rose-950 dark:text-rose-200 tracking-tight">
-          ⚠️ Trampa cognitiva: <span className="font-medium">{title}</span>
+          ⚠️ Trampa cognitiva: <span className="font-medium">{renderKaTeX(title)}</span>
         </h4>
       </div>
 
@@ -537,7 +548,7 @@ export function EjercicioClaveCard({ title, problem, solucion }: EjercicioClaveC
     >
       <div className="flex items-center gap-3 mb-2">
         <h4 className="font-bold text-base md:text-lg text-purple-950 dark:text-purple-200 tracking-tight">
-          🔑 Ejercicio clave: <span className="font-medium">{title}</span>
+          🔑 Ejercicio clave: <span className="font-medium">{renderKaTeX(title)}</span>
         </h4>
       </div>
 

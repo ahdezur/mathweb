@@ -1,286 +1,7 @@
 [
   {
-    "id": "course_introduccion-calculo",
-    "slug": "introduccion-calculo",
-    "number": 1,
-    "title": "Introducción Cálculo",
-    "category": "Cálculo",
-    "level": "Pregrado",
-    "description": "Programa de estudio completo e interactivo para Introducción Cálculo.",
-    "units": [
-      {
-        "id": "u-1",
-        "number": 1,
-        "title": "Unidad 1: Módulos Principales de Introducción Cálculo",
-        "summary": "Contenido estructurado del curso de Introducción Cálculo.",
-        "chapters": [
-          {
-            "id": "cap-1",
-            "number": 1,
-            "displayNumber": "1.1",
-            "title": "Fundamentos y Definiciones de Introducción Cálculo",
-            "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-            "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-            "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Cálculo con rigor académico y visión intuitiva.</p>\n      ",
-            "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
-            "practica": {
-              "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        ",
-              "exercises": [
-                {
-                  "id": "ex-1787214727266",
-                  "type": "true_false",
-                  "title": "Ejercicio 1: Verdadero o Falso",
-                  "statement": "$1+1=2$",
-                  "correctAnswer": true,
-                  "explanation": "La afirmación es verdadera. \n",
-                  "trueFeedback": "¡Correcto! así se suma",
-                  "falseFeedback": "¡Incorrecto! revisa la suma"
-                }
-              ]
-            },
-            "ejercicios": {
-              "problems": [
-                "Demuestre la propiedad fundamental del capítulo 1 de Introducción Cálculo.",
-                "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
-              ],
-              "formulasClave": [
-                {
-                  "label": "Fórmula Principal",
-                  "latex": "A = P D P^{-1}"
-                },
-                {
-                  "label": "Criterio de Convergencia",
-                  "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
-                }
-              ]
-            }
-          },
-          {
-            "id": "cap-2",
-            "number": 2,
-            "displayNumber": "1.2",
-            "title": "Aplicaciones Avanzadas en Introducción Cálculo",
-            "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-            "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-            "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-            "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
-            "practica": {
-              "text": "<p>Resolución detallada de ejercicios complejos.</p>"
-            },
-            "ejercicios": {
-              "problems": [
-                "Desarrolle el cálculo matricial para el sistema 3x3."
-              ],
-              "formulasClave": [
-                {
-                  "label": "Ecuación Característica",
-                  "latex": "\\det(A - \\lambda I) = 0"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ],
-    "chapters": [
-      {
-        "id": "cap-1",
-        "number": 1,
-        "displayNumber": "1.1",
-        "title": "Fundamentos y Definiciones de Introducción Cálculo",
-        "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-        "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-        "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Cálculo con rigor académico y visión intuitiva.</p>\n      ",
-        "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
-        "practica": {
-          "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        ",
-          "exercises": [
-            {
-              "id": "ex-1787214727266",
-              "type": "true_false",
-              "title": "Ejercicio 1: Verdadero o Falso",
-              "statement": "$1+1=2$",
-              "correctAnswer": true,
-              "explanation": "La afirmación es verdadera. \n",
-              "trueFeedback": "¡Correcto! así se suma",
-              "falseFeedback": "¡Incorrecto! revisa la suma"
-            }
-          ]
-        },
-        "ejercicios": {
-          "problems": [
-            "Demuestre la propiedad fundamental del capítulo 1 de Introducción Cálculo.",
-            "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
-          ],
-          "formulasClave": [
-            {
-              "label": "Fórmula Principal",
-              "latex": "A = P D P^{-1}"
-            },
-            {
-              "label": "Criterio de Convergencia",
-              "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
-            }
-          ]
-        }
-      },
-      {
-        "id": "cap-2",
-        "number": 2,
-        "displayNumber": "1.2",
-        "title": "Aplicaciones Avanzadas en Introducción Cálculo",
-        "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-        "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-        "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-        "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
-        "practica": {
-          "text": "<p>Resolución detallada de ejercicios complejos.</p>"
-        },
-        "ejercicios": {
-          "problems": [
-            "Desarrolle el cálculo matricial para el sistema 3x3."
-          ],
-          "formulasClave": [
-            {
-              "label": "Ecuación Característica",
-              "latex": "\\det(A - \\lambda I) = 0"
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "id": "course_introduccion-algebra",
-    "slug": "introduccion-algebra",
-    "number": 2,
-    "title": "Introducción Álgebra",
-    "category": "Álgebra Lineal",
-    "level": "Pregrado",
-    "description": "Programa de estudio completo e interactivo para Introducción Álgebra.",
-    "units": [
-      {
-        "id": "u-1",
-        "number": 1,
-        "title": "Unidad 1: Sumatorias e Inducción",
-        "summary": "Contenido estructurado del curso de Introducción Álgebra.",
-        "chapters": [
-          {
-            "id": "cap-1",
-            "number": 1,
-            "displayNumber": "1.1",
-            "title": "Sumatorias",
-            "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-            "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-            "motivacion": "\\begin{card}\n<p><strong>El poder de la compresión matemática</strong></p>\n<p>Imagina que estás analizando datos y necesitas sumar los ingresos diarios de una empresa durante todo un año, o que estás calculando el área bajo una curva dividiéndola en cientos de pequeños rectángulos. Escribir la suma elemento por elemento, como \n$$a_1 + a_2 + a_3 + \\dots + a_{365}$$\nno solo es tedioso y poco elegante, sino que resulta inútil si queremos manipular esa cadena de números algebraicamente.</p>\n<p>\nAquí es donde el álgebra introduce una de sus herramientas más potentes: el operador sumatoria.</p>\n<p>Piensa en este operador como el equivalente matemático a un archivo comprimido o a un ciclo repetitivo en programación. Su propósito no es simplemente abreviar la escritura, sino encapsular patrones numéricos extensos en una estructura compacta. Al aprender las reglas de este operador, seremos capaces de manipular, simplificar y calcular bloques gigantes de información en apenas un par de líneas de desarrollo.</p>\n\n\n\\begin{pregunta}\n¿Cómo podemos diseñar un lenguaje matemático que nos permita empaquetar una suma de mil términos, operar con ella y luego desempaquetarla sin perder ninguna pieza de información en el proceso?\n\\end{pregunta}\n\\end{card}\n",
-            "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
-            "practica": {
-              "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
-            },
-            "ejercicios": {
-              "problems": [
-                "Demuestre la propiedad fundamental del capítulo 1 de Introducción Álgebra.",
-                "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
-              ],
-              "formulasClave": [
-                {
-                  "label": "Fórmula Principal",
-                  "latex": "A = P D P^{-1}"
-                },
-                {
-                  "label": "Criterio de Convergencia",
-                  "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
-                }
-              ]
-            }
-          },
-          {
-            "id": "cap-2",
-            "number": 2,
-            "displayNumber": "1.2",
-            "title": "Aplicaciones Avanzadas en Introducción Álgebra",
-            "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-            "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-            "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-            "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
-            "practica": {
-              "text": "<p>Resolución detallada de ejercicios complejos.</p>"
-            },
-            "ejercicios": {
-              "problems": [
-                "Desarrolle el cálculo matricial para el sistema 3x3."
-              ],
-              "formulasClave": [
-                {
-                  "label": "Ecuación Característica",
-                  "latex": "\\det(A - \\lambda I) = 0"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ],
-    "chapters": [
-      {
-        "id": "cap-1",
-        "number": 1,
-        "displayNumber": "1.1",
-        "title": "Sumatorias",
-        "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-        "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-        "motivacion": "\\begin{card}\n<p><strong>El poder de la compresión matemática</strong></p>\n<p>Imagina que estás analizando datos y necesitas sumar los ingresos diarios de una empresa durante todo un año, o que estás calculando el área bajo una curva dividiéndola en cientos de pequeños rectángulos. Escribir la suma elemento por elemento, como \n$$a_1 + a_2 + a_3 + \\dots + a_{365}$$\nno solo es tedioso y poco elegante, sino que resulta inútil si queremos manipular esa cadena de números algebraicamente.</p>\n<p>\nAquí es donde el álgebra introduce una de sus herramientas más potentes: el operador sumatoria.</p>\n<p>Piensa en este operador como el equivalente matemático a un archivo comprimido o a un ciclo repetitivo en programación. Su propósito no es simplemente abreviar la escritura, sino encapsular patrones numéricos extensos en una estructura compacta. Al aprender las reglas de este operador, seremos capaces de manipular, simplificar y calcular bloques gigantes de información en apenas un par de líneas de desarrollo.</p>\n\n\n\\begin{pregunta}\n¿Cómo podemos diseñar un lenguaje matemático que nos permita empaquetar una suma de mil términos, operar con ella y luego desempaquetarla sin perder ninguna pieza de información en el proceso?\n\\end{pregunta}\n\\end{card}\n",
-        "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
-        "practica": {
-          "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
-        },
-        "ejercicios": {
-          "problems": [
-            "Demuestre la propiedad fundamental del capítulo 1 de Introducción Álgebra.",
-            "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
-          ],
-          "formulasClave": [
-            {
-              "label": "Fórmula Principal",
-              "latex": "A = P D P^{-1}"
-            },
-            {
-              "label": "Criterio de Convergencia",
-              "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
-            }
-          ]
-        }
-      },
-      {
-        "id": "cap-2",
-        "number": 2,
-        "displayNumber": "1.2",
-        "title": "Aplicaciones Avanzadas en Introducción Álgebra",
-        "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-        "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-        "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-        "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
-        "practica": {
-          "text": "<p>Resolución detallada de ejercicios complejos.</p>"
-        },
-        "ejercicios": {
-          "problems": [
-            "Desarrolle el cálculo matricial para el sistema 3x3."
-          ],
-          "formulasClave": [
-            {
-              "label": "Ecuación Característica",
-              "latex": "\\det(A - \\lambda I) = 0"
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
     "id": "c1",
     "slug": "calculo-diferencial",
-    "number": 3,
     "title": "Cálculo Diferencial",
     "category": "Cálculo",
     "level": "Pregrado",
@@ -485,7 +206,7 @@
                 {
                   "label": "Regla del Producto",
                   "latex": "(u \\cdot v)' = u'v + uv'",
-                  "description": "Fórmula de derivación directa para determinar el cambio del producto de dos funciones $u(x)$ and $v(x)$."
+                  "description": "Fórmula de derivación directa para determinar el cambio del producto de dos funciones $u(x)$ y $v(x)$."
                 },
                 {
                   "label": "Regla del Cociente",
@@ -511,7 +232,7 @@
         "chapters": [
           {
             "id": "cap-2",
-            "number": 1,
+            "number": 2,
             "title": "Optimización y Trazado Curvilíneo Avanzado",
             "summary": "Puntos críticos, criterio de la primera y segunda derivada, concavidad e inflexión.",
             "mathKey": "f''(x) > 0 \\implies \\text{Concavidad hacia arriba}",
@@ -644,7 +365,7 @@
                 }
               ]
             },
-            "displayNumber": "1"
+            "displayNumber": "2.1"
           }
         ]
       },
@@ -884,7 +605,7 @@
             {
               "label": "Regla del Producto",
               "latex": "(u \\cdot v)' = u'v + uv'",
-              "description": "Fórmula de derivación directa para determinar el cambio del producto de dos funciones $u(x)$ and $v(x)$."
+              "description": "Fórmula de derivación directa para determinar el cambio del producto de dos funciones $u(x)$ y $v(x)$."
             },
             {
               "label": "Regla del Cociente",
@@ -897,11 +618,12 @@
               "description": "Regla fundamental de composición para diferenciar funciones compuestas complejas $f(g(x))$."
             }
           ]
-        }
+        },
+        "displayNumber": "1.1"
       },
       {
         "id": "cap-2",
-        "number": 1,
+        "number": 2,
         "title": "Optimización y Trazado Curvilíneo Avanzado",
         "summary": "Puntos críticos, criterio de la primera y segunda derivada, concavidad e inflexión.",
         "mathKey": "f''(x) > 0 \\implies \\text{Concavidad hacia arriba}",
@@ -1034,7 +756,7 @@
             }
           ]
         },
-        "displayNumber": "1"
+        "displayNumber": "2.1"
       },
       {
         "id": "cap-3",
@@ -1074,7 +796,6 @@
   {
     "id": "course_calculo-integral",
     "slug": "calculo-integral",
-    "number": 4,
     "title": "Cálculo Integral",
     "category": "Cálculo",
     "level": "Intermedio",
@@ -1131,12 +852,7 @@
               "problems": [
                 "Desarrolle el cálculo matricial para el sistema 3x3."
               ],
-              "formulasClave": [
-                {
-                  "label": "Ecuación Característica",
-                  "latex": "\\det(A - \\lambda I) = 0"
-                }
-              ]
+              "formulasClave": []
             }
           }
         ]
@@ -1188,12 +904,7 @@
           "problems": [
             "Desarrolle el cálculo matricial para el sistema 3x3."
           ],
-          "formulasClave": [
-            {
-              "label": "Ecuación Característica",
-              "latex": "\\det(A - \\lambda I) = 0"
-            }
-          ]
+          "formulasClave": []
         }
       }
     ]
@@ -1201,7 +912,6 @@
   {
     "id": "course_algebra-lineal",
     "slug": "algebra-lineal",
-    "number": 5,
     "title": "Álgebra Lineal",
     "category": "Álgebra Lineal",
     "level": "Intermedio",
@@ -1258,16 +968,11 @@
               "problems": [
                 "Desarrolle el cálculo matricial para el sistema 3x3."
               ],
-              "formulasClave": [
-                {
-                  "label": "Ecuación Característica",
-                  "latex": "\\det(A - \\lambda I) = 0"
-                }
-              ]
+              "formulasClave": []
             }
           },
           {
-            "id": "cap-1787217675641",
+            "id": "cap-1787290124079",
             "number": 3,
             "displayNumber": "3",
             "title": "Matrices cuadradas especiales: identidad, triangulares, simétricas y antisimétricas",
@@ -1301,7 +1006,7 @@
             }
           },
           {
-            "id": "cap-1787217725076",
+            "id": "cap-1787290169486",
             "number": 4,
             "displayNumber": "4",
             "title": "Operaciones con matrices",
@@ -1335,7 +1040,7 @@
             }
           },
           {
-            "id": "cap-1787217765595",
+            "id": "cap-1787290213490",
             "number": 5,
             "displayNumber": "5",
             "title": "Matriz inversa (sin cálculo general)",
@@ -1371,12 +1076,13 @@
         ]
       },
       {
-        "id": "unit-1787218357078-2",
+        "id": "u-2",
         "number": 2,
         "title": "Unidad 2: Sistemas de Ecuaciones Lineales y Escalonamiento",
+        "summary": "Métodos de descomposición matricial y resolución de sistemas simultáneos de ecuaciones lineales.",
         "chapters": [
           {
-            "id": "cap-1787218380470",
+            "id": "cap-1787290253163",
             "number": 1,
             "displayNumber": "1",
             "title": "Ecuaciones lineales, sistemas homogéneos y no homogéneos",
@@ -1410,7 +1116,7 @@
             }
           },
           {
-            "id": "cap-1787218410994",
+            "id": "cap-1787290282189",
             "number": 2,
             "displayNumber": "2",
             "title": "Operaciones elementales y Algoritmo de Gauss: Rango y Sistemas Lineales",
@@ -1444,7 +1150,7 @@
             }
           },
           {
-            "id": "cap-1787218433526",
+            "id": "cap-1787290307083",
             "number": 3,
             "displayNumber": "3",
             "title": "Matrices elementales",
@@ -1478,41 +1184,31 @@
             }
           },
           {
-            "id": "cap-1787218472899",
+            "id": "cap-4",
             "number": 4,
             "displayNumber": "4",
-            "title": "Sistemas simultáneos",
-            "summary": "Resumen introductorio del nuevo capítulo.",
-            "mathKey": "f(x) = ...",
+            "title": "Sistemas Simultáneos $A\\vec{x} = \\vec{b}_k$",
+            "summary": "Algoritmos para resolver múltiples vectores de términos independientes con la misma matriz de coeficientes.",
+            "mathKey": "A\\vec{x}_i = \\vec{b}_i, \\quad i = 1, \\dots, k",
             "motivacion": "\\begin{card}\n¿Para qué aplicar el Algoritmo de Gauss diez veces si puedes hacerlo solo una vez? En esta lección aprenderemos a resolver múltiples sistemas de ecuaciones en paralelo cuando comparten la misma matriz de coeficientes. Descubre cómo este poderoso 'atajo' matemático no solo te ahorrará horas de cálculo, sino que es el secreto detrás del método más eficiente para encontrar la matriz inversa.\n\\begin{pregunta}\nSi cambiar los resultados de un sistema no altera las operaciones que aplicamos sobre su matriz principal, ¿cómo podemos organizar nuestro cálculo para encontrar todas las soluciones posibles al mismo tiempo?\n\\end{pregunta}\n\\end{card}",
-            "teoria": "\\begin{card}\nEn muchas aplicaciones de ingeniería y ciencias, surge la necesidad de resolver $k$ sistemas de ecuaciones lineales que comparten exactamente la misma matriz de coeficientes $A$, pero que tienen diferentes vectores de términos independientes $\\vec{b}_1, \\vec{b}_2, \\dots, \\vec{b}_k$. \n\\begin{definicion}{Sistemas Simultáneos}\nUn sistema simultáneo consiste en plantear simultáneamente:\n$$A\\vec{x} = \\vec{b}_1, \\quad A\\vec{x} = \\vec{b}_2, \\quad \\dots, \\quad A\\vec{x} = \\vec{b}_k$$\ndonde $A\\in M_{m \\times n}$ y $\\vec b_i\\in\\mathbb R^m$\n\\end{definicion}\n\\end{card}\n\\begin{card}\n\\begin{metodo}{Resolución de Sistemas Simultáneos}\n\n\\problema{Un ingeniero evalúa las fuerzas en una estructura bajo dos escenarios de carga, los cuales comparten la matriz principal $A$:\nEscenario 1: $\\begin{cases}x + y + z = 3\\\\\n2y + z = 3\\\\\nx + z = 2\\end{cases}$\nEscenario 2:$\\begin{cases}x + y + z = 0\n\\\\2y + z = -1\\\\\nx + z = 0\\end{cases}$\nResuelva ambos sistemas de forma simultánea.}\n\n\\paso{1}{Planteamiento de la matriz expandida}\nPara resolver múltiples sistemas que comparten matriz principal, construimos una gran matriz aumentada donde colocamos la matriz $A$ a la izquierda y todos los vectores $\\vec{b}_i$ como columnas en el lado derecho.\n\n\\ejemplo{En notación matricial, identificamos $A$, $\\vec{b}_1$ y $\\vec{b}_2$, y armamos la matriz extendida juntando ambos escenarios: $[A \\ | \\ \\vec{b}_1 \\ \\ \\vec{b}_2] = \\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 1 & 0 & 1 & 2 & 0 \\end{array} \\right]$}\n\n\\paso{2}{Escalonamiento}\nAplicamos el método de Gauss-Jordan (operaciones elementales por fila) para llevar la matriz $A$ de la izquierda a su forma escalonada reducida. Las operaciones alterarán toda la fila extendida.\n\n\\ejemplo{Aplicamos operaciones elementales a nuestra matriz aumentada:\n\n1. Hacemos cero bajo el primer pivote ($F_3 \\rightarrow F_3 - F_1$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 0 & -1 & 0 & -1 & 0 \\end{array} \\right]$\n\n2. Ajustamos el segundo pivote ($F_2 \\leftrightarrow F_3$ y luego $F_2 \\rightarrow -F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\end{array} \\right]$ \n\n3. Hacemos ceros arriba y abajo del segundo pivote ($F_3 \\rightarrow F_3 - 2F_2$ y $F_1 \\rightarrow F_1 - F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 1 & 2 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$ \n\n4. Hacemos cero arriba del tercer pivote ($F_1 \\rightarrow F_1 - F_3$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 0 & 1 & 1 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$}\n\n\\paso{3}{Interpretación del resultado}\nAl llegar a la forma escalonada reducida (y si $A$ es cuadrada, a la matriz identidad), cada columna de la derecha representa la solución directa de su respectivo sistema original.\n\n\\ejemplo{La matriz del lado izquierdo se transformó en la identidad. Por lo tanto, las soluciones se leen directamente de las columnas derechas correspondientes:\n\nEscenario 1: $\\vec{x}_1 = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$. \n\nEscenario 2: $\\vec{x}_2 = \\begin{pmatrix} 1 \\\\ 0 \\\\ -1 \\end{pmatrix}$.}\n\\end{metodo}\n\\end{card}",
+            "teoria": "\\begin{card}\nEn muchas aplicaciones de ingeniería y ciencias, surge la necesidad de resolver $k$ sistemas de ecuaciones lineales que comparten exactamente la misma matriz de coeficientes $A$, pero que tienen diferentes vectores de términos independientes $\\vec{b}_1, \\vec{b}_2, \\dots, \\vec{b}_k$. \n\\begin{definicion}{Sistemas Simultáneos}\nUn sistema simultáneo consiste en plantear simultáneamente:\n$$A\\vec{x} = \\vec{b}_1, \\quad A\\vec{x} = \\vec{b}_2, \\quad \\dots, \\quad A\\vec{x} = \\vec{b}_k$$\ndonde $A\\in M_{m \\times n}$ y $\\vec b_i\\in\\mathbb R^m$\n\\end{definicion}\n\\end{card}\n\\begin{card}\n\\begin{metodo}{Resolución de Sistemas Simultáneos}\n\n\\problema{Un ingeniero evalúa las fuerzas en una estructura bajo dos escenarios de carga, los cuales comparten la matriz principal $A$:\nEscenario 1: $\\begin{cases}x + y + z = 3\\\\\n2y + z = 3\\\\\nx + z = 2\\end{cases}$ Escenario 2:$\\begin{cases}x + y + z = 0\n\\\\2y + z = -1\\\\\nx + z = 0\\end{cases}$\nResuelva ambos sistemas de forma simultánea.}\n\n\\paso{1}{Planteamiento de la matriz expandida}\nPara resolver múltiples sistemas que comparten matriz principal, construimos una gran matriz aumentada donde colocamos la matriz $A$ a la izquierda y todos los vectores $\\vec{b}_i$ como columnas en el lado derecho.\n\n\\ejemplo{En notación matricial, identificamos $A$, $\\vec{b}_1$ y $\\vec{b}_2$, y armamos la matriz extendida juntando ambos escenarios: $[A \\ | \\ \\vec{b}_1 \\ \\ \\vec{b}_2] = \\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 1 & 0 & 1 & 2 & 0 \\end{array} \\right]$}\n\n\\paso{2}{Escalonamiento}\nAplicamos el método de Gauss-Jordan (operaciones elementales por fila) para llevar la matriz $A$ de la izquierda a su forma escalonada reducida. Las operaciones alterarán toda la fila extendida.\n\n\\ejemplo{Aplicamos operaciones elementales a nuestra matriz aumentada:\n\n1. Hacemos cero bajo el primer pivote ($F_3 \\rightarrow F_3 - F_1$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 0 & -1 & 0 & -1 & 0 \\end{array} \\right]$\n\n2. Ajustamos el segundo pivote ($F_2 \\leftrightarrow F_3$ y luego $F_2 \\rightarrow -F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\end{array} \\right]$ \n\n3. Hacemos ceros arriba y abajo del segundo pivote ($F_3 \\rightarrow F_3 - 2F_2$ y $F_1 \\rightarrow F_1 - F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 1 & 2 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$ \n\n4. Hacemos cero arriba del tercer pivote ($F_1 \\rightarrow F_1 - F_3$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 0 & 1 & 1 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$}\n\n\\paso{3}{Interpretación del resultado}\nAl llegar a la forma escalonada reducida (y si $A$ es cuadrada, a la matriz identidad), cada columna de la derecha representa la solución directa de su respectivo sistema original.\n\n\\ejemplo{La matriz del lado izquierdo se transformó en la identidad. Por lo tanto, las soluciones se leen directamente de las columnas derechas correspondientes:\n\nEscenario 1: $\\vec{x}_1 = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$. \n\nEscenario 2: $\\vec{x}_2 = \\begin{pmatrix} 1 \\\\ 0 \\\\ -1 \\end{pmatrix}$.}\n\\end{metodo}\n\\end{card}",
             "practica": {
-              "text": "<p>Ejemplo resuelto...</p>"
+              "text": "<p>Resolución práctica de sistemas simultáneos.</p>"
             },
             "ejercicios": {
               "problems": [
-                {
-                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
-                  "pauta": "1. Solución paso a paso...",
-                  "dificultad": "Medio",
-                  "conceptos": [
-                    "Concepto Clave"
-                  ],
-                  "habilidades": [
-                    "Cálculo Algorítmico"
-                  ]
-                }
+                "Plantee la matriz aumentada extendida para 3 escenarios simultáneos y halle las soluciones."
               ],
               "formulasClave": [
                 {
-                  "label": "Fórmula Clave 1",
-                  "latex": "y = f(x)"
+                  "label": "Matriz Extendida",
+                  "latex": "[A \\mid \\vec{b}_1 \\ \\vec{b}_2 \\dots \\vec{b}_k]"
                 }
               ]
             }
           },
           {
-            "id": "cap-1787218458767",
+            "id": "cap-1787290352671",
             "number": 5,
             "displayNumber": "5",
             "title": "Cálculo de la matriz inversa mediante el método de Gauss-Jordan",
@@ -1546,25 +1242,208 @@
             }
           },
           {
-            "id": "cap-1787218507323",
+            "id": "cap-3",
             "number": 6,
             "displayNumber": "6",
-            "title": "Factorización LU",
-            "summary": "Resumen introductorio del nuevo capítulo.",
-            "mathKey": "f(x) = ...",
-            "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
-            "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+            "title": "Factorización $A = LU$",
+            "summary": "Descomposición de matrices cuadradas en producto de matriz triangular inferior L y superior U.",
+            "mathKey": "A = L U",
+            "motivacion": "\\begin{card}En matemáticas, factorizar es el arte de revelar la estructura oculta de un objeto. Así como descomponer el número $30$ en $2 \\times 3 \\times 5$ nos permite entender sus propiedades fundamentales de inmediato, la Factorización LU hace exactamente lo mismo con los sistemas de ecuaciones.  En lugar de tratar a una matriz $A$ como un bloque opaco de números que debemos atacar con fuerza bruta cada vez, descubriremos cómo descomponerla en el producto de dos piezas elegantes y fundamentales: una matriz triangular inferior $L$ (del inglés <i>Lower</i>) y una matriz triangular superior $U$ (del inglés <i>Upper</i>) . Esta descomposición es una obra maestra de la simplificación matemática: transforma un problema complejo (resolver un sistema general) en dos problemas triviales (resolver sistemas triangulares). Es el principio de \"divide y vencerás\" llevado a su máxima expresión algebraica.\n\\begin{pregunta}\nSabiendo que encontrar incógnitas en un sistema triangular requiere de simples sustituciones directas, ¿cómo podemos sistematizar las operaciones elementales para \"desarmar\" cualquier matriz $A$ en el producto exacto de dos matrices $L$ y $U$, simplificando infinitamente nuestros cálculos futuros?\n\\end{pregunta}\n\\end{card}",
+            "teoria": "\\begin{card}\n\\begin{definicion}{Factorización LU}\nLa factorización $LU$ es una descomposición matricial que expresa una matriz cuadrada $A$ como el producto de dos matrices triangulares:\n$$A = LU$$\nDonde $L$ (del inglés (del inglés <i>Lower</i>)) es una matriz triangular inferior que posee unos ($1$) en su diagonal principal, y $U$ (del inglés <i>Upper</i>) es una matriz triangular superior.\n\\end{definicion}\n\n\\begin{metodo}{Factorización LU mediante Matrices Elementales}\n\n\\problema{Encuentre la factorización $LU$ de la matriz $A = \\begin{pmatrix} 2 & 1 & 1 \\\\ 4 & 1 & 0 \\\\ -2 & 2 & 1 \\end{pmatrix}$ utilizando multiplicación por matrices elementales de eliminación $E_{ij}(\\lambda)$.}\n\n\\paso{1}{Reducción a la forma triangular superior ($U$)}\nMultiplicamos $A$ sucesivamente por la izquierda por matrices elementales de eliminación $E_{i_kj_k}(\\lambda_k)$ para hacer ceros estrictamente por debajo de los pivotes. Cada matriz $E_{ij}(\\lambda_k)$ representa la operación elemental en el paso $k$: $F_{i_k} \\leftarrow F_{i_k} + \\lambda_{k_k} F_{j_k}$. Al aplicar todas las eliminaciones necesarias, llegamos a una ecuación general de la forma $E_{i_p j_p}(\\lambda_p) \\dots E_{i_2 j_2}(\\lambda_2) E_{i_1 j_1}(\\lambda_1) A = U$ donde $U$ es una matriz triangular superior.\n\n\n\\ejemplo{1. Eliminamos el $4$ en la posición $a_{21}$ con $E_{21}(-2)$ ($F_2\\leftarrow F_2-2F_1$) obteniendo\n\n$E_{21}(-2) A = \\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ -2 & 2 & 1 \\end{pmatrix}$\n\n2. Eliminamos el $-2$ en la posición $a_{31}$ con $E_{31}(1)$ ($F_3 \\leftarrow F_3 + 1F_1$) obteniendo\n\n$E_{31}(1)E_{21}(-2) A = \\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ 0 & 3 & 2 \\end{pmatrix}$\n\n3. Eliminamos el $3$ en la posición $a_{32}$ con $E_{32}(3)$ ($F_3 \\leftarrow F_3 + 3F_2$) obteniendo \n\n$E_{32}(3)E_{31}(1)E_{21}(-2) A =\\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ 0 & 0 & -4 \\end{pmatrix}=U$\n\nHemos llegado a nuestra matriz triangular superior: $E_{32}(3) E_{31}(1) E_{21}(-2) A=U$}\n\n\\paso{2}{Despejar $A$ usando matrices inversas}\nPartiendo de la ecuación matricial general $E_{i_p j_p}(\\lambda_p) \\dots E_{i_1 j_1}(\\lambda_1) A = U$, podemos despejar la matriz $A$ multiplicando sucesivamente por la izquierda por las inversas de las matrices elementales. Al aislar $A$, el orden de los factores se invierte, obteniendo \n\n$A = E_{i_1 j_1}(\\lambda_1)^{-1} E_{i_2 j_2}(\\lambda_2)^{-1} \\dots E_{i_p j_p}(\\lambda_p)^{-1} U$\n\nSabemos además que la inversa de una matriz de eliminación simplemente cambia el signo de su escalar, es decir, $E_{i_k j_k}(\\lambda_k)^{-1} = E_{i_k j_k}(-\\lambda_k)$.\n\nPor lo tanto \n$A = E_{i_1 j_1}(-\\lambda_1) E_{i_2 j_2}(-\\lambda_2) \\dots E_{i_p j_p}(-\\lambda_p)U$\n\n\\ejemplo{Sabiendo que $E_{32}(3) E_{31}(1) E_{21}(-2) A=U$ se llega a \n$A=E_{21}(-2)^{-1}E_{31}(1)^{-1}E_{32}(3)^{-1}U$\n\nAhora calculamos las inversas: \n\n$E_{21}(-2) = \\begin{pmatrix} 1 & 0 & 0 \\\\ -2 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}\n\\Longrightarrow \nE_{21}(-2)^{-1}=\\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}=E_{21}(2)$\n\n$E_{31}(1) = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ -1 & 0 & 1 \\end{pmatrix}\n\\Longrightarrow \nE_{31}(1)^{-1}= \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ -1 & 0 & 1 \\end{pmatrix}=E_{31}(-1)$ \n\n$E_{32}(3) = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 3 & 1 \\end{pmatrix}\n\\Longrightarrow \nE_{32}(3)^{-1} = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & -3 & 1 \\end{pmatrix}=E_{32}(-3)$\n\nPor lo tanto \n$A=E_{21}(2)E_{31}(-1)E_{32}(-3)U$\n}\n\n\\paso{3}{Construcción de la matriz $L$}\nLa matriz $L$ se define como el producto de estas matrices inversas en el estricto orden en que se despejaron: $L = E_{i_1 j_1}(-\\lambda_1) E_{i_2 j_2}(-\\lambda_2) \\dots E_{i_p j_p}(-\\lambda_p)$ \nUna propiedad fundamental de esta multiplicación es que, debido a su estructura y al orden en que operan, los escalares $-\\lambda_k$ simplemente se ubican en sus posiciones $(i_k, j_k)$ dentro de una matriz identidad nula por debajo de la diagonal, sin mezclarse ni requerir operaciones adicionales.\n\nDe esta forma, hemos construido matemáticamente la factorización \n\n$A = \\underbrace{E_{i_1 j_1}(-\\lambda_1) E_{i_2 j_2}(-\\lambda_2) \\dots E_{i_p j_p}(-\\lambda_p)}_{L}U$.\n\n\\ejemplo{Multiplicamos las matrices inversas para obtener \n\n$L = E_{21}(2) E_{31}(-1) E_{32}(-3)$\n\n$ = \\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ -1 & 0 & 1 \\end{pmatrix} \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & -3 & 1 \\end{pmatrix}$\n\n$= \\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ -1 & -3 & 1 \\end{pmatrix}$\n\nRecordando que $A=\\underbrace{E_{21}(2) E_{31}(-1) E_{32}(-3)}_LU$ se llega a \n\n$A=\\underbrace{\\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ -1 & -3 & 1 \\end{pmatrix}}_L\\underbrace{\\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ 0 & 0 & -4 \\end{pmatrix}}_U$\n}\n\n\\end{metodo}\\end{card}\n\\begin{card}\n\\begin{ejercicio}{Aplicación de Factorización LU en un Plan de Producción}\nUna fábrica ensambla tres tipos de circuitos electrónicos. El tiempo requerido (en horas) por cada tipo de circuito en tres estaciones de trabajo distintas está modelado por la matriz $A$. El total de horas disponibles semanalmente en cada estación se agrupa en el vector $\\vec{b}$. \n\nDetermine la cantidad semanal a producir de cada circuito (vector $\\vec{x}$) resolviendo el sistema $A\\vec{x} = \\vec{b}$ mediante la descomposición $LU$, considerando los siguientes datos:\n$$A = \\begin{pmatrix} 2 & 1 & 1 \\\\ 4 & 1 & 0 \\\\ -2 & 2 & 1 \\end{pmatrix}, \\quad \\vec{b} = \\begin{pmatrix} 5 \\\\ 6 \\\\ 3 \\end{pmatrix}$$\n\n\\solucion{\nDado que el sistema de ecuaciones se puede reescribir como $L(U\\vec{x}) = \\vec{b}$, la resolución se divide en dos etapas empleando un vector intermedio $\\vec{y}$.\n\n<strong>Paso 1. Recuperar la factorización matricial</strong>\nBasándonos en los cálculos de la sección teórica, ya conocemos la factorización $A = LU$ de esta matriz:\n$L = \\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ -1 & -3 & 1 \\end{pmatrix}, \\quad U = \\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ 0 & 0 & -4 \\end{pmatrix}$\n\n<strong>Paso 2. Sustitución hacia adelante $L\\vec{y} = \\vec{b}$</strong>\nCalculamos el vector intermedio $\\vec{y}$ resolviendo el sistema triangular inferior:\n$\\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ -1 & -3 & 1 \\end{pmatrix} \\begin{pmatrix} y_1 \\\\ y_2 \\\\ y_3 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 6 \\\\ 3 \\end{pmatrix}$\n\nDespejando las ecuaciones de arriba hacia abajo:\nFila 1: \n$y_1 = 5$\n\nFila 2: \n$2y_1 + y_2 = 6  \\implies y_2 = -4$\n\nFila 3: \n$-y_1 - 3y_2 + y_3 = 3  \\implies y_3 = -4$\n\nObtenemos el vector intermedio $\\vec{y} = \\begin{pmatrix} 5 \\\\ -4 \\\\ -4 \\end{pmatrix}$.\n\n<strong>Paso 3. Sustitución hacia atrás $U\\vec{x} = \\vec{y}$<strong>\nCon el vector intermedio calculado, encontramos nuestra solución original $\\vec{x}$ resolviendo el sistema triangular superior:\n$\\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ 0 & 0 & -4 \\end{pmatrix} \\begin{pmatrix} x_1 \\\\ x_2 \\\\ x_3 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ -4 \\\\ -4 \\end{pmatrix}$\n\nDespejando las ecuaciones de abajo hacia arriba:\nFila 3: \n$-4x_3 = -4 \\implies x_3 = 1$\n\nFila 2: \n$-x_2 - 2x_3 = -4 \\implies -x_2 = -2 \\implies x_2 = 2$\n\nFila 1: \n$2x_1 + x_2 + x_3 = 5 \\implies 2x_1 + 2 + 1 = 5 \\implies x_1 = 1$\n\n<strong>Respuesta</strong>\nEl vector solución es $\\vec{x} = \\begin{pmatrix} 1 \\\\ 2 \\\\ 1 \\end{pmatrix}$. Por lo tanto, el plan de producción óptimo es ensamblar 1 unidad del primer circuito, 2 unidades del segundo y 1 unidad del tercero para agotar exactamente las horas disponibles.\n}\n\\end{ejercicio}\n\n\\end{card}\n\n\\begin{card}\n<p><strong>¿Cuándo falla la factorización $LU$? El caso de $PA = LU$</strong></p>\n\n<p>Hasta ahora hemos asumido un escenario ideal: al realizar el proceso de eliminación, siempre encontramos un número distinto de cero en la posición del pivote. Sin embargo, ¿qué ocurre si al evaluar una columna nos topamos con un cero exactamente donde debería ir nuestro pivote?</p>\n\n<p>En ese caso, la operación $F_i \\leftarrow F_i + \\lambda_k F_j$ ya no nos sirve, porque no podemos usar un cero para anular otros números. Cuando esto sucede, la factorización estricta $A = LU$ \\textbf{falla} y el algoritmo no puede continuar.</p>\n\n<p>Para salvar el proceso, la solución natural es realizar un \\textbf{intercambio de filas} con alguna fila inferior que sí tenga un valor distinto de cero en esa columna. Algebraicamente, intercambiar las filas de un sistema equivale a multiplicar nuestra matriz original por una matriz de permutación, a la que llamaremos $P$.</p>\n\n\\begin{definicion}{Factorización con permutación ($PA = LU$)}\nSi una matriz cuadrada e invertible $A$ requiere intercambios de filas durante la eliminación de Gauss para evitar pivotes nulos, introducimos una matriz de permutación $P$ que se encarga de reordenar las filas de la matriz original desde el principio.\n\nLa nueva matriz reordenada, $PA$, ya no presentará problemas de ceros en la diagonal y podrá factorizarse de forma convencional:\n$$PA = LU$$\nDonde $P$ es la matriz que registra los intercambios de filas, $L$ es la matriz triangular inferior que almacena los multiplicadores de eliminación, y $U$ es la matriz triangular superior resultante.\n\\end{definicion}\n\nAunque no detallaremos los cálculos mecánicos de esta variante por ahora, es fundamental saber que la incorporación de la matriz $P$ actúa como un \"seguro de vida\" para el algoritmo, garantizando que \\textit{cualquier} sistema lineal invertible pueda ser factorizado, incluso si su estructura original no era favorable.\n\\end{card}\n\n",
             "practica": {
-              "text": "<p>Ejemplo resuelto...</p>"
+              "text": "<p>Práctica interactiva guiada de factorización LU.</p>",
+              "exercises": [
+                {
+                  "id": "imported-ex-1787295961717-1-bmea0",
+                  "type": "true_false",
+                  "title": "Ejercicio 1: Verdadero o Falso",
+                  "statement": "La matriz triangular inferior $L$ en la factorización $LU$ se obtiene multiplicando las matrices elementales de eliminación en el mismo orden en que se aplicaron sobre la matriz $A$.",
+                  "correctAnswer": false,
+                  "explanation": "La matriz $L$ se obtiene multiplicando las inversas de las matrices elementales de eliminación en el orden contrario. Si el proceso de escalonamiento fue $E_p \\dots E_2 E_1 A = U$, al despejar obtenemos $A = (E_1^{-1} E_2^{-1} \\dots E_p^{-1}) U$, donde ese producto de inversas es la matriz $L$.",
+                  "trueFeedback": "¡Incorrecto! La afirmación es falsa.",
+                  "falseFeedback": "¡Correcto! La afirmación es falsa."
+                },
+                {
+                  "id": "imported-ex-1787296209540-1-bm502",
+                  "type": "true_false",
+                  "title": "Ejercicio 1: Verdadero o Falso",
+                  "statement": "En la factorización $LU$ construida mediante matrices elementales, todos los elementos de la diagonal principal de la matriz $L$ son estrictamente iguales a $1$.",
+                  "correctAnswer": true,
+                  "explanation": "Por construcción, cada matriz elemental de eliminación inversa $E_{ij}(-\\lambda)$ tiene unos en su diagonal principal. Al multiplicar exclusivamente estas matrices triangulares inferiores, el producto final $L$ hereda y conserva los unos en toda su diagonal principal.",
+                  "trueFeedback": "¡Correcto! La afirmación es verdadera.",
+                  "falseFeedback": "¡Incorrecto! La afirmación es verdadera."
+                },
+                {
+                  "id": "imported-ex-1787296543642-1-bhv40",
+                  "type": "single_choice",
+                  "title": "Ejercicio 1: Selección Múltiple",
+                  "question": "En una factorización estricta $A = LU$ obtenida mediante eliminación de Gauss, ¿qué estructura y propiedades caracterizan a las matrices $L$ y $U$?",
+                  "options": [
+                    {
+                      "id": "A",
+                      "text": "$L$ es triangular superior y $U$ es triangular inferior.",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "B",
+                      "text": "Ambas son triangulares inferiores, pero $U$ tiene unos en la diagonal.",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "C",
+                      "text": "$L$ es triangular inferior con unos en la diagonal principal, y $U$ es triangular superior.",
+                      "feedback": "¡Excelente! Respuesta correcta."
+                    },
+                    {
+                      "id": "D",
+                      "text": "$L$ es triangular inferior con los pivotes originales en la diagonal, y $U$ es la matriz identidad.",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    }
+                  ],
+                  "correctOptionId": "C",
+                  "explanation": "Por definición, $L$ (Lower) guarda los multiplicadores en una estructura triangular inferior con unos en su diagonal principal, mientras que $U$ (Upper) es la matriz escalonada triangular superior resultante."
+                },
+                {
+                  "id": "imported-ex-1787296543642-2-2ulp7",
+                  "type": "single_choice",
+                  "title": "Ejercicio 2: Selección Múltiple",
+                  "question": "Para resolver el sistema de ecuaciones $A\\vec{x} = \\vec{b}$ utilizando la descomposición $A=LU$, ¿cuál es la secuencia correcta de sistemas que deben resolverse?",
+                  "options": [
+                    {
+                      "id": "A",
+                      "text": "Resolver $U\\vec{y} = \\vec{b}$, luego $L\\vec{x} = \\vec{y}$.",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "B",
+                      "text": "Resolver $L\\vec{y} = \\vec{b}$, luego $U\\vec{x} = \\vec{y}$.",
+                      "feedback": "¡Excelente! Respuesta correcta."
+                    },
+                    {
+                      "id": "C",
+                      "text": "Resolver $L\\vec{x} = \\vec{y}$, luego $U\\vec{y} = \\vec{b}$.",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "D",
+                      "text": "Resolver $U\\vec{x} = \\vec{b}$, luego $L\\vec{y} = \\vec{x}$.",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    }
+                  ],
+                  "correctOptionId": "B",
+                  "explanation": "Sustituyendo $A = LU$ en el sistema original obtenemos $L(U\\vec{x}) = \\vec{b}$. Definiendo un vector intermedio $\\vec{y} = U\\vec{x}$, el procedimiento exige resolver primero $L\\vec{y} = \\vec{b}$ (sustitución hacia adelante) y posteriormente $U\\vec{x} = \\vec{y}$ (sustitución hacia atrás)."
+                },
+                {
+                  "id": "imported-ex-1787296543642-3-z65t1",
+                  "type": "single_choice",
+                  "title": "Ejercicio 3: Selección Múltiple",
+                  "question": "Si una matriz triangular superior $U$ se obtiene aplicando sucesivamente las matrices elementales de eliminación $E_1$, $E_2$ y $E_3$ sobre la matriz $A$, de modo que $E_3 E_2 E_1 A = U$, ¿cómo se construye algebraicamente la matriz $L$?",
+                  "options": [
+                    {
+                      "id": "A",
+                      "text": "$L = E_3 E_2 E_1$",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "B",
+                      "text": "$L = E_1 E_2 E_3$",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "C",
+                      "text": "$L = E_3^{-1} E_2^{-1} E_1^{-1}$",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "D",
+                      "text": "$L = E_1^{-1} E_2^{-1} E_3^{-1}$",
+                      "feedback": "¡Excelente! Respuesta correcta."
+                    }
+                  ],
+                  "correctOptionId": "D",
+                  "explanation": "Al despejar $A$ en la ecuación matricial $E_3 E_2 E_1 A = U$, debemos multiplicar por la izquierda por las inversas. El orden de los factores se invierte, resultando en $A = (E_1^{-1} E_2^{-1} E_3^{-1}) U$. Por lo tanto, el producto entre paréntesis corresponde a la matriz $L$."
+                },
+                {
+                  "id": "imported-ex-1787296543642-4-rat7q",
+                  "type": "single_choice",
+                  "title": "Ejercicio 4: Selección Múltiple",
+                  "question": "¿Bajo qué circunstancia matemática es estrictamente necesario utilizar la factorización modificada $PA = LU$ en lugar de la descomposición estándar $A = LU$?",
+                  "options": [
+                    {
+                      "id": "A",
+                      "text": "Cuando el sistema de ecuaciones tiene infinitas soluciones.",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "B",
+                      "text": "Cuando la matriz de coeficientes $A$ no es una matriz cuadrada.",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "C",
+                      "text": "Cuando aparece un cero en la posición de un pivote durante el escalonamiento.",
+                      "feedback": "¡Excelente! Respuesta correcta."
+                    },
+                    {
+                      "id": "D",
+                      "text": "Cuando la matriz $A$ posee elementos negativos en su diagonal principal.",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    }
+                  ],
+                  "correctOptionId": "C",
+                  "explanation": "Si el elemento en la posición del pivote es cero, la operación de reemplazo de filas $F_i \\leftarrow F_i + \\lambda F_j$ se indetermina. Es obligatorio realizar un intercambio de filas, operación que se representa algebraicamente multiplicando la matriz original por una matriz de permutación $P$."
+                }
+              ]
             },
             "ejercicios": {
               "problems": [
                 {
-                  "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
-                  "pauta": "1. Solución paso a paso...",
+                  "problem": "Encuentre las matrices elementales de eliminación $E_{i_k j_k}(\\lambda_k)$ y la matriz triangular superior $U$ para la siguiente matriz $A$:\n$A = \\begin{pmatrix} 3 & -1 \\\\ -6 & 5 \\end{pmatrix}$",
+                  "pauta": "Matrices de eliminación utilizadas:\n$E_{21}(2) = \\begin{pmatrix} 1 & 0 \\\\ 2 & 1 \\end{pmatrix}$\nMatriz $U$:\n$U = \\begin{pmatrix} 3 & -1 \\\\ 0 & 3 \\end{pmatrix}$",
+                  "dificultad": "Básico",
+                  "conceptos": [
+                    "Factorización LU",
+                    "Eliminación Gaussiana",
+                    "Matrices Elementales"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                },
+                {
+                  "problem": "Encuentre la secuencia de matrices elementales de eliminación $E_{i_k j_k}(\\lambda_k)$ y la matriz escalonada $U$ para la siguiente matriz $A$:\n$A = \\begin{pmatrix} 1 & 2 & -1 \\\\ 2 & 6 & 0 \\\\ -1 & -2 & 4 \\end{pmatrix}$",
+                  "pauta": "Matrices de eliminación utilizadas:\n$E_{21}(-2) = \\begin{pmatrix} 1 & 0 & 0 \\\\ -2 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}$\n\n$E_{31}(1) = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 1 & 0 & 1 \\end{pmatrix}$\n\nMatriz $U$:\n$U = \\begin{pmatrix} 1 & 2 & -1 \\\\ 0 & 2 & 2 \\\\ 0 & 0 & 3 \\end{pmatrix}$",
+                  "dificultad": "Básico",
+                  "conceptos": [
+                    "Factorización LU",
+                    "Eliminación Gaussiana",
+                    "Matrices Elementales"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                },
+                {
+                  "problem": "Suponga que una matriz cuadrada e invertible $A$ tiene una factorización estricta $A = LU$. Un estudiante afirma que la matriz $B = A^2$ también posee una factorización $LU$ que se puede obtener de manera directa calculando $L^2$ y $U^2$, de modo que $B = L^2 U^2$. Analice críticamente esta afirmación y demuestre matemáticamente si es verdadera o falsa.",
+                  "pauta": "\\textbf{La afirmación es Falsa.}\n\nDesarrollando algebraicamente la expresión de la matriz $B$:\n$B = A^2 = (LU)(LU) = L(UL)U$\n\nPara que la factorización directa $L^2 U^2$ sea válida, tendría que cumplirse que $L(UL)U = L(LU)U$, lo cual implicaría forzosamente que $UL = LU$. \n\nEl producto de matrices no es conmutativo en el caso general. Más importante aún, el producto de una matriz triangular superior ($U$) por una inferior ($L$) casi nunca resulta en una matriz triangular pura. Por lo tanto, el término central $(UL)$ rompe completamente la estructura requerida, impidiendo que el resultado sea un simple producto de dos matrices triangulares.",
                   "dificultad": "Medio",
                   "conceptos": [
-                    "Concepto Clave"
+                    "Factorización LU",
+                    "Producto de Matrices"
+                  ],
+                  "habilidades": [
+                    "Análisis Crítico",
+                    "Demostración Rigurosa"
+                  ]
+                },
+                {
+                  "problem": "Usted está programando un software para simular las tensiones físicas en el chasis de un automóvil nuevo. El sistema estructural se modela mediante la ecuación $A\\vec{x} = \\vec{b}$, donde la matriz $A$ (de dimensiones $1000 \\times 1000$) describe la rigidez del material (que es constante) y el vector $\\vec{b}$ representa las fuerzas aplicadas. Debe probar el chasis bajo $500$ escenarios de impacto diferentes (500 vectores $\\vec{b}$ distintos). \n\nEl equipo de desarrollo debate entre dos opciones algorítmicas:\n1. Calcular la matriz inversa $A^{-1}$ una sola vez y para cada impacto resolver mediante $\\vec{x} = A^{-1}\\vec{b}$.\n2. Calcular la factorización $A = LU$ una sola vez y para cada impacto resolver $L\\vec{y} = \\vec{b}$ seguido de $U\\vec{x} = \\vec{y}$.\n\nBasándose en la teoría de sistemas matriciales, justifique cuál método es el más robusto para implementar en ingeniería.",
+                  "pauta": "\\textbf{Se debe elegir el Método 2 (Factorización LU).}\n\nExisten dos motivos matemáticos y computacionales críticos que fundamentan esta elección:\n\n1. \\textbf{Preservación de la estructura y memoria (Complejidad):} En modelación estructural, la matriz $A$ suele tener muchísimos ceros (es una matriz rala o dispersa). Al calcular la inversa $A^{-1}$, casi todos esos ceros desaparecen, generando una matriz completamente densa que requiere masiva capacidad de procesamiento y memoria para realizar 500 multiplicaciones de dimensiones $1000 \\times 1000$. La factorización $LU$, por el contrario, preserva gran parte de los ceros originales en $L$ y $U$, haciendo que los 500 procesos de sustitución sean increíblemente rápidos y livianos.\n2. \\textbf{Estabilidad Numérica:} Calcular explícitamente una matriz inversa de gran tamaño introduce y magnifica errores de redondeo en cada operación de coma flotante. El cálculo de la factorización $LU$ y la subsecuente resolución de sistemas triangulares (sustitución directa) es mucho más estable matemáticamente, mitigando la acumulación de errores que podrían invalidar los resultados de la simulación del chasis.",
+                  "dificultad": "Alto",
+                  "conceptos": [
+                    "Complejidad computacional",
+                    ", Sistemas simultáneos",
+                    ", Inestabilidad numérica"
                   ],
                   "habilidades": [
                     "Cálculo Algorítmico"
@@ -1573,8 +1452,12 @@
               ],
               "formulasClave": [
                 {
-                  "label": "Fórmula Clave 1",
-                  "latex": "y = f(x)"
+                  "label": "Ecuación LU",
+                  "latex": "A = L U"
+                },
+                {
+                  "label": "Sistema Escalonado",
+                  "latex": "L\\vec{y} = \\vec{b}, \\quad U\\vec{x} = \\vec{y}"
                 }
               ]
             }
@@ -1628,16 +1511,11 @@
           "problems": [
             "Desarrolle el cálculo matricial para el sistema 3x3."
           ],
-          "formulasClave": [
-            {
-              "label": "Ecuación Característica",
-              "latex": "\\det(A - \\lambda I) = 0"
-            }
-          ]
+          "formulasClave": []
         }
       },
       {
-        "id": "cap-1787217675641",
+        "id": "cap-1787290124079",
         "number": 3,
         "displayNumber": "3",
         "title": "Matrices cuadradas especiales: identidad, triangulares, simétricas y antisimétricas",
@@ -1671,7 +1549,7 @@
         }
       },
       {
-        "id": "cap-1787217725076",
+        "id": "cap-1787290169486",
         "number": 4,
         "displayNumber": "4",
         "title": "Operaciones con matrices",
@@ -1705,7 +1583,7 @@
         }
       },
       {
-        "id": "cap-1787217765595",
+        "id": "cap-1787290213490",
         "number": 5,
         "displayNumber": "5",
         "title": "Matriz inversa (sin cálculo general)",
@@ -1739,7 +1617,7 @@
         }
       },
       {
-        "id": "cap-1787218380470",
+        "id": "cap-1787290253163",
         "number": 1,
         "displayNumber": "1",
         "title": "Ecuaciones lineales, sistemas homogéneos y no homogéneos",
@@ -1773,7 +1651,7 @@
         }
       },
       {
-        "id": "cap-1787218410994",
+        "id": "cap-1787290282189",
         "number": 2,
         "displayNumber": "2",
         "title": "Operaciones elementales y Algoritmo de Gauss: Rango y Sistemas Lineales",
@@ -1807,7 +1685,7 @@
         }
       },
       {
-        "id": "cap-1787218433526",
+        "id": "cap-1787290307083",
         "number": 3,
         "displayNumber": "3",
         "title": "Matrices elementales",
@@ -1841,41 +1719,31 @@
         }
       },
       {
-        "id": "cap-1787218472899",
+        "id": "cap-4",
         "number": 4,
         "displayNumber": "4",
-        "title": "Sistemas simultáneos",
-        "summary": "Resumen introductorio del nuevo capítulo.",
-        "mathKey": "f(x) = ...",
+        "title": "Sistemas Simultáneos $A\\vec{x} = \\vec{b}_k$",
+        "summary": "Algoritmos para resolver múltiples vectores de términos independientes con la misma matriz de coeficientes.",
+        "mathKey": "A\\vec{x}_i = \\vec{b}_i, \\quad i = 1, \\dots, k",
         "motivacion": "\\begin{card}\n¿Para qué aplicar el Algoritmo de Gauss diez veces si puedes hacerlo solo una vez? En esta lección aprenderemos a resolver múltiples sistemas de ecuaciones en paralelo cuando comparten la misma matriz de coeficientes. Descubre cómo este poderoso 'atajo' matemático no solo te ahorrará horas de cálculo, sino que es el secreto detrás del método más eficiente para encontrar la matriz inversa.\n\\begin{pregunta}\nSi cambiar los resultados de un sistema no altera las operaciones que aplicamos sobre su matriz principal, ¿cómo podemos organizar nuestro cálculo para encontrar todas las soluciones posibles al mismo tiempo?\n\\end{pregunta}\n\\end{card}",
-        "teoria": "\\begin{card}\nEn muchas aplicaciones de ingeniería y ciencias, surge la necesidad de resolver $k$ sistemas de ecuaciones lineales que comparten exactamente la misma matriz de coeficientes $A$, pero que tienen diferentes vectores de términos independientes $\\vec{b}_1, \\vec{b}_2, \\dots, \\vec{b}_k$. \n\\begin{definicion}{Sistemas Simultáneos}\nUn sistema simultáneo consiste en plantear simultáneamente:\n$$A\\vec{x} = \\vec{b}_1, \\quad A\\vec{x} = \\vec{b}_2, \\quad \\dots, \\quad A\\vec{x} = \\vec{b}_k$$\ndonde $A\\in M_{m \\times n}$ y $\\vec b_i\\in\\mathbb R^m$\n\\end{definicion}\n\\end{card}\n\\begin{card}\n\\begin{metodo}{Resolución de Sistemas Simultáneos}\n\n\\problema{Un ingeniero evalúa las fuerzas en una estructura bajo dos escenarios de carga, los cuales comparten la matriz principal $A$:\nEscenario 1: $\\begin{cases}x + y + z = 3\\\\\n2y + z = 3\\\\\nx + z = 2\\end{cases}$\nEscenario 2:$\\begin{cases}x + y + z = 0\n\\\\2y + z = -1\\\\\nx + z = 0\\end{cases}$\nResuelva ambos sistemas de forma simultánea.}\n\n\\paso{1}{Planteamiento de la matriz expandida}\nPara resolver múltiples sistemas que comparten matriz principal, construimos una gran matriz aumentada donde colocamos la matriz $A$ a la izquierda y todos los vectores $\\vec{b}_i$ como columnas en el lado derecho.\n\n\\ejemplo{En notación matricial, identificamos $A$, $\\vec{b}_1$ y $\\vec{b}_2$, y armamos la matriz extendida juntando ambos escenarios: $[A \\ | \\ \\vec{b}_1 \\ \\ \\vec{b}_2] = \\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 1 & 0 & 1 & 2 & 0 \\end{array} \\right]$}\n\n\\paso{2}{Escalonamiento}\nAplicamos el método de Gauss-Jordan (operaciones elementales por fila) para llevar la matriz $A$ de la izquierda a su forma escalonada reducida. Las operaciones alterarán toda la fila extendida.\n\n\\ejemplo{Aplicamos operaciones elementales a nuestra matriz aumentada:\n\n1. Hacemos cero bajo el primer pivote ($F_3 \\rightarrow F_3 - F_1$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 0 & -1 & 0 & -1 & 0 \\end{array} \\right]$\n\n2. Ajustamos el segundo pivote ($F_2 \\leftrightarrow F_3$ y luego $F_2 \\rightarrow -F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\end{array} \\right]$ \n\n3. Hacemos ceros arriba y abajo del segundo pivote ($F_3 \\rightarrow F_3 - 2F_2$ y $F_1 \\rightarrow F_1 - F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 1 & 2 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$ \n\n4. Hacemos cero arriba del tercer pivote ($F_1 \\rightarrow F_1 - F_3$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 0 & 1 & 1 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$}\n\n\\paso{3}{Interpretación del resultado}\nAl llegar a la forma escalonada reducida (y si $A$ es cuadrada, a la matriz identidad), cada columna de la derecha representa la solución directa de su respectivo sistema original.\n\n\\ejemplo{La matriz del lado izquierdo se transformó en la identidad. Por lo tanto, las soluciones se leen directamente de las columnas derechas correspondientes:\n\nEscenario 1: $\\vec{x}_1 = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$. \n\nEscenario 2: $\\vec{x}_2 = \\begin{pmatrix} 1 \\\\ 0 \\\\ -1 \\end{pmatrix}$.}\n\\end{metodo}\n\\end{card}",
+        "teoria": "\\begin{card}\nEn muchas aplicaciones de ingeniería y ciencias, surge la necesidad de resolver $k$ sistemas de ecuaciones lineales que comparten exactamente la misma matriz de coeficientes $A$, pero que tienen diferentes vectores de términos independientes $\\vec{b}_1, \\vec{b}_2, \\dots, \\vec{b}_k$. \n\\begin{definicion}{Sistemas Simultáneos}\nUn sistema simultáneo consiste en plantear simultáneamente:\n$$A\\vec{x} = \\vec{b}_1, \\quad A\\vec{x} = \\vec{b}_2, \\quad \\dots, \\quad A\\vec{x} = \\vec{b}_k$$\ndonde $A\\in M_{m \\times n}$ y $\\vec b_i\\in\\mathbb R^m$\n\\end{definicion}\n\\end{card}\n\\begin{card}\n\\begin{metodo}{Resolución de Sistemas Simultáneos}\n\n\\problema{Un ingeniero evalúa las fuerzas en una estructura bajo dos escenarios de carga, los cuales comparten la matriz principal $A$:\nEscenario 1: $\\begin{cases}x + y + z = 3\\\\\n2y + z = 3\\\\\nx + z = 2\\end{cases}$ Escenario 2:$\\begin{cases}x + y + z = 0\n\\\\2y + z = -1\\\\\nx + z = 0\\end{cases}$\nResuelva ambos sistemas de forma simultánea.}\n\n\\paso{1}{Planteamiento de la matriz expandida}\nPara resolver múltiples sistemas que comparten matriz principal, construimos una gran matriz aumentada donde colocamos la matriz $A$ a la izquierda y todos los vectores $\\vec{b}_i$ como columnas en el lado derecho.\n\n\\ejemplo{En notación matricial, identificamos $A$, $\\vec{b}_1$ y $\\vec{b}_2$, y armamos la matriz extendida juntando ambos escenarios: $[A \\ | \\ \\vec{b}_1 \\ \\ \\vec{b}_2] = \\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 1 & 0 & 1 & 2 & 0 \\end{array} \\right]$}\n\n\\paso{2}{Escalonamiento}\nAplicamos el método de Gauss-Jordan (operaciones elementales por fila) para llevar la matriz $A$ de la izquierda a su forma escalonada reducida. Las operaciones alterarán toda la fila extendida.\n\n\\ejemplo{Aplicamos operaciones elementales a nuestra matriz aumentada:\n\n1. Hacemos cero bajo el primer pivote ($F_3 \\rightarrow F_3 - F_1$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\\\ 0 & -1 & 0 & -1 & 0 \\end{array} \\right]$\n\n2. Ajustamos el segundo pivote ($F_2 \\leftrightarrow F_3$ y luego $F_2 \\rightarrow -F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 1 & 1 & 3 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 2 & 1 & 3 & -1 \\end{array} \\right]$ \n\n3. Hacemos ceros arriba y abajo del segundo pivote ($F_3 \\rightarrow F_3 - 2F_2$ y $F_1 \\rightarrow F_1 - F_2$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 1 & 2 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$ \n\n4. Hacemos cero arriba del tercer pivote ($F_1 \\rightarrow F_1 - F_3$):$\\left[ \\begin{array}{ccc|cc} 1 & 0 & 0 & 1 & 1 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 \\end{array} \\right]$}\n\n\\paso{3}{Interpretación del resultado}\nAl llegar a la forma escalonada reducida (y si $A$ es cuadrada, a la matriz identidad), cada columna de la derecha representa la solución directa de su respectivo sistema original.\n\n\\ejemplo{La matriz del lado izquierdo se transformó en la identidad. Por lo tanto, las soluciones se leen directamente de las columnas derechas correspondientes:\n\nEscenario 1: $\\vec{x}_1 = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$. \n\nEscenario 2: $\\vec{x}_2 = \\begin{pmatrix} 1 \\\\ 0 \\\\ -1 \\end{pmatrix}$.}\n\\end{metodo}\n\\end{card}",
         "practica": {
-          "text": "<p>Ejemplo resuelto...</p>"
+          "text": "<p>Resolución práctica de sistemas simultáneos.</p>"
         },
         "ejercicios": {
           "problems": [
-            {
-              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
-              "pauta": "1. Solución paso a paso...",
-              "dificultad": "Medio",
-              "conceptos": [
-                "Concepto Clave"
-              ],
-              "habilidades": [
-                "Cálculo Algorítmico"
-              ]
-            }
+            "Plantee la matriz aumentada extendida para 3 escenarios simultáneos y halle las soluciones."
           ],
           "formulasClave": [
             {
-              "label": "Fórmula Clave 1",
-              "latex": "y = f(x)"
+              "label": "Matriz Extendida",
+              "latex": "[A \\mid \\vec{b}_1 \\ \\vec{b}_2 \\dots \\vec{b}_k]"
             }
           ]
         }
       },
       {
-        "id": "cap-1787218458767",
+        "id": "cap-1787290352671",
         "number": 5,
         "displayNumber": "5",
         "title": "Cálculo de la matriz inversa mediante el método de Gauss-Jordan",
@@ -1909,25 +1777,208 @@
         }
       },
       {
-        "id": "cap-1787218507323",
+        "id": "cap-3",
         "number": 6,
         "displayNumber": "6",
-        "title": "Factorización LU",
-        "summary": "Resumen introductorio del nuevo capítulo.",
-        "mathKey": "f(x) = ...",
-        "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
-        "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+        "title": "Factorización $A = LU$",
+        "summary": "Descomposición de matrices cuadradas en producto de matriz triangular inferior L y superior U.",
+        "mathKey": "A = L U",
+        "motivacion": "\\begin{card}En matemáticas, factorizar es el arte de revelar la estructura oculta de un objeto. Así como descomponer el número $30$ en $2 \\times 3 \\times 5$ nos permite entender sus propiedades fundamentales de inmediato, la Factorización LU hace exactamente lo mismo con los sistemas de ecuaciones.  En lugar de tratar a una matriz $A$ como un bloque opaco de números que debemos atacar con fuerza bruta cada vez, descubriremos cómo descomponerla en el producto de dos piezas elegantes y fundamentales: una matriz triangular inferior $L$ (del inglés <i>Lower</i>) y una matriz triangular superior $U$ (del inglés <i>Upper</i>) . Esta descomposición es una obra maestra de la simplificación matemática: transforma un problema complejo (resolver un sistema general) en dos problemas triviales (resolver sistemas triangulares). Es el principio de \"divide y vencerás\" llevado a su máxima expresión algebraica.\n\\begin{pregunta}\nSabiendo que encontrar incógnitas en un sistema triangular requiere de simples sustituciones directas, ¿cómo podemos sistematizar las operaciones elementales para \"desarmar\" cualquier matriz $A$ en el producto exacto de dos matrices $L$ y $U$, simplificando infinitamente nuestros cálculos futuros?\n\\end{pregunta}\n\\end{card}",
+        "teoria": "\\begin{card}\n\\begin{definicion}{Factorización LU}\nLa factorización $LU$ es una descomposición matricial que expresa una matriz cuadrada $A$ como el producto de dos matrices triangulares:\n$$A = LU$$\nDonde $L$ (del inglés (del inglés <i>Lower</i>)) es una matriz triangular inferior que posee unos ($1$) en su diagonal principal, y $U$ (del inglés <i>Upper</i>) es una matriz triangular superior.\n\\end{definicion}\n\n\\begin{metodo}{Factorización LU mediante Matrices Elementales}\n\n\\problema{Encuentre la factorización $LU$ de la matriz $A = \\begin{pmatrix} 2 & 1 & 1 \\\\ 4 & 1 & 0 \\\\ -2 & 2 & 1 \\end{pmatrix}$ utilizando multiplicación por matrices elementales de eliminación $E_{ij}(\\lambda)$.}\n\n\\paso{1}{Reducción a la forma triangular superior ($U$)}\nMultiplicamos $A$ sucesivamente por la izquierda por matrices elementales de eliminación $E_{i_kj_k}(\\lambda_k)$ para hacer ceros estrictamente por debajo de los pivotes. Cada matriz $E_{ij}(\\lambda_k)$ representa la operación elemental en el paso $k$: $F_{i_k} \\leftarrow F_{i_k} + \\lambda_{k_k} F_{j_k}$. Al aplicar todas las eliminaciones necesarias, llegamos a una ecuación general de la forma $E_{i_p j_p}(\\lambda_p) \\dots E_{i_2 j_2}(\\lambda_2) E_{i_1 j_1}(\\lambda_1) A = U$ donde $U$ es una matriz triangular superior.\n\n\n\\ejemplo{1. Eliminamos el $4$ en la posición $a_{21}$ con $E_{21}(-2)$ ($F_2\\leftarrow F_2-2F_1$) obteniendo\n\n$E_{21}(-2) A = \\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ -2 & 2 & 1 \\end{pmatrix}$\n\n2. Eliminamos el $-2$ en la posición $a_{31}$ con $E_{31}(1)$ ($F_3 \\leftarrow F_3 + 1F_1$) obteniendo\n\n$E_{31}(1)E_{21}(-2) A = \\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ 0 & 3 & 2 \\end{pmatrix}$\n\n3. Eliminamos el $3$ en la posición $a_{32}$ con $E_{32}(3)$ ($F_3 \\leftarrow F_3 + 3F_2$) obteniendo \n\n$E_{32}(3)E_{31}(1)E_{21}(-2) A =\\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ 0 & 0 & -4 \\end{pmatrix}=U$\n\nHemos llegado a nuestra matriz triangular superior: $E_{32}(3) E_{31}(1) E_{21}(-2) A=U$}\n\n\\paso{2}{Despejar $A$ usando matrices inversas}\nPartiendo de la ecuación matricial general $E_{i_p j_p}(\\lambda_p) \\dots E_{i_1 j_1}(\\lambda_1) A = U$, podemos despejar la matriz $A$ multiplicando sucesivamente por la izquierda por las inversas de las matrices elementales. Al aislar $A$, el orden de los factores se invierte, obteniendo \n\n$A = E_{i_1 j_1}(\\lambda_1)^{-1} E_{i_2 j_2}(\\lambda_2)^{-1} \\dots E_{i_p j_p}(\\lambda_p)^{-1} U$\n\nSabemos además que la inversa de una matriz de eliminación simplemente cambia el signo de su escalar, es decir, $E_{i_k j_k}(\\lambda_k)^{-1} = E_{i_k j_k}(-\\lambda_k)$.\n\nPor lo tanto \n$A = E_{i_1 j_1}(-\\lambda_1) E_{i_2 j_2}(-\\lambda_2) \\dots E_{i_p j_p}(-\\lambda_p)U$\n\n\\ejemplo{Sabiendo que $E_{32}(3) E_{31}(1) E_{21}(-2) A=U$ se llega a \n$A=E_{21}(-2)^{-1}E_{31}(1)^{-1}E_{32}(3)^{-1}U$\n\nAhora calculamos las inversas: \n\n$E_{21}(-2) = \\begin{pmatrix} 1 & 0 & 0 \\\\ -2 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}\n\\Longrightarrow \nE_{21}(-2)^{-1}=\\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}=E_{21}(2)$\n\n$E_{31}(1) = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ -1 & 0 & 1 \\end{pmatrix}\n\\Longrightarrow \nE_{31}(1)^{-1}= \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ -1 & 0 & 1 \\end{pmatrix}=E_{31}(-1)$ \n\n$E_{32}(3) = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 3 & 1 \\end{pmatrix}\n\\Longrightarrow \nE_{32}(3)^{-1} = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & -3 & 1 \\end{pmatrix}=E_{32}(-3)$\n\nPor lo tanto \n$A=E_{21}(2)E_{31}(-1)E_{32}(-3)U$\n}\n\n\\paso{3}{Construcción de la matriz $L$}\nLa matriz $L$ se define como el producto de estas matrices inversas en el estricto orden en que se despejaron: $L = E_{i_1 j_1}(-\\lambda_1) E_{i_2 j_2}(-\\lambda_2) \\dots E_{i_p j_p}(-\\lambda_p)$ \nUna propiedad fundamental de esta multiplicación es que, debido a su estructura y al orden en que operan, los escalares $-\\lambda_k$ simplemente se ubican en sus posiciones $(i_k, j_k)$ dentro de una matriz identidad nula por debajo de la diagonal, sin mezclarse ni requerir operaciones adicionales.\n\nDe esta forma, hemos construido matemáticamente la factorización \n\n$A = \\underbrace{E_{i_1 j_1}(-\\lambda_1) E_{i_2 j_2}(-\\lambda_2) \\dots E_{i_p j_p}(-\\lambda_p)}_{L}U$.\n\n\\ejemplo{Multiplicamos las matrices inversas para obtener \n\n$L = E_{21}(2) E_{31}(-1) E_{32}(-3)$\n\n$ = \\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ -1 & 0 & 1 \\end{pmatrix} \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & -3 & 1 \\end{pmatrix}$\n\n$= \\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ -1 & -3 & 1 \\end{pmatrix}$\n\nRecordando que $A=\\underbrace{E_{21}(2) E_{31}(-1) E_{32}(-3)}_LU$ se llega a \n\n$A=\\underbrace{\\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ -1 & -3 & 1 \\end{pmatrix}}_L\\underbrace{\\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ 0 & 0 & -4 \\end{pmatrix}}_U$\n}\n\n\\end{metodo}\\end{card}\n\\begin{card}\n\\begin{ejercicio}{Aplicación de Factorización LU en un Plan de Producción}\nUna fábrica ensambla tres tipos de circuitos electrónicos. El tiempo requerido (en horas) por cada tipo de circuito en tres estaciones de trabajo distintas está modelado por la matriz $A$. El total de horas disponibles semanalmente en cada estación se agrupa en el vector $\\vec{b}$. \n\nDetermine la cantidad semanal a producir de cada circuito (vector $\\vec{x}$) resolviendo el sistema $A\\vec{x} = \\vec{b}$ mediante la descomposición $LU$, considerando los siguientes datos:\n$$A = \\begin{pmatrix} 2 & 1 & 1 \\\\ 4 & 1 & 0 \\\\ -2 & 2 & 1 \\end{pmatrix}, \\quad \\vec{b} = \\begin{pmatrix} 5 \\\\ 6 \\\\ 3 \\end{pmatrix}$$\n\n\\solucion{\nDado que el sistema de ecuaciones se puede reescribir como $L(U\\vec{x}) = \\vec{b}$, la resolución se divide en dos etapas empleando un vector intermedio $\\vec{y}$.\n\n<strong>Paso 1. Recuperar la factorización matricial</strong>\nBasándonos en los cálculos de la sección teórica, ya conocemos la factorización $A = LU$ de esta matriz:\n$L = \\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ -1 & -3 & 1 \\end{pmatrix}, \\quad U = \\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ 0 & 0 & -4 \\end{pmatrix}$\n\n<strong>Paso 2. Sustitución hacia adelante $L\\vec{y} = \\vec{b}$</strong>\nCalculamos el vector intermedio $\\vec{y}$ resolviendo el sistema triangular inferior:\n$\\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 1 & 0 \\\\ -1 & -3 & 1 \\end{pmatrix} \\begin{pmatrix} y_1 \\\\ y_2 \\\\ y_3 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 6 \\\\ 3 \\end{pmatrix}$\n\nDespejando las ecuaciones de arriba hacia abajo:\nFila 1: \n$y_1 = 5$\n\nFila 2: \n$2y_1 + y_2 = 6  \\implies y_2 = -4$\n\nFila 3: \n$-y_1 - 3y_2 + y_3 = 3  \\implies y_3 = -4$\n\nObtenemos el vector intermedio $\\vec{y} = \\begin{pmatrix} 5 \\\\ -4 \\\\ -4 \\end{pmatrix}$.\n\n<strong>Paso 3. Sustitución hacia atrás $U\\vec{x} = \\vec{y}$<strong>\nCon el vector intermedio calculado, encontramos nuestra solución original $\\vec{x}$ resolviendo el sistema triangular superior:\n$\\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & -1 & -2 \\\\ 0 & 0 & -4 \\end{pmatrix} \\begin{pmatrix} x_1 \\\\ x_2 \\\\ x_3 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ -4 \\\\ -4 \\end{pmatrix}$\n\nDespejando las ecuaciones de abajo hacia arriba:\nFila 3: \n$-4x_3 = -4 \\implies x_3 = 1$\n\nFila 2: \n$-x_2 - 2x_3 = -4 \\implies -x_2 = -2 \\implies x_2 = 2$\n\nFila 1: \n$2x_1 + x_2 + x_3 = 5 \\implies 2x_1 + 2 + 1 = 5 \\implies x_1 = 1$\n\n<strong>Respuesta</strong>\nEl vector solución es $\\vec{x} = \\begin{pmatrix} 1 \\\\ 2 \\\\ 1 \\end{pmatrix}$. Por lo tanto, el plan de producción óptimo es ensamblar 1 unidad del primer circuito, 2 unidades del segundo y 1 unidad del tercero para agotar exactamente las horas disponibles.\n}\n\\end{ejercicio}\n\n\\end{card}\n\n\\begin{card}\n<p><strong>¿Cuándo falla la factorización $LU$? El caso de $PA = LU$</strong></p>\n\n<p>Hasta ahora hemos asumido un escenario ideal: al realizar el proceso de eliminación, siempre encontramos un número distinto de cero en la posición del pivote. Sin embargo, ¿qué ocurre si al evaluar una columna nos topamos con un cero exactamente donde debería ir nuestro pivote?</p>\n\n<p>En ese caso, la operación $F_i \\leftarrow F_i + \\lambda_k F_j$ ya no nos sirve, porque no podemos usar un cero para anular otros números. Cuando esto sucede, la factorización estricta $A = LU$ \\textbf{falla} y el algoritmo no puede continuar.</p>\n\n<p>Para salvar el proceso, la solución natural es realizar un \\textbf{intercambio de filas} con alguna fila inferior que sí tenga un valor distinto de cero en esa columna. Algebraicamente, intercambiar las filas de un sistema equivale a multiplicar nuestra matriz original por una matriz de permutación, a la que llamaremos $P$.</p>\n\n\\begin{definicion}{Factorización con permutación ($PA = LU$)}\nSi una matriz cuadrada e invertible $A$ requiere intercambios de filas durante la eliminación de Gauss para evitar pivotes nulos, introducimos una matriz de permutación $P$ que se encarga de reordenar las filas de la matriz original desde el principio.\n\nLa nueva matriz reordenada, $PA$, ya no presentará problemas de ceros en la diagonal y podrá factorizarse de forma convencional:\n$$PA = LU$$\nDonde $P$ es la matriz que registra los intercambios de filas, $L$ es la matriz triangular inferior que almacena los multiplicadores de eliminación, y $U$ es la matriz triangular superior resultante.\n\\end{definicion}\n\nAunque no detallaremos los cálculos mecánicos de esta variante por ahora, es fundamental saber que la incorporación de la matriz $P$ actúa como un \"seguro de vida\" para el algoritmo, garantizando que \\textit{cualquier} sistema lineal invertible pueda ser factorizado, incluso si su estructura original no era favorable.\n\\end{card}\n\n",
         "practica": {
-          "text": "<p>Ejemplo resuelto...</p>"
+          "text": "<p>Práctica interactiva guiada de factorización LU.</p>",
+          "exercises": [
+            {
+              "id": "imported-ex-1787295961717-1-bmea0",
+              "type": "true_false",
+              "title": "Ejercicio 1: Verdadero o Falso",
+              "statement": "La matriz triangular inferior $L$ en la factorización $LU$ se obtiene multiplicando las matrices elementales de eliminación en el mismo orden en que se aplicaron sobre la matriz $A$.",
+              "correctAnswer": false,
+              "explanation": "La matriz $L$ se obtiene multiplicando las inversas de las matrices elementales de eliminación en el orden contrario. Si el proceso de escalonamiento fue $E_p \\dots E_2 E_1 A = U$, al despejar obtenemos $A = (E_1^{-1} E_2^{-1} \\dots E_p^{-1}) U$, donde ese producto de inversas es la matriz $L$.",
+              "trueFeedback": "¡Incorrecto! La afirmación es falsa.",
+              "falseFeedback": "¡Correcto! La afirmación es falsa."
+            },
+            {
+              "id": "imported-ex-1787296209540-1-bm502",
+              "type": "true_false",
+              "title": "Ejercicio 1: Verdadero o Falso",
+              "statement": "En la factorización $LU$ construida mediante matrices elementales, todos los elementos de la diagonal principal de la matriz $L$ son estrictamente iguales a $1$.",
+              "correctAnswer": true,
+              "explanation": "Por construcción, cada matriz elemental de eliminación inversa $E_{ij}(-\\lambda)$ tiene unos en su diagonal principal. Al multiplicar exclusivamente estas matrices triangulares inferiores, el producto final $L$ hereda y conserva los unos en toda su diagonal principal.",
+              "trueFeedback": "¡Correcto! La afirmación es verdadera.",
+              "falseFeedback": "¡Incorrecto! La afirmación es verdadera."
+            },
+            {
+              "id": "imported-ex-1787296543642-1-bhv40",
+              "type": "single_choice",
+              "title": "Ejercicio 1: Selección Múltiple",
+              "question": "En una factorización estricta $A = LU$ obtenida mediante eliminación de Gauss, ¿qué estructura y propiedades caracterizan a las matrices $L$ y $U$?",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "$L$ es triangular superior y $U$ es triangular inferior.",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "B",
+                  "text": "Ambas son triangulares inferiores, pero $U$ tiene unos en la diagonal.",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "C",
+                  "text": "$L$ es triangular inferior con unos en la diagonal principal, y $U$ es triangular superior.",
+                  "feedback": "¡Excelente! Respuesta correcta."
+                },
+                {
+                  "id": "D",
+                  "text": "$L$ es triangular inferior con los pivotes originales en la diagonal, y $U$ es la matriz identidad.",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                }
+              ],
+              "correctOptionId": "C",
+              "explanation": "Por definición, $L$ (Lower) guarda los multiplicadores en una estructura triangular inferior con unos en su diagonal principal, mientras que $U$ (Upper) es la matriz escalonada triangular superior resultante."
+            },
+            {
+              "id": "imported-ex-1787296543642-2-2ulp7",
+              "type": "single_choice",
+              "title": "Ejercicio 2: Selección Múltiple",
+              "question": "Para resolver el sistema de ecuaciones $A\\vec{x} = \\vec{b}$ utilizando la descomposición $A=LU$, ¿cuál es la secuencia correcta de sistemas que deben resolverse?",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "Resolver $U\\vec{y} = \\vec{b}$, luego $L\\vec{x} = \\vec{y}$.",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "B",
+                  "text": "Resolver $L\\vec{y} = \\vec{b}$, luego $U\\vec{x} = \\vec{y}$.",
+                  "feedback": "¡Excelente! Respuesta correcta."
+                },
+                {
+                  "id": "C",
+                  "text": "Resolver $L\\vec{x} = \\vec{y}$, luego $U\\vec{y} = \\vec{b}$.",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "D",
+                  "text": "Resolver $U\\vec{x} = \\vec{b}$, luego $L\\vec{y} = \\vec{x}$.",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                }
+              ],
+              "correctOptionId": "B",
+              "explanation": "Sustituyendo $A = LU$ en el sistema original obtenemos $L(U\\vec{x}) = \\vec{b}$. Definiendo un vector intermedio $\\vec{y} = U\\vec{x}$, el procedimiento exige resolver primero $L\\vec{y} = \\vec{b}$ (sustitución hacia adelante) y posteriormente $U\\vec{x} = \\vec{y}$ (sustitución hacia atrás)."
+            },
+            {
+              "id": "imported-ex-1787296543642-3-z65t1",
+              "type": "single_choice",
+              "title": "Ejercicio 3: Selección Múltiple",
+              "question": "Si una matriz triangular superior $U$ se obtiene aplicando sucesivamente las matrices elementales de eliminación $E_1$, $E_2$ y $E_3$ sobre la matriz $A$, de modo que $E_3 E_2 E_1 A = U$, ¿cómo se construye algebraicamente la matriz $L$?",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "$L = E_3 E_2 E_1$",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "B",
+                  "text": "$L = E_1 E_2 E_3$",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "C",
+                  "text": "$L = E_3^{-1} E_2^{-1} E_1^{-1}$",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "D",
+                  "text": "$L = E_1^{-1} E_2^{-1} E_3^{-1}$",
+                  "feedback": "¡Excelente! Respuesta correcta."
+                }
+              ],
+              "correctOptionId": "D",
+              "explanation": "Al despejar $A$ en la ecuación matricial $E_3 E_2 E_1 A = U$, debemos multiplicar por la izquierda por las inversas. El orden de los factores se invierte, resultando en $A = (E_1^{-1} E_2^{-1} E_3^{-1}) U$. Por lo tanto, el producto entre paréntesis corresponde a la matriz $L$."
+            },
+            {
+              "id": "imported-ex-1787296543642-4-rat7q",
+              "type": "single_choice",
+              "title": "Ejercicio 4: Selección Múltiple",
+              "question": "¿Bajo qué circunstancia matemática es estrictamente necesario utilizar la factorización modificada $PA = LU$ en lugar de la descomposición estándar $A = LU$?",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "Cuando el sistema de ecuaciones tiene infinitas soluciones.",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "B",
+                  "text": "Cuando la matriz de coeficientes $A$ no es una matriz cuadrada.",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "C",
+                  "text": "Cuando aparece un cero en la posición de un pivote durante el escalonamiento.",
+                  "feedback": "¡Excelente! Respuesta correcta."
+                },
+                {
+                  "id": "D",
+                  "text": "Cuando la matriz $A$ posee elementos negativos en su diagonal principal.",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                }
+              ],
+              "correctOptionId": "C",
+              "explanation": "Si el elemento en la posición del pivote es cero, la operación de reemplazo de filas $F_i \\leftarrow F_i + \\lambda F_j$ se indetermina. Es obligatorio realizar un intercambio de filas, operación que se representa algebraicamente multiplicando la matriz original por una matriz de permutación $P$."
+            }
+          ]
         },
         "ejercicios": {
           "problems": [
             {
-              "problem": "Ejercicio 1: Enunciado propuesto en LaTeX...",
-              "pauta": "1. Solución paso a paso...",
+              "problem": "Encuentre las matrices elementales de eliminación $E_{i_k j_k}(\\lambda_k)$ y la matriz triangular superior $U$ para la siguiente matriz $A$:\n$A = \\begin{pmatrix} 3 & -1 \\\\ -6 & 5 \\end{pmatrix}$",
+              "pauta": "Matrices de eliminación utilizadas:\n$E_{21}(2) = \\begin{pmatrix} 1 & 0 \\\\ 2 & 1 \\end{pmatrix}$\nMatriz $U$:\n$U = \\begin{pmatrix} 3 & -1 \\\\ 0 & 3 \\end{pmatrix}$",
+              "dificultad": "Básico",
+              "conceptos": [
+                "Factorización LU",
+                "Eliminación Gaussiana",
+                "Matrices Elementales"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            },
+            {
+              "problem": "Encuentre la secuencia de matrices elementales de eliminación $E_{i_k j_k}(\\lambda_k)$ y la matriz escalonada $U$ para la siguiente matriz $A$:\n$A = \\begin{pmatrix} 1 & 2 & -1 \\\\ 2 & 6 & 0 \\\\ -1 & -2 & 4 \\end{pmatrix}$",
+              "pauta": "Matrices de eliminación utilizadas:\n$E_{21}(-2) = \\begin{pmatrix} 1 & 0 & 0 \\\\ -2 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}$\n\n$E_{31}(1) = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 1 & 0 & 1 \\end{pmatrix}$\n\nMatriz $U$:\n$U = \\begin{pmatrix} 1 & 2 & -1 \\\\ 0 & 2 & 2 \\\\ 0 & 0 & 3 \\end{pmatrix}$",
+              "dificultad": "Básico",
+              "conceptos": [
+                "Factorización LU",
+                "Eliminación Gaussiana",
+                "Matrices Elementales"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            },
+            {
+              "problem": "Suponga que una matriz cuadrada e invertible $A$ tiene una factorización estricta $A = LU$. Un estudiante afirma que la matriz $B = A^2$ también posee una factorización $LU$ que se puede obtener de manera directa calculando $L^2$ y $U^2$, de modo que $B = L^2 U^2$. Analice críticamente esta afirmación y demuestre matemáticamente si es verdadera o falsa.",
+              "pauta": "\\textbf{La afirmación es Falsa.}\n\nDesarrollando algebraicamente la expresión de la matriz $B$:\n$B = A^2 = (LU)(LU) = L(UL)U$\n\nPara que la factorización directa $L^2 U^2$ sea válida, tendría que cumplirse que $L(UL)U = L(LU)U$, lo cual implicaría forzosamente que $UL = LU$. \n\nEl producto de matrices no es conmutativo en el caso general. Más importante aún, el producto de una matriz triangular superior ($U$) por una inferior ($L$) casi nunca resulta en una matriz triangular pura. Por lo tanto, el término central $(UL)$ rompe completamente la estructura requerida, impidiendo que el resultado sea un simple producto de dos matrices triangulares.",
               "dificultad": "Medio",
               "conceptos": [
-                "Concepto Clave"
+                "Factorización LU",
+                "Producto de Matrices"
+              ],
+              "habilidades": [
+                "Análisis Crítico",
+                "Demostración Rigurosa"
+              ]
+            },
+            {
+              "problem": "Usted está programando un software para simular las tensiones físicas en el chasis de un automóvil nuevo. El sistema estructural se modela mediante la ecuación $A\\vec{x} = \\vec{b}$, donde la matriz $A$ (de dimensiones $1000 \\times 1000$) describe la rigidez del material (que es constante) y el vector $\\vec{b}$ representa las fuerzas aplicadas. Debe probar el chasis bajo $500$ escenarios de impacto diferentes (500 vectores $\\vec{b}$ distintos). \n\nEl equipo de desarrollo debate entre dos opciones algorítmicas:\n1. Calcular la matriz inversa $A^{-1}$ una sola vez y para cada impacto resolver mediante $\\vec{x} = A^{-1}\\vec{b}$.\n2. Calcular la factorización $A = LU$ una sola vez y para cada impacto resolver $L\\vec{y} = \\vec{b}$ seguido de $U\\vec{x} = \\vec{y}$.\n\nBasándose en la teoría de sistemas matriciales, justifique cuál método es el más robusto para implementar en ingeniería.",
+              "pauta": "\\textbf{Se debe elegir el Método 2 (Factorización LU).}\n\nExisten dos motivos matemáticos y computacionales críticos que fundamentan esta elección:\n\n1. \\textbf{Preservación de la estructura y memoria (Complejidad):} En modelación estructural, la matriz $A$ suele tener muchísimos ceros (es una matriz rala o dispersa). Al calcular la inversa $A^{-1}$, casi todos esos ceros desaparecen, generando una matriz completamente densa que requiere masiva capacidad de procesamiento y memoria para realizar 500 multiplicaciones de dimensiones $1000 \\times 1000$. La factorización $LU$, por el contrario, preserva gran parte de los ceros originales en $L$ y $U$, haciendo que los 500 procesos de sustitución sean increíblemente rápidos y livianos.\n2. \\textbf{Estabilidad Numérica:} Calcular explícitamente una matriz inversa de gran tamaño introduce y magnifica errores de redondeo en cada operación de coma flotante. El cálculo de la factorización $LU$ y la subsecuente resolución de sistemas triangulares (sustitución directa) es mucho más estable matemáticamente, mitigando la acumulación de errores que podrían invalidar los resultados de la simulación del chasis.",
+              "dificultad": "Alto",
+              "conceptos": [
+                "Complejidad computacional",
+                ", Sistemas simultáneos",
+                ", Inestabilidad numérica"
               ],
               "habilidades": [
                 "Cálculo Algorítmico"
@@ -1936,8 +1987,12 @@
           ],
           "formulasClave": [
             {
-              "label": "Fórmula Clave 1",
-              "latex": "y = f(x)"
+              "label": "Ecuación LU",
+              "latex": "A = L U"
+            },
+            {
+              "label": "Sistema Escalonado",
+              "latex": "L\\vec{y} = \\vec{b}, \\quad U\\vec{x} = \\vec{y}"
             }
           ]
         }
@@ -1947,7 +2002,6 @@
   {
     "id": "course_calculo-multivariable",
     "slug": "calculo-multivariable",
-    "number": 6,
     "title": "Cálculo Multivariable",
     "category": "Cálculo",
     "level": "Avanzado",
@@ -2004,12 +2058,7 @@
               "problems": [
                 "Desarrolle el cálculo matricial para el sistema 3x3."
               ],
-              "formulasClave": [
-                {
-                  "label": "Ecuación Característica",
-                  "latex": "\\det(A - \\lambda I) = 0"
-                }
-              ]
+              "formulasClave": []
             }
           }
         ]
@@ -2061,12 +2110,7 @@
           "problems": [
             "Desarrolle el cálculo matricial para el sistema 3x3."
           ],
-          "formulasClave": [
-            {
-              "label": "Ecuación Característica",
-              "latex": "\\det(A - \\lambda I) = 0"
-            }
-          ]
+          "formulasClave": []
         }
       }
     ]
@@ -2074,7 +2118,6 @@
   {
     "id": "course_ecuaciones-diferenciales",
     "slug": "ecuaciones-diferenciales",
-    "number": 7,
     "title": "Ecuaciones Diferenciales",
     "category": "Ecuaciones Diferenciales",
     "level": "Intermedio",
@@ -2131,12 +2174,7 @@
               "problems": [
                 "Desarrolle el cálculo matricial para el sistema 3x3."
               ],
-              "formulasClave": [
-                {
-                  "label": "Ecuación Característica",
-                  "latex": "\\det(A - \\lambda I) = 0"
-                }
-              ]
+              "formulasClave": []
             }
           }
         ]
@@ -2188,12 +2226,239 @@
           "problems": [
             "Desarrolle el cálculo matricial para el sistema 3x3."
           ],
+          "formulasClave": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "course_introduccion-calculo",
+    "slug": "introduccion-calculo",
+    "title": "Introducción Cálculo",
+    "category": "Cálculo",
+    "level": "Pregrado",
+    "description": "Programa de estudio completo e interactivo para Introducción Cálculo.",
+    "units": [
+      {
+        "id": "u-1",
+        "number": 1,
+        "title": "Unidad 1: Módulos Principales de Introducción Cálculo",
+        "summary": "Contenido estructurado del curso de Introducción Cálculo.",
+        "chapters": [
+          {
+            "id": "cap-1",
+            "number": 1,
+            "displayNumber": "1.1",
+            "title": "Fundamentos y Definiciones de Introducción Cálculo",
+            "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
+            "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
+            "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Cálculo con rigor académico y visión intuitiva.</p>\n      ",
+            "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
+            "practica": {
+              "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
+            },
+            "ejercicios": {
+              "problems": [
+                "Demuestre la propiedad fundamental del capítulo 1 de Introducción Cálculo.",
+                "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Principal",
+                  "latex": "A = P D P^{-1}"
+                },
+                {
+                  "label": "Criterio de Convergencia",
+                  "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-2",
+            "number": 2,
+            "displayNumber": "1.2",
+            "title": "Aplicaciones Avanzadas en Introducción Cálculo",
+            "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
+            "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
+            "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
+            "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
+            "practica": {
+              "text": "<p>Resolución detallada de ejercicios complejos.</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                "Desarrolle el cálculo matricial para el sistema 3x3."
+              ],
+              "formulasClave": []
+            }
+          }
+        ]
+      }
+    ],
+    "chapters": [
+      {
+        "id": "cap-1",
+        "number": 1,
+        "displayNumber": "1.1",
+        "title": "Fundamentos y Definiciones de Introducción Cálculo",
+        "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
+        "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
+        "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Cálculo con rigor académico y visión intuitiva.</p>\n      ",
+        "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
+        "practica": {
+          "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
+        },
+        "ejercicios": {
+          "problems": [
+            "Demuestre la propiedad fundamental del capítulo 1 de Introducción Cálculo.",
+            "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
+          ],
           "formulasClave": [
             {
-              "label": "Ecuación Característica",
-              "latex": "\\det(A - \\lambda I) = 0"
+              "label": "Fórmula Principal",
+              "latex": "A = P D P^{-1}"
+            },
+            {
+              "label": "Criterio de Convergencia",
+              "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
             }
           ]
+        }
+      },
+      {
+        "id": "cap-2",
+        "number": 2,
+        "displayNumber": "1.2",
+        "title": "Aplicaciones Avanzadas en Introducción Cálculo",
+        "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
+        "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
+        "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
+        "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
+        "practica": {
+          "text": "<p>Resolución detallada de ejercicios complejos.</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            "Desarrolle el cálculo matricial para el sistema 3x3."
+          ],
+          "formulasClave": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "course_introduccion-algebra",
+    "slug": "introduccion-algebra",
+    "title": "Introducción Álgebra",
+    "category": "Álgebra Lineal",
+    "level": "Pregrado",
+    "description": "Programa de estudio completo e interactivo para Introducción Álgebra.",
+    "units": [
+      {
+        "id": "u-1",
+        "number": 1,
+        "title": "Unidad 1: Módulos Principales de Introducción Álgebra",
+        "summary": "Contenido estructurado del curso de Introducción Álgebra.",
+        "chapters": [
+          {
+            "id": "cap-1",
+            "number": 1,
+            "displayNumber": "1.1",
+            "title": "Fundamentos y Definiciones de Introducción Álgebra",
+            "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
+            "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
+            "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Álgebra con rigor académico y visión intuitiva.</p>\n      ",
+            "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
+            "practica": {
+              "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
+            },
+            "ejercicios": {
+              "problems": [
+                "Demuestre la propiedad fundamental del capítulo 1 de Introducción Álgebra.",
+                "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Principal",
+                  "latex": "A = P D P^{-1}"
+                },
+                {
+                  "label": "Criterio de Convergencia",
+                  "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cap-2",
+            "number": 2,
+            "displayNumber": "1.2",
+            "title": "Aplicaciones Avanzadas en Introducción Álgebra",
+            "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
+            "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
+            "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
+            "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
+            "practica": {
+              "text": "<p>Resolución detallada de ejercicios complejos.</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                "Desarrolle el cálculo matricial para el sistema 3x3."
+              ],
+              "formulasClave": []
+            }
+          }
+        ]
+      }
+    ],
+    "chapters": [
+      {
+        "id": "cap-1",
+        "number": 1,
+        "displayNumber": "1.1",
+        "title": "Fundamentos y Definiciones de Introducción Álgebra",
+        "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
+        "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
+        "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Introducción Álgebra con rigor académico y visión intuitiva.</p>\n      ",
+        "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
+        "practica": {
+          "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
+        },
+        "ejercicios": {
+          "problems": [
+            "Demuestre la propiedad fundamental del capítulo 1 de Introducción Álgebra.",
+            "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Principal",
+              "latex": "A = P D P^{-1}"
+            },
+            {
+              "label": "Criterio de Convergencia",
+              "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cap-2",
+        "number": 2,
+        "displayNumber": "1.2",
+        "title": "Aplicaciones Avanzadas en Introducción Álgebra",
+        "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
+        "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
+        "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
+        "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
+        "practica": {
+          "text": "<p>Resolución detallada de ejercicios complejos.</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            "Desarrolle el cálculo matricial para el sistema 3x3."
+          ],
+          "formulasClave": []
         }
       }
     ]
@@ -2201,7 +2466,6 @@
   {
     "id": "course_topologia-rn",
     "slug": "topologia-rn",
-    "number": 8,
     "title": "Topología Rn",
     "category": "Topología",
     "level": "Avanzado",
@@ -2258,12 +2522,7 @@
               "problems": [
                 "Desarrolle el cálculo matricial para el sistema 3x3."
               ],
-              "formulasClave": [
-                {
-                  "label": "Ecuación Característica",
-                  "latex": "\\det(A - \\lambda I) = 0"
-                }
-              ]
+              "formulasClave": []
             }
           }
         ]
@@ -2315,12 +2574,7 @@
           "problems": [
             "Desarrolle el cálculo matricial para el sistema 3x3."
           ],
-          "formulasClave": [
-            {
-              "label": "Ecuación Característica",
-              "latex": "\\det(A - \\lambda I) = 0"
-            }
-          ]
+          "formulasClave": []
         }
       }
     ]
@@ -2328,7 +2582,6 @@
   {
     "id": "course_calculo-avanzado",
     "slug": "calculo-avanzado",
-    "number": 9,
     "title": "Cálculo Avanzado",
     "category": "Cálculo",
     "level": "Avanzado",
@@ -2385,12 +2638,7 @@
               "problems": [
                 "Desarrolle el cálculo matricial para el sistema 3x3."
               ],
-              "formulasClave": [
-                {
-                  "label": "Ecuación Característica",
-                  "latex": "\\det(A - \\lambda I) = 0"
-                }
-              ]
+              "formulasClave": []
             }
           }
         ]
@@ -2442,12 +2690,7 @@
           "problems": [
             "Desarrolle el cálculo matricial para el sistema 3x3."
           ],
-          "formulasClave": [
-            {
-              "label": "Ecuación Característica",
-              "latex": "\\det(A - \\lambda I) = 0"
-            }
-          ]
+          "formulasClave": []
         }
       }
     ]

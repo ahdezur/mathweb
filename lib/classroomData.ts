@@ -477,7 +477,6 @@ export function getCourseContentBySlug(slug: string): CourseContent {
       ejercicios: {
         problems: ['Desarrolle el cálculo matricial para el sistema 3x3.'],
         formulasClave: [
-          { label: 'Ecuación Característica', latex: '\\det(A - \\lambda I) = 0' }
         ]
       }
     }
@@ -492,6 +491,65 @@ export function getCourseContentBySlug(slug: string): CourseContent {
       chapters: defaultChapters
     }
   ];
+
+  let customUnits = defaultUnits;
+  let customChapters = defaultChapters;
+
+  if (slug === 'algebra-lineal') {
+    const luCap: ChapterData = {
+      id: 'cap-3',
+      number: 3,
+      displayNumber: '2.1',
+      title: 'Factorización $A = LU$ y Matrices Triangulares',
+      summary: 'Descomposición de matrices cuadradas en producto de matriz triangular inferior L y superior U.',
+      mathKey: 'A = L U',
+      motivacion: '\\begin{card}\nEn la ingeniería computacional y optimización numérica, resolver $A\\vec{x} = \\vec{b}$ mediante la inversión directa de matrices es costoso e inestable. La factorización $LU$ permite descomponer el problema en dos sistemas triangulares triviales de resolver.\n\\end{card}',
+      teoria: '\\begin{card}\n\\begin{definicion}{Descomposición LU}\nDada una matriz $A \\in M_{n \\times n}$, la factorización $LU$ la expresa como el producto:\n$$A = L U$$\ndonde $L$ es una matriz triangular inferior con unos en la diagonal principal (unitriangular inferior) y $U$ es una matriz triangular superior escalonada.\n\\end{definicion}\n\\end{card}\n\\begin{card}\n\\begin{metodo}{Reducción a la forma triangular superior: Matriz $U$}\n\\problema{Dada la matriz $A = \\begin{pmatrix} 2 & 1 \\\\ 6 & 8 \\end{pmatrix}$, halle su descomposición $A = LU$.}\n\\paso{1}{Eliminación Gaussiana para hallar $U$}\nAplicamos $F_2 \\rightarrow F_2 - 3F_1$ para obtener la matriz triangular superior $U$:\n$U = \\begin{pmatrix} 2 & 1 \\\\ 0 & 5 \\end{pmatrix}$.\n\\paso{2}{Construcción de la matriz $L$}\nColocamos en la matriz $L$ los multiplicadores utilizados en las operaciones elementales de fila.\n$L = \\begin{pmatrix} 1 & 0 \\\\ 3 & 1 \\end{pmatrix}$.\n\\end{metodo}\n\\end{card}',
+      practica: { text: '<p>Práctica interactiva guiada de factorización LU.</p>' },
+      ejercicios: {
+        problems: [
+          'Calcule la factorización LU de una matriz de 3x3 utilizando operaciones elementales por fila.',
+          'Demuestre que si A es invertible y tiene descomposición LU, entonces L y U son únicas.'
+        ],
+        formulasClave: [
+          { label: 'Ecuación LU', latex: 'A = L U' },
+          { label: 'Sistema Escalonado', latex: 'L\\vec{y} = \\vec{b}, \\quad U\\vec{x} = \\vec{y}' }
+        ]
+      }
+    };
+
+    const sysCap: ChapterData = {
+      id: 'cap-4',
+      number: 4,
+      displayNumber: '2.2',
+      title: 'Resolución de Sistemas Simultáneos $A\\vec{x} = \\vec{b}_k$',
+      summary: 'Algoritmos para resolver múltiples vectores de términos independientes con la misma matriz de coeficientes.',
+      mathKey: 'A\\vec{x}_i = \\vec{b}_i, \\quad i = 1, \\dots, k',
+      motivacion: '\\begin{card}\nSistemas dinámicos y análisis estructural donde una misma estructura física comparte la matriz principal $A$ bajo distintos escenarios de carga $\\vec{b}_1, \\vec{b}_2, \\dots, \\vec{b}_k$.\n\\end{card}',
+      teoria: '\\begin{card}\n\\begin{metodo}{Resolución de Sistemas Simultáneos}\n\\problema{Un ingeniero evalúa las fuerzas en una estructura bajo dos escenarios de carga, los cuales comparten la matriz principal $A$:\nEscenario 1: $x + y + z = 3, 2y + z = 3, x + z = 2$\nEscenario 2: $x + y + z = 0, 2y + z = -1, x + z = 0$\nResuelva ambos sistemas simultáneamente.}\n\\paso{1}{Planteamiento de la matriz expandida}\nConstruimos la matriz extendida $[A \\mid \\vec{b}_1 \\ \\vec{b}_2]$.\n\\paso{2}{Escalonamiento Gauss-Jordan}\nAplicamos operaciones elementales por fila hasta transformar $A$ en la matriz identidad $I$.\n\\paso{3}{Interpretación del resultado}\nLas columnas del lado derecho corresponden directamente a los vectores solución $\\vec{x}_1$ y $\\vec{x}_2$.\n\\end{metodo}\n\\end{card}',
+      practica: { text: '<p>Resolución práctica de sistemas simultáneos.</p>' },
+      ejercicios: {
+        problems: [
+          'Plantee la matriz aumentada extendida para 3 escenarios simultáneos y halle las soluciones.'
+        ],
+        formulasClave: [
+          { label: 'Matriz Extendida', latex: '[A \\mid \\vec{b}_1 \\ \\vec{b}_2 \\dots \\vec{b}_k]' }
+        ]
+      }
+    };
+
+    customChapters = [...defaultChapters, luCap, sysCap];
+    customUnits = [
+      defaultUnits[0],
+      {
+        id: 'u-2',
+        number: 2,
+        title: 'Unidad 2: Factorización $A = LU$ y Sistemas Simultáneos',
+        summary: 'Métodos de descomposición matricial y resolución de sistemas simultáneos de ecuaciones lineales.',
+        chapters: [luCap, sysCap]
+      }
+    ];
+  }
 
   let category = 'Cálculo';
   let level: 'Pregrado' | 'Intermedio' | 'Avanzado' = 'Pregrado';
@@ -517,7 +575,7 @@ export function getCourseContentBySlug(slug: string): CourseContent {
     category: category,
     level: level,
     description: `Programa de estudio completo e interactivo para ${titleFormatted}.`,
-    units: defaultUnits,
-    chapters: defaultChapters
+    units: customUnits,
+    chapters: customChapters
   };
 }

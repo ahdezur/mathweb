@@ -110,7 +110,10 @@ const MathTextComponent: React.FC<MathTextProps> = ({ text, className = '' }) =>
           return `<span class="inline-block px-0.5">${katexHtml}</span>`;
         }
 
-        return part;
+        return part
+          .replace(/\\textit\{([^\}]+)\}/g, '<i>$1</i>')
+          .replace(/\\emph\{([^\}]+)\}/g, '<i>$1</i>')
+          .replace(/\\textbf\{([^\}]+)\}/g, '<b>$1</b>');
       })
       .join('');
   }, [text]);
