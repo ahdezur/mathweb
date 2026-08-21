@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { getCourseContentBySlug, CourseContent, ChapterData, UnitData } from '@/lib/classroomData';
 import { ClassroomSidebar } from '@/components/classroom/ClassroomSidebar';
 import { SplitFormulaPanel } from '@/components/classroom/SplitFormulaPanel';
@@ -23,22 +23,36 @@ export default function CourseClassroomPage() {
   const params = useParams();
   const slug = (params.slug as string) || 'calculo-diferencial';
 
-  const defaultCourse = getCourseContentBySlug(slug);
+  const canonicalSlug = slug.includes('algebra-lineal')
+    ? 'algebra-lineal'
+    : slug.includes('calculo-multivariable')
+    ? 'calculo-multivariable'
+    : slug;
+
+  const defaultCourse = getCourseContentBySlug(canonicalSlug);
   const [courseData, setCourseData] = useState<CourseContent>(defaultCourse);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (slug !== canonicalSlug) {
+      router.replace(`/curso/${canonicalSlug}`);
+    }
+  }, [slug, canonicalSlug, router]);
 
   useEffect(() => {
     fetch(`/api/admin/courses?t=${Date.now()}`, { cache: 'no-store' })
       .then((res) => res.json())
       .then((data) => {
         if (data.success && Array.isArray(data.courses)) {
-          const found = data.courses.find((c: any) => c.slug === slug);
+          const found = data.courses.find((c: any) => c.slug === canonicalSlug || c.slug === slug);
           if (found) {
             setCourseData(found);
           }
         }
       })
       .catch((err) => console.error('Error fetching live course data for student:', err));
-  }, [slug]);
+  }, [slug, canonicalSlug]);
 
   // Classroom States
   const [activeChapterId, setActiveChapterId] = useState<string>(courseData.chapters[0]?.id || 'cap-1');

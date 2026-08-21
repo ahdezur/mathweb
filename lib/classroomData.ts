@@ -52,6 +52,7 @@ export interface CourseContent {
   category: string;
   level: string;
   description: string;
+  mathFormulaLatex?: string;
   units: UnitData[];
   chapters: ChapterData[];
 }
@@ -396,7 +397,13 @@ export const MOCK_CLASSROOM_DATA: Record<string, CourseContent> = {
 };
 
 export function getCourseContentBySlug(slug: string): CourseContent {
-  const course = MOCK_CLASSROOM_DATA[slug];
+  const canonicalSlug = slug && slug.includes('algebra-lineal')
+    ? 'algebra-lineal'
+    : slug && slug.includes('calculo-multivariable')
+    ? 'calculo-multivariable'
+    : slug;
+
+  const course = MOCK_CLASSROOM_DATA[canonicalSlug] || MOCK_CLASSROOM_DATA[slug];
   if (course) {
     const unitsWithFormattedChapters = (course.units || []).map((unit) => ({
       ...unit,
@@ -495,7 +502,7 @@ export function getCourseContentBySlug(slug: string): CourseContent {
   let customUnits = defaultUnits;
   let customChapters = defaultChapters;
 
-  if (slug === 'algebra-lineal') {
+  if (canonicalSlug === 'algebra-lineal') {
     const luCap: ChapterData = {
       id: 'cap-3',
       number: 3,

@@ -2008,56 +2008,428 @@
     "description": "Programa de estudio completo e interactivo para Cálculo Multivariable.",
     "units": [
       {
-        "id": "u-1",
+        "id": "unit-cm-1",
         "number": 1,
-        "title": "Unidad 1: Módulos Principales de Cálculo Multivariable",
-        "summary": "Contenido estructurado del curso de Cálculo Multivariable.",
+        "title": "Unidad 1: Funciones de Varias Variables y Geometría en $\\mathbb{R}^n$",
         "chapters": [
           {
-            "id": "cap-1",
-            "number": 1,
-            "displayNumber": "1.1",
-            "title": "Fundamentos y Definiciones de Cálculo Multivariable",
-            "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-            "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-            "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Cálculo Multivariable con rigor académico y visión intuitiva.</p>\n      ",
-            "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
+            "id": "cap-cm-11",
+            "number": 1.1,
+            "title": "Capítulo 1.1: Campos Escalares, Dominio e Imagen",
+            "summary": "Definición formal de campos escalares f: D ⊆ ℝⁿ → ℝ, técnicas de determinación de dominio natural, restricciones hiperbólicas y cálculo de la imagen.",
+            "mathKey": "f \\colon D \\subseteq \\mathbb{R}^n \\to \\mathbb{R}, \\quad \\operatorname{dom}(f) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon f(\\vec{x}) \\in \\mathbb{R} \\}",
+            "motivacion": "\\begin{card}\n\\textbf{¿Cómo modelamos el espacio?}\n  \n<p>Imagina que estás en tu habitación en este instante. Si quisiéramos registrar la temperatura en cada rincón, no nos basta con un único número. La temperatura varía si te acercas a la ventana, si subes al techo o si te sientas en el suelo.</p>\n<p>Para describir esto matemáticamente, debemos asignar a cada coordenada espacial $(x, y, z)$ un único valor térmico $T$. Así, la temperatura es una función $T(x,y,z)$.</p> \n<p>\\textbf{Concepto clave:} Un campo escalar es simplemente una regla que le asigna un único número real (temperatura, presión, altitud, densidad) a cada punto del espacio.</p>\n\\begin{pregunta}\n    ¿Cómo cambia el cálculo cuando una función depende de más de una variable?\n  \\end{pregunta}\n\\end{card}",
+            "teoria": "\\begin{card}\nPara transitar del cálculo en una variable al cálculo multivariable, debemos formalizar matemáticamente la noción de asignar valores numéricos a puntos en el espacio. A continuación, estableceremos los pilares algebraicos de los campos escalares.\n  \\begin{definicion}{Campo Escalar}\n    Un \\textbf{campo escalar} (o función de varias variables) es una función $f$ que asigna a cada elemento o punto $\\vec{x} = (x_1, x_2, \\dots, x_n)$ de un subconjunto $D \\subseteq \\mathbb{R}^n$ un único número real denotado por $f(\\vec{x})$ o $f(x_1, x_2, \\dots, x_n)$.\n    \n    Matemáticamente lo expresamos como:\n    $$ f : D \\subseteq \\mathbb{R}^n \\to \\mathbb{R} $$\n    Donde $n$ representa la dimensión del espacio de entrada (habitualmente $n=2$ o $n=3$).\n  \\end{definicion}\n\n  \\begin{definicion}{Dominio de un Campo Escalar}\n    El \\textbf{dominio} de un campo escalar $f$, denotado por $\\operatorname{dom}(f)$, es el conjunto de todos los puntos en $\\mathbb{R}^n$ para los cuales la regla de correspondencia de la función produce un número real bien definido. \n    \n    Formalmente se define como:\n    $$ \\operatorname{dom}(f) = \\{ \\vec{x} \\in \\mathbb{R}^n : f(\\vec{x}) \\in \\mathbb{R} \\} $$\n    Si el dominio no se especifica explícitamente, se asume que es el \\textit{dominio natural}, es decir, el conjunto más grande posible de puntos donde la expresión matemática es válida.\n  \\end{definicion}\n\n\\begin{trampa}{Visualización del Dominio}\n\\error{Pensar que el dominio es un intervalo}\n    \\correct{En Cálculo en una variable el dominio es subconjunto de los reales, por ejemplo invervalos, pero en Cálculo Multivariable el dominio es una \\textbf{región geométrica} en el plano $XY$ ($\\mathbb{R}^2$), en el espacio $XYZ$ ($\\mathbb{R}^3$) o en hiperespacios de mayor dimensión.}\n\\end{trampa}\n\n\\begin{definicion}{Imagen o Recorrido}\nLa \\textbf{imagen} (o recorrido) de un campo escalar $f$, denotada por $\\operatorname{im}(f)$ o $\\text{rec}(f)$, es el conjunto de todos los valores reales que la función efectivamente toma a medida que evaluamos todos los puntos pertenecientes al dominio.\n    \n    Formalmente se define como:\n    $$ \\operatorname{im}(f) = \\{ y \\in \\mathbb{R} : y = f(\\vec{x}) \\text{ para algún } \\vec{x} \\in \\operatorname{dom}(f) \\} $$\n  \\end{definicion}\n\n  \n\n\\begin{metodo}{Determinación de Dominios en Campos Escalares}\n\n\\problema{Aplicar las restricciones algebraicas clásicas para encontrar la región matemática que define el dominio natural de distintos campos escalares en $\\mathbb{R}^2$.}\n\n\\paso{1}{Restricción por Denominadores}\nEl denominador de una expresión fraccionaria debe ser distinto de cero ($g(\\vec{x}) \\neq 0$) para evitar divisiones indefinidas.\n\\ejemplo{Para $f(x,y) = \\frac{3xy}{x-y}$, exigimos $x-y \\neq 0 \\Rightarrow y \\neq x$. \n\nEl dominio es todo el plano $\\mathbb{R}^2$ excepto los puntos sobre la recta diagonal $y=x$.}\n\n\\paso{2}{Restricción por Raíces de Índice Par}\nEl radicando de cualquier raíz cuadrada o de índice par debe ser mayor o igual a cero ($g(\\vec{x}) \\geq 0$) para operar en los números reales.\n\\ejemplo{Para $f(x,y) = \\sqrt{4 - x^2 - y^2}$, requerimos $4 - x^2 - y^2 \\geq 0 \\Rightarrow x^2 + y^2 \\leq 4$\n\nEl dominio es la región interior y la frontera de un círculo de radio 2 centrado en el origen.}\n\n\\paso{3}{Restricción por Logaritmos}\nEl argumento de cualquier función logarítmica debe ser estrictamente positivo ($g(\\vec{x}) > 0$).\n\\ejemplo{Para $f(x,y) = \\ln(y - x^2)$, necesitamos $y - x^2 > 0 \\Rightarrow y > x^2$. \n\nEl dominio es la región abierta que está estrictamente por encima de la parábola $y=x^2$ (excluyendo la curva).}\n\n\\end{metodo}\n\\end{card}",
             "practica": {
-              "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
+              "text": "<p>Resuelve los ejercicios interactivos de campos escalares, dominios y recorridos.</p>",
+              "exercises": [
+                {
+                  "id": "ex-tf-2",
+                  "type": "true_false",
+                  "title": "Verdadero / Falso: Naturaleza del Campo Escalar",
+                  "statement": "Un campo escalar definido como $f : \\mathbb{R}^3 \\to \\mathbb{R}$ toma una coordenada del espacio tridimensional como entrada y produce un vector como salida.",
+                  "correctAnswer": false,
+                  "trueFeedback": "¡Correcto! Entregamos un punto o vector de entrada $(x,y,z)$, pero la función nos devuelve un escalar (un único número real).",
+                  "falseFeedback": "Incorrecto. Recuerda la palabra 'escalar'. La salida es siempre un único número real (como una temperatura o una altitud), no un vector.",
+                  "explanation": "Incorrecto. Recuerda la palabra 'escalar'. La salida es siempre un único número real (como una temperatura o una altitud), no un vector."
+                },
+                {
+                  "id": "ex-sc-1",
+                  "type": "single_choice",
+                  "title": "Selección Única: Dominio con Logaritmos",
+                  "question": "¿Cuál es el dominio natural del campo escalar $f(x,y) = \\ln(y - x^2)$?",
+                  "options": [
+                    {
+                      "id": "opt-1",
+                      "text": "Todos los puntos $(x,y)$ tales que $y > x^2$.",
+                      "isCorrect": true,
+                      "feedback": "¡Excelente! El argumento de un logaritmo natural debe ser estrictamente positivo. Geométricamente, esto representa todos los puntos estrictamente por encima de la parábola $y = x^2$."
+                    },
+                    {
+                      "id": "opt-2",
+                      "text": "Todos los puntos $(x,y)$ tales que $y \\geq x^2$.",
+                      "isCorrect": true,
+                      "feedback": "¡Cuidado! El logaritmo natural no está definido para el valor cero. La desigualdad debe ser estricta."
+                    },
+                    {
+                      "id": "opt-3",
+                      "text": "Todos los puntos $(x,y)$ tales que $y \\neq x^2$.",
+                      "isCorrect": true,
+                      "feedback": "Esa sería la restricción si el término estuviera en un denominador. Recuerda que un logaritmo tampoco admite valores negativos en su argumento."
+                    }
+                  ],
+                  "explanation": "Revisa el análisis paso a paso de cada opción."
+                },
+                {
+                  "id": "ex-mc-3",
+                  "type": "multiple_choice",
+                  "title": "Selección Múltiple: Múltiples Restricciones",
+                  "question": "Considera la función $h(x,y) = \\dfrac{\\sqrt{x+y}}{x-1}$. Selecciona \\textbf{todas} las condiciones matemáticas que deben cumplirse simultáneamente para que un punto $(x,y)$ pertenezca a su dominio natural :",
+                  "statements": [
+                    {
+                      "id": "st-1",
+                      "label": "I",
+                      "text": "$x + y \\geq 0$",
+                      "isTrue": true,
+                      "explanation": "Correcto. Al ser una raíz cuadrada en el numerador, su interior no puede ser negativo, pero sí puede ser cero."
+                    },
+                    {
+                      "id": "st-2",
+                      "label": "II",
+                      "text": "$x \\neq 1$",
+                      "isTrue": true,
+                      "explanation": "Correcto. El denominador completo debe ser distinto de cero para evitar la división por cero."
+                    },
+                    {
+                      "id": "st-3",
+                      "label": "III",
+                      "text": "$x + y > 0$",
+                      "isTrue": true,
+                      "explanation": "Incorrecto. Si bien el interior no puede ser negativo, en este caso sí está permitido que sea cero porque la raíz está en el numerador."
+                    },
+                    {
+                      "id": "st-4",
+                      "label": "IV",
+                      "text": "$y \\neq 1$",
+                      "isTrue": true,
+                      "explanation": "Incorrecto. La variable $y$ puede tomar el valor 1 sin problemas, siempre y cuando no se infrinja la condición de la raíz."
+                    }
+                  ],
+                  "options": [
+                    {
+                      "id": "opt-1",
+                      "text": "$x+y\\geq0$",
+                      "isCorrect": false,
+                      "feedback": ""
+                    },
+                    {
+                      "id": "opt-2",
+                      "text": "$x\\neq1$",
+                      "isCorrect": true,
+                      "feedback": ""
+                    },
+                    {
+                      "id": "C",
+                      "text": "$x+y>0$",
+                      "feedback": ""
+                    },
+                    {
+                      "id": "D",
+                      "text": "Nueva opción",
+                      "feedback": "$y=1$"
+                    }
+                  ],
+                  "explanation": "Analiza las restricciones numéricas de cada término.",
+                  "correctOptionIds": [
+                    "opt-1",
+                    "opt-2"
+                  ]
+                },
+                {
+                  "id": "ex-match-4",
+                  "type": "matching",
+                  "title": "Emparejamiento: Asociación Avanzada : Función, Dominio e Imagen",
+                  "question": "Asocia cada campo escalar con su dominio e imagen correspondientes.",
+                  "columns": 3,
+                  "col1Title": "Función Escalar",
+                  "col2Title": "Dominio Geométrico",
+                  "col3Title": "Imagen / Recorrido",
+                  "col1Items": [
+                    {
+                      "id": "c1-1",
+                      "num": 1,
+                      "text": "$f(x,y) = \\sqrt{1 - x^2 - y^2}$",
+                      "feedback": "Raíz par en plano XY"
+                    },
+                    {
+                      "id": "c1-2",
+                      "num": 2,
+                      "text": "$f(x,y) = \\ln(x + y)$",
+                      "feedback": "Logaritmo natural en plano XY"
+                    },
+                    {
+                      "id": "c1-3",
+                      "num": 3,
+                      "text": "$f(x,y) = e^{-x^2 - y^2}$",
+                      "feedback": "Exponencial gaussiana"
+                    },
+                    {
+                      "id": "c1-4",
+                      "num": 4,
+                      "text": "$f(x,y) = \\dfrac{1}{x^2 + y^2}$",
+                      "feedback": "Denominador no nulo"
+                    },
+                    {
+                      "id": "c1-5",
+                      "num": 5,
+                      "text": "$f(x,y) = \\sqrt{x^2 + y^2 - 1}$",
+                      "feedback": "Exterior del disco de radio 1"
+                    }
+                  ],
+                  "col2Options": [
+                    {
+                      "letter": "A",
+                      "text": "$D = \\{(x,y) \\in \\mathbb{R}^2 \\colon x^2 + y^2 \\geq 1\\}$"
+                    },
+                    {
+                      "letter": "B",
+                      "text": "$D = \\mathbb{R}^2 \\setminus \\{(0,0)\\}$"
+                    },
+                    {
+                      "letter": "C",
+                      "text": "$D = \\{(x,y) \\in \\mathbb{R}^2 \\colon y > -x\\}$"
+                    },
+                    {
+                      "letter": "D",
+                      "text": "$D = \\{(x,y) \\in \\mathbb{R}^2 \\colon x^2 + y^2 \\leq 1\\}$"
+                    },
+                    {
+                      "letter": "E",
+                      "text": "$D = \\mathbb{R}^2$"
+                    }
+                  ],
+                  "col3Options": [
+                    {
+                      "letter": "I",
+                      "text": "$\\operatorname{im}(f) = \\mathbb{R}$"
+                    },
+                    {
+                      "letter": "II",
+                      "text": "$\\operatorname{im}(f) = [0, 1]$"
+                    },
+                    {
+                      "letter": "III",
+                      "text": "$\\operatorname{im}(f) = [0, \\infty)$"
+                    },
+                    {
+                      "letter": "IV",
+                      "text": "$\\operatorname{im}(f) = (0, 1]$"
+                    },
+                    {
+                      "letter": "V",
+                      "text": "$\\operatorname{im}(f) = (0, \\infty)$"
+                    }
+                  ],
+                  "correctMapping": {
+                    "c1-1": "D",
+                    "c1-2": "C",
+                    "c1-3": "E",
+                    "c1-4": "B",
+                    "c1-5": "A"
+                  },
+                  "correctMappingCol3": {
+                    "c1-1": "II",
+                    "c1-2": "I",
+                    "c1-3": "IV",
+                    "c1-4": "V",
+                    "c1-5": "III"
+                  },
+                  "explanation": "Revisa el despeje algebraico de las desigualdades de cada función."
+                }
+              ]
             },
             "ejercicios": {
               "problems": [
-                "Demuestre la propiedad fundamental del capítulo 1 de Cálculo Multivariable.",
-                "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
+                {
+                  "problem": "Determine el dominio natural y la imagen del campo escalar $h(x,y) = \\ln(x \\cdot y - 1)$.",
+                  "pauta": "1. La restricción del logaritmo exige $x \\cdot y > 1$.\n2. Esto representa dos regiones disjuntas delimitadas por las dos ramas de la hipérbola $y = 1/x$.\n3. Como el producto puede tomar cualquier valor en $(1, \\infty)$, la imagen es $\\operatorname{im}(h) = \\mathbb{R}$.",
+                  "dificultad": "Intermedio",
+                  "conceptos": [
+                    "Logaritmo Natural",
+                    "Hipérbola Equilátera",
+                    "Dominio"
+                  ],
+                  "habilidades": [
+                    "Razonamiento Gráfico",
+                    "Cálculo Algorítmico"
+                  ]
+                },
+                {
+                  "problem": "Determine analíticamente el dominio natural y la imagen de $f(x,y) = \\sqrt{-x^2 + y^2}$.",
+                  "pauta": "1. Exigimos $-x^2 + y^2 \\geq 0 \\implies y^2 \\geq x^2 \\implies |y| \\geq |x|$.\n2. Geométricamente representa las regiones superior e inferior delimitadas por las rectas $y = x$ e $y = -x$.\n3. La imagen es $\\operatorname{im}(f) = [0, \\infty)$.",
+                  "dificultad": "Intermedio",
+                  "conceptos": [
+                    "Raíz Cuadrada",
+                    "Regiones Cónicas",
+                    "Imagen"
+                  ],
+                  "habilidades": [
+                    "Modelación e Ingeniería",
+                    "Razonamiento Gráfico"
+                  ]
+                }
               ],
               "formulasClave": [
                 {
-                  "label": "Fórmula Principal",
-                  "latex": "A = P D P^{-1}"
+                  "label": "Dominio de un Campo Escalar",
+                  "latex": "\\operatorname{dom}(f) = \\{ (x,y) \\in \\mathbb{R}^2 \\colon f(x,y) \\in \\mathbb{R} \\}",
+                  "description": "El conjunto de todos los puntos en el plano para los cuales la regla de correspondencia de la función produce un valor real bien definido."
                 },
                 {
-                  "label": "Criterio de Convergencia",
-                  "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
+                  "label": "Imagen o Recorrido",
+                  "latex": "\\operatorname{im}(f) = \\{ z \\in \\mathbb{R} \\colon z = f(x,y) \\text{ para algún } (x,y) \\in \\operatorname{dom}(f) \\}",
+                  "description": "El conjunto de todos los valores numéricos (alturas, temperaturas, presiones) que la función efectivamente toma en el eje Z."
+                },
+                {
+                  "label": "Restricciones de Dominio",
+                  "latex": "\\frac{1}{g} \\implies g \\neq 0, \\quad \\ln(g) \\implies g > 0, \\quad \\sqrt{g} \\implies g \\geq 0",
+                  "description": "Condiciones algebraicas obligatorias e indispensables para plantear el dominio natural."
+                },
+                {
+                  "label": "Frontera Circular Típica",
+                  "latex": "x^2 + y^2 = r^2",
+                  "description": "Ecuación de la circunferencia de radio r centrada en el origen, la cual suele aparecer como la frontera geométrica al despejar restricciones de raíces o logaritmos radiales."
                 }
               ]
             }
           },
           {
-            "id": "cap-2",
-            "number": 2,
-            "displayNumber": "1.2",
-            "title": "Aplicaciones Avanzadas en Cálculo Multivariable",
-            "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-            "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-            "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-            "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
+            "id": "cap-cm-12",
+            "number": 1.2,
+            "title": "Capítulo 1.2: Curvas de Nivel, Superficies y Grafos",
+            "summary": "Geometría analítica de mapas de contorno, isotermas, curvas de nivel $f(x,y)=c$ y trazado tridimensional de cuadráticas.",
+            "mathKey": "f(x,y) = c, \\quad c \\in \\operatorname{im}(f)",
+            "motivacion": "\\begin{card}\nImagina que estás planeando una expedición a la cordillera. Tienes un mapa impreso completamente plano, pero necesitas saber dónde están los acantilados más empinados y dónde se encuentran las llanuras seguras para caminar. ¿Cómo puede un simple trozo de papel de dos dimensiones mostrarte el relieve tridimensional?\n\nLa respuesta que encontraron los topógrafos hace siglos son las líneas de contorno. Cada línea en el mapa conecta todos los puntos que están exactamente a la misma altitud. Si caminaras físicamente siguiendo esa línea, no subirías ni bajarías; te mantendrías al mismo \"nivel\".\n\nEn matemáticas, hacemos exactamente lo mismo. Tomamos un grafo tridimensional (una superficie \n) y lo \"rebanamos\" con planos horizontales a distintas alturas constantes (\n). Al proyectar esos cortes hacia el suelo bidimensional, obtenemos un mapa de curvas de nivel que nos revela los secretos del espacio.\n\\end{card}",
+            "teoria": "\\begin{card}\n\\begin{definicion}{Curva de Nivel}\nConjunto de puntos donde f(x,y)=c.\n\\end{definicion}\n\\end{card}",
             "practica": {
-              "text": "<p>Resolución detallada de ejercicios complejos.</p>"
+              "text": "",
+              "exercises": []
             },
             "ejercicios": {
-              "problems": [
-                "Desarrolle el cálculo matricial para el sistema 3x3."
-              ],
+              "problems": [],
+              "formulasClave": []
+            }
+          },
+          {
+            "id": "cap-cm-13",
+            "number": 1.3,
+            "title": "Capítulo 1.3: Límites Multivariables y Aproximación",
+            "summary": "Definición $\\varepsilon - \\delta$ de límites en $\\mathbb{R}^2$, trayectorias lineales y parabólicas.",
+            "mathKey": "\\lim_{(x,y) \\to (x_0, y_0)} f(x,y) = L",
+            "motivacion": "\\begin{card}\n\\textbf{Límites en el Plano}\n\\end{card}",
+            "teoria": "\\begin{card}\n\\begin{definicion}{Límite Multivariable}\nFormalización de la cercanía en 2D.\n\\end{definicion}\n\\end{card}",
+            "practica": {
+              "text": "",
+              "exercises": []
+            },
+            "ejercicios": {
+              "problems": [],
+              "formulasClave": []
+            }
+          },
+          {
+            "id": "cap-cm-14",
+            "number": 1.4,
+            "title": "Capítulo 1.4: Criterios de Existencia y No Existencia de Límites",
+            "summary": "Criterio de dos trayectorias, coordenadas polares y límites iterados.",
+            "mathKey": "y = m x^k, \\quad r \\to 0",
+            "motivacion": "\\begin{card}\n\\textbf{Trayectorias y No Existencia}\n\\end{card}",
+            "teoria": "\\begin{card}\n\\begin{teorema}{Criterio de Trayectorias}\nSi dos caminos dan límites distintos, el límite no existe.\n\\end{teorema}\n\\end{card}",
+            "practica": {
+              "text": "",
+              "exercises": []
+            },
+            "ejercicios": {
+              "problems": [],
+              "formulasClave": []
+            }
+          }
+        ]
+      },
+      {
+        "id": "unit-cm-2",
+        "number": 2,
+        "title": "Unidad 2: Continuidad y Topología en $\\mathbb{R}^n$",
+        "chapters": [
+          {
+            "id": "cap-cm-21",
+            "number": 2.1,
+            "title": "Capítulo 2.1: Continuidad de Campos Escalares",
+            "summary": "Continuidad puntual y en regiones, teoremas del valor intermedio y acotación.",
+            "mathKey": "\\lim_{(x,y) \\to (a,b)} f(x,y) = f(a,b)",
+            "motivacion": "\\begin{card}\n\\textbf{Continuidad en Varias Variables}\n\\end{card}",
+            "teoria": "\\begin{card}\n\\begin{definicion}{Continuidad}\nUna función es continua si el límite coincide con el valor evaluado.\n\\end{definicion}\n\\end{card}",
+            "practica": {
+              "text": "",
+              "exercises": []
+            },
+            "ejercicios": {
+              "problems": [],
+              "formulasClave": []
+            }
+          },
+          {
+            "id": "cap-cm-22",
+            "number": 2.2,
+            "title": "Capítulo 2.2: Generalización a $\\mathbb{R}^n$ y Conjuntos Abiertos/Cerrados",
+            "summary": "Puntos interiores, fronteras, bolas abiertas y compacidad.",
+            "mathKey": "B_r(\\vec{x}_0) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon \\|\\vec{x} - \\vec{x}_0\\| < r \\}",
+            "motivacion": "\\begin{card}\n\\textbf{Topología del Espacio}\n\\end{card}",
+            "teoria": "\\begin{card}\n\\begin{definicion}{Bola Abierta}\nVecindad esférica en Rn.\n\\end{definicion}\n\\end{card}",
+            "practica": {
+              "text": "",
+              "exercises": []
+            },
+            "ejercicios": {
+              "problems": [],
+              "formulasClave": []
+            }
+          }
+        ]
+      },
+      {
+        "id": "unit-cm-3",
+        "number": 3,
+        "title": "Unidad 3: Derivadas Parciales y Diferenciabilidad",
+        "chapters": [
+          {
+            "id": "cap-cm-31",
+            "number": 3.1,
+            "title": "Capítulo 3.1: Derivadas Parciales",
+            "summary": "Tasa de cambio respecto a cada eje coordenado y razón instantánea.",
+            "mathKey": "\\frac{\\partial f}{\\partial x} = \\lim_{h \\to 0} \\frac{f(x+h,y)-f(x,y)}{h}",
+            "motivacion": "\\begin{card}\n\\textbf{Razones de Cambio en Cada Dirección}\n\\end{card}",
+            "teoria": "\\begin{card}\n\\begin{definicion}{Derivada Parcial}\nDerivada manteniendo las demás variables constantes.\n\\end{definicion}\n\\end{card}",
+            "practica": {
+              "text": "",
+              "exercises": []
+            },
+            "ejercicios": {
+              "problems": [],
+              "formulasClave": []
+            }
+          },
+          {
+            "id": "cap-cm-32",
+            "number": 3.2,
+            "title": "Capítulo 3.2: Diferenciabilidad y Plano Tangente",
+            "summary": "Aproximación plano tangente y condición de diferenciabilidad.",
+            "mathKey": "z - z_0 = f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)",
+            "motivacion": "\\begin{card}\n\\textbf{Aproximación Plano Tangente}\n\\end{card}",
+            "teoria": "\\begin{card}\n\\begin{definicion}{Plano Tangente}\nPlano mejor aproximante a la superficie en un punto.\n\\end{definicion}\n\\end{card}",
+            "practica": {
+              "text": "",
+              "exercises": []
+            },
+            "ejercicios": {
+              "problems": [],
+              "formulasClave": []
+            }
+          },
+          {
+            "id": "cap-cm-33",
+            "number": 3.3,
+            "title": "Capítulo 3.3: Derivadas Direccionales y Vector Gradiente",
+            "summary": "Máxima pendiente, gradiente $\\nabla f$ y derivada direccional en cualquier rumbo.",
+            "mathKey": "D_{\\hat{u}} f(\\vec{x}_0) = \\nabla f(\\vec{x}_0) \\cdot \\hat{u}",
+            "motivacion": "\\begin{card}\n\\textbf{Rumbo de Máxima Pendiente}\n\\end{card}",
+            "teoria": "\\begin{card}\n\\begin{definicion}{Vector Gradiente}\nVector de derivadas parciales en la dirección de máximo crecimiento.\n\\end{definicion}\n\\end{card}",
+            "practica": {
+              "text": "",
+              "exercises": []
+            },
+            "ejercicios": {
+              "problems": [],
               "formulasClave": []
             }
           }
@@ -2066,50 +2438,409 @@
     ],
     "chapters": [
       {
-        "id": "cap-1",
-        "number": 1,
-        "displayNumber": "1.1",
-        "title": "Fundamentos y Definiciones de Cálculo Multivariable",
-        "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-        "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-        "motivacion": "\n        <h3>Motivación e Importancia en la Ciencia</h3>\n        <p>Este capítulo introduce las herramientas analíticas necesarias para abordar los problemas de Cálculo Multivariable con rigor académico y visión intuitiva.</p>\n      ",
-        "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
+        "id": "cap-cm-11",
+        "number": 1.1,
+        "title": "Capítulo 1.1: Campos Escalares, Dominio e Imagen",
+        "summary": "Definición formal de campos escalares f: D ⊆ ℝⁿ → ℝ, técnicas de determinación de dominio natural, restricciones hiperbólicas y cálculo de la imagen.",
+        "mathKey": "f \\colon D \\subseteq \\mathbb{R}^n \\to \\mathbb{R}, \\quad \\operatorname{dom}(f) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon f(\\vec{x}) \\in \\mathbb{R} \\}",
+        "motivacion": "\\begin{card}\n\\textbf{¿Cómo modelamos el espacio?}\n  \n<p>Imagina que estás en tu habitación en este instante. Si quisiéramos registrar la temperatura en cada rincón, no nos basta con un único número. La temperatura varía si te acercas a la ventana, si subes al techo o si te sientas en el suelo.</p>\n<p>Para describir esto matemáticamente, debemos asignar a cada coordenada espacial $(x, y, z)$ un único valor térmico $T$. Así, la temperatura es una función $T(x,y,z)$.</p> \n<p>\\textbf{Concepto clave:} Un campo escalar es simplemente una regla que le asigna un único número real (temperatura, presión, altitud, densidad) a cada punto del espacio.</p>\n\\begin{pregunta}\n    ¿Cómo cambia el cálculo cuando una función depende de más de una variable?\n  \\end{pregunta}\n\\end{card}",
+        "teoria": "\\begin{card}\nPara transitar del cálculo en una variable al cálculo multivariable, debemos formalizar matemáticamente la noción de asignar valores numéricos a puntos en el espacio. A continuación, estableceremos los pilares algebraicos de los campos escalares.\n  \\begin{definicion}{Campo Escalar}\n    Un \\textbf{campo escalar} (o función de varias variables) es una función $f$ que asigna a cada elemento o punto $\\vec{x} = (x_1, x_2, \\dots, x_n)$ de un subconjunto $D \\subseteq \\mathbb{R}^n$ un único número real denotado por $f(\\vec{x})$ o $f(x_1, x_2, \\dots, x_n)$.\n    \n    Matemáticamente lo expresamos como:\n    $$ f : D \\subseteq \\mathbb{R}^n \\to \\mathbb{R} $$\n    Donde $n$ representa la dimensión del espacio de entrada (habitualmente $n=2$ o $n=3$).\n  \\end{definicion}\n\n  \\begin{definicion}{Dominio de un Campo Escalar}\n    El \\textbf{dominio} de un campo escalar $f$, denotado por $\\operatorname{dom}(f)$, es el conjunto de todos los puntos en $\\mathbb{R}^n$ para los cuales la regla de correspondencia de la función produce un número real bien definido. \n    \n    Formalmente se define como:\n    $$ \\operatorname{dom}(f) = \\{ \\vec{x} \\in \\mathbb{R}^n : f(\\vec{x}) \\in \\mathbb{R} \\} $$\n    Si el dominio no se especifica explícitamente, se asume que es el \\textit{dominio natural}, es decir, el conjunto más grande posible de puntos donde la expresión matemática es válida.\n  \\end{definicion}\n\n\\begin{trampa}{Visualización del Dominio}\n\\error{Pensar que el dominio es un intervalo}\n    \\correct{En Cálculo en una variable el dominio es subconjunto de los reales, por ejemplo invervalos, pero en Cálculo Multivariable el dominio es una \\textbf{región geométrica} en el plano $XY$ ($\\mathbb{R}^2$), en el espacio $XYZ$ ($\\mathbb{R}^3$) o en hiperespacios de mayor dimensión.}\n\\end{trampa}\n\n\\begin{definicion}{Imagen o Recorrido}\nLa \\textbf{imagen} (o recorrido) de un campo escalar $f$, denotada por $\\operatorname{im}(f)$ o $\\text{rec}(f)$, es el conjunto de todos los valores reales que la función efectivamente toma a medida que evaluamos todos los puntos pertenecientes al dominio.\n    \n    Formalmente se define como:\n    $$ \\operatorname{im}(f) = \\{ y \\in \\mathbb{R} : y = f(\\vec{x}) \\text{ para algún } \\vec{x} \\in \\operatorname{dom}(f) \\} $$\n  \\end{definicion}\n\n  \n\n\\begin{metodo}{Determinación de Dominios en Campos Escalares}\n\n\\problema{Aplicar las restricciones algebraicas clásicas para encontrar la región matemática que define el dominio natural de distintos campos escalares en $\\mathbb{R}^2$.}\n\n\\paso{1}{Restricción por Denominadores}\nEl denominador de una expresión fraccionaria debe ser distinto de cero ($g(\\vec{x}) \\neq 0$) para evitar divisiones indefinidas.\n\\ejemplo{Para $f(x,y) = \\frac{3xy}{x-y}$, exigimos $x-y \\neq 0 \\Rightarrow y \\neq x$. \n\nEl dominio es todo el plano $\\mathbb{R}^2$ excepto los puntos sobre la recta diagonal $y=x$.}\n\n\\paso{2}{Restricción por Raíces de Índice Par}\nEl radicando de cualquier raíz cuadrada o de índice par debe ser mayor o igual a cero ($g(\\vec{x}) \\geq 0$) para operar en los números reales.\n\\ejemplo{Para $f(x,y) = \\sqrt{4 - x^2 - y^2}$, requerimos $4 - x^2 - y^2 \\geq 0 \\Rightarrow x^2 + y^2 \\leq 4$\n\nEl dominio es la región interior y la frontera de un círculo de radio 2 centrado en el origen.}\n\n\\paso{3}{Restricción por Logaritmos}\nEl argumento de cualquier función logarítmica debe ser estrictamente positivo ($g(\\vec{x}) > 0$).\n\\ejemplo{Para $f(x,y) = \\ln(y - x^2)$, necesitamos $y - x^2 > 0 \\Rightarrow y > x^2$. \n\nEl dominio es la región abierta que está estrictamente por encima de la parábola $y=x^2$ (excluyendo la curva).}\n\n\\end{metodo}\n\\end{card}",
         "practica": {
-          "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
+          "text": "<p>Resuelve los ejercicios interactivos de campos escalares, dominios y recorridos.</p>",
+          "exercises": [
+            {
+              "id": "ex-tf-2",
+              "type": "true_false",
+              "title": "Verdadero / Falso: Naturaleza del Campo Escalar",
+              "statement": "Un campo escalar definido como $f : \\mathbb{R}^3 \\to \\mathbb{R}$ toma una coordenada del espacio tridimensional como entrada y produce un vector como salida.",
+              "correctAnswer": false,
+              "trueFeedback": "¡Correcto! Entregamos un punto o vector de entrada $(x,y,z)$, pero la función nos devuelve un escalar (un único número real).",
+              "falseFeedback": "Incorrecto. Recuerda la palabra 'escalar'. La salida es siempre un único número real (como una temperatura o una altitud), no un vector.",
+              "explanation": "Incorrecto. Recuerda la palabra 'escalar'. La salida es siempre un único número real (como una temperatura o una altitud), no un vector."
+            },
+            {
+              "id": "ex-sc-1",
+              "type": "single_choice",
+              "title": "Selección Única: Dominio con Logaritmos",
+              "question": "¿Cuál es el dominio natural del campo escalar $f(x,y) = \\ln(y - x^2)$?",
+              "options": [
+                {
+                  "id": "opt-1",
+                  "text": "Todos los puntos $(x,y)$ tales que $y > x^2$.",
+                  "isCorrect": true,
+                  "feedback": "¡Excelente! El argumento de un logaritmo natural debe ser estrictamente positivo. Geométricamente, esto representa todos los puntos estrictamente por encima de la parábola $y = x^2$."
+                },
+                {
+                  "id": "opt-2",
+                  "text": "Todos los puntos $(x,y)$ tales que $y \\geq x^2$.",
+                  "isCorrect": true,
+                  "feedback": "¡Cuidado! El logaritmo natural no está definido para el valor cero. La desigualdad debe ser estricta."
+                },
+                {
+                  "id": "opt-3",
+                  "text": "Todos los puntos $(x,y)$ tales que $y \\neq x^2$.",
+                  "isCorrect": true,
+                  "feedback": "Esa sería la restricción si el término estuviera en un denominador. Recuerda que un logaritmo tampoco admite valores negativos en su argumento."
+                }
+              ],
+              "explanation": "Revisa el análisis paso a paso de cada opción."
+            },
+            {
+              "id": "ex-mc-3",
+              "type": "multiple_choice",
+              "title": "Selección Múltiple: Múltiples Restricciones",
+              "question": "Considera la función $h(x,y) = \\dfrac{\\sqrt{x+y}}{x-1}$. Selecciona \\textbf{todas} las condiciones matemáticas que deben cumplirse simultáneamente para que un punto $(x,y)$ pertenezca a su dominio natural :",
+              "statements": [
+                {
+                  "id": "st-1",
+                  "label": "I",
+                  "text": "$x + y \\geq 0$",
+                  "isTrue": true,
+                  "explanation": "Correcto. Al ser una raíz cuadrada en el numerador, su interior no puede ser negativo, pero sí puede ser cero."
+                },
+                {
+                  "id": "st-2",
+                  "label": "II",
+                  "text": "$x \\neq 1$",
+                  "isTrue": true,
+                  "explanation": "Correcto. El denominador completo debe ser distinto de cero para evitar la división por cero."
+                },
+                {
+                  "id": "st-3",
+                  "label": "III",
+                  "text": "$x + y > 0$",
+                  "isTrue": true,
+                  "explanation": "Incorrecto. Si bien el interior no puede ser negativo, en este caso sí está permitido que sea cero porque la raíz está en el numerador."
+                },
+                {
+                  "id": "st-4",
+                  "label": "IV",
+                  "text": "$y \\neq 1$",
+                  "isTrue": true,
+                  "explanation": "Incorrecto. La variable $y$ puede tomar el valor 1 sin problemas, siempre y cuando no se infrinja la condición de la raíz."
+                }
+              ],
+              "options": [
+                {
+                  "id": "opt-1",
+                  "text": "$x+y\\geq0$",
+                  "isCorrect": false,
+                  "feedback": ""
+                },
+                {
+                  "id": "opt-2",
+                  "text": "$x\\neq1$",
+                  "isCorrect": true,
+                  "feedback": ""
+                },
+                {
+                  "id": "C",
+                  "text": "$x+y>0$",
+                  "feedback": ""
+                },
+                {
+                  "id": "D",
+                  "text": "Nueva opción",
+                  "feedback": "$y=1$"
+                }
+              ],
+              "explanation": "Analiza las restricciones numéricas de cada término.",
+              "correctOptionIds": [
+                "opt-1",
+                "opt-2"
+              ]
+            },
+            {
+              "id": "ex-match-4",
+              "type": "matching",
+              "title": "Emparejamiento: Asociación Avanzada : Función, Dominio e Imagen",
+              "question": "Asocia cada campo escalar con su dominio e imagen correspondientes.",
+              "columns": 3,
+              "col1Title": "Función Escalar",
+              "col2Title": "Dominio Geométrico",
+              "col3Title": "Imagen / Recorrido",
+              "col1Items": [
+                {
+                  "id": "c1-1",
+                  "num": 1,
+                  "text": "$f(x,y) = \\sqrt{1 - x^2 - y^2}$",
+                  "feedback": "Raíz par en plano XY"
+                },
+                {
+                  "id": "c1-2",
+                  "num": 2,
+                  "text": "$f(x,y) = \\ln(x + y)$",
+                  "feedback": "Logaritmo natural en plano XY"
+                },
+                {
+                  "id": "c1-3",
+                  "num": 3,
+                  "text": "$f(x,y) = e^{-x^2 - y^2}$",
+                  "feedback": "Exponencial gaussiana"
+                },
+                {
+                  "id": "c1-4",
+                  "num": 4,
+                  "text": "$f(x,y) = \\dfrac{1}{x^2 + y^2}$",
+                  "feedback": "Denominador no nulo"
+                },
+                {
+                  "id": "c1-5",
+                  "num": 5,
+                  "text": "$f(x,y) = \\sqrt{x^2 + y^2 - 1}$",
+                  "feedback": "Exterior del disco de radio 1"
+                }
+              ],
+              "col2Options": [
+                {
+                  "letter": "A",
+                  "text": "$D = \\{(x,y) \\in \\mathbb{R}^2 \\colon x^2 + y^2 \\geq 1\\}$"
+                },
+                {
+                  "letter": "B",
+                  "text": "$D = \\mathbb{R}^2 \\setminus \\{(0,0)\\}$"
+                },
+                {
+                  "letter": "C",
+                  "text": "$D = \\{(x,y) \\in \\mathbb{R}^2 \\colon y > -x\\}$"
+                },
+                {
+                  "letter": "D",
+                  "text": "$D = \\{(x,y) \\in \\mathbb{R}^2 \\colon x^2 + y^2 \\leq 1\\}$"
+                },
+                {
+                  "letter": "E",
+                  "text": "$D = \\mathbb{R}^2$"
+                }
+              ],
+              "col3Options": [
+                {
+                  "letter": "I",
+                  "text": "$\\operatorname{im}(f) = \\mathbb{R}$"
+                },
+                {
+                  "letter": "II",
+                  "text": "$\\operatorname{im}(f) = [0, 1]$"
+                },
+                {
+                  "letter": "III",
+                  "text": "$\\operatorname{im}(f) = [0, \\infty)$"
+                },
+                {
+                  "letter": "IV",
+                  "text": "$\\operatorname{im}(f) = (0, 1]$"
+                },
+                {
+                  "letter": "V",
+                  "text": "$\\operatorname{im}(f) = (0, \\infty)$"
+                }
+              ],
+              "correctMapping": {
+                "c1-1": "D",
+                "c1-2": "C",
+                "c1-3": "E",
+                "c1-4": "B",
+                "c1-5": "A"
+              },
+              "correctMappingCol3": {
+                "c1-1": "II",
+                "c1-2": "I",
+                "c1-3": "IV",
+                "c1-4": "V",
+                "c1-5": "III"
+              },
+              "explanation": "Revisa el despeje algebraico de las desigualdades de cada función."
+            }
+          ]
         },
         "ejercicios": {
           "problems": [
-            "Demuestre la propiedad fundamental del capítulo 1 de Cálculo Multivariable.",
-            "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
+            {
+              "problem": "Determine el dominio natural y la imagen del campo escalar $h(x,y) = \\ln(x \\cdot y - 1)$.",
+              "pauta": "1. La restricción del logaritmo exige $x \\cdot y > 1$.\n2. Esto representa dos regiones disjuntas delimitadas por las dos ramas de la hipérbola $y = 1/x$.\n3. Como el producto puede tomar cualquier valor en $(1, \\infty)$, la imagen es $\\operatorname{im}(h) = \\mathbb{R}$.",
+              "dificultad": "Intermedio",
+              "conceptos": [
+                "Logaritmo Natural",
+                "Hipérbola Equilátera",
+                "Dominio"
+              ],
+              "habilidades": [
+                "Razonamiento Gráfico",
+                "Cálculo Algorítmico"
+              ]
+            },
+            {
+              "problem": "Determine analíticamente el dominio natural y la imagen de $f(x,y) = \\sqrt{-x^2 + y^2}$.",
+              "pauta": "1. Exigimos $-x^2 + y^2 \\geq 0 \\implies y^2 \\geq x^2 \\implies |y| \\geq |x|$.\n2. Geométricamente representa las regiones superior e inferior delimitadas por las rectas $y = x$ e $y = -x$.\n3. La imagen es $\\operatorname{im}(f) = [0, \\infty)$.",
+              "dificultad": "Intermedio",
+              "conceptos": [
+                "Raíz Cuadrada",
+                "Regiones Cónicas",
+                "Imagen"
+              ],
+              "habilidades": [
+                "Modelación e Ingeniería",
+                "Razonamiento Gráfico"
+              ]
+            }
           ],
           "formulasClave": [
             {
-              "label": "Fórmula Principal",
-              "latex": "A = P D P^{-1}"
+              "label": "Dominio de un Campo Escalar",
+              "latex": "\\operatorname{dom}(f) = \\{ (x,y) \\in \\mathbb{R}^2 \\colon f(x,y) \\in \\mathbb{R} \\}",
+              "description": "El conjunto de todos los puntos en el plano para los cuales la regla de correspondencia de la función produce un valor real bien definido."
             },
             {
-              "label": "Criterio de Convergencia",
-              "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
+              "label": "Imagen o Recorrido",
+              "latex": "\\operatorname{im}(f) = \\{ z \\in \\mathbb{R} \\colon z = f(x,y) \\text{ para algún } (x,y) \\in \\operatorname{dom}(f) \\}",
+              "description": "El conjunto de todos los valores numéricos (alturas, temperaturas, presiones) que la función efectivamente toma en el eje Z."
+            },
+            {
+              "label": "Restricciones de Dominio",
+              "latex": "\\frac{1}{g} \\implies g \\neq 0, \\quad \\ln(g) \\implies g > 0, \\quad \\sqrt{g} \\implies g \\geq 0",
+              "description": "Condiciones algebraicas obligatorias e indispensables para plantear el dominio natural."
+            },
+            {
+              "label": "Frontera Circular Típica",
+              "latex": "x^2 + y^2 = r^2",
+              "description": "Ecuación de la circunferencia de radio r centrada en el origen, la cual suele aparecer como la frontera geométrica al despejar restricciones de raíces o logaritmos radiales."
             }
           ]
         }
       },
       {
-        "id": "cap-2",
-        "number": 2,
-        "displayNumber": "1.2",
-        "title": "Aplicaciones Avanzadas en Cálculo Multivariable",
-        "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-        "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-        "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-        "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
+        "id": "cap-cm-12",
+        "number": 1.2,
+        "title": "Capítulo 1.2: Curvas de Nivel, Superficies y Grafos",
+        "summary": "Geometría analítica de mapas de contorno, isotermas, curvas de nivel $f(x,y)=c$ y trazado tridimensional de cuadráticas.",
+        "mathKey": "f(x,y) = c, \\quad c \\in \\operatorname{im}(f)",
+        "motivacion": "\\begin{card}\nImagina que estás planeando una expedición a la cordillera. Tienes un mapa impreso completamente plano, pero necesitas saber dónde están los acantilados más empinados y dónde se encuentran las llanuras seguras para caminar. ¿Cómo puede un simple trozo de papel de dos dimensiones mostrarte el relieve tridimensional?\n\nLa respuesta que encontraron los topógrafos hace siglos son las líneas de contorno. Cada línea en el mapa conecta todos los puntos que están exactamente a la misma altitud. Si caminaras físicamente siguiendo esa línea, no subirías ni bajarías; te mantendrías al mismo \"nivel\".\n\nEn matemáticas, hacemos exactamente lo mismo. Tomamos un grafo tridimensional (una superficie \n) y lo \"rebanamos\" con planos horizontales a distintas alturas constantes (\n). Al proyectar esos cortes hacia el suelo bidimensional, obtenemos un mapa de curvas de nivel que nos revela los secretos del espacio.\n\\end{card}",
+        "teoria": "\\begin{card}\n\\begin{definicion}{Curva de Nivel}\nConjunto de puntos donde f(x,y)=c.\n\\end{definicion}\n\\end{card}",
         "practica": {
-          "text": "<p>Resolución detallada de ejercicios complejos.</p>"
+          "text": "",
+          "exercises": []
         },
         "ejercicios": {
-          "problems": [
-            "Desarrolle el cálculo matricial para el sistema 3x3."
-          ],
+          "problems": [],
+          "formulasClave": []
+        }
+      },
+      {
+        "id": "cap-cm-13",
+        "number": 1.3,
+        "title": "Capítulo 1.3: Límites Multivariables y Aproximación",
+        "summary": "Definición $\\varepsilon - \\delta$ de límites en $\\mathbb{R}^2$, trayectorias lineales y parabólicas.",
+        "mathKey": "\\lim_{(x,y) \\to (x_0, y_0)} f(x,y) = L",
+        "motivacion": "\\begin{card}\n\\textbf{Límites en el Plano}\n\\end{card}",
+        "teoria": "\\begin{card}\n\\begin{definicion}{Límite Multivariable}\nFormalización de la cercanía en 2D.\n\\end{definicion}\n\\end{card}",
+        "practica": {
+          "text": "",
+          "exercises": []
+        },
+        "ejercicios": {
+          "problems": [],
+          "formulasClave": []
+        }
+      },
+      {
+        "id": "cap-cm-14",
+        "number": 1.4,
+        "title": "Capítulo 1.4: Criterios de Existencia y No Existencia de Límites",
+        "summary": "Criterio de dos trayectorias, coordenadas polares y límites iterados.",
+        "mathKey": "y = m x^k, \\quad r \\to 0",
+        "motivacion": "\\begin{card}\n\\textbf{Trayectorias y No Existencia}\n\\end{card}",
+        "teoria": "\\begin{card}\n\\begin{teorema}{Criterio de Trayectorias}\nSi dos caminos dan límites distintos, el límite no existe.\n\\end{teorema}\n\\end{card}",
+        "practica": {
+          "text": "",
+          "exercises": []
+        },
+        "ejercicios": {
+          "problems": [],
+          "formulasClave": []
+        }
+      },
+      {
+        "id": "cap-cm-21",
+        "number": 2.1,
+        "title": "Capítulo 2.1: Continuidad de Campos Escalares",
+        "summary": "Continuidad puntual y en regiones, teoremas del valor intermedio y acotación.",
+        "mathKey": "\\lim_{(x,y) \\to (a,b)} f(x,y) = f(a,b)",
+        "motivacion": "\\begin{card}\n\\textbf{Continuidad en Varias Variables}\n\\end{card}",
+        "teoria": "\\begin{card}\n\\begin{definicion}{Continuidad}\nUna función es continua si el límite coincide con el valor evaluado.\n\\end{definicion}\n\\end{card}",
+        "practica": {
+          "text": "",
+          "exercises": []
+        },
+        "ejercicios": {
+          "problems": [],
+          "formulasClave": []
+        }
+      },
+      {
+        "id": "cap-cm-22",
+        "number": 2.2,
+        "title": "Capítulo 2.2: Generalización a $\\mathbb{R}^n$ y Conjuntos Abiertos/Cerrados",
+        "summary": "Puntos interiores, fronteras, bolas abiertas y compacidad.",
+        "mathKey": "B_r(\\vec{x}_0) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon \\|\\vec{x} - \\vec{x}_0\\| < r \\}",
+        "motivacion": "\\begin{card}\n\\textbf{Topología del Espacio}\n\\end{card}",
+        "teoria": "\\begin{card}\n\\begin{definicion}{Bola Abierta}\nVecindad esférica en Rn.\n\\end{definicion}\n\\end{card}",
+        "practica": {
+          "text": "",
+          "exercises": []
+        },
+        "ejercicios": {
+          "problems": [],
+          "formulasClave": []
+        }
+      },
+      {
+        "id": "cap-cm-31",
+        "number": 3.1,
+        "title": "Capítulo 3.1: Derivadas Parciales",
+        "summary": "Tasa de cambio respecto a cada eje coordenado y razón instantánea.",
+        "mathKey": "\\frac{\\partial f}{\\partial x} = \\lim_{h \\to 0} \\frac{f(x+h,y)-f(x,y)}{h}",
+        "motivacion": "\\begin{card}\n\\textbf{Razones de Cambio en Cada Dirección}\n\\end{card}",
+        "teoria": "\\begin{card}\n\\begin{definicion}{Derivada Parcial}\nDerivada manteniendo las demás variables constantes.\n\\end{definicion}\n\\end{card}",
+        "practica": {
+          "text": "",
+          "exercises": []
+        },
+        "ejercicios": {
+          "problems": [],
+          "formulasClave": []
+        }
+      },
+      {
+        "id": "cap-cm-32",
+        "number": 3.2,
+        "title": "Capítulo 3.2: Diferenciabilidad y Plano Tangente",
+        "summary": "Aproximación plano tangente y condición de diferenciabilidad.",
+        "mathKey": "z - z_0 = f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)",
+        "motivacion": "\\begin{card}\n\\textbf{Aproximación Plano Tangente}\n\\end{card}",
+        "teoria": "\\begin{card}\n\\begin{definicion}{Plano Tangente}\nPlano mejor aproximante a la superficie en un punto.\n\\end{definicion}\n\\end{card}",
+        "practica": {
+          "text": "",
+          "exercises": []
+        },
+        "ejercicios": {
+          "problems": [],
+          "formulasClave": []
+        }
+      },
+      {
+        "id": "cap-cm-33",
+        "number": 3.3,
+        "title": "Capítulo 3.3: Derivadas Direccionales y Vector Gradiente",
+        "summary": "Máxima pendiente, gradiente $\\nabla f$ y derivada direccional en cualquier rumbo.",
+        "mathKey": "D_{\\hat{u}} f(\\vec{x}_0) = \\nabla f(\\vec{x}_0) \\cdot \\hat{u}",
+        "motivacion": "\\begin{card}\n\\textbf{Rumbo de Máxima Pendiente}\n\\end{card}",
+        "teoria": "\\begin{card}\n\\begin{definicion}{Vector Gradiente}\nVector de derivadas parciales en la dirección de máximo crecimiento.\n\\end{definicion}\n\\end{card}",
+        "practica": {
+          "text": "",
+          "exercises": []
+        },
+        "ejercicios": {
+          "problems": [],
           "formulasClave": []
         }
       }

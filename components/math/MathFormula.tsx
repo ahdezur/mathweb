@@ -20,16 +20,22 @@ function sanitizeLaTeX(str: string): string {
     .replace(/\x09/g, '\\t')
     .replace(/\x08/g, '\\b')
     .replace(/\x0B/g, '\\v')
-    // Restore LaTeX commands corrupted by unescaped \n string escape sequences
-    .replace(/[\r\n]eq(?![a-zA-Z])/g, '\\neq ')
+    // Restore unescaped control sequence corruptions
+    .replace(/(?<!g)[\r\n]eq(?![a-zA-Z])/g, '\\neq ')
     .replace(/[\r\n]notin(?![a-zA-Z])/g, '\\notin ')
     .replace(/[\r\n]nabla(?![a-zA-Z])/g, '\\nabla ')
     .replace(/[\r\n]nu(?![a-zA-Z])/g, '\\nu ')
     .replace(/[\r\n]neg(?![a-zA-Z])/g, '\\neg ')
     .replace(/[\r\n]natural(?![a-zA-Z])/g, '\\natural ')
     .replace(/[\r\n]nleftrightarrow(?![a-zA-Z])/g, '\\nleftrightarrow ')
-    // Normalize double-escaped control sequences like \\neq -> \neq
-    .replace(/\\\\(neq|notin|nabla|nu|neg|frac|sqrt|lim|sum|int|infty|alpha|beta|gamma|delta|epsilon|theta|pi|sigma|lambda|omega|mathbb|mathbf|mathcal|text|textbf|mathrm|left|right|begin|end)(?![a-zA-Z])/g, '\\$1');
+
+    // PROTECT valid \n LaTeX commands from being destroyed by \n replacement
+    .replace(/\\(neq|notin|nabla|nu|neg|natural|nleftrightarrow)(?![a-zA-Z])/g, '___LATEX_$1___')
+    .replace(/\\n/g, '\n')
+    .replace(/___LATEX_(neq|notin|nabla|nu|neg|natural|nleftrightarrow)___/g, '\\$1 ')
+
+    // Normalize double-escaped control sequences
+    .replace(/\\\\(neq|geq|leq|notin|nabla|nu|neg|frac|sqrt|lim|sum|int|infty|alpha|beta|gamma|delta|epsilon|theta|pi|sigma|lambda|omega|mathbb|mathbf|mathcal|text|textbf|mathrm|left|right|begin|end)(?![a-zA-Z])/g, '\\$1');
 }
 
 const renderKatexCached = (latex: string, displayMode: boolean): string => {

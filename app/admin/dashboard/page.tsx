@@ -217,7 +217,7 @@ export default function AdminDashboardPage() {
   };
 
   // Course Handlers
-  const handleOpenCourseModal = (course?: Course) => {
+  const handleOpenCourseModal = (course?: Partial<Course>) => {
     if (course) {
       setEditingCourse({ ...course });
     } else {
@@ -272,6 +272,7 @@ export default function AdminDashboardPage() {
         description: editingCourse.description || updatedClassroomCourses[existingIdx].description,
         category: editingCourse.category || updatedClassroomCourses[existingIdx].category,
         level: editingCourse.level || updatedClassroomCourses[existingIdx].level,
+        mathFormulaLatex: editingCourse.mathFormulaLatex || updatedClassroomCourses[existingIdx].mathFormulaLatex,
       };
     } else {
       const newClassroomCourse: CourseContent = {
@@ -281,6 +282,7 @@ export default function AdminDashboardPage() {
         description: editingCourse.description || 'Programa de estudio pedagógico.',
         category: editingCourse.category || 'Cálculo',
         level: editingCourse.level || 'Pregrado',
+        mathFormulaLatex: editingCourse.mathFormulaLatex,
         units: [
           {
             id: `unit-${Date.now()}-1`,
@@ -807,6 +809,24 @@ export default function AdminDashboardPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <button
+                      onClick={() => {
+                        const catCourse = courses.find((cat) => cat.slug === cContent.slug) || {
+                          id: cContent.id,
+                          slug: cContent.slug,
+                          title: cContent.title,
+                          description: cContent.description,
+                          category: cContent.category as any,
+                          level: cContent.level as any,
+                          mathFormulaLatex: cContent.mathFormulaLatex || '\\int_{a}^{b} f(x)dx'
+                        };
+                        handleOpenCourseModal(catCourse);
+                      }}
+                      className="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 text-indigo-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200 shadow-2xs font-title shrink-0 cursor-pointer"
+                      title="Editar Título del Curso, Descripción y Fórmula Principal KaTeX"
+                    >
+                      <i className="fa-solid fa-pen-to-square text-indigo-600"></i> Editar Datos
+                    </button>
+                    <button
                       onClick={() => handleAddUnitToCourse(cContent.slug)}
                       className="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 text-cyan-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200 shadow-2xs font-title shrink-0 cursor-pointer"
                     >
@@ -1120,8 +1140,38 @@ export default function AdminDashboardPage() {
 
 
 
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-semibold text-slate-700 mb-1">Categoría</label>
+                  <select
+                    className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:border-cyan-600 font-bold"
+                    value={editingCourse.category || 'Cálculo'}
+                    onChange={(e) => setEditingCourse({ ...editingCourse, category: e.target.value as any })}
+                  >
+                    <option value="Cálculo">Cálculo</option>
+                    <option value="Álgebra Lineal">Álgebra Lineal</option>
+                    <option value="Multivariable">Multivariable</option>
+                    <option value="Ecuaciones Diferenciales">Ecuaciones Diferenciales</option>
+                    <option value="Topología">Topología</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-semibold text-slate-700 mb-1">Nivel Académico</label>
+                  <select
+                    className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:border-cyan-600 font-bold"
+                    value={editingCourse.level || 'Pregrado'}
+                    onChange={(e) => setEditingCourse({ ...editingCourse, level: e.target.value as any })}
+                  >
+                    <option value="Pregrado">Pregrado</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Avanzado">Avanzado</option>
+                  </select>
+                </div>
+              </div>
+
               <div>
-                <label className="block font-semibold text-slate-700 mb-1">Descripción</label>
+                <label className="block font-semibold text-slate-700 mb-1">Descripción General</label>
                 <textarea
                   rows={3}
                   className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:border-cyan-600"
@@ -1132,7 +1182,7 @@ export default function AdminDashboardPage() {
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-700 mb-1">Fórmula Clave LaTeX (KaTeX)</label>
+                <label className="block font-semibold text-slate-700 mb-1">Fórmula Clave Principal KaTeX (Visual en Portada)</label>
                 <input
                   type="text"
                   className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-cyan-700 font-mono focus:outline-none focus:border-cyan-600"
@@ -1142,6 +1192,14 @@ export default function AdminDashboardPage() {
                   onChange={(e) => setEditingCourse({ ...editingCourse, mathFormulaLatex: e.target.value })}
                 />
               </div>
+
+              {/* Live KaTeX Preview of Course Formula */}
+              {editingCourse.mathFormulaLatex && (
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 text-center space-y-1">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-title block">Vista Previa de la Fórmula:</span>
+                  <MathFormula latex={editingCourse.mathFormulaLatex} block />
+                </div>
+              )}
 
               <div className="flex justify-end gap-3 pt-4 border-t border-slate-200">
                 <button

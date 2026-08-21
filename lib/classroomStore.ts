@@ -97,7 +97,13 @@ export async function getStoredCourses(): Promise<CourseContent[]> {
 // Get single course by slug
 export async function getStoredCourseBySlug(slug: string): Promise<CourseContent | null> {
   const courses = await getStoredCourses();
-  return courses.find((c) => c.slug === slug) || courses[0] || null;
+  const canonicalSlug = slug && slug.includes('algebra-lineal')
+    ? 'algebra-lineal'
+    : slug && slug.includes('calculo-multivariable')
+    ? 'calculo-multivariable'
+    : slug;
+
+  return courses.find((c) => c.slug === canonicalSlug) || courses.find((c) => c.slug === slug) || courses[0] || null;
 }
 
 // Save all courses array to JSON file

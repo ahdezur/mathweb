@@ -11,6 +11,22 @@ import { LaTeXPedagogicalParser } from '@/components/math/LaTeXPedagogicalParser
 import { InteractivePractice, PracticeExercise } from '@/components/classroom/InteractivePractice';
 import { ExerciseImportModal } from '@/components/admin/ExerciseImportModal';
 
+function getOptionLabel(optId: string, index: number): string {
+  if (!optId) return String.fromCharCode(65 + index);
+  const clean = String(optId).trim();
+  if (/^[A-Z]$/i.test(clean)) return clean.toUpperCase();
+
+  const matchNum = clean.match(/\d+/);
+  if (matchNum) {
+    const num = parseInt(matchNum[0], 10);
+    if (num >= 1 && num <= 26) {
+      return String.fromCharCode(64 + num);
+    }
+  }
+
+  return String.fromCharCode(65 + (index % 26));
+}
+
 export default function ChapterEditorPage() {
   const router = useRouter();
   const params = useParams();
@@ -129,6 +145,74 @@ export default function ChapterEditorPage() {
 
     setAvailableConceptos((prev) => Array.from(new Set([...prev, ...extractedConceptos])));
     setAvailableHabilidades((prev) => Array.from(new Set([...prev, ...extractedHabilidades])));
+  };
+
+  const handleDeleteConcepto = (tagToDelete: string) => {
+    setAvailableConceptos((prev) => prev.filter((t) => t !== tagToDelete));
+    setChapter((prev) => ({
+      ...prev,
+      ejercicios: {
+        ...prev.ejercicios,
+        problems: prev.ejercicios?.problems?.map((p) => {
+          if (typeof p !== 'string' && p.conceptos?.includes(tagToDelete)) {
+            return { ...p, conceptos: p.conceptos.filter((c) => c !== tagToDelete) };
+          }
+          return p;
+        }) || []
+      }
+    }));
+  };
+
+  const handleEditConcepto = (oldTag: string, newTag: string) => {
+    const trimmed = newTag.trim();
+    if (!trimmed || trimmed === oldTag) return;
+    setAvailableConceptos((prev) => prev.map((t) => (t === oldTag ? trimmed : t)));
+    setChapter((prev) => ({
+      ...prev,
+      ejercicios: {
+        ...prev.ejercicios,
+        problems: prev.ejercicios?.problems?.map((p) => {
+          if (typeof p !== 'string' && p.conceptos?.includes(oldTag)) {
+            return { ...p, conceptos: p.conceptos.map((c) => (c === oldTag ? trimmed : c)) };
+          }
+          return p;
+        }) || []
+      }
+    }));
+  };
+
+  const handleDeleteHabilidad = (tagToDelete: string) => {
+    setAvailableHabilidades((prev) => prev.filter((t) => t !== tagToDelete));
+    setChapter((prev) => ({
+      ...prev,
+      ejercicios: {
+        ...prev.ejercicios,
+        problems: prev.ejercicios?.problems?.map((p) => {
+          if (typeof p !== 'string' && p.habilidades?.includes(tagToDelete)) {
+            return { ...p, habilidades: p.habilidades.filter((h) => h !== tagToDelete) };
+          }
+          return p;
+        }) || []
+      }
+    }));
+  };
+
+  const handleEditHabilidad = (oldTag: string, newTag: string) => {
+    const trimmed = newTag.trim();
+    if (!trimmed || trimmed === oldTag) return;
+    setAvailableHabilidades((prev) => prev.map((t) => (t === oldTag ? trimmed : t)));
+    setChapter((prev) => ({
+      ...prev,
+      ejercicios: {
+        ...prev.ejercicios,
+        problems: prev.ejercicios?.problems?.map((p) => {
+          if (typeof p !== 'string' && p.habilidades?.includes(oldTag)) {
+            return { ...p, habilidades: p.habilidades.map((h) => (h === oldTag ? trimmed : h)) };
+          }
+          return p;
+        }) || []
+      }
+    }));
   };
 
   useEffect(() => {
@@ -648,6 +732,8 @@ export default function ChapterEditorPage() {
                               onAddNewTag={(newTag) =>
                                 setAvailableConceptos((prev) => Array.from(new Set([...prev, newTag])))
                               }
+                              onDeleteTag={handleDeleteConcepto}
+                              onEditTag={handleEditConcepto}
                               placeholder="Buscar o seleccionar concepto..."
                               colorTheme="cyan"
                             />
@@ -664,6 +750,8 @@ export default function ChapterEditorPage() {
                               onAddNewTag={(newTag) =>
                                 setAvailableHabilidades((prev) => Array.from(new Set([...prev, newTag])))
                               }
+                              onDeleteTag={handleDeleteHabilidad}
+                              onEditTag={handleEditHabilidad}
                               placeholder="Buscar o seleccionar habilidad..."
                               colorTheme="purple"
                             />
@@ -818,16 +906,16 @@ export default function ChapterEditorPage() {
 
         {/* TAB: PESTAÑA 3 - PRÁCTICA INTERACTIVA */}
         {editorTab === 'practica' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-w-0">
-            {/* Form Panel Left */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 space-y-6 shadow-xs min-w-0">
-              <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="space-y-6 min-w-0">
+            {/* Top Control Bar Panel */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 space-y-4 shadow-xs min-w-0">
+              <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <h2 className="text-lg font-bold text-slate-900 font-title mb-0.5">
                     Editor de Pestaña 3: Práctica Interactiva
                   </h2>
                   <p className="text-xs text-slate-500">
-                    Crea y administra ejercicios interactivos con retroalimentación por alternativa.
+                    Crea y administra ejercicios interactivos con vista previa paralela en vivo ejercicio por ejercicio.
                   </p>
                 </div>
 
@@ -866,61 +954,67 @@ export default function ChapterEditorPage() {
                   </button>
                 </div>
               </div>
+            </div>
 
-              {/* Exercise List */}
-              {(!chapter.practica?.exercises || chapter.practica.exercises.length === 0) ? (
-                <div className="border border-dashed border-slate-300 rounded-2xl p-8 text-center text-slate-400 space-y-2">
-                  <i className="fa-solid fa-gamepad text-3xl"></i>
-                  <p className="text-sm font-medium">No hay ejercicios prácticos agregados aún.</p>
-                  <p className="text-xs">Utiliza los botones superiores para agregar ejercicios interactivos.</p>
-                </div>
-              ) : (
-                <div className="space-y-6">
-                  {chapter.practica.exercises.map((ex, exIdx) => (
-                    <div
-                      key={ex.id || exIdx}
-                      className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-4 shadow-xs"
-                    >
-                      {/* Exercise Header */}
-                      <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-                        <div className="flex items-center gap-2">
-                          <span className="w-6 h-6 rounded-lg bg-slate-200 text-slate-700 text-xs font-bold flex items-center justify-center font-title">
-                            {exIdx + 1}
-                          </span>
-                          <span className="text-xs font-bold uppercase tracking-wider text-slate-600 font-title">
-                            {ex.type === 'true_false' && '🟡 Verdadero / Falso'}
-                            {ex.type === 'single_choice' && '🔵 Selección Única'}
-                            {ex.type === 'multiple_choice' && '🟣 Selección Múltiple'}
-                            {ex.type === 'matching' && '🟢 Emparejamiento'}
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => handleMovePracticeExercise(exIdx, 'up')}
-                            disabled={exIdx === 0}
-                            className="p-1 text-xs text-slate-500 hover:text-slate-900 disabled:opacity-30"
-                            title="Mover arriba"
-                          >
-                            <i className="fa-solid fa-arrow-up"></i>
-                          </button>
-                          <button
-                            onClick={() => handleMovePracticeExercise(exIdx, 'down')}
-                            disabled={exIdx === (chapter.practica?.exercises?.length || 0) - 1}
-                            className="p-1 text-xs text-slate-500 hover:text-slate-900 disabled:opacity-30"
-                            title="Mover abajo"
-                          >
-                            <i className="fa-solid fa-arrow-down"></i>
-                          </button>
-                          <button
-                            onClick={() => handleDeletePracticeExercise(exIdx)}
-                            className="p-1 text-xs text-rose-600 hover:text-rose-800 font-bold"
-                            title="Eliminar ejercicio"
-                          >
-                            <i className="fa-solid fa-trash"></i>
-                          </button>
-                        </div>
+            {/* Exercise List with Parallel Preview per Card */}
+            {(!chapter.practica?.exercises || chapter.practica.exercises.length === 0) ? (
+              <div className="bg-white border border-dashed border-slate-300 rounded-2xl p-12 text-center text-slate-400 space-y-2">
+                <i className="fa-solid fa-gamepad text-4xl text-slate-300"></i>
+                <p className="text-sm font-bold text-slate-600 font-title">No hay ejercicios prácticos agregados aún.</p>
+                <p className="text-xs">Utiliza los botones superiores para agregar ejercicios interactivos o importar en bloque.</p>
+              </div>
+            ) : (
+              <div className="space-y-8">
+                {chapter.practica.exercises.map((ex, exIdx) => (
+                  <div
+                    key={ex.id || exIdx}
+                    className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm space-y-5"
+                  >
+                    {/* Exercise Card Header */}
+                    <div className="flex items-center justify-between border-b border-slate-200 pb-3.5">
+                      <div className="flex items-center gap-2.5">
+                        <span className="w-7 h-7 rounded-xl bg-gradient-to-br from-cyan-600 to-indigo-600 text-white text-xs font-bold flex items-center justify-center font-title shadow-2xs">
+                          {exIdx + 1}
+                        </span>
+                        <span className="text-xs font-bold uppercase tracking-wider text-slate-700 font-title">
+                          {ex.type === 'true_false' && '🟡 Verdadero / Falso'}
+                          {ex.type === 'single_choice' && '🔵 Selección Única'}
+                          {ex.type === 'multiple_choice' && '🟣 Selección Múltiple'}
+                          {ex.type === 'matching' && '🟢 Emparejamiento'}
+                        </span>
                       </div>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => handleMovePracticeExercise(exIdx, 'up')}
+                          disabled={exIdx === 0}
+                          className="p-1.5 text-xs text-slate-500 hover:text-slate-900 disabled:opacity-30 cursor-pointer"
+                          title="Mover arriba"
+                        >
+                          <i className="fa-solid fa-arrow-up"></i>
+                        </button>
+                        <button
+                          onClick={() => handleMovePracticeExercise(exIdx, 'down')}
+                          disabled={exIdx === (chapter.practica?.exercises?.length || 0) - 1}
+                          className="p-1.5 text-xs text-slate-500 hover:text-slate-900 disabled:opacity-30 cursor-pointer"
+                          title="Mover abajo"
+                        >
+                          <i className="fa-solid fa-arrow-down"></i>
+                        </button>
+                        <button
+                          onClick={() => handleDeletePracticeExercise(exIdx)}
+                          className="p-1.5 text-xs text-rose-600 hover:text-rose-800 font-bold cursor-pointer ml-1"
+                          title="Eliminar ejercicio"
+                        >
+                          <i className="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* 2-Column Side-by-Side (Parallel) Grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                      {/* Column 1: Form Inputs */}
+                      <div className="space-y-5 min-w-0">
 
                       {/* Common Title & Statement */}
                       <div className="space-y-3">
@@ -1050,7 +1144,7 @@ export default function ChapterEditorPage() {
                                       onChange={() => handleUpdatePracticeExercise(exIdx, { ...ex, correctOptionId: opt.id })}
                                       className="text-blue-600 focus:ring-blue-500 cursor-pointer"
                                     />
-                                    <span className="font-bold text-xs text-blue-700 font-title">Opción {opt.id}</span>
+                                    <span className="font-bold text-xs text-blue-700 font-title">Opción {getOptionLabel(opt.id, optIdx)} ({opt.id})</span>
                                   </div>
                                   {ex.options.length > 2 && (
                                     <button
@@ -1079,7 +1173,7 @@ export default function ChapterEditorPage() {
 
                                 <input
                                   type="text"
-                                  value={opt.text}
+                                  value={opt.text || ''}
                                   onChange={(e) => {
                                     const newOpts = [...ex.options];
                                     newOpts[optIdx] = { ...newOpts[optIdx], text: e.target.value };
@@ -1129,7 +1223,7 @@ export default function ChapterEditorPage() {
 
                           <div className="space-y-2">
                             {ex.options?.map((opt, optIdx) => {
-                              const isChecked = ex.correctOptionIds?.includes(opt.id);
+                              const isChecked = Boolean((ex.correctOptionIds || []).includes(opt.id) || (opt as any).isCorrect);
                               return (
                                 <div key={`mc-opt-${optIdx}-${opt.id || ''}`} className="bg-white border border-slate-200 rounded-xl p-3 space-y-2">
                                   <div className="flex items-center justify-between gap-2">
@@ -1148,7 +1242,7 @@ export default function ChapterEditorPage() {
                                         }}
                                         className="text-purple-600 focus:ring-purple-500 cursor-pointer"
                                       />
-                                      <span className="font-bold text-xs text-purple-700 font-title">Opción {opt.id}</span>
+                                      <span className="font-bold text-xs text-purple-700 font-title">Opción {getOptionLabel(opt.id, optIdx)} ({opt.id})</span>
                                     </div>
                                     {ex.options.length > 2 && (
                                       <button
@@ -1180,7 +1274,7 @@ export default function ChapterEditorPage() {
 
                                   <input
                                     type="text"
-                                    value={opt.text}
+                                    value={opt.text || ''}
                                     onChange={(e) => {
                                       const newOpts = [...ex.options];
                                       newOpts[optIdx] = { ...newOpts[optIdx], text: e.target.value };
@@ -1577,18 +1671,25 @@ export default function ChapterEditorPage() {
                         </div>
                       )}
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
 
-            {/* Live Preview Panel Right */}
-            <div className="bg-slate-100/70 border border-slate-200 rounded-2xl p-6 space-y-3 max-h-[850px] overflow-y-auto custom-scrollbar min-w-0">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block font-title mb-2">
-                <i className="fa-solid fa-eye text-emerald-600 mr-1"></i> Vista Previa Interactiva en Vivo (Estudiante)
-              </span>
-              <InteractivePractice exercises={chapter.practica?.exercises || []} />
-            </div>
+                      {/* Column 2: Live Parallel Interactive Student Preview of THIS Exercise */}
+                      <div className="lg:sticky lg:top-6 bg-slate-50/90 dark:bg-slate-900/60 border border-slate-200/90 dark:border-slate-800 rounded-2xl p-5 shadow-2xs space-y-3 min-w-0">
+                        <div className="flex items-center justify-between border-b border-slate-200/80 pb-2.5">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 font-title flex items-center gap-1.5">
+                            <i className="fa-solid fa-eye text-emerald-600"></i> Vista Previa en Vivo — Ejercicio #{exIdx + 1}
+                          </span>
+                          <span className="text-[10px] font-bold text-slate-500 bg-white dark:bg-slate-800 px-2 py-0.5 rounded-md border border-slate-200 dark:border-slate-700 font-title">
+                            Estudiante
+                          </span>
+                        </div>
+
+                        <InteractivePractice exercises={[ex]} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 

@@ -7,6 +7,8 @@ interface TagAutocompleteSelectorProps {
   availableTags: string[];
   onChange: (tags: string[]) => void;
   onAddNewTag?: (tag: string) => void;
+  onDeleteTag?: (tag: string) => void;
+  onEditTag?: (oldTag: string, newTag: string) => void;
   placeholder?: string;
   colorTheme?: 'cyan' | 'purple';
 }
@@ -16,11 +18,15 @@ export function TagAutocompleteSelector({
   availableTags = [],
   onChange,
   onAddNewTag,
+  onDeleteTag,
+  onEditTag,
   placeholder = 'Buscar o crear etiqueta...',
   colorTheme = 'cyan'
 }: TagAutocompleteSelectorProps) {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [editingTag, setEditingTag] = useState<string | null>(null);
+  const [editingValue, setEditingValue] = useState<string>('');
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown on outside click
@@ -28,6 +34,7 @@ export function TagAutocompleteSelector({
     function handleClickOutside(event: MouseEvent) {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsOpen(false);
+        setEditingTag(null);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -83,6 +90,15 @@ export function TagAutocompleteSelector({
     onChange(selectedTags.filter((t) => t !== tagToRemove));
   };
 
+  const handleSaveEdit = (oldTag: string) => {
+    const trimmed = editingValue.trim();
+    if (trimmed && trimmed !== oldTag && onEditTag) {
+      onEditTag(oldTag, trimmed);
+    }
+    setEditingTag(null);
+    setEditingValue('');
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -104,7 +120,7 @@ export function TagAutocompleteSelector({
       : 'bg-cyan-100 text-cyan-800 border-cyan-200 hover:bg-cyan-200';
 
   const badgeThemeClass =
-    colorTheme === 'purple' ? 'text-purple-600 bg-purple-50' : 'text-cyan-600 bg-cyan-50';
+    colorTheme === 'purple' ? 'text-purple-600 bg-purple-50 hover:bg-purple-100' : 'text-cyan-600 bg-cyan-50 hover:bg-cyan-100';
 
   return (
     <div className="relative w-full" ref={containerRef}>
@@ -148,25 +164,94 @@ export function TagAutocompleteSelector({
 
       {/* Autocomplete Dropdown List */}
       {isOpen && (
-        <div className="absolute z-50 left-0 right-0 mt-1 max-h-56 overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-xl py-1 text-xs">
+        <div className="absolute z-50 left-0 right-0 mt-1 max-h-60 overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-xl py-1 text-xs divide-y divide-slate-100">
           {filteredTags.length > 0 && (
-            <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 font-title">
-              Sugerencias Disponibles:
+            <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50/50 font-title">
+              Sugerencias Disponibles (✏️ Editar / 🗑️ Eliminar)
             </div>
           )}
 
           {filteredTags.map((tag) => (
-            <button
-              key={tag}
-              type="button"
-              onClick={() => handleSelectTag(tag)}
-              className="w-full text-left px-3 py-2 hover:bg-slate-100 text-slate-800 font-medium transition-colors flex items-center justify-between cursor-pointer font-title"
-            >
-              <span>{tag}</span>
-              <span className={`text-[10px] font-semibold px-2 py-0.5 rounded ${badgeThemeClass}`}>
-                + Asignar
-              </span>
-            </button>
+            <div key={tag} className="transition-colors">
+              {editingTag === tag ? (
+                <div className="flex items-center gap-1.5 p-2 bg-cyan-50/80">
+                  <input
+                    type="text"
+                    value={editingValue}
+                    onChange={(e) => setEditingValue(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleSaveEdit(tag);
+                      } else if (e.key === 'Escape') {
+                        setEditingTag(null);
+                      }
+                    }}
+                    className="flex-1 px-2 py-1 text-xs border border-cyan-300 rounded font-medium text-slate-800 outline-none focus:ring-1 focus:ring-cyan-500"
+                    autoFocus
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleSaveEdit(tag)}
+                    className="px-2 py-1 text-[10px] font-bold bg-cyan-600 text-white rounded hover:bg-cyan-700 font-title cursor-pointer"
+                  >
+                    Guardar
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setEditingTag(null)}
+                    className="px-2 py-1 text-[10px] font-bold bg-slate-200 text-slate-700 rounded hover:bg-slate-300 font-title cursor-pointer"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              ) : (
+                <div className="w-full flex items-center justify-between px-3 py-2 hover:bg-slate-100/80 transition-colors group">
+                  <span
+                    onClick={() => handleSelectTag(tag)}
+                    className="flex-1 font-medium text-slate-800 cursor-pointer font-title hover:text-cyan-700 text-left"
+                  >
+                    {tag}
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    {onEditTag && (
+                      <button
+                        type="button"
+                        title="Editar nombre de este concepto"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setEditingTag(tag);
+                          setEditingValue(tag);
+                        }}
+                        className="p-1 text-slate-400 hover:text-blue-600 transition-colors cursor-pointer"
+                      >
+                        <i className="fa-solid fa-pen-to-square text-[11px]"></i>
+                      </button>
+                    )}
+                    {onDeleteTag && (
+                      <button
+                        type="button"
+                        title="Eliminar de la lista desplegable"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDeleteTag(tag);
+                        }}
+                        className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
+                      >
+                        <i className="fa-solid fa-trash-can text-[11px]"></i>
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => handleSelectTag(tag)}
+                      className={`text-[10px] font-semibold px-2 py-0.5 rounded ${badgeThemeClass} ml-1 cursor-pointer`}
+                    >
+                      + Asignar
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
 
           {/* Option to create a new tag if query doesn't match existing */}

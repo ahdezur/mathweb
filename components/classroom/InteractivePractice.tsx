@@ -15,13 +15,22 @@ function sanitizeLaTeX(str: string): string {
     .replace(/\x09/g, '\\t')
     .replace(/\x08/g, '\\b')
     .replace(/\x0B/g, '\\v')
-    .replace(/[\r\n]eq/g, '\\neq ')
-    .replace(/[\r\n]notin/g, '\\notin ')
-    .replace(/[\r\n]nabla/g, '\\nabla ')
-    .replace(/[\r\n]nu/g, '\\nu ')
-    .replace(/[\r\n]neg/g, '\\neg ')
+    // Restore unescaped control sequence corruptions
+    .replace(/(?<!g)[\r\n]eq(?![a-zA-Z])/g, '\\neq ')
+    .replace(/[\r\n]notin(?![a-zA-Z])/g, '\\notin ')
+    .replace(/[\r\n]nabla(?![a-zA-Z])/g, '\\nabla ')
+    .replace(/[\r\n]nu(?![a-zA-Z])/g, '\\nu ')
+    .replace(/[\r\n]neg(?![a-zA-Z])/g, '\\neg ')
+    .replace(/[\r\n]natural(?![a-zA-Z])/g, '\\natural ')
+    .replace(/[\r\n]nleftrightarrow(?![a-zA-Z])/g, '\\nleftrightarrow ')
+
+    // PROTECT valid \n LaTeX commands from being destroyed by \n replacement
+    .replace(/\\(neq|notin|nabla|nu|neg|natural|nleftrightarrow)(?![a-zA-Z])/g, '___LATEX_$1___')
     .replace(/\\n/g, '\n')
-    .replace(/\\\\([a-zA-Z]+)/g, '\\$1');
+    .replace(/___LATEX_(neq|notin|nabla|nu|neg|natural|nleftrightarrow)___/g, '\\$1 ')
+
+    // Normalize double-escaped control sequences
+    .replace(/\\\\(neq|geq|leq|notin|nabla|nu|neg|frac|sqrt|lim|sum|int|infty|alpha|beta|gamma|delta|epsilon|theta|pi|sigma|lambda|omega|mathbb|mathbf|mathcal|text|textbf|mathrm|left|right|begin|end)(?![a-zA-Z])/g, '\\$1');
 }
 
 function renderKaTeX(text: string) {
@@ -80,6 +89,7 @@ export interface TrueFalseExercise {
 export interface PracticeOption {
   id: string;
   text: string;
+  isCorrect?: boolean;
   feedback?: string;
 }
 
@@ -165,9 +175,12 @@ export function InteractivePractice({ exercises, fontScale = 1.0 }: InteractiveP
     } else if (ex.type === 'single_choice' && userAns === ex.correctOptionId) {
       correctCount++;
     } else if (ex.type === 'multiple_choice' && Array.isArray(userAns)) {
+      const targetOptionIds = (ex.correctOptionIds && ex.correctOptionIds.length > 0)
+        ? ex.correctOptionIds
+        : (ex.options || []).filter((o) => o.isCorrect).map((o) => o.id);
       const isExact =
-        userAns.length === ex.correctOptionIds.length &&
-        userAns.every((val) => ex.correctOptionIds.includes(val));
+        userAns.length === targetOptionIds.length &&
+        userAns.every((val) => targetOptionIds.includes(val));
       if (isExact) correctCount++;
     } else if (ex.type === 'matching' && typeof userAns === 'object' && userAns !== null) {
       const isAllPairsCorrect = ex.col1Items.every((item) => {
@@ -302,9 +315,12 @@ function ExerciseCard({
     } else if (exercise.type === 'single_choice' && userAnswer === exercise.correctOptionId) {
       isCorrect = true;
     } else if (exercise.type === 'multiple_choice' && Array.isArray(userAnswer)) {
+      const targetOptionIds = (exercise.correctOptionIds && exercise.correctOptionIds.length > 0)
+        ? exercise.correctOptionIds
+        : (exercise.options || []).filter((o) => o.isCorrect).map((o) => o.id);
       isCorrect =
-        userAnswer.length === exercise.correctOptionIds.length &&
-        userAnswer.every((val) => exercise.correctOptionIds.includes(val));
+        userAnswer.length === targetOptionIds.length &&
+        userAnswer.every((val) => targetOptionIds.includes(val));
     } else if (exercise.type === 'matching' && typeof userAnswer === 'object' && userAnswer !== null) {
       isCorrect = exercise.col1Items.every((item) => {
         const sel = userAnswer[item.id];
@@ -554,6 +570,22 @@ function MatchingBreakdown({
   );
 }
 
+function getOptionLabel(optId: string, index: number): string {
+  if (!optId) return String.fromCharCode(65 + index);
+  const clean = String(optId).trim();
+  if (/^[A-Z]$/i.test(clean)) return clean.toUpperCase();
+
+  const matchNum = clean.match(/\d+/);
+  if (matchNum) {
+    const num = parseInt(matchNum[0], 10);
+    if (num >= 1 && num <= 26) {
+      return String.fromCharCode(64 + num);
+    }
+  }
+
+  return String.fromCharCode(65 + (index % 26));
+}
+
 // Subcomponente de Desglose por Casilla con insignia [A] [B] [C] oficial y colores Verde/Rojo
 function MultipleChoiceOptionBreakdown({
   exercise,
@@ -564,8 +596,11 @@ function MultipleChoiceOptionBreakdown({
 }) {
   return (
     <div className="space-y-3 mt-2">
-      {exercise.options.map((o) => {
-        const isTargetCorrect = exercise.correctOptionIds.includes(o.id);
+      {(exercise.options || []).map((o, idx) => {
+        const targetOptionIds = (exercise.correctOptionIds && exercise.correctOptionIds.length > 0)
+          ? exercise.correctOptionIds
+          : (exercise.options || []).filter((opt) => opt.isCorrect).map((opt) => opt.id);
+        const isTargetCorrect = targetOptionIds.includes(o.id);
         const actionTag = isTargetCorrect ? 'Debe marcarse' : 'Debe dejar en blanco';
         let rawFb = o.feedback ? o.feedback.trim() : '';
 
@@ -590,7 +625,7 @@ function MultipleChoiceOptionBreakdown({
           >
             {/* Insignia Oficial de la Casilla [A], [B], [C] */}
             <span className="w-8 h-8 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-sm font-black shrink-0 font-title shadow-2xs text-slate-900 dark:text-slate-100">
-              {o.id}
+              {getOptionLabel(o.id, idx)}
             </span>
 
             <div className="flex-1 text-xs md:text-sm leading-relaxed space-y-1">
@@ -707,7 +742,7 @@ function SingleChoiceView({
       </div>
 
       <div className="grid grid-cols-1 gap-3.5">
-        {exercise.options.map((opt) => {
+        {exercise.options.map((opt, idx) => {
           const isSelected = userAnswer === opt.id;
           const isTargetCorrect = exercise.correctOptionId === opt.id;
 
@@ -752,7 +787,7 @@ function SingleChoiceView({
                 className={`w-full p-4 md:p-5 rounded-2xl border-2 text-left transition-all flex items-center gap-4 cursor-pointer ${cardClass}`}
               >
                 <span className="w-8 h-8 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-sm font-black shrink-0 font-title">
-                  {opt.id}
+                  {getOptionLabel(opt.id, idx)}
                 </span>
                 <div className="flex-1 text-sm md:text-base leading-relaxed">
                   {renderKaTeX(opt.text)}
@@ -805,9 +840,12 @@ function MultipleChoiceView({
       </div>
 
       <div className="grid grid-cols-1 gap-3.5">
-        {exercise.options.map((opt) => {
+        {(exercise.options || []).map((opt, idx) => {
           const isSelected = currentSelected.includes(opt.id);
-          const isTargetCorrect = exercise.correctOptionIds.includes(opt.id);
+          const targetOptionIds = (exercise.correctOptionIds && exercise.correctOptionIds.length > 0)
+            ? exercise.correctOptionIds
+            : (exercise.options || []).filter((o) => o.isCorrect).map((o) => o.id);
+          const isTargetCorrect = targetOptionIds.includes(opt.id);
 
           let cardClass = 'bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-indigo-400';
           if (isSelected) {
@@ -870,7 +908,7 @@ function MultipleChoiceView({
                   {isSelected && <i className="fa-solid fa-check text-xs"></i>}
                 </div>
                 <span className="w-8 h-8 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-sm font-black shrink-0 font-title">
-                  {opt.id}
+                  {getOptionLabel(opt.id, idx)}
                 </span>
                 <div className="flex-1 text-sm md:text-base leading-relaxed">
                   {renderKaTeX(opt.text)}

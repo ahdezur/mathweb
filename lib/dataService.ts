@@ -89,7 +89,15 @@ let bookingsCache: DBBooking[] | null = null;
 
 function getCoursesCache(): Course[] {
   if (!coursesCache) {
-    coursesCache = loadLocalStore('app_courses_data', MOCK_COURSES);
+    const raw = loadLocalStore('app_courses_data', MOCK_COURSES);
+    coursesCache = raw.map((c) => ({
+      ...c,
+      slug: c.slug && c.slug.includes('algebra-lineal')
+        ? 'algebra-lineal'
+        : c.slug && c.slug.includes('calculo-multivariable')
+        ? 'calculo-multivariable'
+        : c.slug
+    }));
   }
   return coursesCache;
 }
