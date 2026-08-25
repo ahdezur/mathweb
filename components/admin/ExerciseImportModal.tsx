@@ -43,7 +43,7 @@ export function ExerciseImportModal({ isOpen, onClose, onImportExercises }: Exer
               <h2 className="text-lg font-black text-slate-900 font-title flex items-center gap-2">
                 Importador Masivo por Sintaxis LaTeX
                 <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-cyan-100 text-cyan-800 border border-cyan-200">
-                  \\VF • \\ALT • \\MATCH • \\NUM
+                  \\VF • \\ALT • \\MATCH • \\NUM • \\MULT
                 </span>
               </h2>
               <p className="text-xs text-slate-500">

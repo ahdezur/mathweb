@@ -71,8 +71,8 @@ export function parseExerciseSyntaxText(rawText: string): ParseResult {
   let exCount = 0;
 
   while (pos < cleanText.length) {
-    // Find next command tag (\VF, \ALT, \MATCH, \NUM)
-    const match = cleanText.substring(pos).match(/\\(VF|ALT|MATCH|NUM)/);
+    // Find next command tag (\VF, \ALT, \MATCH, \NUM, \MULT)
+    const match = cleanText.substring(pos).match(/\\(VF|ALT|MATCH|NUM|MULT)/);
     if (!match || match.index === undefined) {
       break;
     }
@@ -244,6 +244,107 @@ export function parseExerciseSyntaxText(rawText: string): ParseResult {
           correctOptionId: 'A',
           explanation: explanation.trim()
         });
+      } else if (commandTag === 'MULT') {
+        if (params.length < 2) {
+          errors.push(`Ejercicio ${exCount} (\\MULT): Se requieren al menos 2 parámetros {Pregunta}{Opciones o bloques \\casilla{...}}. Se recibieron ${params.length}.`);
+          continue;
+        }
+
+        const [question, optionsRaw, explanationRaw] = params;
+        const explanation = explanationRaw?.trim() || '';
+        const options: { id: string; text: string; feedback?: string; isCorrect?: boolean }[] = [];
+        const correctOptionIds: string[] = [];
+
+        // Check if options contains \casilla{Texto}{V/F}{Retroalimentación}
+        if (optionsRaw.includes('\\casilla')) {
+          let posCasilla = 0;
+          let casillaIdx = 0;
+
+          while (posCasilla < optionsRaw.length) {
+            const cMatch = optionsRaw.substring(posCasilla).match(/\\casilla/);
+            if (!cMatch || cMatch.index === undefined) break;
+
+            const cStart = posCasilla + cMatch.index + cMatch[0].length;
+            const cExtracted = extractBraceParams(optionsRaw, cStart);
+            if (!cExtracted) break;
+
+            const { params: cParams, nextIndex } = cExtracted;
+            posCasilla = nextIndex;
+
+            if (cParams.length >= 2) {
+              const [optText, veracity, customFb] = cParams;
+              const letter = String.fromCharCode(65 + casillaIdx);
+              const vClean = veracity.trim().toUpperCase();
+              const isCorrect = vClean === 'V' || vClean === 'VERDADERO' || vClean === 'TRUE' || vClean === '1' || vClean === 'CORRECTO';
+
+              if (isCorrect) {
+                correctOptionIds.push(letter);
+              }
+
+              options.push({
+                id: letter,
+                text: optText.trim(),
+                isCorrect,
+                feedback: customFb?.trim() || (isCorrect ? '¡Correcto! Afirmación acertada.' : 'Incorrecto.')
+              });
+              casillaIdx++;
+            }
+          }
+        } else {
+          // Pipeline-separated options: Opción A* -> FB | Opción B -> FB
+          const rawOptions = optionsRaw.split('|').map((s) => s.trim()).filter(Boolean);
+          rawOptions.forEach((optStr, idx) => {
+            const letter = String.fromCharCode(65 + idx);
+            let isCorrect = false;
+            let cleanText = optStr;
+
+            if (cleanText.includes('*') || /\[OK\]/i.test(cleanText) || /\(Correcta\)/i.test(cleanText)) {
+              isCorrect = true;
+              cleanText = cleanText.replace(/\*/g, '').replace(/\[OK\]/gi, '').replace(/\(Correcta\)/gi, '').trim();
+            }
+
+            let fb = isCorrect ? '¡Excelente! Respuesta correcta.' : 'Incorrecto. Revisa la opción.';
+            if (cleanText.includes('->') || cleanText.includes('::')) {
+              const parts = cleanText.split(/->|::/).map((s) => s.trim());
+              cleanText = parts[0];
+              if (parts[1]) fb = parts[1];
+            }
+
+            cleanText = cleanText.replace(/^[A-Za-z][\)\.\-]\s*/, '').trim();
+
+            if (isCorrect) {
+              correctOptionIds.push(letter);
+            }
+
+            options.push({
+              id: letter,
+              text: cleanText,
+              isCorrect,
+              feedback: fb
+            });
+          });
+        }
+
+        if (options.length === 0) {
+          errors.push(`Ejercicio ${exCount} (\\MULT): No se encontraron opciones o bloques \\casilla válidos.`);
+          continue;
+        }
+
+        if (correctOptionIds.length === 0) {
+          correctOptionIds.push('A');
+          if (options[0]) options[0].isCorrect = true;
+          errors.push(`Ejercicio ${exCount} (\\MULT): No se marcó ninguna opción como correcta (se asignó 'A' por defecto).`);
+        }
+
+        exercises.push({
+          id: uniqueId,
+          type: 'multiple_choice',
+          title: `Ejercicio ${exCount}: Selección Múltiple (Casillas)`,
+          question: question.trim(),
+          options,
+          correctOptionIds,
+          explanation: explanation.trim()
+        });
       }
     } catch (err: any) {
       errors.push(`Error al procesar Ejercicio ${exCount} (\\${commandTag}): ${err?.message || 'Error de sintaxis.'}`);
@@ -251,7 +352,7 @@ export function parseExerciseSyntaxText(rawText: string): ParseResult {
   }
 
   if (exCount === 0 && errors.length === 0 && rawText.trim().length > 0) {
-    errors.push('No se detectó ninguna etiqueta válida (\\VF, \\ALT, \\MATCH, \\NUM) en el texto ingresado.');
+    errors.push('No se detectó ninguna etiqueta válida (\\VF, \\ALT, \\MATCH, \\NUM, \\MULT) en el texto ingresado.');
   }
 
   return { exercises, errors };
@@ -259,7 +360,7 @@ export function parseExerciseSyntaxText(rawText: string): ParseResult {
 
 export const SAMPLE_IMPORT_TEMPLATE = `% =========================================================
 % PLANTILLA DE EJERCICIOS EN SINTAXIS LATEX PARA AULAS VIRTUALES
-% Usa los comandos: \\VF, \\ALT, \\MATCH, \\NUM
+% Usa los comandos: \\VF, \\ALT, \\MATCH, \\NUM, \\MULT
 % =========================================================
 
 \\VF{La derivada de $f(x) = x^2$ en $x = 3$ es igual a $6$}{V}{Derivando la función obtenemos $f'(x) = 2x$. Evaluando en $x=3$: $f'(3) = 2(3) = 6$.}
@@ -269,4 +370,11 @@ export const SAMPLE_IMPORT_TEMPLATE = `% =======================================
 \\MATCH{Relaciona cada función matemática con su respectiva antiderivada directa}{1. $f(x) = x^2$ -> $\\frac{x^3}{3} + C$ | 2. $f(x) = e^x$ -> $e^x + C$ | 3. $f(x) = \\frac{1}{x}$ -> \\ln|x| + C}{1.A: Aplica regla de potencia. 2.B: La función exponencial es su propia antiderivada. 3.C: Derivada de logaritmo natural.}
 
 \\NUM{Calcule el valor de la integral definida $\\int_{0}^{2} 3x^2 \\, dx$}{8}{La antiderivada es $F(x) = x^3$. Evaluando en los límites: $F(2) - F(0) = 2^3 - 0^3 = 8$.}
+
+\\MULT{Se requiere evaluar el límite $\\lim_{(x,y) \\to (0,0)} \\arccos\\left(\\frac{x}{\\sqrt{x^2 + y^2}}\\right)$. Selecciona todas las afirmaciones correctas:}{
+  \\casilla{La expresión se reduce algebraicamente a $\\arccos(\\cos\\theta)$.}{V}{¡Correcto! Sustituyendo $x=r\\cos\\theta$ y $\\sqrt{x^2+y^2}=r$.}
+  \\casilla{Como $\\arccos(\\cos\\theta)=\\theta$, el límite no existe por depender de $\\theta$.}{V}{¡Exacto! El resultado depende del ángulo de aproximación.}
+  \\casilla{El límite existe y vale $1$.}{F}{Falso. Se confunde con el Teorema de Cero por Acotado.}
+  \\casilla{Por $\\theta=0$ el límite da $0$, pero por $\\theta=\\pi/2$ da $\\pi/2$.}{V}{¡Correcto! Caminos distintos entregan valores distintos.}
+}
 `;
