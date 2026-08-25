@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { DataService, DBBooking } from '@/lib/dataService';
 import { Course, BlogPost } from '@/lib/mockData';
-import { MathFormula } from '@/components/math/MathFormula';
+import { MathFormula, MathText } from '@/components/math/MathFormula';
 
 import { CourseContent, ChapterData, UnitData } from '@/lib/classroomData';
 
@@ -52,6 +52,59 @@ function EditableTitleInput({
   return (
     <input
       type="text"
+      value={val}
+      onChange={handleChange}
+      onCompositionStart={handleCompositionStart}
+      onCompositionEnd={handleCompositionEnd}
+      onBlur={handleBlur}
+      className={className}
+      title={title}
+    />
+  );
+}
+
+function EditableSummaryInput({
+  initialValue,
+  onSave,
+  className,
+  title,
+}: {
+  initialValue: string;
+  onSave: (val: string) => void;
+  className?: string;
+  title?: string;
+}) {
+  const [val, setVal] = useState(initialValue);
+  const isComposing = React.useRef(false);
+
+  useEffect(() => {
+    setVal(initialValue);
+  }, [initialValue]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newVal = e.target.value;
+    setVal(newVal);
+    if (!isComposing.current) {
+      onSave(newVal);
+    }
+  };
+
+  const handleCompositionStart = () => {
+    isComposing.current = true;
+  };
+
+  const handleCompositionEnd = (e: React.CompositionEvent<HTMLTextAreaElement>) => {
+    isComposing.current = false;
+    onSave(e.currentTarget.value);
+  };
+
+  const handleBlur = () => {
+    onSave(val);
+  };
+
+  return (
+    <textarea
+      rows={2}
       value={val}
       onChange={handleChange}
       onCompositionStart={handleCompositionStart}
@@ -495,6 +548,32 @@ export default function AdminDashboardPage() {
     }
   };
 
+  const handleUpdateChapterSummary = async (courseSlug: string, chapterId: string, newSummary: string) => {
+    const course = classroomCourses.find((c) => c.slug === courseSlug);
+    if (!course) return;
+
+    const updatedUnits = course.units.map((u) => {
+      const updatedChs = u.chapters.map((ch) => (ch.id === chapterId ? { ...ch, summary: newSummary } : ch));
+      return { ...u, chapters: updatedChs };
+    });
+
+    const updatedChapters = (course.chapters || []).map((ch) => (ch.id === chapterId ? { ...ch, summary: newSummary } : ch));
+    const updatedCourse = { ...course, units: updatedUnits, chapters: updatedChapters };
+    const updatedCourses = classroomCourses.map((c) => (c.slug === courseSlug ? updatedCourse : c));
+
+    setClassroomCourses(updatedCourses);
+
+    try {
+      await fetch('/api/admin/courses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courses: updatedCourses })
+      });
+    } catch (err) {
+      console.error('Error updating chapter summary:', err);
+    }
+  };
+
   const handleMoveChapterToUnit = async (courseSlug: string, chapterId: string, targetUnitId: string) => {
     const course = classroomCourses.find((c) => c.slug === courseSlug);
     if (!course) return;
@@ -926,7 +1005,16 @@ export default function AdminDashboardPage() {
                                         className="font-bold text-sm text-slate-900 font-title bg-transparent border-b border-dashed border-slate-300 hover:border-cyan-500 focus:border-cyan-600 focus:bg-white px-1.5 py-0.5 rounded transition-all w-full min-w-[180px]"
                                         title="Editar título del capítulo"
                                       />
-                                      <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{ch.summary}</p>
+                                      <EditableSummaryInput
+                                        initialValue={ch.summary || ''}
+                                        onSave={(newSummary) => handleUpdateChapterSummary(cContent.slug, ch.id, newSummary)}
+                                        className="text-xs text-slate-600 mt-1 bg-slate-50/60 hover:bg-white focus:bg-white border border-dashed border-slate-300 hover:border-cyan-500 focus:border-cyan-600 px-2 py-1 rounded-lg transition-all w-full leading-relaxed font-sans shadow-2xs outline-none"
+                                        title="Haz clic para editar la reseña del capítulo (auto-guardado)"
+                                      />
+                                      <div className="mt-1 px-2 py-1 bg-slate-100/60 rounded-md border border-slate-200/60 text-xs text-slate-700 font-medium">
+                                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-title mr-1.5">Vista previa KaTeX:</span>
+                                        <MathText text={ch.summary || ''} />
+                                      </div>
                                       
                                       <div className="flex flex-wrap items-center gap-2 mt-2">
                                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 font-title">

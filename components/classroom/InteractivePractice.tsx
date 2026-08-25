@@ -221,7 +221,7 @@ export function InteractivePractice({ exercises, fontScale = 1.0 }: InteractiveP
             <div>
               <h2 className="text-2xl font-bold font-title text-slate-900 dark:text-slate-100">Práctica Guiada e Interactiva</h2>
               <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                Ejercicios interactivos con comprobación instantánea y explicaciones en KaTeX
+                Ejercicios interactivos con comprobación instantánea y explicaciones
               </p>
             </div>
           </div>

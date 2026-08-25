@@ -16,7 +16,7 @@ interface SplitFormulaPanelProps {
 
 export const SplitFormulaPanel: React.FC<SplitFormulaPanelProps> = React.memo(({ formulas, onClose }) => {
   return (
-    <div className="w-full lg:w-96 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-2xl flex flex-col h-[calc(100vh-160px)] animate-fadeIn sticky top-0">
+    <div className="w-full lg:w-96 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-2xl flex flex-col h-[calc(100vh-40px)] animate-fadeIn sticky top-5">
       <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4 shrink-0">
         <h4 className="font-bold text-sm text-cyan-600 dark:text-cyan-400 flex items-center gap-2 font-title">
           <i className="fa-solid fa-square-root-variable text-base"></i> Fórmulas & Teoremas Clave

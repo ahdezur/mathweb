@@ -53,97 +53,134 @@ const ClassroomSidebarComponent: React.FC<ClassroomSidebarProps> = ({
       chapters: (u.chapters || []).slice().sort((a, b) => (a.number || 0) - (b.number || 0))
     }));
 
+  const handleChapterClick = (chapterId: string) => {
+    onSelectChapter(chapterId);
+    if (typeof window !== 'undefined' && window.innerWidth < 1024 && !collapsed) {
+      onToggleCollapse();
+    }
+  };
+
   return (
-    <aside
-      className={`h-full transition-all duration-500 ease-in-out border-r flex flex-col z-40 shrink-0 ${
-        isDarkMode
-          ? 'bg-slate-950 border-slate-800 text-slate-100'
-          : 'bg-[#edf1f5] border-slate-200/80 text-slate-900 shadow-xs'
-      } ${collapsed ? 'w-16' : 'w-[340px]'}`}
-    >
+    <>
+      {/* Backdrop overlay for mobile screens when sidebar is open */}
+      {!collapsed && (
+        <div
+          className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-40 lg:hidden transition-opacity"
+          onClick={onToggleCollapse}
+        />
+      )}
+
+      <aside
+        className={`h-full transition-all duration-300 ease-in-out border-r flex flex-col z-50 shrink-0 ${
+          isDarkMode
+            ? 'bg-slate-950 border-slate-800 text-slate-100'
+            : 'bg-[#edf1f5] border-slate-200/80 text-slate-900 shadow-xs'
+        } ${
+          collapsed
+            ? '-translate-x-full lg:translate-x-0 w-0 lg:w-16 border-transparent lg:border-slate-200/80 overflow-hidden'
+            : 'fixed lg:relative inset-y-0 left-0 w-[300px] sm:w-[340px] shadow-2xl lg:shadow-xs'
+        }`}
+      >
       {/* Sidebar Control Toolbar (Home, Theme, Font, Collapse) */}
       <div
-        className={`py-3 px-4.5 border-b flex items-center justify-between gap-2.5 ${
+        className={`py-3 ${collapsed ? 'px-2' : 'px-4.5'} border-b flex items-center justify-between gap-2.5 ${
           isDarkMode ? 'border-slate-800 bg-slate-950/80' : 'border-slate-200/80 bg-white/90'
         }`}
       >
-        {!collapsed ? (
-          <Link
-            href="/"
-            className="px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 hover:opacity-80 shadow-2xs border border-cyan-200 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-400"
-            title="Volver a la Página Principal"
-          >
-            <i className="fa-solid fa-house text-xs"></i>
-            <span className="font-title tracking-wide">Inicio</span>
-          </Link>
+        {collapsed ? (
+          <div className="flex flex-col items-center justify-center gap-2.5 w-full py-0.5">
+            {/* 1. Botón Inicio */}
+            <Link
+              href="/"
+              className="p-2 rounded-xl transition-all hover:bg-cyan-50 dark:hover:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 border border-transparent hover:border-cyan-200 dark:hover:border-cyan-800"
+              title="Volver a la Página Principal"
+            >
+              <i className="fa-solid fa-house text-sm"></i>
+            </Link>
+
+            {/* 2. Botón Desplegar / Expandir (>>) */}
+            <button
+              type="button"
+              onClick={onToggleCollapse}
+              className={`p-2 rounded-xl text-xs transition-all cursor-pointer border ${
+                isDarkMode
+                  ? 'bg-slate-900 border-slate-800 hover:bg-slate-800 text-cyan-400'
+                  : 'bg-slate-100 border-slate-200 hover:bg-slate-200 text-cyan-700'
+              }`}
+              title="Desplegar panel lateral"
+            >
+              <i className="fa-solid fa-angles-right text-xs"></i>
+            </button>
+          </div>
         ) : (
-          <Link
-            href="/"
-            className="p-2 rounded-xl transition-colors mx-auto text-cyan-600 dark:text-cyan-400"
-            title="Volver a la Página Principal"
-          >
-            <i className="fa-solid fa-house text-sm"></i>
-          </Link>
+          <>
+            <Link
+              href="/"
+              className="px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 hover:opacity-80 shadow-2xs border border-cyan-200 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-400"
+              title="Volver a la Página Principal"
+            >
+              <i className="fa-solid fa-house text-xs"></i>
+              <span className="font-title tracking-wide">Inicio</span>
+            </Link>
+
+            <div className="flex items-center gap-1">
+              {/* Button 1: Toggle Theme */}
+              <button
+                type="button"
+                onClick={onToggleTheme}
+                className={`p-2 rounded-xl text-xs transition-all cursor-pointer ${
+                  isDarkMode
+                    ? 'hover:bg-slate-800 text-amber-400'
+                    : 'hover:bg-slate-200 text-slate-700'
+                }`}
+                title={isDarkMode ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Oscuro'}
+              >
+                <i className={`fa-solid ${isDarkMode ? 'fa-sun' : 'fa-moon'} text-xs`}></i>
+              </button>
+
+              {/* Button 2: Font Scale (-) */}
+              <button
+                type="button"
+                onClick={onDecreaseFont}
+                className={`p-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  isDarkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-200 text-slate-700'
+                }`}
+                title="Reducir tamaño de letra"
+              >
+                <i className="fa-solid fa-minus text-[10px]"></i>
+              </button>
+
+              {/* Font Scale indicator */}
+              <span className="text-[11px] font-mono px-1 font-semibold opacity-75">
+                {Math.round(fontScale * 100)}%
+              </span>
+
+              {/* Button 3: Font Scale (+) */}
+              <button
+                type="button"
+                onClick={onIncreaseFont}
+                className={`p-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  isDarkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-200 text-slate-700'
+                }`}
+                title="Aumentar tamaño de letra"
+              >
+                <i className="fa-solid fa-plus text-[10px]"></i>
+              </button>
+
+              {/* Button 4: Collapse / Expand Sidebar */}
+              <button
+                type="button"
+                onClick={onToggleCollapse}
+                className={`p-2 rounded-xl text-xs transition-all cursor-pointer ${
+                  isDarkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-200 text-slate-700'
+                }`}
+                title="Ocultar panel lateral"
+              >
+                <i className="fa-solid fa-angles-left text-xs"></i>
+              </button>
+            </div>
+          </>
         )}
-
-        <div className="flex items-center gap-1">
-          {/* Button 1: Toggle Theme */}
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            className={`p-2 rounded-xl text-xs transition-all cursor-pointer ${
-              isDarkMode
-                ? 'hover:bg-slate-800 text-amber-400'
-                : 'hover:bg-slate-200 text-slate-700'
-            }`}
-            title={isDarkMode ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Oscuro'}
-          >
-            <i className={`fa-solid ${isDarkMode ? 'fa-sun' : 'fa-moon'} text-xs`}></i>
-          </button>
-
-          {/* Button 2: Font Scale (-) */}
-          <button
-            type="button"
-            onClick={onDecreaseFont}
-            className={`p-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              isDarkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-200 text-slate-700'
-            }`}
-            title="Reducir tamaño de letra"
-          >
-            <i className="fa-solid fa-minus text-[10px]"></i>
-          </button>
-
-          {/* Font Scale indicator */}
-          {!collapsed && (
-            <span className="text-[11px] font-mono px-1 font-semibold opacity-75">
-              {Math.round(fontScale * 100)}%
-            </span>
-          )}
-
-          {/* Button 3: Font Scale (+) */}
-          <button
-            type="button"
-            onClick={onIncreaseFont}
-            className={`p-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              isDarkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-200 text-slate-700'
-            }`}
-            title="Aumentar tamaño de letra"
-          >
-            <i className="fa-solid fa-plus text-[10px]"></i>
-          </button>
-
-          {/* Button 4: Collapse / Expand Sidebar */}
-          <button
-            type="button"
-            onClick={onToggleCollapse}
-            className={`p-2 rounded-xl text-xs transition-all cursor-pointer ${
-              isDarkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-200 text-slate-700'
-            }`}
-            title={collapsed ? 'Expandir panel lateral' : 'Ocultar panel lateral'}
-          >
-            <i className={`fa-solid ${collapsed ? 'fa-angles-right' : 'fa-angles-left'} text-xs`}></i>
-          </button>
-        </div>
       </div>
 
       {/* Course Title Header with Logo + Álvaro Profemate on Top Right */}
@@ -244,7 +281,7 @@ const ClassroomSidebarComponent: React.FC<ClassroomSidebarProps> = ({
                           <button
                             key={chap.id}
                             type="button"
-                            onClick={() => onSelectChapter(chap.id)}
+                            onClick={() => handleChapterClick(chap.id)}
                             className={`w-full text-left p-3 rounded-xl transition-all flex items-start gap-2.5 cursor-pointer ${
                               isActive
                                 ? isDarkMode
@@ -272,7 +309,7 @@ const ClassroomSidebarComponent: React.FC<ClassroomSidebarProps> = ({
                                 <MathText text={chap.title} />
                               </span>
                               <span className={`text-xs line-clamp-2 leading-relaxed ${isActive ? 'text-cyan-900 dark:text-cyan-200 opacity-90' : 'opacity-75'}`}>
-                                {chap.summary}
+                                <MathText text={chap.summary || ''} />
                               </span>
                             </div>
                           </button>
@@ -296,6 +333,7 @@ const ClassroomSidebarComponent: React.FC<ClassroomSidebarProps> = ({
         <i className="fa-solid fa-square-root-variable mr-1 text-cyan-500"></i> Álvaro Profemate &bull; Aula Virtual
       </div>
     </aside>
+  </>
   );
 };
 

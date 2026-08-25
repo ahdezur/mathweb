@@ -130,6 +130,7 @@ export default function ChapterEditorPage() {
   });
 
   const [importModalOpen, setImportModalOpen] = useState(false);
+  const [allChaptersList, setAllChaptersList] = useState<ChapterData[]>([]);
 
   const syncAvailableTags = (chData: ChapterData) => {
     if (!chData.ejercicios?.problems) return;
@@ -233,11 +234,19 @@ export default function ChapterEditorPage() {
       if (data.success && Array.isArray(data.courses)) {
         const course = data.courses.find((c: any) => c.slug === courseSlug) || data.courses[0];
         if (course) {
-          const allChapters = [
-            ...(course.chapters || []),
-            ...((course.units || []).flatMap((u: any) => u.chapters || []))
-          ];
-          const foundChapter = allChapters.find((ch: any) => ch.id === chapterId);
+          let chaptersOrdered: ChapterData[] = [];
+          if (course.units && course.units.length > 0) {
+            const sortedUnits = course.units.slice().sort((a: any, b: any) => a.number - b.number);
+            sortedUnits.forEach((u: any) => {
+              const unitChs = (u.chapters || []).slice().sort((a: any, b: any) => a.number - b.number);
+              chaptersOrdered.push(...unitChs);
+            });
+          } else if (course.chapters) {
+            chaptersOrdered = (course.chapters || []).slice().sort((a: any, b: any) => a.number - b.number);
+          }
+          setAllChaptersList(chaptersOrdered);
+
+          const foundChapter = chaptersOrdered.find((ch: any) => ch.id === chapterId);
           if (foundChapter) {
             setChapter(foundChapter);
             setLoading(false);
@@ -251,11 +260,19 @@ export default function ChapterEditorPage() {
 
     // Fallback lookup from default course content
     const defaultCourse = getCourseContentBySlug(courseSlug);
-    const defaultChapters = [
-      ...(defaultCourse.chapters || []),
-      ...((defaultCourse.units || []).flatMap((u) => u.chapters || []))
-    ];
-    const foundFallback = defaultChapters.find((ch) => ch.id === chapterId);
+    let fallbackOrdered: ChapterData[] = [];
+    if (defaultCourse.units && defaultCourse.units.length > 0) {
+      const sortedUnits = defaultCourse.units.slice().sort((a: any, b: any) => a.number - b.number);
+      sortedUnits.forEach((u) => {
+        const unitChs = (u.chapters || []).slice().sort((a, b) => a.number - b.number);
+        fallbackOrdered.push(...unitChs);
+      });
+    } else if (defaultCourse.chapters) {
+      fallbackOrdered = (defaultCourse.chapters || []).slice().sort((a, b) => a.number - b.number);
+    }
+    setAllChaptersList(fallbackOrdered);
+
+    const foundFallback = fallbackOrdered.find((ch) => ch.id === chapterId);
     if (foundFallback) {
       setChapter(foundFallback);
     }
@@ -521,15 +538,69 @@ export default function ChapterEditorPage() {
     );
   }
 
+  const currentChapterIndex = allChaptersList.findIndex((ch) => ch.id === chapterId);
+  const prevChapter = currentChapterIndex > 0 ? allChaptersList[currentChapterIndex - 1] : null;
+  const nextChapter = currentChapterIndex >= 0 && currentChapterIndex < allChaptersList.length - 1 ? allChaptersList[currentChapterIndex + 1] : null;
+
+  const handleNavigateWithAutoSave = async (targetChapterId?: string | null, targetUrl?: string) => {
+    try {
+      await fetch('/api/admin/chapters', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseSlug, chapter })
+      });
+    } catch (err) {
+      console.error('Auto-save on navigate error:', err);
+    }
+    if (targetChapterId) {
+      router.push(`/admin/editor/${targetChapterId}?slug=${courseSlug}`);
+    } else if (targetUrl) {
+      router.push(targetUrl);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans overflow-x-hidden">
       {/* Header Bar */}
       <header className="h-16 border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm" style={{ paddingLeft: '48px', paddingRight: '48px' }}>
         <div className="w-full max-w-[1800px] mx-auto h-full flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href="/admin/dashboard" className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors">
+            <button
+              type="button"
+              onClick={() => handleNavigateWithAutoSave(null, '/admin/dashboard')}
+              className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
+              title="Guardar automáticamente y volver al Dashboard"
+            >
               <i className="fa-solid fa-arrow-left text-sm"></i>
-            </Link>
+            </button>
+
+            {/* Selector de Navegación Capítulo Anterior / Siguiente */}
+            <div className="flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200">
+              <button
+                type="button"
+                onClick={() => prevChapter && handleNavigateWithAutoSave(prevChapter.id)}
+                disabled={!prevChapter}
+                className="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-700 hover:bg-white hover:shadow-2xs disabled:opacity-30 disabled:hover:bg-transparent transition-all flex items-center gap-1.5 font-title cursor-pointer"
+                title={prevChapter ? `Guardar e ir a Capítulo ${prevChapter.number}: ${prevChapter.title}` : 'Primer capítulo'}
+              >
+                <i className="fa-solid fa-chevron-left text-[10px] text-cyan-600"></i>
+                <span>Anterior</span>
+              </button>
+
+              <span className="text-slate-300 font-light text-xs">|</span>
+
+              <button
+                type="button"
+                onClick={() => nextChapter && handleNavigateWithAutoSave(nextChapter.id)}
+                disabled={!nextChapter}
+                className="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-700 hover:bg-white hover:shadow-2xs disabled:opacity-30 disabled:hover:bg-transparent transition-all flex items-center gap-1.5 font-title cursor-pointer"
+                title={nextChapter ? `Guardar e ir a Capítulo ${nextChapter.number}: ${nextChapter.title}` : 'Último capítulo'}
+              >
+                <span>Siguiente</span>
+                <i className="fa-solid fa-chevron-right text-[10px] text-cyan-600"></i>
+              </button>
+            </div>
+
             <div>
               <h1 className="font-extrabold text-base text-slate-900 font-title">
                 Editor de Capítulo {chapter.number}: {chapter.title || 'Sin Título'}

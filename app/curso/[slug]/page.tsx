@@ -118,11 +118,9 @@ export default function CourseClassroomPage() {
 
   const handleToggleTheme = useCallback(() => {
     setIsDarkMode((prev) => !prev);
-  }, []);
-
-  return (
+  }, []);  return (
     <div
-      className={`h-screen w-screen overflow-hidden flex flex-row transition-colors duration-300 font-sans ${
+      className={`h-screen w-screen max-w-[100vw] overflow-hidden flex flex-col lg:flex-row transition-colors duration-300 font-sans ${
         isDarkMode ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'
       }`}
     >
@@ -146,44 +144,55 @@ export default function CourseClassroomPage() {
       <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
         {/* Single Unified Header Box with Collapsible Focus Mode Toggle */}
         <header
-          style={{ paddingLeft: '56px', paddingRight: '56px' }}
-          className={`transition-all duration-500 ease-in-out border-b flex flex-col shrink-0 ${
-            headerCollapsed ? 'py-3.5' : 'py-6'
+          style={{ paddingLeft: 'clamp(24px, 4vw, 64px)', paddingRight: 'clamp(24px, 4vw, 64px)' }}
+          className={`w-full max-w-full overflow-hidden transition-all duration-500 ease-in-out border-b flex flex-col shrink-0 ${
+            headerCollapsed ? 'py-3' : 'py-5 sm:py-6'
           } ${isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-sm'}`}
         >
           {/* Top Row: Chapter Title, Formula Box & Collapsible Header with Smooth Transition */}
           <div
-            className={`overflow-hidden transition-all duration-500 ease-in-out ${
-              headerCollapsed ? 'max-h-0 opacity-0 mb-0 scale-95 pointer-events-none' : 'max-h-96 opacity-100 mb-5 scale-100'
+            className={`w-full overflow-hidden transition-all duration-500 ease-in-out ${
+              headerCollapsed ? 'max-h-0 opacity-0 mb-0 scale-95 pointer-events-none' : 'max-h-96 opacity-100 mb-5 sm:mb-6 scale-100'
             }`}
           >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               {/* Left Column: Unit & Chapter Capsules + Chapter Title */}
-              <div className="flex items-center gap-3.5 min-w-0 flex-1 flex-wrap">
+              <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0 flex-1 flex-wrap">
+                {/* Mobile Sidebar Open Toggle Button */}
+                <button
+                  type="button"
+                  onClick={handleToggleSidebar}
+                  className="lg:hidden px-3 py-1.5 rounded-xl text-xs font-bold bg-cyan-100 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800 flex items-center gap-1.5 cursor-pointer font-title shadow-2xs shrink-0"
+                  title="Abrir menú de capítulos"
+                >
+                  <i className="fa-solid fa-bars text-xs"></i>
+                  <span>Módulos</span>
+                </button>
+
                 {activeUnit && (
-                  <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 shrink-0 font-title">
+                  <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 shrink-0 font-title">
                     Unidad {activeUnit.number}{activeUnit.title ? `: ` : ''}
                     {activeUnit.title && <MathText text={activeUnit.title.replace(/^Unidad \d+:\s*/i, '')} />}
                   </span>
                 )}
-                <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800 shrink-0 font-title">
+                <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800 shrink-0 font-title">
                   Capítulo {activeUnit ? `${activeUnit.number}.${activeChapter.number || 1}` : (activeChapter.number || 1)}
                 </span>
-                <h1 className="text-xl lg:text-2xl font-bold truncate font-title">
+                <h1 className="text-lg sm:text-xl lg:text-2xl font-bold truncate font-title w-full sm:w-auto">
                   <MathText text={activeChapter.title} />
                 </h1>
               </div>
 
               {/* Right Side: Formula del Capítulo Oval Box */}
               <div
-                className={`flex flex-col items-center justify-center px-10 py-3.5 rounded-3xl border shrink-0 shadow-sm text-center min-w-[280px] ${
-                  isDarkMode ? 'bg-slate-950/90 border-slate-800' : 'bg-slate-50 border-slate-200'
+                className={`flex flex-col items-center justify-center px-6 sm:px-8 py-3 rounded-3xl border shrink-0 shadow-xs text-center min-w-[200px] max-w-full overflow-hidden ${
+                  isDarkMode ? 'bg-slate-950/90 border-slate-800' : 'bg-slate-50 border-slate-200/90'
                 }`}
               >
-                <span className="text-[11px] font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-widest block mb-1 font-title">
+                <span className="text-[10px] sm:text-[11px] font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-widest block mb-1 font-title">
                   Fórmula del Capítulo
                 </span>
-                <div className="overflow-x-auto max-w-full">
+                <div className="overflow-x-auto max-w-full text-xs sm:text-sm font-semibold">
                   <MathFormula latex={activeChapter.mathKey} block={true} />
                 </div>
               </div>
@@ -191,13 +200,12 @@ export default function CourseClassroomPage() {
           </div>
 
           {/* Bottom Row: Always Visible Tabs Row + Header Collapse Toggle Button */}
-          <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
             {/* 4 Tabs (Motivación, Teoría, Práctica, Ejercicios) - ALWAYS VISIBLE */}
-            <div className="flex items-center gap-3.5 flex-wrap">
+            <div className="flex items-center gap-2 sm:gap-3.5 flex-wrap">
               <button
                 type="button"
-                style={{ paddingLeft: '28px', paddingRight: '28px' }}
-                className={`py-2 text-sm font-bold rounded-full transition-all flex items-center gap-2.5 cursor-pointer font-title border shadow-sm ${
+                className={`px-3.5 sm:px-7 py-1.5 sm:py-2 text-xs sm:text-sm font-bold rounded-full transition-all flex items-center gap-2 cursor-pointer font-title border shadow-sm ${
                   activeTab === 'motivacion'
                     ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white border-transparent shadow-md scale-105'
                     : isDarkMode
@@ -206,14 +214,13 @@ export default function CourseClassroomPage() {
                 }`}
                 onClick={() => setActiveTab('motivacion')}
               >
-                <i className={`fa-solid fa-lightbulb text-base ${activeTab === 'motivacion' ? 'text-white' : 'text-cyan-500'}`}></i>
+                <i className={`fa-solid fa-lightbulb text-sm sm:text-base ${activeTab === 'motivacion' ? 'text-white' : 'text-cyan-500'}`}></i>
                 <span>Motivación</span>
               </button>
 
               <button
                 type="button"
-                style={{ paddingLeft: '28px', paddingRight: '28px' }}
-                className={`py-2 text-sm font-bold rounded-full transition-all flex items-center gap-2.5 cursor-pointer font-title border shadow-sm ${
+                className={`px-3.5 sm:px-7 py-1.5 sm:py-2 text-xs sm:text-sm font-bold rounded-full transition-all flex items-center gap-2 cursor-pointer font-title border shadow-sm ${
                   activeTab === 'teoria'
                     ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white border-transparent shadow-md scale-105'
                     : isDarkMode
@@ -222,14 +229,13 @@ export default function CourseClassroomPage() {
                 }`}
                 onClick={() => setActiveTab('teoria')}
               >
-                <i className={`fa-solid fa-book-bookmark text-base ${activeTab === 'teoria' ? 'text-white' : 'text-indigo-500'}`}></i>
+                <i className={`fa-solid fa-book-open text-sm sm:text-base ${activeTab === 'teoria' ? 'text-white' : 'text-indigo-500'}`}></i>
                 <span>Teoría</span>
               </button>
 
               <button
                 type="button"
-                style={{ paddingLeft: '28px', paddingRight: '28px' }}
-                className={`py-2 text-sm font-bold rounded-full transition-all flex items-center gap-2.5 cursor-pointer font-title border shadow-sm ${
+                className={`px-3.5 sm:px-7 py-1.5 sm:py-2 text-xs sm:text-sm font-bold rounded-full transition-all flex items-center gap-2 cursor-pointer font-title border shadow-sm ${
                   activeTab === 'practica'
                     ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white border-transparent shadow-md scale-105'
                     : isDarkMode
@@ -238,14 +244,13 @@ export default function CourseClassroomPage() {
                 }`}
                 onClick={() => setActiveTab('practica')}
               >
-                <i className={`fa-solid fa-pen-ruler text-base ${activeTab === 'practica' ? 'text-white' : 'text-emerald-500'}`}></i>
+                <i className={`fa-solid fa-person-chalkboard text-sm sm:text-base ${activeTab === 'practica' ? 'text-white' : 'text-emerald-500'}`}></i>
                 <span>Práctica</span>
               </button>
 
               <button
                 type="button"
-                style={{ paddingLeft: '28px', paddingRight: '28px' }}
-                className={`py-2 text-sm font-bold rounded-full transition-all flex items-center gap-2.5 cursor-pointer font-title border shadow-sm ${
+                className={`px-3.5 sm:px-7 py-1.5 sm:py-2 text-xs sm:text-sm font-bold rounded-full transition-all flex items-center gap-2 cursor-pointer font-title border shadow-sm ${
                   activeTab === 'ejercicios'
                     ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white border-transparent shadow-md scale-105'
                     : isDarkMode
@@ -254,7 +259,7 @@ export default function CourseClassroomPage() {
                 }`}
                 onClick={() => setActiveTab('ejercicios')}
               >
-                <i className={`fa-solid fa-calculator text-base ${activeTab === 'ejercicios' ? 'text-white' : 'text-amber-500'}`}></i>
+                <i className={`fa-solid fa-calculator text-sm sm:text-base ${activeTab === 'ejercicios' ? 'text-white' : 'text-amber-500'}`}></i>
                 <span>Ejercicios</span>
               </button>
             </div>
@@ -263,7 +268,7 @@ export default function CourseClassroomPage() {
             <button
               type="button"
               onClick={() => setHeaderCollapsed(!headerCollapsed)}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-2 border cursor-pointer font-title shadow-sm ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold transition-all flex items-center gap-2 border cursor-pointer font-title shadow-sm ${
                 isDarkMode
                   ? 'bg-slate-950 hover:bg-slate-800 text-cyan-400 border-slate-800'
                   : 'bg-slate-50 hover:bg-slate-100 text-cyan-700 border-slate-200'
@@ -271,20 +276,20 @@ export default function CourseClassroomPage() {
               title={headerCollapsed ? 'Mostrar Encabezado del Capítulo' : 'Ocultar Encabezado del Capítulo'}
             >
               <i className={`fa-solid ${headerCollapsed ? 'fa-chevron-down' : 'fa-chevron-up'}`}></i>
-              <span>{headerCollapsed ? 'Mostrar Encabezado' : 'Ocultar Encabezado'}</span>
+              <span className="hidden sm:inline">{headerCollapsed ? 'Mostrar Encabezado' : 'Ocultar Encabezado'}</span>
             </button>
           </div>
         </header>
 
         {/* Chapter Content Main Area (Full-Width Reading View - Tight Bottom Spacing) */}
         <div
-          style={{ paddingLeft: '56px', paddingRight: '56px', paddingTop: '24px', paddingBottom: '24px' }}
-          className="flex-1 overflow-y-auto"
+          style={{ paddingLeft: 'clamp(24px, 4vw, 64px)', paddingRight: 'clamp(24px, 4vw, 64px)', paddingTop: '30px' }}
+          className="flex-1 overflow-y-auto overflow-x-hidden pb-10 sm:pb-14"
         >
           <div className="w-full transition-all">
             {/* PESTAÑA 1: MOTIVACIÓN */}
             {activeTab === 'motivacion' && (
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col gap-4 pt-2">
                 {/* Encabezado General del Capítulo */}
                 <div
                   className={`flex items-center gap-4 pb-4 border-b ${
@@ -309,7 +314,7 @@ export default function CourseClassroomPage() {
 
             {/* PESTAÑA 2: DEFINICIONES Y TEORÍA */}
             {activeTab === 'teoria' && (
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col gap-4 pt-2">
                 <div
                   className={`flex items-center gap-4 pb-4 border-b ${
                     isDarkMode ? 'border-slate-800' : 'border-slate-200'
@@ -333,7 +338,7 @@ export default function CourseClassroomPage() {
 
             {/* PESTAÑA 3: PRÁCTICA (Solo Tarjetas Blancas Base + Sección Interactiva + Media) */}
             {activeTab === 'practica' && (
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col gap-4 pt-2">
                 {/* 🎯 SECCIÓN INTERACTIVA DE PRÁCTICA CON HEADER UNIFICADO (TÍTULO + PRECISIÓN Y REINICIAR) */}
                 <InteractivePractice
                   fontScale={fontScale}
@@ -350,7 +355,7 @@ export default function CourseClassroomPage() {
 
             {/* PESTAÑA 4: EJERCICIOS (Solo Tarjetas Blancas Base + Pautas Desplegables con Botón Agrandado) */}
             {activeTab === 'ejercicios' && (
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col gap-4 pt-2">
                 {/* Sticky Ejercicios Header with Split Screen Formula Drawer Toggle */}
                 <div
                   className={`flex items-center justify-between pb-4 border-b sticky top-0 z-30 backdrop-blur-md pt-2.5 transition-all ${

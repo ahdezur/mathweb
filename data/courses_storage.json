@@ -2014,10 +2014,10 @@
         "chapters": [
           {
             "id": "cap-cm-11",
-            "number": 1.1,
-            "title": "Capítulo 1.1: Campos Escalares, Dominio e Imagen",
-            "summary": "Definición formal de campos escalares f: D ⊆ ℝⁿ → ℝ, técnicas de determinación de dominio natural, restricciones hiperbólicas y cálculo de la imagen.",
-            "mathKey": "f \\colon D \\subseteq \\mathbb{R}^n \\to \\mathbb{R}, \\quad \\operatorname{dom}(f) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon f(\\vec{x}) \\in \\mathbb{R} \\}",
+            "number": 1,
+            "title": "Campos Escalares, Dominio e Imagen",
+            "summary": "Definición formal de campos escalares, dominio natural e imagen.",
+            "mathKey": "\\operatorname{dom}(f) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon f(\\vec{x}) \\in \\mathbb{R} \\}",
             "motivacion": "\\begin{card}\n\\textbf{¿Cómo modelamos el espacio?}\n  \n<p>Imagina que estás en tu habitación en este instante. Si quisiéramos registrar la temperatura en cada rincón, no nos basta con un único número. La temperatura varía si te acercas a la ventana, si subes al techo o si te sientas en el suelo.</p>\n<p>Para describir esto matemáticamente, debemos asignar a cada coordenada espacial $(x, y, z)$ un único valor térmico $T$. Así, la temperatura es una función $T(x,y,z)$.</p> \n<p>\\textbf{Concepto clave:} Un campo escalar es simplemente una regla que le asigna un único número real (temperatura, presión, altitud, densidad) a cada punto del espacio.</p>\n\\begin{pregunta}\n    ¿Cómo cambia el cálculo cuando una función depende de más de una variable?\n  \\end{pregunta}\n\\end{card}",
             "teoria": "\\begin{card}\nPara transitar del cálculo en una variable al cálculo multivariable, debemos formalizar matemáticamente la noción de asignar valores numéricos a puntos en el espacio. A continuación, estableceremos los pilares algebraicos de los campos escalares.\n  \\begin{definicion}{Campo Escalar}\n    Un \\textbf{campo escalar} (o función de varias variables) es una función $f$ que asigna a cada elemento o punto $\\vec{x} = (x_1, x_2, \\dots, x_n)$ de un subconjunto $D \\subseteq \\mathbb{R}^n$ un único número real denotado por $f(\\vec{x})$ o $f(x_1, x_2, \\dots, x_n)$.\n    \n    Matemáticamente lo expresamos como:\n    $$ f : D \\subseteq \\mathbb{R}^n \\to \\mathbb{R} $$\n    Donde $n$ representa la dimensión del espacio de entrada (habitualmente $n=2$ o $n=3$).\n  \\end{definicion}\n\n  \\begin{definicion}{Dominio de un Campo Escalar}\n    El \\textbf{dominio} de un campo escalar $f$, denotado por $\\operatorname{dom}(f)$, es el conjunto de todos los puntos en $\\mathbb{R}^n$ para los cuales la regla de correspondencia de la función produce un número real bien definido. \n    \n    Formalmente se define como:\n    $$ \\operatorname{dom}(f) = \\{ \\vec{x} \\in \\mathbb{R}^n : f(\\vec{x}) \\in \\mathbb{R} \\} $$\n    Si el dominio no se especifica explícitamente, se asume que es el \\textit{dominio natural}, es decir, el conjunto más grande posible de puntos donde la expresión matemática es válida.\n  \\end{definicion}\n\n\\begin{trampa}{Visualización del Dominio}\n\\error{Pensar que el dominio es un intervalo}\n    \\correct{En Cálculo en una variable el dominio es subconjunto de los reales, por ejemplo invervalos, pero en Cálculo Multivariable el dominio es una \\textbf{región geométrica} en el plano $XY$ ($\\mathbb{R}^2$), en el espacio $XYZ$ ($\\mathbb{R}^3$) o en hiperespacios de mayor dimensión.}\n\\end{trampa}\n\n\\begin{definicion}{Imagen o Recorrido}\nLa \\textbf{imagen} (o recorrido) de un campo escalar $f$, denotada por $\\operatorname{im}(f)$ o $\\text{rec}(f)$, es el conjunto de todos los valores reales que la función efectivamente toma a medida que evaluamos todos los puntos pertenecientes al dominio.\n    \n    Formalmente se define como:\n    $$ \\operatorname{im}(f) = \\{ y \\in \\mathbb{R} : y = f(\\vec{x}) \\text{ para algún } \\vec{x} \\in \\operatorname{dom}(f) \\} $$\n  \\end{definicion}\n\n  \n\n\\begin{metodo}{Determinación de Dominios en Campos Escalares}\n\n\\problema{Aplicar las restricciones algebraicas clásicas para encontrar la región matemática que define el dominio natural de distintos campos escalares en $\\mathbb{R}^2$.}\n\n\\paso{1}{Restricción por Denominadores}\nEl denominador de una expresión fraccionaria debe ser distinto de cero ($g(\\vec{x}) \\neq 0$) para evitar divisiones indefinidas.\n\\ejemplo{Para $f(x,y) = \\frac{3xy}{x-y}$, exigimos $x-y \\neq 0 \\Rightarrow y \\neq x$. \n\nEl dominio es todo el plano $\\mathbb{R}^2$ excepto los puntos sobre la recta diagonal $y=x$.}\n\n\\paso{2}{Restricción por Raíces de Índice Par}\nEl radicando de cualquier raíz cuadrada o de índice par debe ser mayor o igual a cero ($g(\\vec{x}) \\geq 0$) para operar en los números reales.\n\\ejemplo{Para $f(x,y) = \\sqrt{4 - x^2 - y^2}$, requerimos $4 - x^2 - y^2 \\geq 0 \\Rightarrow x^2 + y^2 \\leq 4$\n\nEl dominio es la región interior y la frontera de un círculo de radio 2 centrado en el origen.}\n\n\\paso{3}{Restricción por Logaritmos}\nEl argumento de cualquier función logarítmica debe ser estrictamente positivo ($g(\\vec{x}) > 0$).\n\\ejemplo{Para $f(x,y) = \\ln(y - x^2)$, necesitamos $y - x^2 > 0 \\Rightarrow y > x^2$. \n\nEl dominio es la región abierta que está estrictamente por encima de la parábola $y=x^2$ (excluyendo la curva).}\n\n\\end{metodo}\n\\end{card}",
             "practica": {
@@ -2281,13 +2281,14 @@
                   "description": "Ecuación de la circunferencia de radio r centrada en el origen, la cual suele aparecer como la frontera geométrica al despejar restricciones de raíces o logaritmos radiales."
                 }
               ]
-            }
+            },
+            "displayNumber": "1"
           },
           {
             "id": "cap-cm-12",
-            "number": 1.2,
-            "title": "Capítulo 1.2: Curvas de Nivel, Superficies y Grafos",
-            "summary": "Geometría analítica de mapas de contorno, isotermas, curvas de nivel $f(x,y)=c$ y trazado tridimensional de cuadráticas.",
+            "number": 2,
+            "title": "Curvas de Nivel y Grafos",
+            "summary": "Geometría analítica de mapas de contorno, curvas de nivel $f(x,y)=c$ y trazado tridimensional de campos",
             "mathKey": "f(x,y) = c, \\quad c \\in \\operatorname{im}(f)",
             "motivacion": "\\begin{card}\nImagina que estás planeando una expedición a la cordillera. Tienes un mapa impreso completamente plano, pero necesitas saber dónde están los acantilados más empinados y dónde se encuentran las llanuras seguras para caminar. ¿Cómo puede un simple trozo de papel de dos dimensiones mostrarte el relieve tridimensional?\n\nLa respuesta que encontraron los topógrafos hace siglos son las líneas de contorno. Cada línea en el mapa conecta todos los puntos que están exactamente a la misma altitud. Si caminaras físicamente siguiendo esa línea, no subirías ni bajarías; te mantendrías al mismo \"nivel\".\n\nEn matemáticas, hacemos exactamente lo mismo. Tomamos un grafo tridimensional (una superficie \n) y lo \"rebanamos\" con planos horizontales a distintas alturas constantes (\n). Al proyectar esos cortes hacia el suelo bidimensional, obtenemos un mapa de curvas de nivel que nos revela los secretos del espacio.\n\\end{card}",
             "teoria": "\\begin{card}\n\\begin{definicion}{Curva de Nivel}\nConjunto de puntos donde f(x,y)=c.\n\\end{definicion}\n\\end{card}",
@@ -2298,41 +2299,265 @@
             "ejercicios": {
               "problems": [],
               "formulasClave": []
-            }
-          },
-          {
-            "id": "cap-cm-13",
-            "number": 1.3,
-            "title": "Capítulo 1.3: Límites Multivariables y Aproximación",
-            "summary": "Definición $\\varepsilon - \\delta$ de límites en $\\mathbb{R}^2$, trayectorias lineales y parabólicas.",
-            "mathKey": "\\lim_{(x,y) \\to (x_0, y_0)} f(x,y) = L",
-            "motivacion": "\\begin{card}\n\\textbf{Límites en el Plano}\n\\end{card}",
-            "teoria": "\\begin{card}\n\\begin{definicion}{Límite Multivariable}\nFormalización de la cercanía en 2D.\n\\end{definicion}\n\\end{card}",
-            "practica": {
-              "text": "",
-              "exercises": []
             },
-            "ejercicios": {
-              "problems": [],
-              "formulasClave": []
-            }
+            "displayNumber": "2"
           },
           {
             "id": "cap-cm-14",
-            "number": 1.4,
-            "title": "Capítulo 1.4: Criterios de Existencia y No Existencia de Límites",
-            "summary": "Criterio de dos trayectorias, coordenadas polares y límites iterados.",
+            "number": 3,
+            "title": "Límites",
+            "summary": "Definición $\\varepsilon - \\delta$ de límites en $\\mathbb{R}^2$ y propiedades",
             "mathKey": "y = m x^k, \\quad r \\to 0",
             "motivacion": "\\begin{card}\n\\textbf{Trayectorias y No Existencia}\n\\end{card}",
             "teoria": "\\begin{card}\n\\begin{teorema}{Criterio de Trayectorias}\nSi dos caminos dan límites distintos, el límite no existe.\n\\end{teorema}\n\\end{card}",
             "practica": {
               "text": "",
-              "exercises": []
+              "exercises": [
+                {
+                  "id": "ex-pareados-limites-1",
+                  "type": "matching",
+                  "title": "Ejercicio: Asociación: Límite y Herramienta de Análisis",
+                  "question": "Relaciona cada límite con la conclusión y herramienta adecuada para analizar su existencia:",
+                  "columns": 2,
+                  "col1Title": "Límites a Analizar",
+                  "col2Title": "Conclusión y Herramienta",
+                  "col1Items": [
+                    {
+                      "id": "1",
+                      "num": 1,
+                      "text": "$\\lim_{(x,y)\to(0,0)} \frac{x^2y}{x^2+y^2}$",
+                      "feedback": "¡Excelente! Al usar polares obtienes $\\lim_{r \to 0^+} r\\cos^2\theta \\sin\theta$. Como  \to 0$ y la parte trigonométrica está acotada, el límite es firmemente 0."
+                    },
+                    {
+                      "id": "2",
+                      "num": 2,
+                      "text": "$\\lim_{(x,y)\to(0,0)} \frac{xy^2}{x^2+y^4}$",
+                      "feedback": "¡Correcto! Las rectas engañan en esta función dando siempre 0. La única forma de revelar que no existe es usar la parábola =y^2$, lo que arroja 1/2."
+                    },
+                    {
+                      "id": "3",
+                      "num": 3,
+                      "text": "$\\lim_{(x,y)\to(0,0)} \frac{y}{y+x^2}$",
+                      "feedback": "¡Perfecto! Esta función es el clásico ejemplo donde los iterados fallan de manera asimétrica (zsh \neq 1$), lo que destruye el límite doble inmediatamente."
+                    }
+                  ],
+                  "col2Options": [
+                    {
+                      "letter": "A",
+                      "text": "No existe el límite, demostrado al probar Límites Iterados (uno da 0, otro da 1)."
+                    },
+                    {
+                      "letter": "B",
+                      "text": "No existe el límite, demostrado al evaluar caminos parabólicos (=y^2$)."
+                    },
+                    {
+                      "letter": "C",
+                      "text": "El límite existe y es zsh$, comprobado mediante cambio a Coordenadas Polares y acotamiento."
+                    }
+                  ],
+                  "correctMapping": {
+                    "1": "C",
+                    "2": "B",
+                    "3": "A"
+                  },
+                  "explanation": "El análisis de límites en varias variables exige probar la coherencia sobre distintas familias de curvas o aplicar acotamiento/polares cuando el límite efectivamente existe."
+                }
+              ]
             },
             "ejercicios": {
-              "problems": [],
+              "problems": [
+                {
+                  "problem": "Determine la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^3 - y^3}{x^2 + y^2}$. Si existe, calcule su valor.",
+                  "pauta": "1. Evaluamos en coordenadas polares:  = r\\cos\theta$,  = r\\sin\theta$.\n2. Sustituyendo: $\frac{r^3(\\cos^3\theta - \\sin^3\theta)}{r^2} = r(\\cos^3\theta - \\sin^3\theta)$.\n3. Como $|\\cos^3\theta - \\sin^3\theta| \\leq 2$, se tiene zsh \\leq |r(\\cos^3\theta - \\sin^3\theta)| \\leq 2r$.\n4. Por el Teorema del Sándwich / Acotación, como r \to 0$ cuando  \to 0^+$, el límite existe y vale 0.",
+                  "dificultad": "Intermedio",
+                  "conceptos": [
+                    "Coordenadas Polares",
+                    "Teorema del Sándwich",
+                    "Límites Multivariables"
+                  ],
+                  "habilidades": [
+                    "Demostración Formal",
+                    "Cálculo Algorítmico"
+                  ]
+                },
+                {
+                  "problem": "Analice la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^2 y}{x^4 + y^2}$ mediante el criterio de trayectorias.",
+                  "pauta": "1. Evaluando en rectas  = mx$: $\\lim_{x \to 0} \frac{m x^3}{x^4 + m^2 x^2} = \\lim_{x \to 0} \frac{m x}{x^2 + m^2} = 0$ para todo $.\n2. Evaluando en la trayectoria parabólica  = k x^2$: $\\lim_{x \to 0} \frac{k x^4}{x^4 + k^2 x^4} = \frac{k}{1 + k^2}$.\n3. Como el resultado depende de la constante $ (por ejemplo, para =1$ da /2$), el límite NO existe por el Criterio de dos Trayectorias.",
+                  "dificultad": "Avanzado",
+                  "conceptos": [
+                    "Criterio de Trayectorias",
+                    "Trayectorias Parabólicas",
+                    "No Existencia de Límite"
+                  ],
+                  "habilidades": [
+                    "Razonamiento Crítico",
+                    "Análisis Multivariable"
+                  ]
+                }
+              ],
               "formulasClave": []
-            }
+            },
+            "displayNumber": "3"
+          },
+          {
+            "id": "cap-cm-13",
+            "number": 4,
+            "title": "Criterios de Límites",
+            "summary": "Criterio de trayectorias, límites iterados y coordenadas polares",
+            "mathKey": "\\lim_{(x,y) \\to (x_0, y_0)} f(x,y) = L",
+            "motivacion": "\\begin{card}\n<p>En el capítulo anterior, vimos que para que un límite exista en $\\mathbb{R}^2$, el valor al cual nos aproximamos debe ser exactamente el mismo sin importar el camino que elijamos para llegar al punto de destino. </p>\n<p>Esto presenta un desafío monumental: no podemos evaluar \\textit{infinitas} trayectorias manualmente para demostrar que un límite existe. Sin embargo, esta misma dificultad se convierte en nuestra mejor arma cuando queremos demostrar que un límite \\textbf{no existe}. </p>\n<p>Basta con encontrar dos simples caminos (ya sean rectas, parábolas o iteraciones en los ejes) que nos lleven a destinos diferentes para afirmar con total seguridad matemática que el límite global es una ilusión. Además, introduciremos las coordenadas polares, una herramienta poderosa que \"agrupa\" todas esas infinitas trayectorias lineales en un solo radio y nos facilita la vida en los casos más complejos.</p>\n\n  \\begin{pregunta}\nSi evalúas un límite acercándote al origen por el eje $X$ y obtienes un valor de $1$, pero al acercarte por el eje $Y$ obtienes un valor de $0$, ¿qué puedes concluir sobre el comportamiento global de esa función en el origen?\n\\end{pregunta}\n\\end{card}",
+            "teoria": "\\begin{card}En este capítulo estudiaremos los criterios analíticos fundamentales para demostrar la \\textbf{inexistencia} de límites de campos escalares, así como la técnica de transformación a \\textbf{coordenadas polares} para abordar el estudio de límites en el origen.\n\\begin{teorema}{Inexistencia por Caminos}\nSean $f \\colon D \\subseteq \\mathbb{R}^2 \\to \\mathbb{R}$ y $(a,b)$ un punto de acumulación de $\\operatorname{dom}(f)$. Si existen dos trayectorias continuas $\\vec{r}_1, \\vec{r}_2 \\colon [t_0, t_1] \\to D \\setminus \\{(a,b)\\}$ tales que:\n    $$ \\displaystyle\\lim_{t \\to t_0^+} \\vec{r}_1(t) = (a,b) \\quad \\wedge \\quad \\displaystyle\\lim_{t \\to t_0^+} \\vec{r}_2(t) = (a,b) $$\n    y se cumple que:\n    $$ \\displaystyle\\lim_{t \\to t_0^+} f(\\vec{r}_1(t)) = L_1 \\quad \\wedge \\quad \\displaystyle\\lim_{t \\to t_0^+} f(\\vec{r}_2(t)) = L_2 $$\n    con $L_1 \\neq L_2$, entonces el límite doble $\\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y)$ \\textbf{no existe}.\n\n\\demostracion{Procederemos por contradicción. Supongamos que el límite doble existe y es igual a $L \\in \\mathbb{R}$, es decir:\n    $$ \\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y) = L $$\n    Por la definición formal $\\varepsilon$-$\\delta$, para todo $\\varepsilon > 0$ existe un $\\delta > 0$ tal que si $(x,y) \\in \\operatorname{dom}(f) \\wedge 0 < \\|(x,y) - (a,b)\\| < \\delta$, entonces:\n    $$ |f(x,y) - L| < \\varepsilon $$\n\n    Sea $\\vec{r}_1(t)$ la primera trayectoria continua en $\\operatorname{dom}(f)$ tal que $\\displaystyle\\lim_{t \\to t_0^+} \\vec{r}_1(t) = (a,b)$. Dado el mismo $\\delta > 0$, por continuidad de la curva existe un $\\eta > 0$ tal que si $t_0 < t < t_0 + \\eta$, entonces:\n    $$ 0 < \\|\\vec{r}_1(t) - (a,b)\\| < \\delta $$\n\n    En consecuencia, para todo $t \\in (t_0, t_0 + \\eta)$, se satisface la desigualdad:\n    $$ |f(\\vec{r}_1(t)) - L| < \\varepsilon $$\n    Lo que por definición de límite de una variable real implica que:\n    $$ \\displaystyle\\lim_{t \\to t_0^+} f(\\vec{r}_1(t)) = L \\implies L_1 = L $$\n\n    Repitiendo exactamente el mismo argumento para la trayectoria $\\vec{r}_2(t)$, deducimos que $L_2 = L$. Por lo tanto, $L_1 = L_2 = L$, lo cual contradice el supuesto inicial de que $L_1 \\neq L_2$.\n    Se concluye que el límite doble $\\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y)$ no existe.}\n\\end{teorema}\n\n\\begin{trampa}{Observación Fundamental sobre Caminos}\n\\error{Evaluar el límite por dos caminos distintos $A_1$ y $A_2$ y obtiener el mismo resultado ($L_1 = L_2$), y pensar  que $$\\lim_{(x,y)\\to(a,b)}f(x,y)=L_1=L_2$$}\n\\correct{Si evalúas el límite por dos caminos distintos $A_1$ y $A_2$ y obtienes el mismo resultado ($L_1 = L_2$), \\textbf{no se puede concluir nada} sobre la existencia del límite original. La coincidencia sobre un conjunto infinito de caminos no demuestra la existencia; sin embargo, un solo desacuerdo la refuta.}\n\\end{trampa}\n\\end{card}\n\\begin{card}\n\n<p>\\textbf{Caminos Usuales de Aproximación al} $(0,0)$.</p>\n\nPara evaluar límites en el origen, las familias de curvas más utilizadas son:\n<p>1. \\textbf{Ejes coordenados:} Eje $x$: $A_1 = \\{ (x,y) \\in \\mathbb{R}^2 \\colon y = 0 \\}$ y eje $y$:  $A_2 = \\{ (x,y) \\in \\mathbb{R}^2 \\colon x = 0 \\}$.</p>\n<p>2. \\textbf{Familia de rectas oblicuas:} $A_m = \\{ (x,y) \\in \\mathbb{R}^2 \\colon y = mx \\}$, con $m \\in \\mathbb{R}$.<p/>\n<p>3. \\textbf{Familia de parábolas:} $A_a = \\{ (x,y) \\in \\mathbb{R}^2 \\colon y = ax^2 \\}$ $\\vee$ $A_a = \\{ (x,y) \\in \\mathbb{R}^2 \\colon x = ay^2 \\}$, con $a \\neq 0$.</p>\n   \n\n\n\n\\begin{ejercicio}{Inexistencia por rectas}\nRespecto a $\\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{x^2}{x^2 + y^2}$, calcule el valor del límite o demuestre que no existe\n\\solucion{Tomemos la recta $y = x$, que viene a ser nuestra trayectoria $A_1$:\n    $$ \\displaystyle\\lim_{x \\to 0} \\frac{x^2}{x^2 + x^2} = \\displaystyle\\lim_{x \\to 0} \\frac{x^2}{2x^2} = \\frac{1}{2} $$\n    Tomemos otra recta, digamos el eje X ($y = 0$), la cual viene a ser nuestra trayectoria $A_2$:\n    $$ \\displaystyle\\lim_{x \\to 0} \\frac{x^2}{x^2 + 0} = \\displaystyle\\lim_{x \\to 0} \\frac{x^2}{x^2} = 1 $$\n    Notamos que los límites por caminos existen y son distintos $\\frac12 \\neq 1$. Por lo tanto, el límite $\\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{x^2}{x^2 + y^2}$  \\textbf{no existe}.}\n\\end{ejercicio}\n\n\\end{card}\n\n\\begin{card}\n\\begin{teorema}{Inexistencia por Límites Iterados}\nSea $f \\colon D \\subseteq \\mathbb{R}^2 \\to \\mathbb{R}$ un campo escalar y sea $(a,b)$ un punto de acumulación de $\\operatorname{dom}(f)$. Definimos los dos límites iterados mediante:\n    $$ L_1 = \\displaystyle\\lim_{x \\to a} \\left( \\displaystyle\\lim_{y \\to b} f(x,y) \\right) \\quad \\wedge \\quad L_2 = \\displaystyle\\lim_{y \\to b} \\left( \\displaystyle\\lim_{x \\to a} f(x,y) \\right) $$    Si ambos límites iterados existen y son \\textbf{distintos} ($L_1 \\neq L_2$), entonces el límite doble $\\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y)$ \\textbf{no existe}.\n\n\\demostracion{Supongamos por contradicción que el límite doble existe y vale $L \\in \\mathbb{R}$, es decir, $\\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y) = L$, y asumamos que existe el límite interno $g(x) = \\displaystyle\\lim_{y \\to b} f(x,y)$ para todo $x \\neq a$ en un entorno de $a$.\n\n    Dado $\\varepsilon > 0$, existe $\\delta > 0$ tal que si $0 < \\sqrt{(x-a)^2 + (y-b)^2} < \\delta$, entonces:\n    $$ |f(x,y) - L| < \\frac{\\varepsilon}{2} $$\n\n    Para cualquier $x$ fijo que cumpla $0 < |x - a| < \\frac{\\delta}{\\sqrt{2}}$, consideramos los valores de $y$ que satisfacen $0 < |y - b| < \\frac{\\delta}{\\sqrt{2}}$. Para dichos puntos, la distancia euclidiana satisface $\\sqrt{(x-a)^2 + (y-b)^2} < \\delta$, por lo que la desigualdad del límite se sostiene.\n\n    Tomando el límite cuando $y \\to b$ en la desigualdad $|f(x,y) - L| < \\frac{\\varepsilon}{2}$, y aprovechando que $\\displaystyle\\lim_{y \\to b} f(x,y) = g(x)$, obtenemos por propiedades de desigualdades en límites:\n    $$ |g(x) - L| \\leq \\frac{\\varepsilon}{2} < \\varepsilon $$\n\n    Como esto es válido para todo $x$ tal que $0 < |x - a| < \\frac{\\delta}{\\sqrt{2}}$, por definición formal tenemos que:\n    $$ \\displaystyle\\lim_{x \\to a} g(x) = L \\implies \\displaystyle\\lim_{x \\to a} \\left( \\displaystyle\\lim_{y \\to b} f(x,y) \\right) = L $$\n\n    De manera totalmente análoga, si el límite interno $h(y) = \\displaystyle\\lim_{x \\to a} f(x,y)$ existe, se demuestra que $\\displaystyle\\lim_{y \\to b} \\left( \\displaystyle\\lim_{x \\to a} f(x,y) \\right) = L$.\n    Por ende, $L_1 = L$ y $L_2 = L$, lo cual implica $L_1 = L_2$. Esto contradice el hecho de que $L_1 \\neq L_2$.\n    En consecuencia, el límite doble $\\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y)$ no existe.}\n\\end{teorema}\n\\begin{trampa}{Observación sobre Iterados}\n\\error{Evaluar los límites iterados y si $L_1 = L_2$ pensar que entonces el límite $$\\lim_{(x,y)\\to(a,b}f(x,y)=L_1=L_2$$ Evaluar los límites iterados y si $L_1 = L_2$ pensar que si uno de los límites iterados no existe entonces el límite $\\displaystyle\\lim_{(x,y)\\to(a,b)}f(x,y)$ no existe.}\n\\correct{Si los límites iterados son iguales ($L_1 = L_2$), o si alguno de los límites internos no existe, \\textbf{no es posible concluir nada} respecto a la existencia del límite doble original.}\n\\end{trampa}\n\\end{card}\n\\begin{card}\n\\begin{ejercicio}{Inexistencia por límites iterados}\nEstudie la existencia del límite: $\\displaystyle \\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{y}{y + x^2}$\n\n\\solucion{Calculamos el primer límite iterado (evaluando primero $y \\to 0$ y luego $x \\to 0$):\n    $$ \\displaystyle\\lim_{x \\to 0} \\left( \\displaystyle\\lim_{y \\to 0} \\frac{y}{y + x^2} \\right) = \\displaystyle\\lim_{x \\to 0} \\left( \\frac{0}{0 + x^2} \\right) = \\displaystyle\\lim_{x \\to 0} (0) = 0 $$\n    \n    Calculamos el segundo límite iterado (evaluando primero $x \\to 0$ y luego $y \\to 0$):\n    $$ \\displaystyle\\lim_{y \\to 0} \\left( \\displaystyle\\lim_{x \\to 0} \\frac{y}{y + x^2} \\right) = \\displaystyle\\lim_{y \\to 0} \\left( \\frac{y}{y + 0} \\right) = \\displaystyle\\lim_{y \\to 0} (1) = 1 $$\n    \n    Como los límites iterados arrojan valores distintos ($0 \\neq 1$), el límite doble \\textbf{no existe}.}\n\\end{ejercicio}\n\\end{card}\n\n\\begin{card}\n\\begin{teorema}{Transformación Polar y Equivalencia de Límite}\nConsideremos la transformación a coordenadas polares en el plano:\n    $$ x = r\\cos(\\theta) \\quad \\wedge \\quad y = r\\sin(\\theta) $$\n    donde $r = \\sqrt{x^2+y^2} \\ge 0$ e $\\theta \\in [0, 2\\pi)$.\n    \n    El límite $\\displaystyle\\lim_{(x,y) \\to (0,0)} f(x,y)$ existe y es igual a $L \\in \\mathbb{R}$ \\textbf{si y solo si} el límite en coordenadas polares se satisface de manera \\textbf{uniforme} con respecto al ángulo $\\theta$, es decir:\n    $$ \\displaystyle\\lim_{r \\to 0^+} \\left( \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| \\right) = 0 $$\n\n\\demostracion{$(\\Rightarrow)$ Asumamos que $\\displaystyle\\lim_{(x,y) \\to (0,0)} f(x,y) = L$.\n    Dado $\\varepsilon > 0$, existe $\\delta > 0$ tal que para todo $(x,y) \\in \\operatorname{dom}(f)$, si $0 < \\sqrt{x^2+y^2} < \\delta$, entonces:\n    $$ |f(x,y) - L| < \\varepsilon $$\n    Sustituyendo $x = r\\cos\\theta$ e $y = r\\sin\\theta$, notamos que $\\sqrt{x^2+y^2} = r$. Por ende, si $0 < r < \\delta$, se cumple que:\n    $$ |f(r\\cos\\theta, r\\sin\\theta) - L| < \\varepsilon $$\n    para todo $\\theta \\in [0, 2\\pi)$ simultáneamente. Tomando el supremo sobre $\\theta$, mantenemos la cota:\n    $$ \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| \\leq \\varepsilon $$\n    Lo que demuestra que $\\displaystyle\\lim_{r \\to 0^+} \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| = 0$.\n$(\\Leftarrow)$ Supongamos ahora que $\\displaystyle\\lim_{r \\to 0^+} \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| = 0$.\n    Entonces, para todo $\\varepsilon > 0$, existe $\\delta > 0$ tal que si $0 < r < \\delta$, entonces:\n    $$ |f(r\\cos\\theta, r\\sin\\theta) - L| \\leq \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| < \\varepsilon $$\n    Dado cualquier punto $(x,y) \\neq (0,0)$ tal que $\\|(x,y) - (0,0)\\| = \\sqrt{x^2+y^2} < \\delta$, podemos expresarlo en polares con $r = \\sqrt{x^2+y^2} < \\delta$ y algún ángulo $\\theta$. De lo anterior se deduce que:\n    $$ |f(x,y) - L| = |f(r\\cos\\theta, r\\sin\\theta) - L| < \\varepsilon $$\n    Quedando demostrado por definición $\\varepsilon$-$\\delta$ que $\\displaystyle\\lim_{(x,y) \\to (0,0)} f(x,y) = L$.\n}\n\\end{teorema}\n\\end{card}\n\\begin{card}\n\\begin{ejercicio}{Existencia vía Coordenadas Polares}\nEstudie la existencia del límite: $\\displaystyle \\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{x^4 + 3(x^2 + y^2)}{x^2 + y^2}$\n\n\\solucion{Aplicamos el cambio a coordenadas polares: $x = r\\cos\\theta$, $y = r\\sin\\theta$, sabiendo que $x^2 + y^2 = r^2$.\n    Sustituimos en la expresión:\n    $$ \\displaystyle\\lim_{r \\to 0^+} \\frac{(r\\cos\\theta)^4 + 3r^2}{r^2} = \\displaystyle\\lim_{r \\to 0^+} \\frac{r^4\\cos^4\\theta + 3r^2}{r^2} $$\n    Factorizando y simplificando $r^2$ (ya que $r \\neq 0$ en la aproximación):\n    $$ \\displaystyle\\lim_{r \\to 0^+} (r^2\\cos^4\\theta + 3) = 0 \\cdot \\cos^4\\theta + 3 = 3 $$\n    Dado que el resultado es una constante numérica exacta ($L=3$), absolutamente independiente del ángulo de aproximación $\\theta$, el límite doble \\textbf{existe y es igual a 3}.}\n\\end{ejercicio}\n\\end{card}",
+            "practica": {
+              "text": "",
+              "exercises": [
+                {
+                  "id": "ex-1787623875838",
+                  "type": "single_choice",
+                  "title": "La elección del camino adecuado",
+                  "question": "¿Cuál es el argumento correcto respecto al límite $\\displaystyle \\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{xy^2}{x^2 + y^4}$?",
+                  "options": [
+                    {
+                      "id": "A",
+                      "text": "El límite es $0$, porque al evaluarlo por cualquier recta de la familia $y = mx$, el resultado tiende a cero.",
+                      "feedback": "Cuidado. Aunque todas las rectas $y=mx$ arrojan 0, las rectas no son las únicas trayectorias posibles. Debes probar curvas de mayor grado."
+                    },
+                    {
+                      "id": "B",
+                      "text": "El límite no existe, porque los límites iterados son distintos",
+                      "feedback": "Si calculas los límites iterados para esta función, verás que $\\displaystyle\\lim_{x\\to 0}(\\displaystyle\\lim_{y\\to 0}) = 0$ y $\\displaystyle\\lim_{y\\to 0}(\\displaystyle\\lim_{x\\to 0}) = 0$. Son iguales, lo que hace al criterio no concluyente."
+                    },
+                    {
+                      "id": "C",
+                      "text": "El límite no existe, porque al aproximarse por la curva $x = y^2$ se obtiene $\\frac12$, mientras que por el eje $y=0$ se obtiene $0$.",
+                      "feedback": "Al sustituir la parábola horizontal $x = y^2$, el límite se convierte en $\\displaystyle\\lim_{y \\to 0} \\frac{y^2 \\cdot y^2}{(y^2)^2 + y^4} = \\frac{y^4}{2y^4} = \\frac{1}{2}$. Como $\\frac12\\neq 0$, el límite se destruye."
+                    }
+                  ],
+                  "correctOptionId": "C",
+                  "explanation": ""
+                },
+                {
+                  "id": "ex-pareados-limites-1",
+                  "type": "matching",
+                  "title": "Ejercicio: Asociación: Límite y Herramienta de Análisis",
+                  "question": "Relaciona cada límite con la conclusión y herramienta adecuada para analizar su existencia:",
+                  "columns": 2,
+                  "col1Title": "Límites a Analizar",
+                  "col2Title": "Conclusión y Herramienta",
+                  "col1Items": [
+                    {
+                      "id": "1",
+                      "num": 1,
+                      "text": "$\\displaystyle\\lim_{(x,y)\\to(0,0)} \frac{x^2y}{x^2+y^2}$",
+                      "feedback": "Al usar polares obtienes $\\displaystyle\\lim_{r\\to0^+} r\\cos^2\\theta\\sin\\theta$. Como $r\\to0^+$ y la parte trigonométrica está acotada, el límite es $0$."
+                    },
+                    {
+                      "id": "2",
+                      "num": 2,
+                      "text": "$\\displaystyle\\lim_{(x,y)\\to(0,0)} \\frac{xy^2}{x^2+y^4}$",
+                      "feedback": "Las rectas engañan en esta función dando siempre $0$. La única forma de revelar que no existe es usar la parábola $x=y^2$, lo que arroja $\\frac12$."
+                    },
+                    {
+                      "id": "3",
+                      "num": 3,
+                      "text": "$\\displaystyle\\lim_{(x,y)\\to(0,0)}\\frac{y}{y+x^2}$",
+                      "feedback": "Esta función es el clásico ejemplo donde los iterados fallan de manera asimétrica (zsh \neq 1$), lo que destruye el límite doble inmediatamente."
+                    }
+                  ],
+                  "col2Options": [
+                    {
+                      "letter": "A",
+                      "text": "No existe el límite, demostrado al probar Límites Iterados"
+                    },
+                    {
+                      "letter": "B",
+                      "text": "No existe el límite, demostrado al evaluar caminos parabólicos"
+                    },
+                    {
+                      "letter": "C",
+                      "text": "El límite existe y es $0$, comprobado mediante cambio a Coordenadas Polares y acotamiento."
+                    }
+                  ],
+                  "correctMapping": {
+                    "1": "C",
+                    "2": "B",
+                    "3": "A"
+                  },
+                  "explanation": "El análisis de límites en varias variables exige probar la coherencia sobre distintas familias de curvas o aplicar acotamiento/polares cuando el límite efectivamente existe."
+                },
+                {
+                  "id": "imported-ex-1787628674865-1-9c0nf",
+                  "type": "true_false",
+                  "title": "Verdadero o Falso",
+                  "statement": "Considere la función $f(x,y) = \\displaystyle\\frac{xy}{x^2 + y^2}$. Dado que ambos límites iterados son iguales a cero (es decir, $\\displaystyle\\lim_{x \\to 0} (\\displaystyle\\lim_{y \\to 0} f(x,y)) = 0$ y $\\displaystyle\\lim_{y \\to 0} (\\displaystyle\\lim_{x \\to 0} f(x,y)) = 0$), podemos concluir matemáticamente que el límite doble existe y vale cero",
+                  "correctAnswer": false,
+                  "explanation": "",
+                  "trueFeedback": "Incorrecto. Caíste en la trampa más común. Que los límites iterados coincidan significa únicamente que acercarse por el eje $x$ o por el eje $y$ da el mismo resultado. No te garantiza lo que ocurre si te acercas por una diagonal como $y=x$ (donde el límite da $\\frac12$).",
+                  "falseFeedback": "¡Excelente! Recordaste la alerta teórica: si los límites iterados son iguales, \\textbf{no se puede concluir nada}. De hecho, si evalúas este límite por rectas $y = mx$, el resultado es $\\frac{m}{1+m^2}$, lo que demuestra que depende de la pendiente $m$ y, por ende, el límite no existe."
+                },
+                {
+                  "id": "ex-1787629507567",
+                  "type": "multiple_choice",
+                  "title": "Ejercicio 4: Selección Múltiple",
+                  "question": "Selecciona todas las propiedades afines a las funciones derivables:",
+                  "options": [
+                    {
+                      "id": "A",
+                      "text": "Tienen recta tangente única no vertical.",
+                      "feedback": "Correcto. Es la definición geométrica."
+                    },
+                    {
+                      "id": "B",
+                      "text": "Son necesariamente continuas en ese punto.",
+                      "feedback": "Correcto. Diferenciabilidad implica continuidad."
+                    },
+                    {
+                      "id": "C",
+                      "text": "Tienen derivada infinita en puntos angulosos.",
+                      "feedback": "Incorrecto. En puntos angulosos las derivadas laterales difieren."
+                    }
+                  ],
+                  "correctOptionIds": [
+                    "A",
+                    "B"
+                  ],
+                  "explanation": "Las opciones A y B son teoremas fundamentales."
+                }
+              ]
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "problem": "Determine la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^3 - y^3}{x^2 + y^2}$. Si existe, calcule su valor.",
+                  "pauta": "1. Evaluamos en coordenadas polares:  = r\\cos\theta$,  = r\\sin\theta$.\n2. Sustituyendo: $\frac{r^3(\\cos^3\theta - \\sin^3\theta)}{r^2} = r(\\cos^3\theta - \\sin^3\theta)$.\n3. Como $|\\cos^3\theta - \\sin^3\theta| \\leq 2$, se tiene zsh \\leq |r(\\cos^3\theta - \\sin^3\theta)| \\leq 2r$.\n4. Por el Teorema del Sándwich / Acotación, como r \to 0$ cuando  \to 0^+$, el límite existe y vale 0.",
+                  "dificultad": "Intermedio",
+                  "conceptos": [
+                    "Coordenadas Polares",
+                    "Teorema del Sándwich",
+                    "Límites Multivariables"
+                  ],
+                  "habilidades": [
+                    "Demostración Formal",
+                    "Cálculo Algorítmico"
+                  ]
+                },
+                {
+                  "problem": "Analice la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^2 y}{x^4 + y^2}$ mediante el criterio de trayectorias.",
+                  "pauta": "1. Evaluando en rectas  = mx$: $\\lim_{x \to 0} \frac{m x^3}{x^4 + m^2 x^2} = \\lim_{x \to 0} \frac{m x}{x^2 + m^2} = 0$ para todo $.\n2. Evaluando en la trayectoria parabólica  = k x^2$: $\\lim_{x \to 0} \frac{k x^4}{x^4 + k^2 x^4} = \frac{k}{1 + k^2}$.\n3. Como el resultado depende de la constante $ (por ejemplo, para =1$ da /2$), el límite NO existe por el Criterio de dos Trayectorias.",
+                  "dificultad": "Avanzado",
+                  "conceptos": [
+                    "Criterio de Trayectorias",
+                    "Trayectorias Parabólicas",
+                    "No Existencia de Límite"
+                  ],
+                  "habilidades": [
+                    "Razonamiento Crítico",
+                    "Análisis Multivariable"
+                  ]
+                }
+              ],
+              "formulasClave": []
+            },
+            "displayNumber": "4"
           }
         ]
       },
@@ -2343,7 +2568,7 @@
         "chapters": [
           {
             "id": "cap-cm-21",
-            "number": 2.1,
+            "number": 1,
             "title": "Capítulo 2.1: Continuidad de Campos Escalares",
             "summary": "Continuidad puntual y en regiones, teoremas del valor intermedio y acotación.",
             "mathKey": "\\lim_{(x,y) \\to (a,b)} f(x,y) = f(a,b)",
@@ -2356,11 +2581,12 @@
             "ejercicios": {
               "problems": [],
               "formulasClave": []
-            }
+            },
+            "displayNumber": "1"
           },
           {
             "id": "cap-cm-22",
-            "number": 2.2,
+            "number": 2,
             "title": "Capítulo 2.2: Generalización a $\\mathbb{R}^n$ y Conjuntos Abiertos/Cerrados",
             "summary": "Puntos interiores, fronteras, bolas abiertas y compacidad.",
             "mathKey": "B_r(\\vec{x}_0) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon \\|\\vec{x} - \\vec{x}_0\\| < r \\}",
@@ -2373,7 +2599,8 @@
             "ejercicios": {
               "problems": [],
               "formulasClave": []
-            }
+            },
+            "displayNumber": "2"
           }
         ]
       },
@@ -2384,7 +2611,7 @@
         "chapters": [
           {
             "id": "cap-cm-31",
-            "number": 3.1,
+            "number": 1,
             "title": "Capítulo 3.1: Derivadas Parciales",
             "summary": "Tasa de cambio respecto a cada eje coordenado y razón instantánea.",
             "mathKey": "\\frac{\\partial f}{\\partial x} = \\lim_{h \\to 0} \\frac{f(x+h,y)-f(x,y)}{h}",
@@ -2397,11 +2624,12 @@
             "ejercicios": {
               "problems": [],
               "formulasClave": []
-            }
+            },
+            "displayNumber": "1"
           },
           {
             "id": "cap-cm-32",
-            "number": 3.2,
+            "number": 2,
             "title": "Capítulo 3.2: Diferenciabilidad y Plano Tangente",
             "summary": "Aproximación plano tangente y condición de diferenciabilidad.",
             "mathKey": "z - z_0 = f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)",
@@ -2414,11 +2642,12 @@
             "ejercicios": {
               "problems": [],
               "formulasClave": []
-            }
+            },
+            "displayNumber": "2"
           },
           {
             "id": "cap-cm-33",
-            "number": 3.3,
+            "number": 3,
             "title": "Capítulo 3.3: Derivadas Direccionales y Vector Gradiente",
             "summary": "Máxima pendiente, gradiente $\\nabla f$ y derivada direccional en cualquier rumbo.",
             "mathKey": "D_{\\hat{u}} f(\\vec{x}_0) = \\nabla f(\\vec{x}_0) \\cdot \\hat{u}",
@@ -2431,7 +2660,8 @@
             "ejercicios": {
               "problems": [],
               "formulasClave": []
-            }
+            },
+            "displayNumber": "3"
           }
         ]
       }
@@ -2439,10 +2669,10 @@
     "chapters": [
       {
         "id": "cap-cm-11",
-        "number": 1.1,
-        "title": "Capítulo 1.1: Campos Escalares, Dominio e Imagen",
-        "summary": "Definición formal de campos escalares f: D ⊆ ℝⁿ → ℝ, técnicas de determinación de dominio natural, restricciones hiperbólicas y cálculo de la imagen.",
-        "mathKey": "f \\colon D \\subseteq \\mathbb{R}^n \\to \\mathbb{R}, \\quad \\operatorname{dom}(f) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon f(\\vec{x}) \\in \\mathbb{R} \\}",
+        "number": 1,
+        "title": "Campos Escalares, Dominio e Imagen",
+        "summary": "Definición formal de campos escalares, dominio natural e imagen.",
+        "mathKey": "\\operatorname{dom}(f) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon f(\\vec{x}) \\in \\mathbb{R} \\}",
         "motivacion": "\\begin{card}\n\\textbf{¿Cómo modelamos el espacio?}\n  \n<p>Imagina que estás en tu habitación en este instante. Si quisiéramos registrar la temperatura en cada rincón, no nos basta con un único número. La temperatura varía si te acercas a la ventana, si subes al techo o si te sientas en el suelo.</p>\n<p>Para describir esto matemáticamente, debemos asignar a cada coordenada espacial $(x, y, z)$ un único valor térmico $T$. Así, la temperatura es una función $T(x,y,z)$.</p> \n<p>\\textbf{Concepto clave:} Un campo escalar es simplemente una regla que le asigna un único número real (temperatura, presión, altitud, densidad) a cada punto del espacio.</p>\n\\begin{pregunta}\n    ¿Cómo cambia el cálculo cuando una función depende de más de una variable?\n  \\end{pregunta}\n\\end{card}",
         "teoria": "\\begin{card}\nPara transitar del cálculo en una variable al cálculo multivariable, debemos formalizar matemáticamente la noción de asignar valores numéricos a puntos en el espacio. A continuación, estableceremos los pilares algebraicos de los campos escalares.\n  \\begin{definicion}{Campo Escalar}\n    Un \\textbf{campo escalar} (o función de varias variables) es una función $f$ que asigna a cada elemento o punto $\\vec{x} = (x_1, x_2, \\dots, x_n)$ de un subconjunto $D \\subseteq \\mathbb{R}^n$ un único número real denotado por $f(\\vec{x})$ o $f(x_1, x_2, \\dots, x_n)$.\n    \n    Matemáticamente lo expresamos como:\n    $$ f : D \\subseteq \\mathbb{R}^n \\to \\mathbb{R} $$\n    Donde $n$ representa la dimensión del espacio de entrada (habitualmente $n=2$ o $n=3$).\n  \\end{definicion}\n\n  \\begin{definicion}{Dominio de un Campo Escalar}\n    El \\textbf{dominio} de un campo escalar $f$, denotado por $\\operatorname{dom}(f)$, es el conjunto de todos los puntos en $\\mathbb{R}^n$ para los cuales la regla de correspondencia de la función produce un número real bien definido. \n    \n    Formalmente se define como:\n    $$ \\operatorname{dom}(f) = \\{ \\vec{x} \\in \\mathbb{R}^n : f(\\vec{x}) \\in \\mathbb{R} \\} $$\n    Si el dominio no se especifica explícitamente, se asume que es el \\textit{dominio natural}, es decir, el conjunto más grande posible de puntos donde la expresión matemática es válida.\n  \\end{definicion}\n\n\\begin{trampa}{Visualización del Dominio}\n\\error{Pensar que el dominio es un intervalo}\n    \\correct{En Cálculo en una variable el dominio es subconjunto de los reales, por ejemplo invervalos, pero en Cálculo Multivariable el dominio es una \\textbf{región geométrica} en el plano $XY$ ($\\mathbb{R}^2$), en el espacio $XYZ$ ($\\mathbb{R}^3$) o en hiperespacios de mayor dimensión.}\n\\end{trampa}\n\n\\begin{definicion}{Imagen o Recorrido}\nLa \\textbf{imagen} (o recorrido) de un campo escalar $f$, denotada por $\\operatorname{im}(f)$ o $\\text{rec}(f)$, es el conjunto de todos los valores reales que la función efectivamente toma a medida que evaluamos todos los puntos pertenecientes al dominio.\n    \n    Formalmente se define como:\n    $$ \\operatorname{im}(f) = \\{ y \\in \\mathbb{R} : y = f(\\vec{x}) \\text{ para algún } \\vec{x} \\in \\operatorname{dom}(f) \\} $$\n  \\end{definicion}\n\n  \n\n\\begin{metodo}{Determinación de Dominios en Campos Escalares}\n\n\\problema{Aplicar las restricciones algebraicas clásicas para encontrar la región matemática que define el dominio natural de distintos campos escalares en $\\mathbb{R}^2$.}\n\n\\paso{1}{Restricción por Denominadores}\nEl denominador de una expresión fraccionaria debe ser distinto de cero ($g(\\vec{x}) \\neq 0$) para evitar divisiones indefinidas.\n\\ejemplo{Para $f(x,y) = \\frac{3xy}{x-y}$, exigimos $x-y \\neq 0 \\Rightarrow y \\neq x$. \n\nEl dominio es todo el plano $\\mathbb{R}^2$ excepto los puntos sobre la recta diagonal $y=x$.}\n\n\\paso{2}{Restricción por Raíces de Índice Par}\nEl radicando de cualquier raíz cuadrada o de índice par debe ser mayor o igual a cero ($g(\\vec{x}) \\geq 0$) para operar en los números reales.\n\\ejemplo{Para $f(x,y) = \\sqrt{4 - x^2 - y^2}$, requerimos $4 - x^2 - y^2 \\geq 0 \\Rightarrow x^2 + y^2 \\leq 4$\n\nEl dominio es la región interior y la frontera de un círculo de radio 2 centrado en el origen.}\n\n\\paso{3}{Restricción por Logaritmos}\nEl argumento de cualquier función logarítmica debe ser estrictamente positivo ($g(\\vec{x}) > 0$).\n\\ejemplo{Para $f(x,y) = \\ln(y - x^2)$, necesitamos $y - x^2 > 0 \\Rightarrow y > x^2$. \n\nEl dominio es la región abierta que está estrictamente por encima de la parábola $y=x^2$ (excluyendo la curva).}\n\n\\end{metodo}\n\\end{card}",
         "practica": {
@@ -2706,13 +2936,14 @@
               "description": "Ecuación de la circunferencia de radio r centrada en el origen, la cual suele aparecer como la frontera geométrica al despejar restricciones de raíces o logaritmos radiales."
             }
           ]
-        }
+        },
+        "displayNumber": "1"
       },
       {
         "id": "cap-cm-12",
-        "number": 1.2,
-        "title": "Capítulo 1.2: Curvas de Nivel, Superficies y Grafos",
-        "summary": "Geometría analítica de mapas de contorno, isotermas, curvas de nivel $f(x,y)=c$ y trazado tridimensional de cuadráticas.",
+        "number": 2,
+        "title": "Curvas de Nivel y Grafos",
+        "summary": "Geometría analítica de mapas de contorno, curvas de nivel $f(x,y)=c$ y trazado tridimensional de campos",
         "mathKey": "f(x,y) = c, \\quad c \\in \\operatorname{im}(f)",
         "motivacion": "\\begin{card}\nImagina que estás planeando una expedición a la cordillera. Tienes un mapa impreso completamente plano, pero necesitas saber dónde están los acantilados más empinados y dónde se encuentran las llanuras seguras para caminar. ¿Cómo puede un simple trozo de papel de dos dimensiones mostrarte el relieve tridimensional?\n\nLa respuesta que encontraron los topógrafos hace siglos son las líneas de contorno. Cada línea en el mapa conecta todos los puntos que están exactamente a la misma altitud. Si caminaras físicamente siguiendo esa línea, no subirías ni bajarías; te mantendrías al mismo \"nivel\".\n\nEn matemáticas, hacemos exactamente lo mismo. Tomamos un grafo tridimensional (una superficie \n) y lo \"rebanamos\" con planos horizontales a distintas alturas constantes (\n). Al proyectar esos cortes hacia el suelo bidimensional, obtenemos un mapa de curvas de nivel que nos revela los secretos del espacio.\n\\end{card}",
         "teoria": "\\begin{card}\n\\begin{definicion}{Curva de Nivel}\nConjunto de puntos donde f(x,y)=c.\n\\end{definicion}\n\\end{card}",
@@ -2723,45 +2954,269 @@
         "ejercicios": {
           "problems": [],
           "formulasClave": []
-        }
-      },
-      {
-        "id": "cap-cm-13",
-        "number": 1.3,
-        "title": "Capítulo 1.3: Límites Multivariables y Aproximación",
-        "summary": "Definición $\\varepsilon - \\delta$ de límites en $\\mathbb{R}^2$, trayectorias lineales y parabólicas.",
-        "mathKey": "\\lim_{(x,y) \\to (x_0, y_0)} f(x,y) = L",
-        "motivacion": "\\begin{card}\n\\textbf{Límites en el Plano}\n\\end{card}",
-        "teoria": "\\begin{card}\n\\begin{definicion}{Límite Multivariable}\nFormalización de la cercanía en 2D.\n\\end{definicion}\n\\end{card}",
-        "practica": {
-          "text": "",
-          "exercises": []
         },
-        "ejercicios": {
-          "problems": [],
-          "formulasClave": []
-        }
+        "displayNumber": "2"
       },
       {
         "id": "cap-cm-14",
-        "number": 1.4,
-        "title": "Capítulo 1.4: Criterios de Existencia y No Existencia de Límites",
-        "summary": "Criterio de dos trayectorias, coordenadas polares y límites iterados.",
+        "number": 3,
+        "title": "Límites",
+        "summary": "Definición $\\varepsilon - \\delta$ de límites en $\\mathbb{R}^2$ y propiedades",
         "mathKey": "y = m x^k, \\quad r \\to 0",
         "motivacion": "\\begin{card}\n\\textbf{Trayectorias y No Existencia}\n\\end{card}",
         "teoria": "\\begin{card}\n\\begin{teorema}{Criterio de Trayectorias}\nSi dos caminos dan límites distintos, el límite no existe.\n\\end{teorema}\n\\end{card}",
         "practica": {
           "text": "",
-          "exercises": []
+          "exercises": [
+            {
+              "id": "ex-pareados-limites-1",
+              "type": "matching",
+              "title": "Ejercicio: Asociación: Límite y Herramienta de Análisis",
+              "question": "Relaciona cada límite con la conclusión y herramienta adecuada para analizar su existencia:",
+              "columns": 2,
+              "col1Title": "Límites a Analizar",
+              "col2Title": "Conclusión y Herramienta",
+              "col1Items": [
+                {
+                  "id": "1",
+                  "num": 1,
+                  "text": "$\\lim_{(x,y)\to(0,0)} \frac{x^2y}{x^2+y^2}$",
+                  "feedback": "¡Excelente! Al usar polares obtienes $\\lim_{r \to 0^+} r\\cos^2\theta \\sin\theta$. Como  \to 0$ y la parte trigonométrica está acotada, el límite es firmemente 0."
+                },
+                {
+                  "id": "2",
+                  "num": 2,
+                  "text": "$\\lim_{(x,y)\to(0,0)} \frac{xy^2}{x^2+y^4}$",
+                  "feedback": "¡Correcto! Las rectas engañan en esta función dando siempre 0. La única forma de revelar que no existe es usar la parábola =y^2$, lo que arroja 1/2."
+                },
+                {
+                  "id": "3",
+                  "num": 3,
+                  "text": "$\\lim_{(x,y)\to(0,0)} \frac{y}{y+x^2}$",
+                  "feedback": "¡Perfecto! Esta función es el clásico ejemplo donde los iterados fallan de manera asimétrica (zsh \neq 1$), lo que destruye el límite doble inmediatamente."
+                }
+              ],
+              "col2Options": [
+                {
+                  "letter": "A",
+                  "text": "No existe el límite, demostrado al probar Límites Iterados (uno da 0, otro da 1)."
+                },
+                {
+                  "letter": "B",
+                  "text": "No existe el límite, demostrado al evaluar caminos parabólicos (=y^2$)."
+                },
+                {
+                  "letter": "C",
+                  "text": "El límite existe y es zsh$, comprobado mediante cambio a Coordenadas Polares y acotamiento."
+                }
+              ],
+              "correctMapping": {
+                "1": "C",
+                "2": "B",
+                "3": "A"
+              },
+              "explanation": "El análisis de límites en varias variables exige probar la coherencia sobre distintas familias de curvas o aplicar acotamiento/polares cuando el límite efectivamente existe."
+            }
+          ]
         },
         "ejercicios": {
-          "problems": [],
+          "problems": [
+            {
+              "problem": "Determine la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^3 - y^3}{x^2 + y^2}$. Si existe, calcule su valor.",
+              "pauta": "1. Evaluamos en coordenadas polares:  = r\\cos\theta$,  = r\\sin\theta$.\n2. Sustituyendo: $\frac{r^3(\\cos^3\theta - \\sin^3\theta)}{r^2} = r(\\cos^3\theta - \\sin^3\theta)$.\n3. Como $|\\cos^3\theta - \\sin^3\theta| \\leq 2$, se tiene zsh \\leq |r(\\cos^3\theta - \\sin^3\theta)| \\leq 2r$.\n4. Por el Teorema del Sándwich / Acotación, como r \to 0$ cuando  \to 0^+$, el límite existe y vale 0.",
+              "dificultad": "Intermedio",
+              "conceptos": [
+                "Coordenadas Polares",
+                "Teorema del Sándwich",
+                "Límites Multivariables"
+              ],
+              "habilidades": [
+                "Demostración Formal",
+                "Cálculo Algorítmico"
+              ]
+            },
+            {
+              "problem": "Analice la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^2 y}{x^4 + y^2}$ mediante el criterio de trayectorias.",
+              "pauta": "1. Evaluando en rectas  = mx$: $\\lim_{x \to 0} \frac{m x^3}{x^4 + m^2 x^2} = \\lim_{x \to 0} \frac{m x}{x^2 + m^2} = 0$ para todo $.\n2. Evaluando en la trayectoria parabólica  = k x^2$: $\\lim_{x \to 0} \frac{k x^4}{x^4 + k^2 x^4} = \frac{k}{1 + k^2}$.\n3. Como el resultado depende de la constante $ (por ejemplo, para =1$ da /2$), el límite NO existe por el Criterio de dos Trayectorias.",
+              "dificultad": "Avanzado",
+              "conceptos": [
+                "Criterio de Trayectorias",
+                "Trayectorias Parabólicas",
+                "No Existencia de Límite"
+              ],
+              "habilidades": [
+                "Razonamiento Crítico",
+                "Análisis Multivariable"
+              ]
+            }
+          ],
           "formulasClave": []
-        }
+        },
+        "displayNumber": "3"
+      },
+      {
+        "id": "cap-cm-13",
+        "number": 4,
+        "title": "Criterios de Límites",
+        "summary": "Criterio de trayectorias, límites iterados y coordenadas polares",
+        "mathKey": "\\lim_{(x,y) \\to (x_0, y_0)} f(x,y) = L",
+        "motivacion": "\\begin{card}\n<p>En el capítulo anterior, vimos que para que un límite exista en $\\mathbb{R}^2$, el valor al cual nos aproximamos debe ser exactamente el mismo sin importar el camino que elijamos para llegar al punto de destino. </p>\n<p>Esto presenta un desafío monumental: no podemos evaluar \\textit{infinitas} trayectorias manualmente para demostrar que un límite existe. Sin embargo, esta misma dificultad se convierte en nuestra mejor arma cuando queremos demostrar que un límite \\textbf{no existe}. </p>\n<p>Basta con encontrar dos simples caminos (ya sean rectas, parábolas o iteraciones en los ejes) que nos lleven a destinos diferentes para afirmar con total seguridad matemática que el límite global es una ilusión. Además, introduciremos las coordenadas polares, una herramienta poderosa que \"agrupa\" todas esas infinitas trayectorias lineales en un solo radio y nos facilita la vida en los casos más complejos.</p>\n\n  \\begin{pregunta}\nSi evalúas un límite acercándote al origen por el eje $X$ y obtienes un valor de $1$, pero al acercarte por el eje $Y$ obtienes un valor de $0$, ¿qué puedes concluir sobre el comportamiento global de esa función en el origen?\n\\end{pregunta}\n\\end{card}",
+        "teoria": "\\begin{card}En este capítulo estudiaremos los criterios analíticos fundamentales para demostrar la \\textbf{inexistencia} de límites de campos escalares, así como la técnica de transformación a \\textbf{coordenadas polares} para abordar el estudio de límites en el origen.\n\\begin{teorema}{Inexistencia por Caminos}\nSean $f \\colon D \\subseteq \\mathbb{R}^2 \\to \\mathbb{R}$ y $(a,b)$ un punto de acumulación de $\\operatorname{dom}(f)$. Si existen dos trayectorias continuas $\\vec{r}_1, \\vec{r}_2 \\colon [t_0, t_1] \\to D \\setminus \\{(a,b)\\}$ tales que:\n    $$ \\displaystyle\\lim_{t \\to t_0^+} \\vec{r}_1(t) = (a,b) \\quad \\wedge \\quad \\displaystyle\\lim_{t \\to t_0^+} \\vec{r}_2(t) = (a,b) $$\n    y se cumple que:\n    $$ \\displaystyle\\lim_{t \\to t_0^+} f(\\vec{r}_1(t)) = L_1 \\quad \\wedge \\quad \\displaystyle\\lim_{t \\to t_0^+} f(\\vec{r}_2(t)) = L_2 $$\n    con $L_1 \\neq L_2$, entonces el límite doble $\\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y)$ \\textbf{no existe}.\n\n\\demostracion{Procederemos por contradicción. Supongamos que el límite doble existe y es igual a $L \\in \\mathbb{R}$, es decir:\n    $$ \\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y) = L $$\n    Por la definición formal $\\varepsilon$-$\\delta$, para todo $\\varepsilon > 0$ existe un $\\delta > 0$ tal que si $(x,y) \\in \\operatorname{dom}(f) \\wedge 0 < \\|(x,y) - (a,b)\\| < \\delta$, entonces:\n    $$ |f(x,y) - L| < \\varepsilon $$\n\n    Sea $\\vec{r}_1(t)$ la primera trayectoria continua en $\\operatorname{dom}(f)$ tal que $\\displaystyle\\lim_{t \\to t_0^+} \\vec{r}_1(t) = (a,b)$. Dado el mismo $\\delta > 0$, por continuidad de la curva existe un $\\eta > 0$ tal que si $t_0 < t < t_0 + \\eta$, entonces:\n    $$ 0 < \\|\\vec{r}_1(t) - (a,b)\\| < \\delta $$\n\n    En consecuencia, para todo $t \\in (t_0, t_0 + \\eta)$, se satisface la desigualdad:\n    $$ |f(\\vec{r}_1(t)) - L| < \\varepsilon $$\n    Lo que por definición de límite de una variable real implica que:\n    $$ \\displaystyle\\lim_{t \\to t_0^+} f(\\vec{r}_1(t)) = L \\implies L_1 = L $$\n\n    Repitiendo exactamente el mismo argumento para la trayectoria $\\vec{r}_2(t)$, deducimos que $L_2 = L$. Por lo tanto, $L_1 = L_2 = L$, lo cual contradice el supuesto inicial de que $L_1 \\neq L_2$.\n    Se concluye que el límite doble $\\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y)$ no existe.}\n\\end{teorema}\n\n\\begin{trampa}{Observación Fundamental sobre Caminos}\n\\error{Evaluar el límite por dos caminos distintos $A_1$ y $A_2$ y obtiener el mismo resultado ($L_1 = L_2$), y pensar  que $$\\lim_{(x,y)\\to(a,b)}f(x,y)=L_1=L_2$$}\n\\correct{Si evalúas el límite por dos caminos distintos $A_1$ y $A_2$ y obtienes el mismo resultado ($L_1 = L_2$), \\textbf{no se puede concluir nada} sobre la existencia del límite original. La coincidencia sobre un conjunto infinito de caminos no demuestra la existencia; sin embargo, un solo desacuerdo la refuta.}\n\\end{trampa}\n\\end{card}\n\\begin{card}\n\n<p>\\textbf{Caminos Usuales de Aproximación al} $(0,0)$.</p>\n\nPara evaluar límites en el origen, las familias de curvas más utilizadas son:\n<p>1. \\textbf{Ejes coordenados:} Eje $x$: $A_1 = \\{ (x,y) \\in \\mathbb{R}^2 \\colon y = 0 \\}$ y eje $y$:  $A_2 = \\{ (x,y) \\in \\mathbb{R}^2 \\colon x = 0 \\}$.</p>\n<p>2. \\textbf{Familia de rectas oblicuas:} $A_m = \\{ (x,y) \\in \\mathbb{R}^2 \\colon y = mx \\}$, con $m \\in \\mathbb{R}$.<p/>\n<p>3. \\textbf{Familia de parábolas:} $A_a = \\{ (x,y) \\in \\mathbb{R}^2 \\colon y = ax^2 \\}$ $\\vee$ $A_a = \\{ (x,y) \\in \\mathbb{R}^2 \\colon x = ay^2 \\}$, con $a \\neq 0$.</p>\n   \n\n\n\n\\begin{ejercicio}{Inexistencia por rectas}\nRespecto a $\\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{x^2}{x^2 + y^2}$, calcule el valor del límite o demuestre que no existe\n\\solucion{Tomemos la recta $y = x$, que viene a ser nuestra trayectoria $A_1$:\n    $$ \\displaystyle\\lim_{x \\to 0} \\frac{x^2}{x^2 + x^2} = \\displaystyle\\lim_{x \\to 0} \\frac{x^2}{2x^2} = \\frac{1}{2} $$\n    Tomemos otra recta, digamos el eje X ($y = 0$), la cual viene a ser nuestra trayectoria $A_2$:\n    $$ \\displaystyle\\lim_{x \\to 0} \\frac{x^2}{x^2 + 0} = \\displaystyle\\lim_{x \\to 0} \\frac{x^2}{x^2} = 1 $$\n    Notamos que los límites por caminos existen y son distintos $\\frac12 \\neq 1$. Por lo tanto, el límite $\\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{x^2}{x^2 + y^2}$  \\textbf{no existe}.}\n\\end{ejercicio}\n\n\\end{card}\n\n\\begin{card}\n\\begin{teorema}{Inexistencia por Límites Iterados}\nSea $f \\colon D \\subseteq \\mathbb{R}^2 \\to \\mathbb{R}$ un campo escalar y sea $(a,b)$ un punto de acumulación de $\\operatorname{dom}(f)$. Definimos los dos límites iterados mediante:\n    $$ L_1 = \\displaystyle\\lim_{x \\to a} \\left( \\displaystyle\\lim_{y \\to b} f(x,y) \\right) \\quad \\wedge \\quad L_2 = \\displaystyle\\lim_{y \\to b} \\left( \\displaystyle\\lim_{x \\to a} f(x,y) \\right) $$    Si ambos límites iterados existen y son \\textbf{distintos} ($L_1 \\neq L_2$), entonces el límite doble $\\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y)$ \\textbf{no existe}.\n\n\\demostracion{Supongamos por contradicción que el límite doble existe y vale $L \\in \\mathbb{R}$, es decir, $\\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y) = L$, y asumamos que existe el límite interno $g(x) = \\displaystyle\\lim_{y \\to b} f(x,y)$ para todo $x \\neq a$ en un entorno de $a$.\n\n    Dado $\\varepsilon > 0$, existe $\\delta > 0$ tal que si $0 < \\sqrt{(x-a)^2 + (y-b)^2} < \\delta$, entonces:\n    $$ |f(x,y) - L| < \\frac{\\varepsilon}{2} $$\n\n    Para cualquier $x$ fijo que cumpla $0 < |x - a| < \\frac{\\delta}{\\sqrt{2}}$, consideramos los valores de $y$ que satisfacen $0 < |y - b| < \\frac{\\delta}{\\sqrt{2}}$. Para dichos puntos, la distancia euclidiana satisface $\\sqrt{(x-a)^2 + (y-b)^2} < \\delta$, por lo que la desigualdad del límite se sostiene.\n\n    Tomando el límite cuando $y \\to b$ en la desigualdad $|f(x,y) - L| < \\frac{\\varepsilon}{2}$, y aprovechando que $\\displaystyle\\lim_{y \\to b} f(x,y) = g(x)$, obtenemos por propiedades de desigualdades en límites:\n    $$ |g(x) - L| \\leq \\frac{\\varepsilon}{2} < \\varepsilon $$\n\n    Como esto es válido para todo $x$ tal que $0 < |x - a| < \\frac{\\delta}{\\sqrt{2}}$, por definición formal tenemos que:\n    $$ \\displaystyle\\lim_{x \\to a} g(x) = L \\implies \\displaystyle\\lim_{x \\to a} \\left( \\displaystyle\\lim_{y \\to b} f(x,y) \\right) = L $$\n\n    De manera totalmente análoga, si el límite interno $h(y) = \\displaystyle\\lim_{x \\to a} f(x,y)$ existe, se demuestra que $\\displaystyle\\lim_{y \\to b} \\left( \\displaystyle\\lim_{x \\to a} f(x,y) \\right) = L$.\n    Por ende, $L_1 = L$ y $L_2 = L$, lo cual implica $L_1 = L_2$. Esto contradice el hecho de que $L_1 \\neq L_2$.\n    En consecuencia, el límite doble $\\displaystyle\\lim_{(x,y) \\to (a,b)} f(x,y)$ no existe.}\n\\end{teorema}\n\\begin{trampa}{Observación sobre Iterados}\n\\error{Evaluar los límites iterados y si $L_1 = L_2$ pensar que entonces el límite $$\\lim_{(x,y)\\to(a,b}f(x,y)=L_1=L_2$$ Evaluar los límites iterados y si $L_1 = L_2$ pensar que si uno de los límites iterados no existe entonces el límite $\\displaystyle\\lim_{(x,y)\\to(a,b)}f(x,y)$ no existe.}\n\\correct{Si los límites iterados son iguales ($L_1 = L_2$), o si alguno de los límites internos no existe, \\textbf{no es posible concluir nada} respecto a la existencia del límite doble original.}\n\\end{trampa}\n\\end{card}\n\\begin{card}\n\\begin{ejercicio}{Inexistencia por límites iterados}\nEstudie la existencia del límite: $\\displaystyle \\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{y}{y + x^2}$\n\n\\solucion{Calculamos el primer límite iterado (evaluando primero $y \\to 0$ y luego $x \\to 0$):\n    $$ \\displaystyle\\lim_{x \\to 0} \\left( \\displaystyle\\lim_{y \\to 0} \\frac{y}{y + x^2} \\right) = \\displaystyle\\lim_{x \\to 0} \\left( \\frac{0}{0 + x^2} \\right) = \\displaystyle\\lim_{x \\to 0} (0) = 0 $$\n    \n    Calculamos el segundo límite iterado (evaluando primero $x \\to 0$ y luego $y \\to 0$):\n    $$ \\displaystyle\\lim_{y \\to 0} \\left( \\displaystyle\\lim_{x \\to 0} \\frac{y}{y + x^2} \\right) = \\displaystyle\\lim_{y \\to 0} \\left( \\frac{y}{y + 0} \\right) = \\displaystyle\\lim_{y \\to 0} (1) = 1 $$\n    \n    Como los límites iterados arrojan valores distintos ($0 \\neq 1$), el límite doble \\textbf{no existe}.}\n\\end{ejercicio}\n\\end{card}\n\n\\begin{card}\n\\begin{teorema}{Transformación Polar y Equivalencia de Límite}\nConsideremos la transformación a coordenadas polares en el plano:\n    $$ x = r\\cos(\\theta) \\quad \\wedge \\quad y = r\\sin(\\theta) $$\n    donde $r = \\sqrt{x^2+y^2} \\ge 0$ e $\\theta \\in [0, 2\\pi)$.\n    \n    El límite $\\displaystyle\\lim_{(x,y) \\to (0,0)} f(x,y)$ existe y es igual a $L \\in \\mathbb{R}$ \\textbf{si y solo si} el límite en coordenadas polares se satisface de manera \\textbf{uniforme} con respecto al ángulo $\\theta$, es decir:\n    $$ \\displaystyle\\lim_{r \\to 0^+} \\left( \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| \\right) = 0 $$\n\n\\demostracion{$(\\Rightarrow)$ Asumamos que $\\displaystyle\\lim_{(x,y) \\to (0,0)} f(x,y) = L$.\n    Dado $\\varepsilon > 0$, existe $\\delta > 0$ tal que para todo $(x,y) \\in \\operatorname{dom}(f)$, si $0 < \\sqrt{x^2+y^2} < \\delta$, entonces:\n    $$ |f(x,y) - L| < \\varepsilon $$\n    Sustituyendo $x = r\\cos\\theta$ e $y = r\\sin\\theta$, notamos que $\\sqrt{x^2+y^2} = r$. Por ende, si $0 < r < \\delta$, se cumple que:\n    $$ |f(r\\cos\\theta, r\\sin\\theta) - L| < \\varepsilon $$\n    para todo $\\theta \\in [0, 2\\pi)$ simultáneamente. Tomando el supremo sobre $\\theta$, mantenemos la cota:\n    $$ \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| \\leq \\varepsilon $$\n    Lo que demuestra que $\\displaystyle\\lim_{r \\to 0^+} \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| = 0$.\n$(\\Leftarrow)$ Supongamos ahora que $\\displaystyle\\lim_{r \\to 0^+} \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| = 0$.\n    Entonces, para todo $\\varepsilon > 0$, existe $\\delta > 0$ tal que si $0 < r < \\delta$, entonces:\n    $$ |f(r\\cos\\theta, r\\sin\\theta) - L| \\leq \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| < \\varepsilon $$\n    Dado cualquier punto $(x,y) \\neq (0,0)$ tal que $\\|(x,y) - (0,0)\\| = \\sqrt{x^2+y^2} < \\delta$, podemos expresarlo en polares con $r = \\sqrt{x^2+y^2} < \\delta$ y algún ángulo $\\theta$. De lo anterior se deduce que:\n    $$ |f(x,y) - L| = |f(r\\cos\\theta, r\\sin\\theta) - L| < \\varepsilon $$\n    Quedando demostrado por definición $\\varepsilon$-$\\delta$ que $\\displaystyle\\lim_{(x,y) \\to (0,0)} f(x,y) = L$.\n}\n\\end{teorema}\n\\end{card}\n\\begin{card}\n\\begin{ejercicio}{Existencia vía Coordenadas Polares}\nEstudie la existencia del límite: $\\displaystyle \\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{x^4 + 3(x^2 + y^2)}{x^2 + y^2}$\n\n\\solucion{Aplicamos el cambio a coordenadas polares: $x = r\\cos\\theta$, $y = r\\sin\\theta$, sabiendo que $x^2 + y^2 = r^2$.\n    Sustituimos en la expresión:\n    $$ \\displaystyle\\lim_{r \\to 0^+} \\frac{(r\\cos\\theta)^4 + 3r^2}{r^2} = \\displaystyle\\lim_{r \\to 0^+} \\frac{r^4\\cos^4\\theta + 3r^2}{r^2} $$\n    Factorizando y simplificando $r^2$ (ya que $r \\neq 0$ en la aproximación):\n    $$ \\displaystyle\\lim_{r \\to 0^+} (r^2\\cos^4\\theta + 3) = 0 \\cdot \\cos^4\\theta + 3 = 3 $$\n    Dado que el resultado es una constante numérica exacta ($L=3$), absolutamente independiente del ángulo de aproximación $\\theta$, el límite doble \\textbf{existe y es igual a 3}.}\n\\end{ejercicio}\n\\end{card}",
+        "practica": {
+          "text": "",
+          "exercises": [
+            {
+              "id": "ex-1787623875838",
+              "type": "single_choice",
+              "title": "La elección del camino adecuado",
+              "question": "¿Cuál es el argumento correcto respecto al límite $\\displaystyle \\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{xy^2}{x^2 + y^4}$?",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "El límite es $0$, porque al evaluarlo por cualquier recta de la familia $y = mx$, el resultado tiende a cero.",
+                  "feedback": "Cuidado. Aunque todas las rectas $y=mx$ arrojan 0, las rectas no son las únicas trayectorias posibles. Debes probar curvas de mayor grado."
+                },
+                {
+                  "id": "B",
+                  "text": "El límite no existe, porque los límites iterados son distintos",
+                  "feedback": "Si calculas los límites iterados para esta función, verás que $\\displaystyle\\lim_{x\\to 0}(\\displaystyle\\lim_{y\\to 0}) = 0$ y $\\displaystyle\\lim_{y\\to 0}(\\displaystyle\\lim_{x\\to 0}) = 0$. Son iguales, lo que hace al criterio no concluyente."
+                },
+                {
+                  "id": "C",
+                  "text": "El límite no existe, porque al aproximarse por la curva $x = y^2$ se obtiene $\\frac12$, mientras que por el eje $y=0$ se obtiene $0$.",
+                  "feedback": "Al sustituir la parábola horizontal $x = y^2$, el límite se convierte en $\\displaystyle\\lim_{y \\to 0} \\frac{y^2 \\cdot y^2}{(y^2)^2 + y^4} = \\frac{y^4}{2y^4} = \\frac{1}{2}$. Como $\\frac12\\neq 0$, el límite se destruye."
+                }
+              ],
+              "correctOptionId": "C",
+              "explanation": ""
+            },
+            {
+              "id": "ex-pareados-limites-1",
+              "type": "matching",
+              "title": "Ejercicio: Asociación: Límite y Herramienta de Análisis",
+              "question": "Relaciona cada límite con la conclusión y herramienta adecuada para analizar su existencia:",
+              "columns": 2,
+              "col1Title": "Límites a Analizar",
+              "col2Title": "Conclusión y Herramienta",
+              "col1Items": [
+                {
+                  "id": "1",
+                  "num": 1,
+                  "text": "$\\displaystyle\\lim_{(x,y)\\to(0,0)} \frac{x^2y}{x^2+y^2}$",
+                  "feedback": "Al usar polares obtienes $\\displaystyle\\lim_{r\\to0^+} r\\cos^2\\theta\\sin\\theta$. Como $r\\to0^+$ y la parte trigonométrica está acotada, el límite es $0$."
+                },
+                {
+                  "id": "2",
+                  "num": 2,
+                  "text": "$\\displaystyle\\lim_{(x,y)\\to(0,0)} \\frac{xy^2}{x^2+y^4}$",
+                  "feedback": "Las rectas engañan en esta función dando siempre $0$. La única forma de revelar que no existe es usar la parábola $x=y^2$, lo que arroja $\\frac12$."
+                },
+                {
+                  "id": "3",
+                  "num": 3,
+                  "text": "$\\displaystyle\\lim_{(x,y)\\to(0,0)}\\frac{y}{y+x^2}$",
+                  "feedback": "Esta función es el clásico ejemplo donde los iterados fallan de manera asimétrica (zsh \neq 1$), lo que destruye el límite doble inmediatamente."
+                }
+              ],
+              "col2Options": [
+                {
+                  "letter": "A",
+                  "text": "No existe el límite, demostrado al probar Límites Iterados"
+                },
+                {
+                  "letter": "B",
+                  "text": "No existe el límite, demostrado al evaluar caminos parabólicos"
+                },
+                {
+                  "letter": "C",
+                  "text": "El límite existe y es $0$, comprobado mediante cambio a Coordenadas Polares y acotamiento."
+                }
+              ],
+              "correctMapping": {
+                "1": "C",
+                "2": "B",
+                "3": "A"
+              },
+              "explanation": "El análisis de límites en varias variables exige probar la coherencia sobre distintas familias de curvas o aplicar acotamiento/polares cuando el límite efectivamente existe."
+            },
+            {
+              "id": "imported-ex-1787628674865-1-9c0nf",
+              "type": "true_false",
+              "title": "Verdadero o Falso",
+              "statement": "Considere la función $f(x,y) = \\displaystyle\\frac{xy}{x^2 + y^2}$. Dado que ambos límites iterados son iguales a cero (es decir, $\\displaystyle\\lim_{x \\to 0} (\\displaystyle\\lim_{y \\to 0} f(x,y)) = 0$ y $\\displaystyle\\lim_{y \\to 0} (\\displaystyle\\lim_{x \\to 0} f(x,y)) = 0$), podemos concluir matemáticamente que el límite doble existe y vale cero",
+              "correctAnswer": false,
+              "explanation": "",
+              "trueFeedback": "Incorrecto. Caíste en la trampa más común. Que los límites iterados coincidan significa únicamente que acercarse por el eje $x$ o por el eje $y$ da el mismo resultado. No te garantiza lo que ocurre si te acercas por una diagonal como $y=x$ (donde el límite da $\\frac12$).",
+              "falseFeedback": "¡Excelente! Recordaste la alerta teórica: si los límites iterados son iguales, \\textbf{no se puede concluir nada}. De hecho, si evalúas este límite por rectas $y = mx$, el resultado es $\\frac{m}{1+m^2}$, lo que demuestra que depende de la pendiente $m$ y, por ende, el límite no existe."
+            },
+            {
+              "id": "ex-1787629507567",
+              "type": "multiple_choice",
+              "title": "Ejercicio 4: Selección Múltiple",
+              "question": "Selecciona todas las propiedades afines a las funciones derivables:",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "Tienen recta tangente única no vertical.",
+                  "feedback": "Correcto. Es la definición geométrica."
+                },
+                {
+                  "id": "B",
+                  "text": "Son necesariamente continuas en ese punto.",
+                  "feedback": "Correcto. Diferenciabilidad implica continuidad."
+                },
+                {
+                  "id": "C",
+                  "text": "Tienen derivada infinita en puntos angulosos.",
+                  "feedback": "Incorrecto. En puntos angulosos las derivadas laterales difieren."
+                }
+              ],
+              "correctOptionIds": [
+                "A",
+                "B"
+              ],
+              "explanation": "Las opciones A y B son teoremas fundamentales."
+            }
+          ]
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "problem": "Determine la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^3 - y^3}{x^2 + y^2}$. Si existe, calcule su valor.",
+              "pauta": "1. Evaluamos en coordenadas polares:  = r\\cos\theta$,  = r\\sin\theta$.\n2. Sustituyendo: $\frac{r^3(\\cos^3\theta - \\sin^3\theta)}{r^2} = r(\\cos^3\theta - \\sin^3\theta)$.\n3. Como $|\\cos^3\theta - \\sin^3\theta| \\leq 2$, se tiene zsh \\leq |r(\\cos^3\theta - \\sin^3\theta)| \\leq 2r$.\n4. Por el Teorema del Sándwich / Acotación, como r \to 0$ cuando  \to 0^+$, el límite existe y vale 0.",
+              "dificultad": "Intermedio",
+              "conceptos": [
+                "Coordenadas Polares",
+                "Teorema del Sándwich",
+                "Límites Multivariables"
+              ],
+              "habilidades": [
+                "Demostración Formal",
+                "Cálculo Algorítmico"
+              ]
+            },
+            {
+              "problem": "Analice la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^2 y}{x^4 + y^2}$ mediante el criterio de trayectorias.",
+              "pauta": "1. Evaluando en rectas  = mx$: $\\lim_{x \to 0} \frac{m x^3}{x^4 + m^2 x^2} = \\lim_{x \to 0} \frac{m x}{x^2 + m^2} = 0$ para todo $.\n2. Evaluando en la trayectoria parabólica  = k x^2$: $\\lim_{x \to 0} \frac{k x^4}{x^4 + k^2 x^4} = \frac{k}{1 + k^2}$.\n3. Como el resultado depende de la constante $ (por ejemplo, para =1$ da /2$), el límite NO existe por el Criterio de dos Trayectorias.",
+              "dificultad": "Avanzado",
+              "conceptos": [
+                "Criterio de Trayectorias",
+                "Trayectorias Parabólicas",
+                "No Existencia de Límite"
+              ],
+              "habilidades": [
+                "Razonamiento Crítico",
+                "Análisis Multivariable"
+              ]
+            }
+          ],
+          "formulasClave": []
+        },
+        "displayNumber": "4"
       },
       {
         "id": "cap-cm-21",
-        "number": 2.1,
+        "number": 1,
         "title": "Capítulo 2.1: Continuidad de Campos Escalares",
         "summary": "Continuidad puntual y en regiones, teoremas del valor intermedio y acotación.",
         "mathKey": "\\lim_{(x,y) \\to (a,b)} f(x,y) = f(a,b)",
@@ -2774,11 +3229,12 @@
         "ejercicios": {
           "problems": [],
           "formulasClave": []
-        }
+        },
+        "displayNumber": "1"
       },
       {
         "id": "cap-cm-22",
-        "number": 2.2,
+        "number": 2,
         "title": "Capítulo 2.2: Generalización a $\\mathbb{R}^n$ y Conjuntos Abiertos/Cerrados",
         "summary": "Puntos interiores, fronteras, bolas abiertas y compacidad.",
         "mathKey": "B_r(\\vec{x}_0) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon \\|\\vec{x} - \\vec{x}_0\\| < r \\}",
@@ -2791,11 +3247,12 @@
         "ejercicios": {
           "problems": [],
           "formulasClave": []
-        }
+        },
+        "displayNumber": "2"
       },
       {
         "id": "cap-cm-31",
-        "number": 3.1,
+        "number": 1,
         "title": "Capítulo 3.1: Derivadas Parciales",
         "summary": "Tasa de cambio respecto a cada eje coordenado y razón instantánea.",
         "mathKey": "\\frac{\\partial f}{\\partial x} = \\lim_{h \\to 0} \\frac{f(x+h,y)-f(x,y)}{h}",
@@ -2808,11 +3265,12 @@
         "ejercicios": {
           "problems": [],
           "formulasClave": []
-        }
+        },
+        "displayNumber": "1"
       },
       {
         "id": "cap-cm-32",
-        "number": 3.2,
+        "number": 2,
         "title": "Capítulo 3.2: Diferenciabilidad y Plano Tangente",
         "summary": "Aproximación plano tangente y condición de diferenciabilidad.",
         "mathKey": "z - z_0 = f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)",
@@ -2825,11 +3283,12 @@
         "ejercicios": {
           "problems": [],
           "formulasClave": []
-        }
+        },
+        "displayNumber": "2"
       },
       {
         "id": "cap-cm-33",
-        "number": 3.3,
+        "number": 3,
         "title": "Capítulo 3.3: Derivadas Direccionales y Vector Gradiente",
         "summary": "Máxima pendiente, gradiente $\\nabla f$ y derivada direccional en cualquier rumbo.",
         "mathKey": "D_{\\hat{u}} f(\\vec{x}_0) = \\nabla f(\\vec{x}_0) \\cdot \\hat{u}",
@@ -2842,7 +3301,8 @@
         "ejercicios": {
           "problems": [],
           "formulasClave": []
-        }
+        },
+        "displayNumber": "3"
       }
     ]
   },
