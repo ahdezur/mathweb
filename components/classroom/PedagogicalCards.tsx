@@ -42,7 +42,7 @@ function renderKaTeX(text: string) {
       const math = part.slice(2, -2).trim();
       try {
         const html = katex.renderToString(math, { displayMode: true, throwOnError: false });
-        return <span key={index} dangerouslySetInnerHTML={{ __html: html }} className="my-3 block overflow-x-auto" />;
+        return <span key={index} dangerouslySetInnerHTML={{ __html: html }} className="my-3 block overflow-x-auto no-scrollbar" />;
       } catch (e) {
         return <code key={index} className="text-rose-500">{part}</code>;
       }

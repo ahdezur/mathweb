@@ -69,7 +69,7 @@ const MathFormulaComponent: React.FC<MathFormulaProps> = ({ latex, block = false
   if (block) {
     return (
       <div
-        className={`math-block text-center my-3 overflow-x-auto py-2 ${className}`}
+        className={`math-block text-center my-1 overflow-x-auto no-scrollbar py-1 ${className}`}
         dangerouslySetInnerHTML={{ __html: html }}
       />
     );

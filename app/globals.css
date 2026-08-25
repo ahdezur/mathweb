@@ -3,6 +3,18 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "katex/dist/katex.min.css";
 
+/* KaTeX Display Math - Prevent subpixel fractional scrollbar overflow */
+.katex-display {
+  margin: 0.5em 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.katex-display::-webkit-scrollbar {
+  display: none;
+}
+
 /* ==========================================================================
    CSS SYSTEM - ÁLVARO PROFEMATE
    Estilo Premium de Alta Fidelidad - Inspirado en Diseño de Computación Científica y Tech

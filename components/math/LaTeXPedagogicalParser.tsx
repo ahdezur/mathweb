@@ -199,7 +199,7 @@ function renderPedagogicalEnvironment(raw: string, key: string): React.ReactNode
   if (raw.startsWith('$$') && raw.endsWith('$$')) {
     const latex = raw.slice(2, -2).trim();
     return (
-      <div key={key} className="bg-slate-50/90 dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 rounded-2xl p-5 my-4 text-center shadow-xs flex items-center justify-center overflow-x-auto">
+      <div key={key} className="bg-slate-50/90 dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 rounded-2xl p-5 my-4 text-center shadow-xs flex items-center justify-center overflow-x-auto no-scrollbar">
         <MathFormula latex={latex} block />
       </div>
     );
