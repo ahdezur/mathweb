@@ -2495,67 +2495,107 @@
                   "falseFeedback": "¡Excelente! Recordaste la alerta teórica: si los límites iterados son iguales, \\textbf{no se puede concluir nada}. De hecho, si evalúas este límite por rectas $y = mx$, el resultado es $\\frac{m}{1+m^2}$, lo que demuestra que depende de la pendiente $m$ y, por ende, el límite no existe."
                 },
                 {
-                  "id": "ex-1787629507567",
+                  "id": "imported-ex-1787630077583-1-65z00",
                   "type": "multiple_choice",
-                  "title": "Ejercicio 4: Selección Múltiple",
-                  "question": "Selecciona todas las propiedades afines a las funciones derivables:",
+                  "title": "Ejercicio 1: Selección Múltiple (Casillas)",
+                  "question": "Se requiere evaluar el límite $\\displaystyle\\lim_{(x,y) \\to (0,0)} \\arccos\\left(\\frac{x}{\\sqrt{x^2 + y^2}}\\right)$. Selecciona todas las afirmaciones correctas:",
                   "options": [
                     {
                       "id": "A",
-                      "text": "Tienen recta tangente única no vertical.",
-                      "feedback": "Correcto. Es la definición geométrica."
+                      "text": "La expresión se reduce algebraicamente a $\\theta_0$.",
+                      "isCorrect": true,
+                      "feedback": "Sustituyendo $x=r\\cos\\theta$ y $\\sqrt{x^2+y^2}=r$."
                     },
                     {
                       "id": "B",
-                      "text": "Son necesariamente continuas en ese punto.",
-                      "feedback": "Correcto. Diferenciabilidad implica continuidad."
+                      "text": "El límite no existe por depender de $\\theta_0$.",
+                      "isCorrect": true,
+                      "feedback": "El resultado depende del ángulo de aproximación."
                     },
                     {
                       "id": "C",
-                      "text": "Tienen derivada infinita en puntos angulosos.",
-                      "feedback": "Incorrecto. En puntos angulosos las derivadas laterales difieren."
+                      "text": "El límite existe y vale $1$.",
+                      "isCorrect": false,
+                      "feedback": "Se confunde con el Teorema de Cero por Acotado."
+                    },
+                    {
+                      "id": "D",
+                      "text": "Por $\\theta=0$ el límite da $0$, pero por $\\theta=\\frac\\pi2$ da $\\frac\\pi2$.",
+                      "isCorrect": true,
+                      "feedback": "Caminos distintos entregan valores distintos."
                     }
                   ],
                   "correctOptionIds": [
                     "A",
-                    "B"
+                    "B",
+                    "D"
                   ],
-                  "explanation": "Las opciones A y B son teoremas fundamentales."
+                  "explanation": ""
                 }
               ]
             },
             "ejercicios": {
               "problems": [
                 {
-                  "problem": "Determine la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^3 - y^3}{x^2 + y^2}$. Si existe, calcule su valor.",
-                  "pauta": "1. Evaluamos en coordenadas polares:  = r\\cos\theta$,  = r\\sin\theta$.\n2. Sustituyendo: $\frac{r^3(\\cos^3\theta - \\sin^3\theta)}{r^2} = r(\\cos^3\theta - \\sin^3\theta)$.\n3. Como $|\\cos^3\theta - \\sin^3\theta| \\leq 2$, se tiene zsh \\leq |r(\\cos^3\theta - \\sin^3\theta)| \\leq 2r$.\n4. Por el Teorema del Sándwich / Acotación, como r \to 0$ cuando  \to 0^+$, el límite existe y vale 0.",
-                  "dificultad": "Intermedio",
+                  "problem": "Analice la existencia del límite $\\displaystyle\\lim_{(x,y)\to(0,0)} \frac{x^2 y}{x^4 + y^2}$ mediante el criterio de trayectorias.",
+                  "pauta": "1. Evaluando en rectas $y=mx$, se llega a $\\displaystyle\\lim_{x\\to0}\\dfrac{m x^3}{x^4 + m^2 x^2} = \\lim_{x\\to0}\\frac{mx}{x^2 + m^2} = 0$ para todo $m$.\n\n2. Evaluando en la trayectoria parabólica  $y=kx^2$, se llega a $\\displaystyle\\lim_{x\\to0}\\frac{k x^4}{x^4 + k^2 x^4} = \frac{k}{1 + k^2}$.\n\n3. Como el resultado depende de la constante, por ejemplo, para $k=1$ da $\\frac12$, el límite NO existe por el Criterio de dos Trayectorias.",
+                  "dificultad": "Básico",
                   "conceptos": [
-                    "Coordenadas Polares",
-                    "Teorema del Sándwich",
-                    "Límites Multivariables"
+                    "Criterio de Trayectorias",
+                    "Trayectorias Parabólicas"
                   ],
                   "habilidades": [
-                    "Demostración Formal",
-                    "Cálculo Algorítmico"
+                    "Elección de Método",
+                    "Demostración Rigurosa"
                   ]
                 },
                 {
-                  "problem": "Analice la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^2 y}{x^4 + y^2}$ mediante el criterio de trayectorias.",
-                  "pauta": "1. Evaluando en rectas  = mx$: $\\lim_{x \to 0} \frac{m x^3}{x^4 + m^2 x^2} = \\lim_{x \to 0} \frac{m x}{x^2 + m^2} = 0$ para todo $.\n2. Evaluando en la trayectoria parabólica  = k x^2$: $\\lim_{x \to 0} \frac{k x^4}{x^4 + k^2 x^4} = \frac{k}{1 + k^2}$.\n3. Como el resultado depende de la constante $ (por ejemplo, para =1$ da /2$), el límite NO existe por el Criterio de dos Trayectorias.",
-                  "dificultad": "Avanzado",
+                  "problem": "Considere $\\displaystyle\\lim_{(x,y)\\to(0,0)}\\frac{x^3 - y^3}{x^2 + y^2}$. Calcule el valor del límite o muestre que no existe.",
+                  "pauta": "1. Evaluamos en coordenadas polares:  $x=r\\cos\\theta$, $y=r\\sin\\theta$.\n2. Sustituyendo: $\\dfrac{r^3(\\cos^3\theta - \\sin^3\theta)}{r^2} = r(\\cos^3\theta - \\sin^3\theta)$.\n3. Como $|\\cos^3\\theta - \\sin^3\theta| \\leq 2$, se tiene $0\\leq |r(\\cos^3\\theta - \\sin^3\\theta)| \\leq 2r$.\n4. Por el Teorema del Sándwich, como $2r\\to0^+$ cuando $r\\to0^+$, el límite existe y vale 0.",
+                  "dificultad": "Intermedio",
                   "conceptos": [
-                    "Criterio de Trayectorias",
-                    "Trayectorias Parabólicas",
-                    "No Existencia de Límite"
+                    "Coordenadas Polares",
+                    "Teorema del Sándwich"
                   ],
                   "habilidades": [
-                    "Razonamiento Crítico",
-                    "Análisis Multivariable"
+                    "Elección de Método",
+                    "Demostración Rigurosa"
+                  ]
+                },
+                {
+                  "problem": "Analice los siguientes límites intentando aplicar el criterio de límites iterados. Determine si el criterio le permite concluir la inexistencia del límite o si resulta no concluyente.\n\n(a) $\\displaystyle \\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{x^2}{x^2 + y^2}$\n\n(b) $\\displaystyle \\displaystyle\\lim_{(x,y) \\to (0,0)} x\\sin\\left(\\frac{1}{x}\\right)\\sin\\left(\\frac{1}{y}\\right)$",
+                  "pauta": "\\textbf{Para (a):} Evalúa $\\displaystyle\\lim_{x\\to 0}(\\displaystyle\\lim_{y\\to 0} f(x,y))$ y luego invierte el orden. Obtendrás $1$ y $0$. Como son distintos, \\textbf{el límite no existe}.\n\n\\textbf{Para (b):} Al intentar calcular el límite interno $\\displaystyle\\lim_{y\\to 0} \\sin(1/y)$, descubrirás que este no existe por su infinita oscilación. Dado que los iterados no pueden ser calculados, \\textbf{el criterio de iterados no es concluyente}. (Nota: el límite doble general sí existe y es $0$ aplicando el Teorema del Sándwich / Cero por Acotado).",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "límites Iterados"
+                  ],
+                  "habilidades": [
+                    "Elección de Método"
                   ]
                 }
               ],
-              "formulasClave": []
+              "formulasClave": [
+                {
+                  "label": "Límites por caminos",
+                  "latex": "\\displaystyle\\lim_{t \\to t_0^+} f(\\vec{r}_1(t)) \\neq \\displaystyle\\lim_{t \\to t_0^+} f(\\vec{r}_2(t))",
+                  "description": "Si los límites por caminos son distintos entonces $\\displaystyle\\lim_{(x,y)\\to(a,b)}f(x,y)$ no existe"
+                },
+                {
+                  "label": "Límites iterados",
+                  "latex": "\\lim_{y\\to b}\\left(\\lim_{x\\to a}f(x,y)\\right)\\neq\\lim_{x\\to a}\\left(\\lim_{y\\to b}f(x,y)\\right)",
+                  "description": "Si los límites por iterados son distintos entonces $\\displaystyle\\lim_{(x,y)\\to(a,b)}f(x,y)$ no existe"
+                },
+                {
+                  "label": "Límite por coordenadas polares",
+                  "latex": "\\lim_{r \\to 0^+} \\Big( \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| \\Big) = 0",
+                  "description": "Si el límite en coordenadas polares no depende de $\\theta_0$ entonces el límite existe y vale $L$"
+                },
+                {
+                  "label": "Coordenadas polares",
+                  "latex": "\\begin{cases}x=r\\cos\\theta\\\\y=r\\sin\\theta\\end{cases}\\quad x^2+y^2=r^2",
+                  "description": ""
+                }
+              ]
             },
             "displayNumber": "4"
           }
@@ -3150,67 +3190,107 @@
               "falseFeedback": "¡Excelente! Recordaste la alerta teórica: si los límites iterados son iguales, \\textbf{no se puede concluir nada}. De hecho, si evalúas este límite por rectas $y = mx$, el resultado es $\\frac{m}{1+m^2}$, lo que demuestra que depende de la pendiente $m$ y, por ende, el límite no existe."
             },
             {
-              "id": "ex-1787629507567",
+              "id": "imported-ex-1787630077583-1-65z00",
               "type": "multiple_choice",
-              "title": "Ejercicio 4: Selección Múltiple",
-              "question": "Selecciona todas las propiedades afines a las funciones derivables:",
+              "title": "Ejercicio 1: Selección Múltiple (Casillas)",
+              "question": "Se requiere evaluar el límite $\\displaystyle\\lim_{(x,y) \\to (0,0)} \\arccos\\left(\\frac{x}{\\sqrt{x^2 + y^2}}\\right)$. Selecciona todas las afirmaciones correctas:",
               "options": [
                 {
                   "id": "A",
-                  "text": "Tienen recta tangente única no vertical.",
-                  "feedback": "Correcto. Es la definición geométrica."
+                  "text": "La expresión se reduce algebraicamente a $\\theta_0$.",
+                  "isCorrect": true,
+                  "feedback": "Sustituyendo $x=r\\cos\\theta$ y $\\sqrt{x^2+y^2}=r$."
                 },
                 {
                   "id": "B",
-                  "text": "Son necesariamente continuas en ese punto.",
-                  "feedback": "Correcto. Diferenciabilidad implica continuidad."
+                  "text": "El límite no existe por depender de $\\theta_0$.",
+                  "isCorrect": true,
+                  "feedback": "El resultado depende del ángulo de aproximación."
                 },
                 {
                   "id": "C",
-                  "text": "Tienen derivada infinita en puntos angulosos.",
-                  "feedback": "Incorrecto. En puntos angulosos las derivadas laterales difieren."
+                  "text": "El límite existe y vale $1$.",
+                  "isCorrect": false,
+                  "feedback": "Se confunde con el Teorema de Cero por Acotado."
+                },
+                {
+                  "id": "D",
+                  "text": "Por $\\theta=0$ el límite da $0$, pero por $\\theta=\\frac\\pi2$ da $\\frac\\pi2$.",
+                  "isCorrect": true,
+                  "feedback": "Caminos distintos entregan valores distintos."
                 }
               ],
               "correctOptionIds": [
                 "A",
-                "B"
+                "B",
+                "D"
               ],
-              "explanation": "Las opciones A y B son teoremas fundamentales."
+              "explanation": ""
             }
           ]
         },
         "ejercicios": {
           "problems": [
             {
-              "problem": "Determine la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^3 - y^3}{x^2 + y^2}$. Si existe, calcule su valor.",
-              "pauta": "1. Evaluamos en coordenadas polares:  = r\\cos\theta$,  = r\\sin\theta$.\n2. Sustituyendo: $\frac{r^3(\\cos^3\theta - \\sin^3\theta)}{r^2} = r(\\cos^3\theta - \\sin^3\theta)$.\n3. Como $|\\cos^3\theta - \\sin^3\theta| \\leq 2$, se tiene zsh \\leq |r(\\cos^3\theta - \\sin^3\theta)| \\leq 2r$.\n4. Por el Teorema del Sándwich / Acotación, como r \to 0$ cuando  \to 0^+$, el límite existe y vale 0.",
-              "dificultad": "Intermedio",
+              "problem": "Analice la existencia del límite $\\displaystyle\\lim_{(x,y)\to(0,0)} \frac{x^2 y}{x^4 + y^2}$ mediante el criterio de trayectorias.",
+              "pauta": "1. Evaluando en rectas $y=mx$, se llega a $\\displaystyle\\lim_{x\\to0}\\dfrac{m x^3}{x^4 + m^2 x^2} = \\lim_{x\\to0}\\frac{mx}{x^2 + m^2} = 0$ para todo $m$.\n\n2. Evaluando en la trayectoria parabólica  $y=kx^2$, se llega a $\\displaystyle\\lim_{x\\to0}\\frac{k x^4}{x^4 + k^2 x^4} = \frac{k}{1 + k^2}$.\n\n3. Como el resultado depende de la constante, por ejemplo, para $k=1$ da $\\frac12$, el límite NO existe por el Criterio de dos Trayectorias.",
+              "dificultad": "Básico",
               "conceptos": [
-                "Coordenadas Polares",
-                "Teorema del Sándwich",
-                "Límites Multivariables"
+                "Criterio de Trayectorias",
+                "Trayectorias Parabólicas"
               ],
               "habilidades": [
-                "Demostración Formal",
-                "Cálculo Algorítmico"
+                "Elección de Método",
+                "Demostración Rigurosa"
               ]
             },
             {
-              "problem": "Analice la existencia del límite $\\lim_{(x,y)\to(0,0)} \frac{x^2 y}{x^4 + y^2}$ mediante el criterio de trayectorias.",
-              "pauta": "1. Evaluando en rectas  = mx$: $\\lim_{x \to 0} \frac{m x^3}{x^4 + m^2 x^2} = \\lim_{x \to 0} \frac{m x}{x^2 + m^2} = 0$ para todo $.\n2. Evaluando en la trayectoria parabólica  = k x^2$: $\\lim_{x \to 0} \frac{k x^4}{x^4 + k^2 x^4} = \frac{k}{1 + k^2}$.\n3. Como el resultado depende de la constante $ (por ejemplo, para =1$ da /2$), el límite NO existe por el Criterio de dos Trayectorias.",
-              "dificultad": "Avanzado",
+              "problem": "Considere $\\displaystyle\\lim_{(x,y)\\to(0,0)}\\frac{x^3 - y^3}{x^2 + y^2}$. Calcule el valor del límite o muestre que no existe.",
+              "pauta": "1. Evaluamos en coordenadas polares:  $x=r\\cos\\theta$, $y=r\\sin\\theta$.\n2. Sustituyendo: $\\dfrac{r^3(\\cos^3\theta - \\sin^3\theta)}{r^2} = r(\\cos^3\theta - \\sin^3\theta)$.\n3. Como $|\\cos^3\\theta - \\sin^3\theta| \\leq 2$, se tiene $0\\leq |r(\\cos^3\\theta - \\sin^3\\theta)| \\leq 2r$.\n4. Por el Teorema del Sándwich, como $2r\\to0^+$ cuando $r\\to0^+$, el límite existe y vale 0.",
+              "dificultad": "Intermedio",
               "conceptos": [
-                "Criterio de Trayectorias",
-                "Trayectorias Parabólicas",
-                "No Existencia de Límite"
+                "Coordenadas Polares",
+                "Teorema del Sándwich"
               ],
               "habilidades": [
-                "Razonamiento Crítico",
-                "Análisis Multivariable"
+                "Elección de Método",
+                "Demostración Rigurosa"
+              ]
+            },
+            {
+              "problem": "Analice los siguientes límites intentando aplicar el criterio de límites iterados. Determine si el criterio le permite concluir la inexistencia del límite o si resulta no concluyente.\n\n(a) $\\displaystyle \\displaystyle\\lim_{(x,y) \\to (0,0)} \\frac{x^2}{x^2 + y^2}$\n\n(b) $\\displaystyle \\displaystyle\\lim_{(x,y) \\to (0,0)} x\\sin\\left(\\frac{1}{x}\\right)\\sin\\left(\\frac{1}{y}\\right)$",
+              "pauta": "\\textbf{Para (a):} Evalúa $\\displaystyle\\lim_{x\\to 0}(\\displaystyle\\lim_{y\\to 0} f(x,y))$ y luego invierte el orden. Obtendrás $1$ y $0$. Como son distintos, \\textbf{el límite no existe}.\n\n\\textbf{Para (b):} Al intentar calcular el límite interno $\\displaystyle\\lim_{y\\to 0} \\sin(1/y)$, descubrirás que este no existe por su infinita oscilación. Dado que los iterados no pueden ser calculados, \\textbf{el criterio de iterados no es concluyente}. (Nota: el límite doble general sí existe y es $0$ aplicando el Teorema del Sándwich / Cero por Acotado).",
+              "dificultad": "Medio",
+              "conceptos": [
+                "límites Iterados"
+              ],
+              "habilidades": [
+                "Elección de Método"
               ]
             }
           ],
-          "formulasClave": []
+          "formulasClave": [
+            {
+              "label": "Límites por caminos",
+              "latex": "\\displaystyle\\lim_{t \\to t_0^+} f(\\vec{r}_1(t)) \\neq \\displaystyle\\lim_{t \\to t_0^+} f(\\vec{r}_2(t))",
+              "description": "Si los límites por caminos son distintos entonces $\\displaystyle\\lim_{(x,y)\\to(a,b)}f(x,y)$ no existe"
+            },
+            {
+              "label": "Límites iterados",
+              "latex": "\\lim_{y\\to b}\\left(\\lim_{x\\to a}f(x,y)\\right)\\neq\\lim_{x\\to a}\\left(\\lim_{y\\to b}f(x,y)\\right)",
+              "description": "Si los límites por iterados son distintos entonces $\\displaystyle\\lim_{(x,y)\\to(a,b)}f(x,y)$ no existe"
+            },
+            {
+              "label": "Límite por coordenadas polares",
+              "latex": "\\lim_{r \\to 0^+} \\Big( \\sup_{\\theta \\in [0, 2\\pi)} |f(r\\cos\\theta, r\\sin\\theta) - L| \\Big) = 0",
+              "description": "Si el límite en coordenadas polares no depende de $\\theta_0$ entonces el límite existe y vale $L$"
+            },
+            {
+              "label": "Coordenadas polares",
+              "latex": "\\begin{cases}x=r\\cos\\theta\\\\y=r\\sin\\theta\\end{cases}\\quad x^2+y^2=r^2",
+              "description": ""
+            }
+          ]
         },
         "displayNumber": "4"
       },

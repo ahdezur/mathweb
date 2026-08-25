@@ -348,6 +348,24 @@ export default function ChapterEditorPage() {
     });
   };
 
+  const handleMoveProblem = (index: number, direction: 'up' | 'down') => {
+    setChapter((prev) => {
+      if (!prev?.ejercicios?.problems) return prev;
+      const newProblems = [...prev.ejercicios.problems];
+      const targetIdx = direction === 'up' ? index - 1 : index + 1;
+      if (targetIdx < 0 || targetIdx >= newProblems.length) return prev;
+
+      const temp = newProblems[index];
+      newProblems[index] = newProblems[targetIdx];
+      newProblems[targetIdx] = temp;
+
+      return {
+        ...prev,
+        ejercicios: { ...prev.ejercicios, problems: newProblems }
+      };
+    });
+  };
+
   // Helper Handlers for Key Formulas
   const handleAddFormula = () => {
     const newFormula: FormulaItem = {
@@ -740,12 +758,34 @@ export default function ChapterEditorPage() {
                         </span>
                         <span className="font-extrabold text-sm text-slate-800 font-title">Ejercicio #{idx + 1}</span>
                       </div>
-                      <button
-                        onClick={() => handleDeleteProblem(idx)}
-                        className="text-xs px-3 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold transition-colors cursor-pointer font-title"
-                      >
-                        <i className="fa-solid fa-trash mr-1"></i> Eliminar
-                      </button>
+
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => handleMoveProblem(idx, 'up')}
+                          disabled={idx === 0}
+                          className="p-1.5 text-xs text-slate-500 hover:text-slate-900 disabled:opacity-30 cursor-pointer font-bold"
+                          title="Mover arriba"
+                        >
+                          <i className="fa-solid fa-arrow-up"></i>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleMoveProblem(idx, 'down')}
+                          disabled={idx === (chapter.ejercicios?.problems?.length || 0) - 1}
+                          className="p-1.5 text-xs text-slate-500 hover:text-slate-900 disabled:opacity-30 cursor-pointer font-bold"
+                          title="Mover abajo"
+                        >
+                          <i className="fa-solid fa-arrow-down"></i>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteProblem(idx)}
+                          className="text-xs px-3 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold transition-colors cursor-pointer font-title ml-1"
+                        >
+                          <i className="fa-solid fa-trash mr-1"></i> Eliminar
+                        </button>
+                      </div>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
