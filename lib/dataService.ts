@@ -141,6 +141,47 @@ export const DataService = {
         }));
       }
     }
+
+    try {
+      if (typeof window !== 'undefined') {
+        const res = await fetch(`/api/admin/courses?t=${Date.now()}`);
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && Array.isArray(json.courses) && json.courses.length > 0) {
+            return json.courses.map((c: any) => {
+              const allChapTitles = (c.units || [])
+                .flatMap((u: any) => u.chapters || [])
+                .map((ch: any) => ch.title);
+              const chaptersList = allChapTitles.length > 0
+                ? allChapTitles
+                : (c.chapters || []).map((ch: any) => (typeof ch === 'string' ? ch : ch.title));
+
+              return {
+                id: c.id,
+                slug: c.slug && c.slug.includes('algebra-lineal')
+                  ? 'algebra-lineal'
+                  : c.slug && c.slug.includes('calculo-multivariable')
+                  ? 'calculo-multivariable'
+                  : c.slug,
+                title: c.title,
+                category: c.category || 'Cálculo',
+                level: c.level || 'Pregrado',
+                description: c.description || 'Curso completo con teoría y práctica.',
+                mathFormulaLatex: c.mathFormulaLatex || 'y = f(x)',
+                modulesCount: (c.units || []).length || 4,
+                durationHours: c.durationHours || 30,
+                featured: true,
+                imageBg: c.imageBg || 'linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(99, 102, 241, 0.3) 100%)',
+                chapters: chaptersList.length > 0 ? chaptersList : ['Módulo 1: Introducción']
+              };
+            });
+          }
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching courses from API in DataService:', err);
+    }
+
     return getCoursesCache();
   },
 
@@ -168,8 +209,27 @@ export const DataService = {
     let savedItem: Course;
 
     if (courseData.id) {
-      cache = cache.map(c => c.id === courseData.id ? { ...c, ...courseData } as Course : c);
-      savedItem = cache.find(c => c.id === courseData.id)!;
+      const existingIdx = cache.findIndex(c => c.id === courseData.id || c.slug === courseData.slug);
+      if (existingIdx >= 0) {
+        cache[existingIdx] = { ...cache[existingIdx], ...courseData } as Course;
+        savedItem = cache[existingIdx];
+      } else {
+        savedItem = {
+          id: courseData.id,
+          slug: courseData.slug || courseData.title?.toLowerCase().replace(/\s+/g, '-') || 'curso',
+          title: courseData.title || 'Nuevo Curso',
+          category: (courseData.category as any) || 'Cálculo',
+          level: (courseData.level as any) || 'Pregrado',
+          description: courseData.description || 'Descripción del curso...',
+          mathFormulaLatex: courseData.mathFormulaLatex || '\\int f(x)dx',
+          modulesCount: courseData.modulesCount || 4,
+          durationHours: courseData.durationHours || 20,
+          featured: courseData.featured ?? true,
+          imageBg: courseData.imageBg || 'linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(99, 102, 241, 0.3) 100%)',
+          chapters: courseData.chapters || ['Módulo 1', 'Módulo 2']
+        };
+        cache.push(savedItem);
+      }
     } else {
       savedItem = {
         id: `c_${Date.now()}`,

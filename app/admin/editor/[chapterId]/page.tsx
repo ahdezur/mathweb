@@ -10,6 +10,7 @@ import { PedagogicalToolbar } from '@/components/admin/PedagogicalToolbar';
 import { LaTeXPedagogicalParser } from '@/components/math/LaTeXPedagogicalParser';
 import { InteractivePractice, PracticeExercise } from '@/components/classroom/InteractivePractice';
 import { ExerciseImportModal } from '@/components/admin/ExerciseImportModal';
+import { GuideExerciseImportModal } from '@/components/admin/GuideExerciseImportModal';
 
 function getOptionLabel(optId: string, index: number): string {
   if (!optId) return String.fromCharCode(65 + index);
@@ -130,6 +131,7 @@ export default function ChapterEditorPage() {
   });
 
   const [importModalOpen, setImportModalOpen] = useState(false);
+  const [guideImportModalOpen, setGuideImportModalOpen] = useState(false);
   const [allChaptersList, setAllChaptersList] = useState<ChapterData[]>([]);
 
   const syncAvailableTags = (chData: ChapterData) => {
@@ -404,6 +406,24 @@ export default function ChapterEditorPage() {
     });
   };
 
+  const handleMoveFormula = (index: number, direction: 'up' | 'down') => {
+    setChapter((prev) => {
+      if (!prev?.ejercicios?.formulasClave) return prev;
+      const newFormulas = [...prev.ejercicios.formulasClave];
+      const targetIdx = direction === 'up' ? index - 1 : index + 1;
+      if (targetIdx < 0 || targetIdx >= newFormulas.length) return prev;
+
+      const temp = newFormulas[index];
+      newFormulas[index] = newFormulas[targetIdx];
+      newFormulas[targetIdx] = temp;
+
+      return {
+        ...prev,
+        ejercicios: { ...prev.ejercicios, formulasClave: newFormulas }
+      };
+    });
+  };
+
   // Helper Handlers for Interactive Practice Exercises (Pestaña 3)
   const handleAddPracticeExercise = (type: 'true_false' | 'single_choice' | 'multiple_choice' | 'matching') => {
     setChapter((prev) => {
@@ -491,6 +511,20 @@ export default function ChapterEditorPage() {
         practica: {
           ...prev.practica,
           exercises: [...currentList, ...newExercises]
+        }
+      };
+    });
+  };
+
+  const handleBatchImportGuideExercises = (newProblems: ProblemItem[]) => {
+    setChapter((prev) => {
+      if (!prev) return null as any;
+      const currentList = prev.ejercicios?.problems || [];
+      return {
+        ...prev,
+        ejercicios: {
+          ...prev.ejercicios,
+          problems: [...currentList, ...newProblems]
         }
       };
     });
@@ -666,7 +700,7 @@ export default function ChapterEditorPage() {
             }`}
             onClick={() => setEditorTab('motivacion')}
           >
-            <i className="fa-solid fa-compass text-amber-600"></i> Pestaña 1: Motivación
+            <i className="fa-solid fa-lightbulb text-cyan-600"></i> Pestaña 1: Motivación
           </button>
 
           <button
@@ -677,7 +711,7 @@ export default function ChapterEditorPage() {
             }`}
             onClick={() => setEditorTab('teoria')}
           >
-            <i className="fa-solid fa-book text-indigo-600"></i> Pestaña 2: Teoría
+            <i className="fa-solid fa-book-open text-indigo-600"></i> Pestaña 2: Teoría
           </button>
 
           <button
@@ -688,7 +722,7 @@ export default function ChapterEditorPage() {
             }`}
             onClick={() => setEditorTab('practica')}
           >
-            <i className="fa-solid fa-gamepad text-emerald-600"></i> Pestaña 3: Práctica Interactiva ({chapter.practica?.exercises?.length || 0})
+            <i className="fa-solid fa-person-chalkboard text-emerald-600"></i> Pestaña 3: Práctica Interactiva ({chapter.practica?.exercises?.length || 0})
           </button>
 
           <button
@@ -699,7 +733,7 @@ export default function ChapterEditorPage() {
             }`}
             onClick={() => setEditorTab('ejercicios')}
           >
-            <i className="fa-solid fa-clipboard-list text-cyan-600"></i> Pestaña 4: Ejercicios ({chapter.ejercicios?.problems?.length || 0})
+            <i className="fa-solid fa-calculator text-amber-600"></i> Pestaña 4: Ejercicios ({chapter.ejercicios?.problems?.length || 0})
           </button>
 
           <button
@@ -733,12 +767,21 @@ export default function ChapterEditorPage() {
                 <h2 className="text-lg font-bold text-slate-900 font-title">Gestión de Ejercicios y Fichas Técnicas</h2>
                 <p className="text-xs text-slate-500 mt-0.5">Edita enunciados en KaTeX, soluciones y asigna dificultad, conceptos clave y habilidades cognitivas.</p>
               </div>
-              <button
-                onClick={handleAddProblem}
-                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-2 cursor-pointer font-title"
-              >
-                <i className="fa-solid fa-plus"></i> + Agregar Ejercicio
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleAddProblem}
+                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-2 cursor-pointer font-title"
+                >
+                  <i className="fa-solid fa-plus"></i> + Agregar Ejercicio
+                </button>
+                <button
+                  onClick={() => setGuideImportModalOpen(true)}
+                  className="px-3.5 py-2 bg-gradient-to-r from-amber-600 via-purple-600 to-indigo-600 hover:from-amber-500 hover:to-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-2 cursor-pointer font-title shadow-xs"
+                  title="Importar varios ejercicios resueltos en bloque usando sintaxis LaTeX"
+                >
+                  <i className="fa-solid fa-file-import"></i> 📥 Importar en Bloque (LaTeX)
+                </button>
+              </div>
             </div>
 
             <div className="space-y-6">
@@ -958,14 +1001,36 @@ export default function ChapterEditorPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {chapter.ejercicios?.formulasClave?.map((f, fIdx) => (
                 <div key={fIdx} className="bg-white border border-slate-200 rounded-xl p-4 space-y-3 shadow-xs">
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center border-b border-slate-100 pb-2">
                     <span className="text-xs font-bold text-purple-700 font-title">Fórmula #{fIdx + 1}</span>
-                    <button
-                      onClick={() => handleDeleteFormula(fIdx)}
-                      className="text-xs text-rose-600 hover:text-rose-800 font-bold"
-                    >
-                      Eliminar
-                    </button>
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => handleMoveFormula(fIdx, 'up')}
+                        disabled={fIdx === 0}
+                        className="p-1 text-xs text-slate-500 hover:text-slate-900 disabled:opacity-30 cursor-pointer font-bold"
+                        title="Mover arriba"
+                      >
+                        <i className="fa-solid fa-arrow-up"></i>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleMoveFormula(fIdx, 'down')}
+                        disabled={fIdx === (chapter.ejercicios?.formulasClave?.length || 0) - 1}
+                        className="p-1 text-xs text-slate-500 hover:text-slate-900 disabled:opacity-30 cursor-pointer font-bold"
+                        title="Mover abajo"
+                      >
+                        <i className="fa-solid fa-arrow-down"></i>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteFormula(fIdx)}
+                        className="text-xs text-rose-600 hover:text-rose-800 font-bold ml-1 cursor-pointer"
+                        title="Eliminar fórmula"
+                      >
+                        Eliminar
+                      </button>
+                    </div>
                   </div>
 
                   <div>
@@ -1929,6 +1994,13 @@ export default function ChapterEditorPage() {
         isOpen={importModalOpen}
         onClose={() => setImportModalOpen(false)}
         onImportExercises={handleBatchImportExercises}
+      />
+
+      {/* Modal de Importación Masiva de Ejercicios de la Guía (Pestaña 4) */}
+      <GuideExerciseImportModal
+        isOpen={guideImportModalOpen}
+        onClose={() => setGuideImportModalOpen(false)}
+        onImportProblems={handleBatchImportGuideExercises}
       />
     </div>
   );

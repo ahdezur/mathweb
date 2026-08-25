@@ -307,16 +307,17 @@ export default function AdminDashboardPage() {
     const savedCatCourse = await DataService.saveCourse(editingCourse);
 
     const baseSlug = slugify(editingCourse.title) || `curso-${Date.now()}`;
-    let slug = editingCourse.slug || savedCatCourse.slug || baseSlug;
+    let slug = editingCourse.slug || savedCatCourse?.slug || baseSlug;
+    const savedId = savedCatCourse?.id || editingCourse.id;
 
     // Check if new course needs a unique slug to prevent overwriting existing course
-    const isNewCourse = !editingCourse.id && !classroomCourses.some((c) => c.slug === slug || c.id === savedCatCourse.id);
-    if (isNewCourse && classroomCourses.some((c) => c.slug === slug)) {
+    const isNewCourse = !editingCourse.id && !classroomCourses.some((c) => c && (c.slug === slug || (savedId && c.id === savedId)));
+    if (isNewCourse && classroomCourses.some((c) => c && c.slug === slug)) {
       slug = `${baseSlug}-${Date.now()}`;
     }
 
     let updatedClassroomCourses = [...classroomCourses];
-    const existingIdx = updatedClassroomCourses.findIndex((c) => c.id === savedCatCourse.id || c.slug === slug);
+    const existingIdx = updatedClassroomCourses.findIndex((c) => c && ((savedId && c.id === savedId) || c.slug === slug));
 
     if (existingIdx >= 0) {
       updatedClassroomCourses[existingIdx] = {
@@ -329,7 +330,7 @@ export default function AdminDashboardPage() {
       };
     } else {
       const newClassroomCourse: CourseContent = {
-        id: savedCatCourse.id || `course-${Date.now()}`,
+        id: savedCatCourse?.id || editingCourse.id || `course-${Date.now()}`,
         slug: slug,
         title: editingCourse.title,
         description: editingCourse.description || 'Programa de estudio pedagógico.',

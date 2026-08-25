@@ -206,6 +206,83 @@ export const MOCK_COURSES: Course[] = [
       'Sucesiones, Convergencia y Espacios Completos',
       'Compacidad (Heine-Borel) y Conexidad'
     ]
+  },
+  {
+    id: 'c-integral',
+    slug: 'calculo-integral',
+    title: 'Cálculo Integral',
+    category: 'Cálculo',
+    level: 'Pregrado',
+    description: 'Técnicas de integración, antiderivadas, el Teorema Fundamental del Cálculo, sumas de Riemann e integrales impropias.',
+    mathFormulaLatex: '\\int_{a}^{b} f(x)\\,dx = F(b) - F(a)',
+    modulesCount: 5,
+    durationHours: 30,
+    featured: true,
+    imageBg: 'linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(99, 102, 241, 0.3) 100%)',
+    chapters: [
+      'La Antiderivada e Integración Indefinida',
+      'El Teorema Fundamental del Cálculo',
+      'Técnicas Avanzadas de Integración',
+      'Aplicaciones Geométricas y Físicas',
+      'Integrales Impropias y Convergencia'
+    ]
+  },
+  {
+    id: 'c-intro-calculo',
+    slug: 'introduccion-calculo',
+    title: 'Introducción al Cálculo',
+    category: 'Cálculo',
+    level: 'Pregrado',
+    description: 'Curso preparatorio introductorio de funciones, límites, continuidad y conceptos iniciales de cálculo.',
+    mathFormulaLatex: '\\lim_{x \\to x_0} f(x) = L',
+    modulesCount: 4,
+    durationHours: 24,
+    featured: true,
+    imageBg: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.3) 100%)',
+    chapters: [
+      'Funciones Reales y sus Gráficas',
+      'Límites Intuitivos y Álgebra de Límites',
+      'Continuidad en un Punto e Intervalo',
+      'Noción Inicial de la Derivada'
+    ]
+  },
+  {
+    id: 'c-intro-algebra',
+    slug: 'introduccion-algebra',
+    title: 'Introducción al Álgebra',
+    category: 'Álgebra Lineal',
+    level: 'Pregrado',
+    description: 'Estructuras algebraicas básicas, inducción matemática, sumatorias, polinómicas y números complejos.',
+    mathFormulaLatex: '\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}',
+    modulesCount: 4,
+    durationHours: 24,
+    featured: true,
+    imageBg: 'linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.3) 100%)',
+    chapters: [
+      'Lógica Matemática y Conjuntos',
+      'Inducción y Sumatorias',
+      'Polinomios y Números Complejos',
+      'Sistemas de Ecuaciones Lineales Básicos'
+    ]
+  },
+  {
+    id: 'c-calculo-avanzado',
+    slug: 'calculo-avanzado',
+    title: 'Cálculo Avanzado',
+    category: 'Multivariable',
+    level: 'Avanzado',
+    description: 'Análisis matemático avanzado, series de Fourier, variables complejas y operadores vectoriales.',
+    mathFormulaLatex: 'f(x) = \\frac{a_0}{2} + \\sum_{n=1}^{\\infty} \\left(a_n \\cos\\frac{n\\pi x}{L} + b_n \\sin\\frac{n\\pi x}{L}\\right)',
+    modulesCount: 5,
+    durationHours: 34,
+    featured: true,
+    imageBg: 'linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(99, 102, 241, 0.3) 100%)',
+    chapters: [
+      'Series de Funciones y Convergencia',
+      'Series de Fourier y Armónicos',
+      'Análisis Complejo Introductorio',
+      'Operadores Diferenciales Vectoriales Avanzados'
+    ]
   }
 ];
 

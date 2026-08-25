@@ -216,7 +216,7 @@ export function InteractivePractice({ exercises, fontScale = 1.0 }: InteractiveP
           {/* Izquierda: Icono + Título + Subtítulo */}
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-xl font-bold font-title shrink-0">
-              <i className="fa-solid fa-pen-ruler"></i>
+              <i className="fa-solid fa-person-chalkboard"></i>
             </div>
             <div>
               <h2 className="text-2xl font-bold font-title text-slate-900 dark:text-slate-100">Práctica Guiada e Interactiva</h2>

@@ -321,7 +321,7 @@ export default function CourseClassroomPage() {
                   }`}
                 >
                   <div className="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center text-xl font-bold font-title shrink-0">
-                    <i className="fa-solid fa-book-bookmark"></i>
+                    <i className="fa-solid fa-book-open"></i>
                   </div>
                   <div>
                     <h2 className="text-2xl font-bold font-title">Definiciones, Teoremas y Demostraciones</h2>

@@ -1123,7 +1123,7 @@
             "summary": "Resumen introductorio del nuevo capítulo.",
             "mathKey": "f(x) = ...",
             "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
-            "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+            "teoria": "\\begin{card}\n\\begin{definicion}{Definición: Matriz Escalonada por Filas}\nUna matriz se encuentra en \\textbf{forma escalonada por filas} (o simplemente matriz escalonada) si cumple con las siguientes tres condiciones:\n\n(1) \\textbf{Filas nulas al final:} Si existen filas compuestas enteramente por ceros, estas deben agruparse en la parte inferior de la matriz.\n(2) \\textbf{Pivotes hacia la derecha:} El primer elemento distinto de cero de cada fila no nula (llamado \\textbf{pivote} o entrada principal) debe estar estrictamente a la derecha del pivote de la fila inmediatamente superior.\n(3) \\textbf{Ceros debajo del pivote:} Como consecuencia directa de la regla anterior, todos los elementos ubicados en la misma columna y por debajo de un pivote deben ser iguales a cero.\n\\end{definicion}\n\\textbf{Ejemplo:}\n$$\n\\begin{pmatrix}\n2 & -1 & 3 & 4 \\\\\n0 & 5 & -2 & 1 \\\\\n0 & 0 & 0 & 3 \\\\\n0 & 0 & 0 & 0\n\\end{pmatrix}\n$$\n\n\\begin{definicion}{Matriz Escalonada Reducida por Filas}\n\n\nUna matriz se encuentra en \\textbf{forma escalonada reducida por filas} si cumple con todas las condiciones de una matriz escalonada y, además, satisface los siguientes dos requisitos estrictos:\n\n(1) \\textbf{Pivotes unitarios:} El pivote (primer elemento distinto de cero) de cada fila no nula debe ser exactamente $1$.\n(2) \\textbf{Ceros arriba y abajo del pivote:} Cada pivote $1$ debe ser el \\textbf{único} elemento distinto de cero en su respectiva columna. Es decir, los elementos ubicados tanto por debajo como por \\textbf{encima} de cada pivote deben ser iguales a cero.\n\\end{definicion}\n\n\\textbf{Ejemplo:}\n$$\n\\begin{pmatrix}\n1 & 0 & 4 & 0 \\\\\n0 & 1 & -2 & 0 \\\\\n0 & 0 & 0 & 1 \\\\\n0 & 0 & 0 & 0\n\\end{pmatrix}\n$$\n\\end{card}\n\\begin{card}\n\\begin{metodo}{Algoritmo de Eliminación de Gauss}\n\n\\problema{Aplique el algoritmo de Eliminación de Gauss a la matriz:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & -1 & 6 \\\\ \n2 & -1 & 1 & -1 \\\\ \n3 & 1 & -2 & 7 \n\\end{array}\\right)\n$$}\n\n\\paso{1}{Inicialización e identificación del pivote principal}\nSe inicializa el índice de la fila de trabajo en $i=1$. Luego, se busca la primera columna $j$ (de izquierda a derecha) en la submatriz de trabajo que no esté compuesta enteramente por ceros. En la fila de trabajo $i$, el elemento en la posición $(i, j)$ será el candidato a pivote. Si es $0$, se intercambia con una fila inferior. El elemento no nulo resultante es el pivote principal $p$.\n\\ejemplo{Partimos inicializando $i=1$. La columna pivote es la primera ($j=1$) y la fila de trabajo es $F_1$. El pivote principal ubicado en la posición $(1, 1)$ es $p = 1$.}\n\n\\paso{2}{Anular los elementos inferiores de la columna pivote}\nPara cada fila $k$ por debajo de la fila pivote ($k > i$), identifica el elemento a anular $a_{kj}$. Calcula el multiplicador $m_{ki} = \\frac{a_{kj}}{p}$ y aplica la operación elemental $F_k \\leftarrow F_k - m_{ki}  F_i$ para convertir el elemento en $0$.\n\\ejemplo{Anulamos los elementos debajo del pivote en la columna 1:\n\n(1) Para la Fila 2 ($k=2$): $a_{21} = 2$. Multiplicador $m_{21} = \\frac{2}{1} = 2$. Operación: $F_2 \\leftarrow F_2 - 2  F_1$.\n\n(2) Para la Fila 3 ($k=3$): $a_{31} = 3$. Multiplicador $m_{31} = \\frac{3}{1} = 3$. Operación: $F_3 \\leftarrow F_3 - 3 F_1$.\n\nCalculando estas operaciones, la matriz resultante es:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & -1 & 6 \\\\ \n0 & -5 & 3 & -13 \\\\ \n0 & -5 & 1 & -11 \n\\end{array}\\right)\n$$}\n\n\\paso{3}{Iterar sobre la submatriz activa}\nIncrementa la fila de trabajo ($i \\leftarrow i + 1$). Ignora las filas ya procesadas y repite los pasos 1 y 2 sobre la submatriz restante, hasta que la matriz quede en su forma escalonada (triangular superior).\n\\ejemplo{Avanzamos a la segunda iteración ($i=2$). Ignoramos $F_1$ y trabajamos con la submatriz inferior derecha.\n\n(1) \\textbf{Nuevo pivote:} La columna pivote es $j=2$, la fila de trabajo es $F_2$. El pivote principal es $p = -5$.\n\n(2) \\textbf{Anular:} Para la Fila 3 ($k=3$), el elemento a anular es $a_{32} = -5$. El multiplicador es $m_{32} = \\frac{-5}{-5} = 1$. Operación: $F_3 \\leftarrow F_3 - 1 F_2$.\n\n\nAplicando esta operación, obtenemos la matriz escalonada final:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & -1 & 6 \\\\ \n0 & -5 & 3 & -13 \\\\ \n0 & 0 & -2 & 2 \n\\end{array}\\right)\n$$}\n\n\\end{metodo}\n\\begin{metodo}{Algoritmo de Gauss-Jordan}\n\n\\problema{A partir de la matriz en forma escalonada obtenida en la fase anterior, aplique el algoritmo de Gauss-Jordan para llevarla a su forma escalonada reducida:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & -1 & 6 \\\\ \n0 & -5 & 3 & -13 \\\\ \n0 & 0 & -2 & 2 \n\\end{array}\\right)\n$$}\n\n\\paso{1}{Normalizar los pivotes (Pivotes unitarios)}\nDada la matriz en forma escalonada, para cada fila no nula se identifica su pivote principal $p$. Se multiplica toda la fila por el recíproco de su pivote ($\\frac{1}{p}$) para que el nuevo pivote sea exactamente $1$.\n\\ejemplo{Multiplicamos cada fila por el recíproco de su respectivo pivote:\n\n(1) $F_1 \\leftarrow \\frac{1}{1} F_1$ (queda igual).\n\n(2) $F_2 \\leftarrow \\frac{1}{-5} F_2 \\Rightarrow \\left[0, 1, -\\frac{3}{5}, \\frac{13}{5}\\right]$.\n\n(3) $F_3 \\leftarrow \\frac{1}{-2} \\cdot F_3 \\Rightarrow [0, 0, 1, -1]$.\n\nLa matriz con pivotes unitarios es:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & -1 & 6 \\\\ \n0 & 1 & -\\frac{3}{5} & \\frac{13}{5} \\\\ \n0 & 0 & 1 & -1 \n\\end{array}\\right)\n$$}\n\n\\paso{2}{Inicialización en reversa y anulación de elementos superiores}\nSe inicializa el índice de la fila de trabajo $i$ apuntando a la última fila no nula de la matriz. Se ubica su pivote unitario en la columna $j$. Para cada fila $k$ por encima del pivote ($k < i$), se identifica el elemento a anular $a_{kj}$. Dado que el pivote es $1$, el multiplicador ascendente es $m_{ki} = a_{kj}$. Se aplica la operación $F_k \\leftarrow F_k - m_{ki} F_i$ para hacer ceros por encima del pivote unitario.\n\\ejemplo{Inicializamos $i=3$. El pivote unitario está en la columna $j=3$. Anulamos los elementos por encima de la fila 3:\n\n(1) Para la Fila 2 ($k=2$): $a_{23} = -\\frac{3}{5}$. Multiplicador $m_{23} = -\\frac{3}{5}$. Operación: $F_2 \\leftarrow F_2 - \\left(-\\frac{3}{5}\\right)  F_3$.\n\n(2) Para la Fila 1 ($k=1$): $a_{13} = -1$. Multiplicador $m_{13} = -1$. Operación: $F_1 \\leftarrow F_1 - (-1)  F_3$.\n\n\nLa matriz resultante es:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & 0 & 5 \\\\ \n0 & 1 & 0 & 2 \\\\ \n0 & 0 & 1 & -1 \n\\end{array}\\right)\n$$}\n\n\\paso{3}{Iterar en reversa hasta la primera fila}\nDecrece el índice de la fila de trabajo ($i \\leftarrow i - 1$) y se repite el paso anterior para cada pivote unitario restante, avanzando de abajo hacia arriba y de derecha a izquierda, hasta lograr que en cada columna pivote solo haya ceros por encima y por debajo del $1$.\n\\ejemplo{Disminuimos el índice a $i=2$. El pivote unitario está en la columna $j=2$. Anulamos el elemento por encima de la fila 2:\n\nPara la Fila 1 ($k=1$): el elemento a anular es $a_{12} = 2$. Multiplicador $m_{12} = 2$. Operación: $F_1 \\leftarrow F_1 - 2  F_2$.\n\nAplicando esta operación, obtenemos la matriz escalonada reducida final:\n$$\n\\left(\\begin{array}{cccc} \n1 & 0 & 0 & 1 \\\\ \n0 & 1 & 0 & 2 \\\\ \n0 & 0 & 1 & -1 \n\\end{array}\\right)\n$$}\n\n\\end{metodo}\n\\end{card}",
             "practica": {
               "text": "<p>Ejemplo resuelto...</p>"
             },
@@ -1463,6 +1463,98 @@
             }
           }
         ]
+      },
+      {
+        "id": "unit-1787639180411-3",
+        "number": 3,
+        "title": "Unidad 3: Determinante ",
+        "chapters": [
+          {
+            "id": "cap-1787639276503",
+            "number": 1,
+            "displayNumber": "1",
+            "title": "Definición y conceptos previos",
+            "summary": "Resumen introductorio del nuevo capítulo.",
+            "mathKey": "f(x) = ...",
+            "motivacion": "<p><strong>¿Qué problema viene a resolver el Determinante?</strong></p>\n<p>Antes de definir qué es un determinante, pensemos en los dos grandes problemas que estamos intentando resolver en el Álgebra Lineal:</p>\n\n<p><strong>1. El Problema Algebraico: La \"Prueba de Vida\" de un Sistema</strong></p>\n<p>Imaginemos el sistema de ecuaciones lineales más básico del mundo, uno de $1 \\times 1$:</p>\n$$ax = b$$\nPara despejar $x$, necesitamos dividir por $a$ ($x = b/a$). Esto tiene solución única siempre y cuando $a\\neq0$. Ese simple número $a$ es el \"determinante\" de nuestro sistema $1 \\times 1$. Determina si el sistema tiene salvación o si está roto.\n<p>\nAhora, subamos a un sistema $2 \\times 2$:</p>\n$$\n    \\begin{cases} \n    ax + by = e \\\\ \n    cx + dy = f \n    \\end{cases}\n$$\nSi intentamos resolver esto por eliminación (multiplicando y restando ecuaciones), llegaremos a que para despejar $x$ o $y$, tenemos que dividir por una expresión muy específica: $ad - bc$. Si esa cantidad es cero, el sistema colapsa (no hay solución única). Necesitamos una herramienta que, dada cualquier matriz de $n \\times n$, nos entregue un solo número que actúe como un \"detector de singularidad\". Si ese número es $0$, la matriz no tiene inversa y el sistema colapsa. \\textbf{Ese número es el determinante.}\n\n<p><strong>2. El Problema Geométrico: El Factor de Deformación</strong></p>\nLas matrices no son solo tablas de números; son transformaciones. Cuando multiplicas un vector por una matriz $A$, estás estirando, rotando o aplastando el espacio.\n\n<p>(1) Si tomas un cuadrado de área $1$ (formado por los vectores base $\\hat{\\imath}$ y $\\hat{\\jmath}$) y le aplicas una matriz $2 \\times 2$, ese cuadrado se transforma en un paralelogramo.</p>\n\n<p>(2) ¿Cuál es la nueva área de ese paralelogramo? Exactamente el valor absoluto del determinante de la matriz.</p>\n\nEl determinante es el \\textbf{factor de escala}. \n\n<p>$\\bullet$ Si $\\det(A) = 2$, la transformación duplica las áreas (o volúmenes en 3D).</p>\n<p>$\\bullet$ Si $\\det(A) = 1$, la transformación deforma el espacio, pero conserva su tamaño original.</p>\n<p>$\\bullet$ ¿Y si $\\det(A) = 0$? significa que nuestro cuadrado de área 1 fue aplastado hasta convertirse en una simple línea (o un punto). El área se volvió cero.</p>\n\nToda la información colapsó a una dimensión menor. Por eso no podemos \"revertir\" (invertir) la transformación: no podemos reconstruir un cuadrado a partir de una línea aplastada.\n\n\\begin{pregunta}\nDado que necesitamos una función que mida este \"volumen\" o \"factor de escala\", vamos a construirla. ¿Qué propiedades debería tener una función que mida volúmenes deformados por matrices? Vamos a exigirle solo tres reglas lógicas.\n\\end{pregunta}\n",
+            "teoria": "\\begin{card}\nSea $M_n(\\mathbb{R})$ el conjunto de todas las matrices cuadradas de tamaño $n \\times n$ con coeficientes reales. Para entender esta definición, nos resultará muy útil pensar en una matriz $A$ no como una simple cuadrícula de números, sino como una colección ordenada de sus vectores fila: $$A = \\begin{bmatrix} F_1 \\\\ F_2 \\\\ \\vdots \\\\ F_n \\end{bmatrix}$$\n\nDefinimos el \\textbf{determinante} como la \\textbf{única} función $\\det: M_n(\\mathbb{R}) \\to \\mathbb{R}$ que cumple los siguientes tres axiomas:\n\n\\begin{definicion}{Determinante de una matriz}\nDefinimos el \\textbf{determinante} como una función $$\\det: M_n(\\mathbb{R}) \\to \\mathbb{R}$$ que se caracteriza por ser la \\textbf{única} función que cumple simultáneamente los siguientes tres axiomas:\n\n<p><strong>1. Normalización (La regla de la escala base)</strong><p>\nEl determinante de la matriz identidad $I$ es exactamente $1$:\n$$\\det(I) = 1$$\n<p><strong>2. Alternancia (La regla del intercambio)</strong></p>\nSi intercambiamos de lugar dos filas distintas de la matriz, el valor del determinante cambia de signo.$$\\det \\begin{bmatrix} \\vdots \\\\ F_j \\\\ \\vdots \\\\ F_i \\\\ \\vdots \\end{bmatrix} = - \\det \\begin{bmatrix} \\vdots \\\\ F_i \\\\ \\vdots \\\\ F_j \\\\ \\vdots \\end{bmatrix}$$\n<p><strong>3. Multilinealidad (Linealidad por filas)</strong></p>\nEl determinante es una función lineal respecto a cada una de sus filas por separado (dejando todas las demás fijas). Esto se traduce en dos propiedades operativas para cualquier fila $i$:\n(a) \\textbf{Homogeneidad (extracción de escalares):} Si multiplicamos una fila por un escalar $\\alpha \\in \\mathbb{R}$, ese escalar puede salir multiplicando a todo el determinante: $$\\det\\begin{bmatrix} \\vdots \\\\ \\alpha F_j \\\\ \\vdots \\end{bmatrix}= \\alpha \\det\\begin{bmatrix} \\vdots \\\\ F_j \\\\ \\vdots \\end{bmatrix}$$(b) \\textbf{Aditividad (separación de sumas):} Si una fila se puede expresar como la suma de dos vectores distintos ($U$ y $V$), el determinante se separa en la suma de dos determinantes: $$\\det \\begin{bmatrix} \\vdots \\\\ U + V \\\\ \\vdots \\end{bmatrix} = \\det \\begin{bmatrix} \\vdots \\\\ U \\\\ \\vdots \\end{bmatrix} + \\det \\begin{bmatrix} \\vdots \\\\ V \\\\ \\vdots \\end{bmatrix}$$\n\\end{definicion}\n\\end{card}\n\n\\begin{card}\n\n\\begin{lema}{Determinante sobre matrices elementales}\n\\textbf{Intercambiar dos filas.} Sea $E_{ij}$ la matriz que permutación $F_i\\leftrightarrow F_j$ Entonces $$\\det E_{ij}=-1$$\\textbf{Multiplicar una fila por un escalar.} $\\alpha \\neq 0$, Sea $E_i(\\alpha)$ la matriz de ponderación $\\alpha F_i\\leftarrow F_i$ Entonces $$\\det E_{i}(\\alpha)=\\alpha$$\\textbf{Sumar a una fila un múltiplo de otra.} Sea $E_{ij}(\\alpha)$ la matriz de eliminación $F_i \\leftarrow F_i + \\alpha F_j$ Entonces $$\\det E_{ij}(\\alpha)=1$$\n\\demostracion{\n\\textbf{Intercambiar dos filas} Sea $E_{ij}$ la matriz elemental de permutación. Al multiplicar $E_{ij}A$, las filas $i$ y $j$ de $A$ se intercambian. Por el axioma de alternancia: $$\\det(E_{ij}A) = -\\det(A)$$ Si evaluamos en $A=I$, obtenemos que $$\\det(E_{ij})=\\det(E_{ij}I) = -D(I) = -1$$\n\\textbf{Multiplicar una fila por un escalar} $\\alpha \\neq 0$. Sea $E_i(\\alpha)$ la matriz elemental de ponderación. Al multiplicar $E_i(\\alpha)A$, la fila $i$ queda multiplicada por $\\alpha$. Por el axioma de homogeneidad $$\\det(E_i(\\alpha)A) = \\alpha \\det(A)$$ Si evaluamos en $A=I$, obtenemos que $$\\det(E_i(\\alpha)) = \\det(E_i(\\alpha)I)=\\alpha \\det(I) = \\alpha$$\n\\textbf{Sumar a una fila un múltiplo de otra} Sea $E_{ij}(\\alpha)$ la matriz elemental de eliminación. Usando aditividad y homogeneidad sobre la fila $i$: $$\n    \\det(E_{ij}(\\alpha)A) = \\det \\begin{bmatrix} \\vdots \\\\ F_i + \\alpha F_j \\\\ \\vdots \\\\ F_j \\\\ \\vdots \\end{bmatrix} \n    = \\det \\begin{bmatrix} \\vdots \\\\ F_i \\\\ \\vdots \\\\ F_j \\\\ \\vdots \\end{bmatrix} \n    + \\alpha \\det \\begin{bmatrix} \\vdots \\\\ F_j \\\\ \\vdots \\\\ F_j \\\\ \\vdots \\end{bmatrix}\n$$ Como el segundo término tiene la fila $F_j$ repetida, su determinante es $0$ (por alternancia). Por lo tanto, esta operación no altera el determinante:\n$$\n    D(E_{ij}(\\alpha)A) = D(A)\n$$Si evaluamos en $A=I$, obtenemos que $\\det(E_{ij}(\\alpha)) = \\det(I) = 1$}\n\\end{lema}\n\n\\begin{corolario}{Factirización}\nEn los tres casos presentados, notamos que se cumple la relación $$\\det(EA) = \\det(E)\\det(A)$$ Las matrices elementales \"factorizan\" perfectamente dentro de la función.\n\\demostracion{\n$$\\det(E_{ij}A)=-1\\det(A)=\\det (E_{ij})\\det (A)$$ $$\\det(E_{i}(\\alpha)A)=\\alpha\\det(A)=\\det (E_i(\\alpha))\\det (A)$$ $$\\det(E_{ij}(\\alpha)A)=1\\det(A)=\\det(E_{ij}(\\alpha))\\det (A)$$\n}\n\\end{corolario}\n\n\\begin{teorema}{Existe una única función que cumple los tres axiomas}\n\n\n\\demostracion{Sabemos, por el teorema de eliminación de Gauss, que cualquier matriz cuadrada $A$ puede ser transformada en su Forma Escalonada Reducida por Filas (denotémosla $R$) aplicando una secuencia finita de operaciones elementales. Algebraicamente, esto significa que existen matrices elementales $E_1, E_2, \\dots, E_k$ tales que: $$    E_k \\dots E_2 E_1 A = R$$\nSi aplicamos nuestra función determinante a ambos lados de la ecuación y utilizamos repetidamente la propiedad clave que dedujimos anteriormente podemos \"extraer\" el determinante de cada matriz elemental hacia afuera:\n$$\\begin{align*}\n    \\det(E_k \\cdots E_2 E_1 A) &= \\det(R) \\\\\n    \\det(E_k) \\cdots \\det(E_2) \\det(E_1) \\det(A) &= \\det(R)\n\\end{align*}$$ Observemos que $D(E_1), D(E_2), \\dots, D(E_k)$ son simplemente números reales (cuyos valores son $-1$, $\\alpha$, o $1$, dependiendo de la operación). Podemos agrupar el producto de todos estos números en una única constante, que llamaremos $K$: $$\n    K \\cdot D(A) = D(R)$$\nComo hemos aplicado operaciones elementales, sabemos que $K \\neq 0$ (ya que es el producto de números distintos de cero). Por lo tanto, podemos despejar $D(A)$:\n$$D(A) = \\frac{1}{K} D(R)$$\nAl terminar de escalonar la matriz cuadrada $A$, la forma reducida $R$ solo tiene dos finales posibles, lo que define el valor de $D(A)$:\n(a) Caso A (La matriz $A$ es invertible): La matriz reducida $R$ es la matriz Identidad $I$.\n    $$\n        D(A) = \\frac{1}{K} D(I)\n    $$\nPero por nuestro axioma de normalización, $D(I) = 1$. Por lo tanto, $D(A) = \\frac{1}{K}$.\n    \n(b) Caso B (La matriz $A$ No es invertible): La matriz reducida $R$ tendrá al menos una fila completa de ceros. Si aplicamos la propiedad de homogeneidad a esa fila (extrayendo el escalar $0$), obtenemos que $D(R) = 0$. $$D(A) = \\frac{1}{K} \\cdot 0 =0$$\n\n\\textbf{Conclusión Final:} \nEl valor final de $D(A)$ depende \\textbf{exclusivamente} de la constante $K$ (es decir, de las operaciones elementales de Gauss realizadas) y de si la matriz es invertible o no. Como las matrices elementales $E_i$ necesarias para reducir $A$ están fijas por la estructura de $A$, la constante $K$ es la misma sin importar qué función $D$ usemos. \n\nPor lo tanto, existe una única función que cumple los tres axiomas. A esta función la llamamos \\textbf{Determinante}.}\n\\end{teorema}\n\\end{card}\n\n\\begin{card}\n\\begin{propiedades}{Propiedades Fundamentales del Determinante}\n\n\\propiedad{Determinante de la Transpuesta}{$$\\det(A^T) = \\det(A)$$}\n\\demostracionPropiedad{Determinante de la Transpuesta}{Cualquier matriz $A$ se puede descomponer como producto de matrices elementales. Dado que el determinante de una matriz elemental es idéntico al de su transpuesta, la propiedad se conserva al aplicar la transposición al producto completo.}\n\n\\propiedad{Teorema Multiplicativo}{$$\\det(AB) = \\det(A)\\det(B)$$}\n\\demostracionPropiedad{Teorema Multiplicativo}{Si $A$ es invertible, se expresa como producto de matrices elementales $A = E_k \\dots E_1$. Al aplicar el determinante a $(E_k \\dots E_1)B$, los determinantes de las elementales factorizan sucesivamente hasta formar $\\det(A)\\det(B)$. Si $A$ no es invertible, entonces $AB$ tampoco lo es, y ambos lados de la ecuación son cero.}\n\n\\propiedad{Determinante de la Inversa}{$$\\det(A^{-1}) = \\frac{1}{\\det(A)}$$}\n\\demostracionPropiedad{Determinante de la Inversa}{Partimos de la definición de inversa: $A A^{-1} = I$. Aplicando el teorema multiplicativo a ambos lados, obtenemos $\\det(A)\\det(A^{-1}) = \\det(I)$. Como por axioma $\\det(I) = 1$, basta con despejar $\\det(A^{-1})$.}\n\n\\propiedad{Escalamiento Global}{$$\\det(cA) = c^k \\det(A)$$}\n\\demostracionPropiedad{Escalamiento Global}{La matriz $cA$ tiene todas sus $n$ filas multiplicadas por el escalar $c$. Por el axioma de homogeneidad (linealidad por filas), se puede extraer un factor $c$ de forma independiente por cada una de las $n$ filas.}\n\n\\propiedad{Determinante de Matrices Triangulares}{$$\\det(A) = \\prod_{i=1}^n a_{ii} = a_{11} \\cdot a_{22} \\cdots a_{nn}$$}\n\\demostracionPropiedad{Determinante de Matrices Triangulares}{Al escalonar una matriz triangular usando únicamente la operación elemental $F_i \\leftarrow F_i + \\alpha F_j$ (que no altera el valor del determinante), la matriz se reduce a una diagonal, validando que el determinante es simplemente el producto de los elementos de su diagonal principal.}\n\n\n\n\\end{propiedades}\n\\end{card}",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>"
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "id": "prob-1787650468010-1",
+                  "problem": "Sean $A, B \\in M_3(\\mathbb{R})$ dos matrices tales que $\\det(A) = 4$ y $\\det(B) = -2$. Utilizando las propiedades de los determinantes, calcule el valor exacto de:\n$$\\det(2 A^T B^{-1} A^2)$$",
+                  "pauta": "1. Extraer el escalar considerando el tamaño de la matriz (como son $3 \\times 3$, el escalar sale elevado al cubo): $\\det(2 M) = 2^3 \\det(M)$.\n2. Aplicar el teorema multiplicativo para separar el determinante del producto en producto de determinantes.\n3. Evaluar cada determinante individual usando sus propiedades: $\\det(A^T) = \\det(A)$, $\\det(B^{-1}) = \\frac{1}{\\det(B)}$ y $\\det(A^2) = (\\det(A))^2$.\n4. Reemplazar los valores numéricos obtenidos ($8 \\cdot 4 \\cdot \\frac{-1}{2} \\cdot 16$) y calcular el resultado final.",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Propiedades Algebraicas del Determinante",
+                    "Determinante de la Inversa",
+                    "Matriz Transpuesta",
+                    "Escalamiento Global"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico",
+                    "Aplicación de Propiedades Abstractas"
+                  ]
+                },
+                {
+                  "id": "prob-1787650468010-2",
+                  "problem": "Considere el siguiente sistema de ecuaciones lineales dependiente del parámetro $\\alpha \\in \\mathbb{R}$:\n$$\n    \\begin{cases}\n        \\alpha x + y + z = 1 \\\\\n        x + \\alpha y + z = 1 \\\\\n        x + y + \\alpha z = 1\n    \\end{cases}\n$$\nUtilice determinantes para encontrar los valores de $\\alpha$ para los cuales el sistema no tiene solución única.",
+                  "pauta": "1. Extraer la matriz de coeficientes $A$ del sistema y calcular su determinante en función de $\\alpha$. Al resolver, se llega al polinomio $\\det(A) = \\alpha^3 - 3\\alpha + 2$.\n2. Factorizar el polinomio (usando división sintética o inspección) para obtener $\\det(A) = (\\alpha - 1)^2(\\alpha + 2)$.\n3. Para la parte a), imponer la condición de singularidad $\\det(A) = 0$ y concluir los valores críticos del parámetro ($\\alpha = 1, \\alpha = -2$).",
+                  "dificultad": "Alto",
+                  "conceptos": [
+                    "Sistemas de Ecuaciones Lineales con Parámetros",
+                    "Matriz Singular",
+                    "Regla de Cramer"
+                  ],
+                  "habilidades": [
+                    "Análisis de Casos",
+                    "Modelación Matricial",
+                    "Resolución Algebraica"
+                  ]
+                },
+                {
+                  "id": "prob-1787650468010-3",
+                  "problem": "Sea $X \\in M_4(\\mathbb{R})$ una matriz desconocida que satisface la siguiente ecuación matricial:\n$$\n    P X P^{-1} = 3 I - X\n$$\ndonde $P \\in M_4(\\mathbb{R})$ es una matriz invertible cualquiera e $I$ es la identidad. Determine si es posible calcular el valor numérico exacto de $\\det(X)$ con esta información. Justifique.",
+                  "pauta": "1. Identificar que el lado izquierdo de la ecuación es una semejanza de matrices.\n2. Aplicar la función determinante a ambos lados de la ecuación original.\n3. Usar el teorema multiplicativo en el lado izquierdo para demostrar que $\\det(P X P^{-1}) = \\det(P)\\det(X)\\frac{1}{\\det(P)} = \\det(X)$.\n4. Analizar el lado derecho: $\\det(3I - X)$. Recordar y argumentar explícitamente que el determinante \\textbf{no es una función lineal aditiva}, por lo que $\\det(3I - X) \\neq \\det(3I) - \\det(X)$.\n5. Concluir que la ecuación obtenida $\\det(X) = \\det(3I - X)$ no permite despejar un valor numérico para $\\det(X)$ sin conocer las entradas específicas de la matriz $X$.",
+                  "dificultad": "Alto",
+                  "conceptos": [
+                    "Ecuaciones Matriciales",
+                    "Semejanza de Matrices",
+                    "No-aditividad del Determinante"
+                  ],
+                  "habilidades": [
+                    "Razonamiento Abstracto",
+                    "Identificación de Falacias Algebraicas"
+                  ]
+                },
+                {
+                  "id": "prob-1787650468010-4",
+                  "problem": "Calcule el determinante de la siguiente matriz $4 \\times 4$ realizando exclusivamente operaciones elementales por fila para llevarla a una forma triangular. (No expanda por cofactores).\n$$\n    M = \\begin{bmatrix}\n        1 & 2 & 3 & 4 \\\\\n        2 & 5 & 8 & 11 \\\\\n        3 & 8 & 14 & 20 \\\\\n        4 & 11 & 20 & 30\n    \\end{bmatrix}\n$$",
+                  "pauta": "1. Identificar el pivote $a_{11} = 1$. Usar la operación $F_i \\leftarrow F_i - k F_1$ para anular todos los elementos por debajo del pivote en la primera columna. \n2. Justificar explícitamente que estas operaciones de combinación de filas \\textbf{no} cambian el valor del determinante original.\n3. Repetir el proceso de eliminación hacia abajo utilizando la segunda fila, y luego la tercera, hasta obtener una matriz triangular superior.\n4. Identificar que la matriz resultante tiene puros unos ($1$) en su diagonal principal.\n5. Calcular el determinante final multiplicando los elementos de la diagonal principal.",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Eliminación Gaussiana",
+                    "Matrices Triangulares",
+                    "Operaciones Elementales de Fila"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico Secuencial",
+                    "Simplificación Matricial"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
+          }
+        ]
       }
     ],
     "chapters": [
@@ -1658,7 +1750,7 @@
         "summary": "Resumen introductorio del nuevo capítulo.",
         "mathKey": "f(x) = ...",
         "motivacion": "<h3>Motivación</h3><p>Descripción del contexto...</p>",
-        "teoria": "<h3>Teoría</h3><p>Contenido teórico en LaTeX...</p>",
+        "teoria": "\\begin{card}\n\\begin{definicion}{Definición: Matriz Escalonada por Filas}\nUna matriz se encuentra en \\textbf{forma escalonada por filas} (o simplemente matriz escalonada) si cumple con las siguientes tres condiciones:\n\n(1) \\textbf{Filas nulas al final:} Si existen filas compuestas enteramente por ceros, estas deben agruparse en la parte inferior de la matriz.\n(2) \\textbf{Pivotes hacia la derecha:} El primer elemento distinto de cero de cada fila no nula (llamado \\textbf{pivote} o entrada principal) debe estar estrictamente a la derecha del pivote de la fila inmediatamente superior.\n(3) \\textbf{Ceros debajo del pivote:} Como consecuencia directa de la regla anterior, todos los elementos ubicados en la misma columna y por debajo de un pivote deben ser iguales a cero.\n\\end{definicion}\n\\textbf{Ejemplo:}\n$$\n\\begin{pmatrix}\n2 & -1 & 3 & 4 \\\\\n0 & 5 & -2 & 1 \\\\\n0 & 0 & 0 & 3 \\\\\n0 & 0 & 0 & 0\n\\end{pmatrix}\n$$\n\n\\begin{definicion}{Matriz Escalonada Reducida por Filas}\n\n\nUna matriz se encuentra en \\textbf{forma escalonada reducida por filas} si cumple con todas las condiciones de una matriz escalonada y, además, satisface los siguientes dos requisitos estrictos:\n\n(1) \\textbf{Pivotes unitarios:} El pivote (primer elemento distinto de cero) de cada fila no nula debe ser exactamente $1$.\n(2) \\textbf{Ceros arriba y abajo del pivote:} Cada pivote $1$ debe ser el \\textbf{único} elemento distinto de cero en su respectiva columna. Es decir, los elementos ubicados tanto por debajo como por \\textbf{encima} de cada pivote deben ser iguales a cero.\n\\end{definicion}\n\n\\textbf{Ejemplo:}\n$$\n\\begin{pmatrix}\n1 & 0 & 4 & 0 \\\\\n0 & 1 & -2 & 0 \\\\\n0 & 0 & 0 & 1 \\\\\n0 & 0 & 0 & 0\n\\end{pmatrix}\n$$\n\\end{card}\n\\begin{card}\n\\begin{metodo}{Algoritmo de Eliminación de Gauss}\n\n\\problema{Aplique el algoritmo de Eliminación de Gauss a la matriz:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & -1 & 6 \\\\ \n2 & -1 & 1 & -1 \\\\ \n3 & 1 & -2 & 7 \n\\end{array}\\right)\n$$}\n\n\\paso{1}{Inicialización e identificación del pivote principal}\nSe inicializa el índice de la fila de trabajo en $i=1$. Luego, se busca la primera columna $j$ (de izquierda a derecha) en la submatriz de trabajo que no esté compuesta enteramente por ceros. En la fila de trabajo $i$, el elemento en la posición $(i, j)$ será el candidato a pivote. Si es $0$, se intercambia con una fila inferior. El elemento no nulo resultante es el pivote principal $p$.\n\\ejemplo{Partimos inicializando $i=1$. La columna pivote es la primera ($j=1$) y la fila de trabajo es $F_1$. El pivote principal ubicado en la posición $(1, 1)$ es $p = 1$.}\n\n\\paso{2}{Anular los elementos inferiores de la columna pivote}\nPara cada fila $k$ por debajo de la fila pivote ($k > i$), identifica el elemento a anular $a_{kj}$. Calcula el multiplicador $m_{ki} = \\frac{a_{kj}}{p}$ y aplica la operación elemental $F_k \\leftarrow F_k - m_{ki}  F_i$ para convertir el elemento en $0$.\n\\ejemplo{Anulamos los elementos debajo del pivote en la columna 1:\n\n(1) Para la Fila 2 ($k=2$): $a_{21} = 2$. Multiplicador $m_{21} = \\frac{2}{1} = 2$. Operación: $F_2 \\leftarrow F_2 - 2  F_1$.\n\n(2) Para la Fila 3 ($k=3$): $a_{31} = 3$. Multiplicador $m_{31} = \\frac{3}{1} = 3$. Operación: $F_3 \\leftarrow F_3 - 3 F_1$.\n\nCalculando estas operaciones, la matriz resultante es:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & -1 & 6 \\\\ \n0 & -5 & 3 & -13 \\\\ \n0 & -5 & 1 & -11 \n\\end{array}\\right)\n$$}\n\n\\paso{3}{Iterar sobre la submatriz activa}\nIncrementa la fila de trabajo ($i \\leftarrow i + 1$). Ignora las filas ya procesadas y repite los pasos 1 y 2 sobre la submatriz restante, hasta que la matriz quede en su forma escalonada (triangular superior).\n\\ejemplo{Avanzamos a la segunda iteración ($i=2$). Ignoramos $F_1$ y trabajamos con la submatriz inferior derecha.\n\n(1) \\textbf{Nuevo pivote:} La columna pivote es $j=2$, la fila de trabajo es $F_2$. El pivote principal es $p = -5$.\n\n(2) \\textbf{Anular:} Para la Fila 3 ($k=3$), el elemento a anular es $a_{32} = -5$. El multiplicador es $m_{32} = \\frac{-5}{-5} = 1$. Operación: $F_3 \\leftarrow F_3 - 1 F_2$.\n\n\nAplicando esta operación, obtenemos la matriz escalonada final:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & -1 & 6 \\\\ \n0 & -5 & 3 & -13 \\\\ \n0 & 0 & -2 & 2 \n\\end{array}\\right)\n$$}\n\n\\end{metodo}\n\\begin{metodo}{Algoritmo de Gauss-Jordan}\n\n\\problema{A partir de la matriz en forma escalonada obtenida en la fase anterior, aplique el algoritmo de Gauss-Jordan para llevarla a su forma escalonada reducida:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & -1 & 6 \\\\ \n0 & -5 & 3 & -13 \\\\ \n0 & 0 & -2 & 2 \n\\end{array}\\right)\n$$}\n\n\\paso{1}{Normalizar los pivotes (Pivotes unitarios)}\nDada la matriz en forma escalonada, para cada fila no nula se identifica su pivote principal $p$. Se multiplica toda la fila por el recíproco de su pivote ($\\frac{1}{p}$) para que el nuevo pivote sea exactamente $1$.\n\\ejemplo{Multiplicamos cada fila por el recíproco de su respectivo pivote:\n\n(1) $F_1 \\leftarrow \\frac{1}{1} F_1$ (queda igual).\n\n(2) $F_2 \\leftarrow \\frac{1}{-5} F_2 \\Rightarrow \\left[0, 1, -\\frac{3}{5}, \\frac{13}{5}\\right]$.\n\n(3) $F_3 \\leftarrow \\frac{1}{-2} \\cdot F_3 \\Rightarrow [0, 0, 1, -1]$.\n\nLa matriz con pivotes unitarios es:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & -1 & 6 \\\\ \n0 & 1 & -\\frac{3}{5} & \\frac{13}{5} \\\\ \n0 & 0 & 1 & -1 \n\\end{array}\\right)\n$$}\n\n\\paso{2}{Inicialización en reversa y anulación de elementos superiores}\nSe inicializa el índice de la fila de trabajo $i$ apuntando a la última fila no nula de la matriz. Se ubica su pivote unitario en la columna $j$. Para cada fila $k$ por encima del pivote ($k < i$), se identifica el elemento a anular $a_{kj}$. Dado que el pivote es $1$, el multiplicador ascendente es $m_{ki} = a_{kj}$. Se aplica la operación $F_k \\leftarrow F_k - m_{ki} F_i$ para hacer ceros por encima del pivote unitario.\n\\ejemplo{Inicializamos $i=3$. El pivote unitario está en la columna $j=3$. Anulamos los elementos por encima de la fila 3:\n\n(1) Para la Fila 2 ($k=2$): $a_{23} = -\\frac{3}{5}$. Multiplicador $m_{23} = -\\frac{3}{5}$. Operación: $F_2 \\leftarrow F_2 - \\left(-\\frac{3}{5}\\right)  F_3$.\n\n(2) Para la Fila 1 ($k=1$): $a_{13} = -1$. Multiplicador $m_{13} = -1$. Operación: $F_1 \\leftarrow F_1 - (-1)  F_3$.\n\n\nLa matriz resultante es:\n$$\n\\left(\\begin{array}{cccc} \n1 & 2 & 0 & 5 \\\\ \n0 & 1 & 0 & 2 \\\\ \n0 & 0 & 1 & -1 \n\\end{array}\\right)\n$$}\n\n\\paso{3}{Iterar en reversa hasta la primera fila}\nDecrece el índice de la fila de trabajo ($i \\leftarrow i - 1$) y se repite el paso anterior para cada pivote unitario restante, avanzando de abajo hacia arriba y de derecha a izquierda, hasta lograr que en cada columna pivote solo haya ceros por encima y por debajo del $1$.\n\\ejemplo{Disminuimos el índice a $i=2$. El pivote unitario está en la columna $j=2$. Anulamos el elemento por encima de la fila 2:\n\nPara la Fila 1 ($k=1$): el elemento a anular es $a_{12} = 2$. Multiplicador $m_{12} = 2$. Operación: $F_1 \\leftarrow F_1 - 2  F_2$.\n\nAplicando esta operación, obtenemos la matriz escalonada reducida final:\n$$\n\\left(\\begin{array}{cccc} \n1 & 0 & 0 & 1 \\\\ \n0 & 1 & 0 & 2 \\\\ \n0 & 0 & 1 & -1 \n\\end{array}\\right)\n$$}\n\n\\end{metodo}\n\\end{card}",
         "practica": {
           "text": "<p>Ejemplo resuelto...</p>"
         },
@@ -1996,8 +2088,94 @@
             }
           ]
         }
+      },
+      {
+        "id": "cap-1787639276503",
+        "number": 1,
+        "displayNumber": "1",
+        "title": "Definición y conceptos previos",
+        "summary": "Resumen introductorio del nuevo capítulo.",
+        "mathKey": "f(x) = ...",
+        "motivacion": "<p><strong>¿Qué problema viene a resolver el Determinante?</strong></p>\n<p>Antes de definir qué es un determinante, pensemos en los dos grandes problemas que estamos intentando resolver en el Álgebra Lineal:</p>\n\n<p><strong>1. El Problema Algebraico: La \"Prueba de Vida\" de un Sistema</strong></p>\n<p>Imaginemos el sistema de ecuaciones lineales más básico del mundo, uno de $1 \\times 1$:</p>\n$$ax = b$$\nPara despejar $x$, necesitamos dividir por $a$ ($x = b/a$). Esto tiene solución única siempre y cuando $a\\neq0$. Ese simple número $a$ es el \"determinante\" de nuestro sistema $1 \\times 1$. Determina si el sistema tiene salvación o si está roto.\n<p>\nAhora, subamos a un sistema $2 \\times 2$:</p>\n$$\n    \\begin{cases} \n    ax + by = e \\\\ \n    cx + dy = f \n    \\end{cases}\n$$\nSi intentamos resolver esto por eliminación (multiplicando y restando ecuaciones), llegaremos a que para despejar $x$ o $y$, tenemos que dividir por una expresión muy específica: $ad - bc$. Si esa cantidad es cero, el sistema colapsa (no hay solución única). Necesitamos una herramienta que, dada cualquier matriz de $n \\times n$, nos entregue un solo número que actúe como un \"detector de singularidad\". Si ese número es $0$, la matriz no tiene inversa y el sistema colapsa. \\textbf{Ese número es el determinante.}\n\n<p><strong>2. El Problema Geométrico: El Factor de Deformación</strong></p>\nLas matrices no son solo tablas de números; son transformaciones. Cuando multiplicas un vector por una matriz $A$, estás estirando, rotando o aplastando el espacio.\n\n<p>(1) Si tomas un cuadrado de área $1$ (formado por los vectores base $\\hat{\\imath}$ y $\\hat{\\jmath}$) y le aplicas una matriz $2 \\times 2$, ese cuadrado se transforma en un paralelogramo.</p>\n\n<p>(2) ¿Cuál es la nueva área de ese paralelogramo? Exactamente el valor absoluto del determinante de la matriz.</p>\n\nEl determinante es el \\textbf{factor de escala}. \n\n<p>$\\bullet$ Si $\\det(A) = 2$, la transformación duplica las áreas (o volúmenes en 3D).</p>\n<p>$\\bullet$ Si $\\det(A) = 1$, la transformación deforma el espacio, pero conserva su tamaño original.</p>\n<p>$\\bullet$ ¿Y si $\\det(A) = 0$? significa que nuestro cuadrado de área 1 fue aplastado hasta convertirse en una simple línea (o un punto). El área se volvió cero.</p>\n\nToda la información colapsó a una dimensión menor. Por eso no podemos \"revertir\" (invertir) la transformación: no podemos reconstruir un cuadrado a partir de una línea aplastada.\n\n\\begin{pregunta}\nDado que necesitamos una función que mida este \"volumen\" o \"factor de escala\", vamos a construirla. ¿Qué propiedades debería tener una función que mida volúmenes deformados por matrices? Vamos a exigirle solo tres reglas lógicas.\n\\end{pregunta}\n",
+        "teoria": "\\begin{card}\nSea $M_n(\\mathbb{R})$ el conjunto de todas las matrices cuadradas de tamaño $n \\times n$ con coeficientes reales. Para entender esta definición, nos resultará muy útil pensar en una matriz $A$ no como una simple cuadrícula de números, sino como una colección ordenada de sus vectores fila: $$A = \\begin{bmatrix} F_1 \\\\ F_2 \\\\ \\vdots \\\\ F_n \\end{bmatrix}$$\n\nDefinimos el \\textbf{determinante} como la \\textbf{única} función $\\det: M_n(\\mathbb{R}) \\to \\mathbb{R}$ que cumple los siguientes tres axiomas:\n\n\\begin{definicion}{Determinante de una matriz}\nDefinimos el \\textbf{determinante} como una función $$\\det: M_n(\\mathbb{R}) \\to \\mathbb{R}$$ que se caracteriza por ser la \\textbf{única} función que cumple simultáneamente los siguientes tres axiomas:\n\n<p><strong>1. Normalización (La regla de la escala base)</strong><p>\nEl determinante de la matriz identidad $I$ es exactamente $1$:\n$$\\det(I) = 1$$\n<p><strong>2. Alternancia (La regla del intercambio)</strong></p>\nSi intercambiamos de lugar dos filas distintas de la matriz, el valor del determinante cambia de signo.$$\\det \\begin{bmatrix} \\vdots \\\\ F_j \\\\ \\vdots \\\\ F_i \\\\ \\vdots \\end{bmatrix} = - \\det \\begin{bmatrix} \\vdots \\\\ F_i \\\\ \\vdots \\\\ F_j \\\\ \\vdots \\end{bmatrix}$$\n<p><strong>3. Multilinealidad (Linealidad por filas)</strong></p>\nEl determinante es una función lineal respecto a cada una de sus filas por separado (dejando todas las demás fijas). Esto se traduce en dos propiedades operativas para cualquier fila $i$:\n(a) \\textbf{Homogeneidad (extracción de escalares):} Si multiplicamos una fila por un escalar $\\alpha \\in \\mathbb{R}$, ese escalar puede salir multiplicando a todo el determinante: $$\\det\\begin{bmatrix} \\vdots \\\\ \\alpha F_j \\\\ \\vdots \\end{bmatrix}= \\alpha \\det\\begin{bmatrix} \\vdots \\\\ F_j \\\\ \\vdots \\end{bmatrix}$$(b) \\textbf{Aditividad (separación de sumas):} Si una fila se puede expresar como la suma de dos vectores distintos ($U$ y $V$), el determinante se separa en la suma de dos determinantes: $$\\det \\begin{bmatrix} \\vdots \\\\ U + V \\\\ \\vdots \\end{bmatrix} = \\det \\begin{bmatrix} \\vdots \\\\ U \\\\ \\vdots \\end{bmatrix} + \\det \\begin{bmatrix} \\vdots \\\\ V \\\\ \\vdots \\end{bmatrix}$$\n\\end{definicion}\n\\end{card}\n\n\\begin{card}\n\n\\begin{lema}{Determinante sobre matrices elementales}\n\\textbf{Intercambiar dos filas.} Sea $E_{ij}$ la matriz que permutación $F_i\\leftrightarrow F_j$ Entonces $$\\det E_{ij}=-1$$\\textbf{Multiplicar una fila por un escalar.} $\\alpha \\neq 0$, Sea $E_i(\\alpha)$ la matriz de ponderación $\\alpha F_i\\leftarrow F_i$ Entonces $$\\det E_{i}(\\alpha)=\\alpha$$\\textbf{Sumar a una fila un múltiplo de otra.} Sea $E_{ij}(\\alpha)$ la matriz de eliminación $F_i \\leftarrow F_i + \\alpha F_j$ Entonces $$\\det E_{ij}(\\alpha)=1$$\n\\demostracion{\n\\textbf{Intercambiar dos filas} Sea $E_{ij}$ la matriz elemental de permutación. Al multiplicar $E_{ij}A$, las filas $i$ y $j$ de $A$ se intercambian. Por el axioma de alternancia: $$\\det(E_{ij}A) = -\\det(A)$$ Si evaluamos en $A=I$, obtenemos que $$\\det(E_{ij})=\\det(E_{ij}I) = -D(I) = -1$$\n\\textbf{Multiplicar una fila por un escalar} $\\alpha \\neq 0$. Sea $E_i(\\alpha)$ la matriz elemental de ponderación. Al multiplicar $E_i(\\alpha)A$, la fila $i$ queda multiplicada por $\\alpha$. Por el axioma de homogeneidad $$\\det(E_i(\\alpha)A) = \\alpha \\det(A)$$ Si evaluamos en $A=I$, obtenemos que $$\\det(E_i(\\alpha)) = \\det(E_i(\\alpha)I)=\\alpha \\det(I) = \\alpha$$\n\\textbf{Sumar a una fila un múltiplo de otra} Sea $E_{ij}(\\alpha)$ la matriz elemental de eliminación. Usando aditividad y homogeneidad sobre la fila $i$: $$\n    \\det(E_{ij}(\\alpha)A) = \\det \\begin{bmatrix} \\vdots \\\\ F_i + \\alpha F_j \\\\ \\vdots \\\\ F_j \\\\ \\vdots \\end{bmatrix} \n    = \\det \\begin{bmatrix} \\vdots \\\\ F_i \\\\ \\vdots \\\\ F_j \\\\ \\vdots \\end{bmatrix} \n    + \\alpha \\det \\begin{bmatrix} \\vdots \\\\ F_j \\\\ \\vdots \\\\ F_j \\\\ \\vdots \\end{bmatrix}\n$$ Como el segundo término tiene la fila $F_j$ repetida, su determinante es $0$ (por alternancia). Por lo tanto, esta operación no altera el determinante:\n$$\n    D(E_{ij}(\\alpha)A) = D(A)\n$$Si evaluamos en $A=I$, obtenemos que $\\det(E_{ij}(\\alpha)) = \\det(I) = 1$}\n\\end{lema}\n\n\\begin{corolario}{Factirización}\nEn los tres casos presentados, notamos que se cumple la relación $$\\det(EA) = \\det(E)\\det(A)$$ Las matrices elementales \"factorizan\" perfectamente dentro de la función.\n\\demostracion{\n$$\\det(E_{ij}A)=-1\\det(A)=\\det (E_{ij})\\det (A)$$ $$\\det(E_{i}(\\alpha)A)=\\alpha\\det(A)=\\det (E_i(\\alpha))\\det (A)$$ $$\\det(E_{ij}(\\alpha)A)=1\\det(A)=\\det(E_{ij}(\\alpha))\\det (A)$$\n}\n\\end{corolario}\n\n\\begin{teorema}{Existe una única función que cumple los tres axiomas}\n\n\n\\demostracion{Sabemos, por el teorema de eliminación de Gauss, que cualquier matriz cuadrada $A$ puede ser transformada en su Forma Escalonada Reducida por Filas (denotémosla $R$) aplicando una secuencia finita de operaciones elementales. Algebraicamente, esto significa que existen matrices elementales $E_1, E_2, \\dots, E_k$ tales que: $$    E_k \\dots E_2 E_1 A = R$$\nSi aplicamos nuestra función determinante a ambos lados de la ecuación y utilizamos repetidamente la propiedad clave que dedujimos anteriormente podemos \"extraer\" el determinante de cada matriz elemental hacia afuera:\n$$\\begin{align*}\n    \\det(E_k \\cdots E_2 E_1 A) &= \\det(R) \\\\\n    \\det(E_k) \\cdots \\det(E_2) \\det(E_1) \\det(A) &= \\det(R)\n\\end{align*}$$ Observemos que $D(E_1), D(E_2), \\dots, D(E_k)$ son simplemente números reales (cuyos valores son $-1$, $\\alpha$, o $1$, dependiendo de la operación). Podemos agrupar el producto de todos estos números en una única constante, que llamaremos $K$: $$\n    K \\cdot D(A) = D(R)$$\nComo hemos aplicado operaciones elementales, sabemos que $K \\neq 0$ (ya que es el producto de números distintos de cero). Por lo tanto, podemos despejar $D(A)$:\n$$D(A) = \\frac{1}{K} D(R)$$\nAl terminar de escalonar la matriz cuadrada $A$, la forma reducida $R$ solo tiene dos finales posibles, lo que define el valor de $D(A)$:\n(a) Caso A (La matriz $A$ es invertible): La matriz reducida $R$ es la matriz Identidad $I$.\n    $$\n        D(A) = \\frac{1}{K} D(I)\n    $$\nPero por nuestro axioma de normalización, $D(I) = 1$. Por lo tanto, $D(A) = \\frac{1}{K}$.\n    \n(b) Caso B (La matriz $A$ No es invertible): La matriz reducida $R$ tendrá al menos una fila completa de ceros. Si aplicamos la propiedad de homogeneidad a esa fila (extrayendo el escalar $0$), obtenemos que $D(R) = 0$. $$D(A) = \\frac{1}{K} \\cdot 0 =0$$\n\n\\textbf{Conclusión Final:} \nEl valor final de $D(A)$ depende \\textbf{exclusivamente} de la constante $K$ (es decir, de las operaciones elementales de Gauss realizadas) y de si la matriz es invertible o no. Como las matrices elementales $E_i$ necesarias para reducir $A$ están fijas por la estructura de $A$, la constante $K$ es la misma sin importar qué función $D$ usemos. \n\nPor lo tanto, existe una única función que cumple los tres axiomas. A esta función la llamamos \\textbf{Determinante}.}\n\\end{teorema}\n\\end{card}\n\n\\begin{card}\n\\begin{propiedades}{Propiedades Fundamentales del Determinante}\n\n\\propiedad{Determinante de la Transpuesta}{$$\\det(A^T) = \\det(A)$$}\n\\demostracionPropiedad{Determinante de la Transpuesta}{Cualquier matriz $A$ se puede descomponer como producto de matrices elementales. Dado que el determinante de una matriz elemental es idéntico al de su transpuesta, la propiedad se conserva al aplicar la transposición al producto completo.}\n\n\\propiedad{Teorema Multiplicativo}{$$\\det(AB) = \\det(A)\\det(B)$$}\n\\demostracionPropiedad{Teorema Multiplicativo}{Si $A$ es invertible, se expresa como producto de matrices elementales $A = E_k \\dots E_1$. Al aplicar el determinante a $(E_k \\dots E_1)B$, los determinantes de las elementales factorizan sucesivamente hasta formar $\\det(A)\\det(B)$. Si $A$ no es invertible, entonces $AB$ tampoco lo es, y ambos lados de la ecuación son cero.}\n\n\\propiedad{Determinante de la Inversa}{$$\\det(A^{-1}) = \\frac{1}{\\det(A)}$$}\n\\demostracionPropiedad{Determinante de la Inversa}{Partimos de la definición de inversa: $A A^{-1} = I$. Aplicando el teorema multiplicativo a ambos lados, obtenemos $\\det(A)\\det(A^{-1}) = \\det(I)$. Como por axioma $\\det(I) = 1$, basta con despejar $\\det(A^{-1})$.}\n\n\\propiedad{Escalamiento Global}{$$\\det(cA) = c^k \\det(A)$$}\n\\demostracionPropiedad{Escalamiento Global}{La matriz $cA$ tiene todas sus $n$ filas multiplicadas por el escalar $c$. Por el axioma de homogeneidad (linealidad por filas), se puede extraer un factor $c$ de forma independiente por cada una de las $n$ filas.}\n\n\\propiedad{Determinante de Matrices Triangulares}{$$\\det(A) = \\prod_{i=1}^n a_{ii} = a_{11} \\cdot a_{22} \\cdots a_{nn}$$}\n\\demostracionPropiedad{Determinante de Matrices Triangulares}{Al escalonar una matriz triangular usando únicamente la operación elemental $F_i \\leftarrow F_i + \\alpha F_j$ (que no altera el valor del determinante), la matriz se reduce a una diagonal, validando que el determinante es simplemente el producto de los elementos de su diagonal principal.}\n\n\n\n\\end{propiedades}\n\\end{card}",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>"
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "id": "prob-1787650468010-1",
+              "problem": "Sean $A, B \\in M_3(\\mathbb{R})$ dos matrices tales que $\\det(A) = 4$ y $\\det(B) = -2$. Utilizando las propiedades de los determinantes, calcule el valor exacto de:\n$$\\det(2 A^T B^{-1} A^2)$$",
+              "pauta": "1. Extraer el escalar considerando el tamaño de la matriz (como son $3 \\times 3$, el escalar sale elevado al cubo): $\\det(2 M) = 2^3 \\det(M)$.\n2. Aplicar el teorema multiplicativo para separar el determinante del producto en producto de determinantes.\n3. Evaluar cada determinante individual usando sus propiedades: $\\det(A^T) = \\det(A)$, $\\det(B^{-1}) = \\frac{1}{\\det(B)}$ y $\\det(A^2) = (\\det(A))^2$.\n4. Reemplazar los valores numéricos obtenidos ($8 \\cdot 4 \\cdot \\frac{-1}{2} \\cdot 16$) y calcular el resultado final.",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Propiedades Algebraicas del Determinante",
+                "Determinante de la Inversa",
+                "Matriz Transpuesta",
+                "Escalamiento Global"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico",
+                "Aplicación de Propiedades Abstractas"
+              ]
+            },
+            {
+              "id": "prob-1787650468010-2",
+              "problem": "Considere el siguiente sistema de ecuaciones lineales dependiente del parámetro $\\alpha \\in \\mathbb{R}$:\n$$\n    \\begin{cases}\n        \\alpha x + y + z = 1 \\\\\n        x + \\alpha y + z = 1 \\\\\n        x + y + \\alpha z = 1\n    \\end{cases}\n$$\nUtilice determinantes para encontrar los valores de $\\alpha$ para los cuales el sistema no tiene solución única.",
+              "pauta": "1. Extraer la matriz de coeficientes $A$ del sistema y calcular su determinante en función de $\\alpha$. Al resolver, se llega al polinomio $\\det(A) = \\alpha^3 - 3\\alpha + 2$.\n2. Factorizar el polinomio (usando división sintética o inspección) para obtener $\\det(A) = (\\alpha - 1)^2(\\alpha + 2)$.\n3. Para la parte a), imponer la condición de singularidad $\\det(A) = 0$ y concluir los valores críticos del parámetro ($\\alpha = 1, \\alpha = -2$).",
+              "dificultad": "Alto",
+              "conceptos": [
+                "Sistemas de Ecuaciones Lineales con Parámetros",
+                "Matriz Singular",
+                "Regla de Cramer"
+              ],
+              "habilidades": [
+                "Análisis de Casos",
+                "Modelación Matricial",
+                "Resolución Algebraica"
+              ]
+            },
+            {
+              "id": "prob-1787650468010-3",
+              "problem": "Sea $X \\in M_4(\\mathbb{R})$ una matriz desconocida que satisface la siguiente ecuación matricial:\n$$\n    P X P^{-1} = 3 I - X\n$$\ndonde $P \\in M_4(\\mathbb{R})$ es una matriz invertible cualquiera e $I$ es la identidad. Determine si es posible calcular el valor numérico exacto de $\\det(X)$ con esta información. Justifique.",
+              "pauta": "1. Identificar que el lado izquierdo de la ecuación es una semejanza de matrices.\n2. Aplicar la función determinante a ambos lados de la ecuación original.\n3. Usar el teorema multiplicativo en el lado izquierdo para demostrar que $\\det(P X P^{-1}) = \\det(P)\\det(X)\\frac{1}{\\det(P)} = \\det(X)$.\n4. Analizar el lado derecho: $\\det(3I - X)$. Recordar y argumentar explícitamente que el determinante \\textbf{no es una función lineal aditiva}, por lo que $\\det(3I - X) \\neq \\det(3I) - \\det(X)$.\n5. Concluir que la ecuación obtenida $\\det(X) = \\det(3I - X)$ no permite despejar un valor numérico para $\\det(X)$ sin conocer las entradas específicas de la matriz $X$.",
+              "dificultad": "Alto",
+              "conceptos": [
+                "Ecuaciones Matriciales",
+                "Semejanza de Matrices",
+                "No-aditividad del Determinante"
+              ],
+              "habilidades": [
+                "Razonamiento Abstracto",
+                "Identificación de Falacias Algebraicas"
+              ]
+            },
+            {
+              "id": "prob-1787650468010-4",
+              "problem": "Calcule el determinante de la siguiente matriz $4 \\times 4$ realizando exclusivamente operaciones elementales por fila para llevarla a una forma triangular. (No expanda por cofactores).\n$$\n    M = \\begin{bmatrix}\n        1 & 2 & 3 & 4 \\\\\n        2 & 5 & 8 & 11 \\\\\n        3 & 8 & 14 & 20 \\\\\n        4 & 11 & 20 & 30\n    \\end{bmatrix}\n$$",
+              "pauta": "1. Identificar el pivote $a_{11} = 1$. Usar la operación $F_i \\leftarrow F_i - k F_1$ para anular todos los elementos por debajo del pivote en la primera columna. \n2. Justificar explícitamente que estas operaciones de combinación de filas \\textbf{no} cambian el valor del determinante original.\n3. Repetir el proceso de eliminación hacia abajo utilizando la segunda fila, y luego la tercera, hasta obtener una matriz triangular superior.\n4. Identificar que la matriz resultante tiene puros unos ($1$) en su diagonal principal.\n5. Calcular el determinante final multiplicando los elementos de la diagonal principal.",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Eliminación Gaussiana",
+                "Matrices Triangulares",
+                "Operaciones Elementales de Fila"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico Secuencial",
+                "Simplificación Matricial"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
       }
-    ]
+    ],
+    "mathFormulaLatex": "A\\vec v=\\lambda \\vec v"
   },
   {
     "id": "course_calculo-multivariable",
@@ -2307,7 +2485,7 @@
             "number": 3,
             "title": "Límites",
             "summary": "Definición $\\varepsilon - \\delta$ de límites en $\\mathbb{R}^2$ y propiedades",
-            "mathKey": "y = m x^k, \\quad r \\to 0",
+            "mathKey": "\\forall \\varepsilon > 0,\\exists \\delta > 0, 0 < \\|(x,y)-(a,b)\\| < \\delta \\Longrightarrow |f(x,y)-\\ell|< \\varepsilon",
             "motivacion": "\\begin{card}\n\\textbf{Trayectorias y No Existencia}\n\\end{card}",
             "teoria": "\\begin{card}\n\\begin{teorema}{Criterio de Trayectorias}\nSi dos caminos dan límites distintos, el límite no existe.\n\\end{teorema}\n\\end{card}",
             "practica": {
@@ -2438,7 +2616,7 @@
                 {
                   "id": "ex-pareados-limites-1",
                   "type": "matching",
-                  "title": "Ejercicio: Asociación: Límite y Herramienta de Análisis",
+                  "title": "Asociación: Límite y Herramienta de Análisis",
                   "question": "Relaciona cada límite con la conclusión y herramienta adecuada para analizar su existencia:",
                   "columns": 2,
                   "col1Title": "Límites a Analizar",
@@ -2497,7 +2675,7 @@
                 {
                   "id": "imported-ex-1787630077583-1-65z00",
                   "type": "multiple_choice",
-                  "title": "Ejercicio 1: Selección Múltiple (Casillas)",
+                  "title": "Selección Múltiple",
                   "question": "Se requiere evaluar el límite $\\displaystyle\\lim_{(x,y) \\to (0,0)} \\arccos\\left(\\frac{x}{\\sqrt{x^2 + y^2}}\\right)$. Selecciona todas las afirmaciones correctas:",
                   "options": [
                     {
@@ -2604,13 +2782,13 @@
       {
         "id": "unit-cm-2",
         "number": 2,
-        "title": "Unidad 2: Continuidad y Topología en $\\mathbb{R}^n$",
+        "title": "Unidad 2: Continuidad",
         "chapters": [
           {
             "id": "cap-cm-21",
             "number": 1,
-            "title": "Capítulo 2.1: Continuidad de Campos Escalares",
-            "summary": "Continuidad puntual y en regiones, teoremas del valor intermedio y acotación.",
+            "title": "Continuidad reparable e irreparable",
+            "summary": "Continuidad puntual y en regiones",
             "mathKey": "\\lim_{(x,y) \\to (a,b)} f(x,y) = f(a,b)",
             "motivacion": "\\begin{card}\n\\textbf{Continuidad en Varias Variables}\n\\end{card}",
             "teoria": "\\begin{card}\n\\begin{definicion}{Continuidad}\nUna función es continua si el límite coincide con el valor evaluado.\n\\end{definicion}\n\\end{card}",
@@ -2623,24 +2801,6 @@
               "formulasClave": []
             },
             "displayNumber": "1"
-          },
-          {
-            "id": "cap-cm-22",
-            "number": 2,
-            "title": "Capítulo 2.2: Generalización a $\\mathbb{R}^n$ y Conjuntos Abiertos/Cerrados",
-            "summary": "Puntos interiores, fronteras, bolas abiertas y compacidad.",
-            "mathKey": "B_r(\\vec{x}_0) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon \\|\\vec{x} - \\vec{x}_0\\| < r \\}",
-            "motivacion": "\\begin{card}\n\\textbf{Topología del Espacio}\n\\end{card}",
-            "teoria": "\\begin{card}\n\\begin{definicion}{Bola Abierta}\nVecindad esférica en Rn.\n\\end{definicion}\n\\end{card}",
-            "practica": {
-              "text": "",
-              "exercises": []
-            },
-            "ejercicios": {
-              "problems": [],
-              "formulasClave": []
-            },
-            "displayNumber": "2"
           }
         ]
       },
@@ -3002,7 +3162,7 @@
         "number": 3,
         "title": "Límites",
         "summary": "Definición $\\varepsilon - \\delta$ de límites en $\\mathbb{R}^2$ y propiedades",
-        "mathKey": "y = m x^k, \\quad r \\to 0",
+        "mathKey": "\\forall \\varepsilon > 0,\\exists \\delta > 0, 0 < \\|(x,y)-(a,b)\\| < \\delta \\Longrightarrow |f(x,y)-\\ell|< \\varepsilon",
         "motivacion": "\\begin{card}\n\\textbf{Trayectorias y No Existencia}\n\\end{card}",
         "teoria": "\\begin{card}\n\\begin{teorema}{Criterio de Trayectorias}\nSi dos caminos dan límites distintos, el límite no existe.\n\\end{teorema}\n\\end{card}",
         "practica": {
@@ -3133,7 +3293,7 @@
             {
               "id": "ex-pareados-limites-1",
               "type": "matching",
-              "title": "Ejercicio: Asociación: Límite y Herramienta de Análisis",
+              "title": "Asociación: Límite y Herramienta de Análisis",
               "question": "Relaciona cada límite con la conclusión y herramienta adecuada para analizar su existencia:",
               "columns": 2,
               "col1Title": "Límites a Analizar",
@@ -3192,7 +3352,7 @@
             {
               "id": "imported-ex-1787630077583-1-65z00",
               "type": "multiple_choice",
-              "title": "Ejercicio 1: Selección Múltiple (Casillas)",
+              "title": "Selección Múltiple",
               "question": "Se requiere evaluar el límite $\\displaystyle\\lim_{(x,y) \\to (0,0)} \\arccos\\left(\\frac{x}{\\sqrt{x^2 + y^2}}\\right)$. Selecciona todas las afirmaciones correctas:",
               "options": [
                 {
@@ -3297,8 +3457,8 @@
       {
         "id": "cap-cm-21",
         "number": 1,
-        "title": "Capítulo 2.1: Continuidad de Campos Escalares",
-        "summary": "Continuidad puntual y en regiones, teoremas del valor intermedio y acotación.",
+        "title": "Continuidad reparable e irreparable",
+        "summary": "Continuidad puntual y en regiones",
         "mathKey": "\\lim_{(x,y) \\to (a,b)} f(x,y) = f(a,b)",
         "motivacion": "\\begin{card}\n\\textbf{Continuidad en Varias Variables}\n\\end{card}",
         "teoria": "\\begin{card}\n\\begin{definicion}{Continuidad}\nUna función es continua si el límite coincide con el valor evaluado.\n\\end{definicion}\n\\end{card}",
@@ -3311,24 +3471,6 @@
           "formulasClave": []
         },
         "displayNumber": "1"
-      },
-      {
-        "id": "cap-cm-22",
-        "number": 2,
-        "title": "Capítulo 2.2: Generalización a $\\mathbb{R}^n$ y Conjuntos Abiertos/Cerrados",
-        "summary": "Puntos interiores, fronteras, bolas abiertas y compacidad.",
-        "mathKey": "B_r(\\vec{x}_0) = \\{ \\vec{x} \\in \\mathbb{R}^n \\colon \\|\\vec{x} - \\vec{x}_0\\| < r \\}",
-        "motivacion": "\\begin{card}\n\\textbf{Topología del Espacio}\n\\end{card}",
-        "teoria": "\\begin{card}\n\\begin{definicion}{Bola Abierta}\nVecindad esférica en Rn.\n\\end{definicion}\n\\end{card}",
-        "practica": {
-          "text": "",
-          "exercises": []
-        },
-        "ejercicios": {
-          "problems": [],
-          "formulasClave": []
-        },
-        "displayNumber": "2"
       },
       {
         "id": "cap-cm-31",
