@@ -2207,9 +2207,9 @@
                   "title": "Verdadero / Falso: Naturaleza del Campo Escalar",
                   "statement": "Un campo escalar definido como $f : \\mathbb{R}^3 \\to \\mathbb{R}$ toma una coordenada del espacio tridimensional como entrada y produce un vector como salida.",
                   "correctAnswer": false,
-                  "trueFeedback": "¡Correcto! Entregamos un punto o vector de entrada $(x,y,z)$, pero la función nos devuelve un escalar (un único número real).",
-                  "falseFeedback": "Incorrecto. Recuerda la palabra 'escalar'. La salida es siempre un único número real (como una temperatura o una altitud), no un vector.",
-                  "explanation": "Incorrecto. Recuerda la palabra 'escalar'. La salida es siempre un único número real (como una temperatura o una altitud), no un vector."
+                  "trueFeedback": "Entregamos un punto o vector de entrada $(x,y,z)$, pero la función nos devuelve un escalar (un único número real).",
+                  "falseFeedback": "Recuerda la palabra 'escalar'. La salida es siempre un único número real (como una temperatura o una altitud), no un vector.",
+                  "explanation": ""
                 },
                 {
                   "id": "ex-sc-1",
@@ -2236,7 +2236,8 @@
                       "feedback": "Esa sería la restricción si el término estuviera en un denominador. Recuerda que un logaritmo tampoco admite valores negativos en su argumento."
                     }
                   ],
-                  "explanation": "Revisa el análisis paso a paso de cada opción."
+                  "explanation": "Revisa el análisis paso a paso de cada opción.",
+                  "correctOptionId": "opt-1"
                 },
                 {
                   "id": "ex-mc-3",
@@ -2275,13 +2276,13 @@
                   ],
                   "options": [
                     {
-                      "id": "opt-1",
+                      "id": "A",
                       "text": "$x+y\\geq0$",
                       "isCorrect": false,
                       "feedback": ""
                     },
                     {
-                      "id": "opt-2",
+                      "id": "B",
                       "text": "$x\\neq1$",
                       "isCorrect": true,
                       "feedback": ""
@@ -2290,17 +2291,12 @@
                       "id": "C",
                       "text": "$x+y>0$",
                       "feedback": ""
-                    },
-                    {
-                      "id": "D",
-                      "text": "Nueva opción",
-                      "feedback": "$y=1$"
                     }
                   ],
                   "explanation": "Analiza las restricciones numéricas de cada término.",
                   "correctOptionIds": [
-                    "opt-1",
-                    "opt-2"
+                    "A",
+                    "B"
                   ]
                 },
                 {
@@ -2884,9 +2880,9 @@
               "title": "Verdadero / Falso: Naturaleza del Campo Escalar",
               "statement": "Un campo escalar definido como $f : \\mathbb{R}^3 \\to \\mathbb{R}$ toma una coordenada del espacio tridimensional como entrada y produce un vector como salida.",
               "correctAnswer": false,
-              "trueFeedback": "¡Correcto! Entregamos un punto o vector de entrada $(x,y,z)$, pero la función nos devuelve un escalar (un único número real).",
-              "falseFeedback": "Incorrecto. Recuerda la palabra 'escalar'. La salida es siempre un único número real (como una temperatura o una altitud), no un vector.",
-              "explanation": "Incorrecto. Recuerda la palabra 'escalar'. La salida es siempre un único número real (como una temperatura o una altitud), no un vector."
+              "trueFeedback": "Entregamos un punto o vector de entrada $(x,y,z)$, pero la función nos devuelve un escalar (un único número real).",
+              "falseFeedback": "Recuerda la palabra 'escalar'. La salida es siempre un único número real (como una temperatura o una altitud), no un vector.",
+              "explanation": ""
             },
             {
               "id": "ex-sc-1",
@@ -2913,7 +2909,8 @@
                   "feedback": "Esa sería la restricción si el término estuviera en un denominador. Recuerda que un logaritmo tampoco admite valores negativos en su argumento."
                 }
               ],
-              "explanation": "Revisa el análisis paso a paso de cada opción."
+              "explanation": "Revisa el análisis paso a paso de cada opción.",
+              "correctOptionId": "opt-1"
             },
             {
               "id": "ex-mc-3",
@@ -2952,13 +2949,13 @@
               ],
               "options": [
                 {
-                  "id": "opt-1",
+                  "id": "A",
                   "text": "$x+y\\geq0$",
                   "isCorrect": false,
                   "feedback": ""
                 },
                 {
-                  "id": "opt-2",
+                  "id": "B",
                   "text": "$x\\neq1$",
                   "isCorrect": true,
                   "feedback": ""
@@ -2967,17 +2964,12 @@
                   "id": "C",
                   "text": "$x+y>0$",
                   "feedback": ""
-                },
-                {
-                  "id": "D",
-                  "text": "Nueva opción",
-                  "feedback": "$y=1$"
                 }
               ],
               "explanation": "Analiza las restricciones numéricas de cada término.",
               "correctOptionIds": [
-                "opt-1",
-                "opt-2"
+                "A",
+                "B"
               ]
             },
             {
