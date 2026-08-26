@@ -56,6 +56,7 @@ export default function ChapterEditorPage() {
       return;
     }
 
+    const savedScrollTop = textarea.scrollTop;
     const start = textarea.selectionStart ?? currentValue.length;
     const end = textarea.selectionEnd ?? currentValue.length;
 
@@ -69,14 +70,77 @@ export default function ChapterEditorPage() {
     onUpdate(newValue);
 
     setTimeout(() => {
-      textarea.focus();
+      textarea.focus({ preventScroll: true });
       const newPos = start + prefix.length + snippet.length;
       textarea.setSelectionRange(newPos, newPos);
-    }, 30);
+      textarea.scrollTop = savedScrollTop;
+    }, 10);
   };
 
-  // Active Editor Tab
-  const [editorTab, setEditorTab] = useState<'general' | 'motivacion' | 'teoria' | 'practica' | 'ejercicios' | 'formulas'>('ejercicios');
+  const handlePreviewDoubleClick = (
+    textarea: HTMLTextAreaElement | null,
+    fullContent: string,
+    clickedSnippet: string
+  ) => {
+    if (!textarea || !fullContent || !clickedSnippet) return;
+
+    const cleanSnippet = clickedSnippet.replace(/\s+/g, ' ').trim();
+    if (!cleanSnippet) return;
+
+    let matchIndex = fullContent.indexOf(cleanSnippet);
+    let matchLength = cleanSnippet.length;
+
+    if (matchIndex === -1 && cleanSnippet.length > 5) {
+      const words = cleanSnippet.split(' ').filter((w) => w.length > 2).slice(0, 4);
+      const searchKey = words.join(' ');
+      if (searchKey.length > 3) {
+        matchIndex = fullContent.indexOf(searchKey);
+        matchLength = searchKey.length;
+      }
+    }
+
+    if (matchIndex === -1) {
+      const longWords = cleanSnippet.split(/\s+/).filter((w) => w.length > 4);
+      for (const word of longWords) {
+        const idx = fullContent.indexOf(word);
+        if (idx !== -1) {
+          matchIndex = idx;
+          matchLength = word.length;
+          break;
+        }
+      }
+    }
+
+    if (matchIndex !== -1) {
+      textarea.focus();
+      textarea.setSelectionRange(matchIndex, matchIndex + matchLength);
+
+      const linesBefore = fullContent.slice(0, matchIndex).split('\n').length;
+      const totalLines = Math.max(fullContent.split('\n').length, 1);
+      const scrollRatio = linesBefore / totalLines;
+      const targetScrollTop = scrollRatio * (textarea.scrollHeight - textarea.clientHeight);
+
+      textarea.scrollTo({
+        top: Math.max(0, targetScrollTop - 40),
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  // Active Editor Tab & Per-Tab Scroll Memory
+  const [editorTab, setEditorTab] = useState<'general' | 'motivacion' | 'teoria' | 'practica' | 'ejercicios' | 'formulas'>('motivacion');
+  const editorTabScrollMemoryRef = React.useRef<Record<string, number>>({});
+
+  const handleEditorTabChange = (
+    newTab: 'general' | 'motivacion' | 'teoria' | 'practica' | 'ejercicios' | 'formulas'
+  ) => {
+    editorTabScrollMemoryRef.current[editorTab] = window.scrollY;
+    setEditorTab(newTab);
+    setTimeout(() => {
+      const savedScroll = editorTabScrollMemoryRef.current[newTab] ?? 0;
+      window.scrollTo({ top: savedScroll, behavior: 'auto' });
+    }, 10);
+  };
 
   // Tag Pools State
   const [availableConceptos, setAvailableConceptos] = useState<string[]>([
@@ -698,7 +762,7 @@ export default function ChapterEditorPage() {
                 ? 'border-cyan-600 text-cyan-600 bg-white shadow-xs'
                 : 'border-transparent text-slate-500 hover:text-slate-900'
             }`}
-            onClick={() => setEditorTab('motivacion')}
+            onClick={() => handleEditorTabChange('motivacion')}
           >
             <i className="fa-solid fa-lightbulb text-cyan-600"></i> Pestaña 1: Motivación
           </button>
@@ -709,7 +773,7 @@ export default function ChapterEditorPage() {
                 ? 'border-cyan-600 text-cyan-600 bg-white shadow-xs'
                 : 'border-transparent text-slate-500 hover:text-slate-900'
             }`}
-            onClick={() => setEditorTab('teoria')}
+            onClick={() => handleEditorTabChange('teoria')}
           >
             <i className="fa-solid fa-book-open text-indigo-600"></i> Pestaña 2: Teoría
           </button>
@@ -720,7 +784,7 @@ export default function ChapterEditorPage() {
                 ? 'border-cyan-600 text-cyan-600 bg-white shadow-xs'
                 : 'border-transparent text-slate-500 hover:text-slate-900'
             }`}
-            onClick={() => setEditorTab('practica')}
+            onClick={() => handleEditorTabChange('practica')}
           >
             <i className="fa-solid fa-person-chalkboard text-emerald-600"></i> Pestaña 3: Práctica Interactiva ({chapter.practica?.exercises?.length || 0})
           </button>
@@ -731,7 +795,7 @@ export default function ChapterEditorPage() {
                 ? 'border-cyan-600 text-cyan-600 bg-white shadow-xs'
                 : 'border-transparent text-slate-500 hover:text-slate-900'
             }`}
-            onClick={() => setEditorTab('ejercicios')}
+            onClick={() => handleEditorTabChange('ejercicios')}
           >
             <i className="fa-solid fa-calculator text-amber-600"></i> Pestaña 4: Ejercicios ({chapter.ejercicios?.problems?.length || 0})
           </button>
@@ -742,7 +806,7 @@ export default function ChapterEditorPage() {
                 ? 'border-cyan-600 text-cyan-600 bg-white shadow-xs'
                 : 'border-transparent text-slate-500 hover:text-slate-900'
             }`}
-            onClick={() => setEditorTab('formulas')}
+            onClick={() => handleEditorTabChange('formulas')}
           >
             <i className="fa-solid fa-square-root-variable text-purple-600"></i> Fórmulas Clave ({chapter.ejercicios?.formulasClave?.length || 0})
           </button>
@@ -753,7 +817,7 @@ export default function ChapterEditorPage() {
                 ? 'border-cyan-600 text-cyan-600 bg-white shadow-xs'
                 : 'border-transparent text-slate-500 hover:text-slate-900'
             }`}
-            onClick={() => setEditorTab('general')}
+            onClick={() => handleEditorTabChange('general')}
           >
             <i className="fa-solid fa-gear text-slate-600"></i> Datos Generales
           </button>
@@ -1939,10 +2003,20 @@ export default function ChapterEditorPage() {
             </div>
 
             <div className="bg-slate-100/70 border border-slate-200 rounded-2xl p-6 space-y-3 max-h-[850px] overflow-y-auto custom-scrollbar min-w-0">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block font-title mb-2">
-                <i className="fa-solid fa-eye text-cyan-600 mr-1"></i> Vista Previa en Vivo (Estudiante)
-              </span>
-              <LaTeXPedagogicalParser content={chapter.motivacion || ''} />
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block font-title">
+                  <i className="fa-solid fa-eye text-cyan-600 mr-1"></i> Vista Previa en Vivo (Estudiante)
+                </span>
+                <span className="text-[10px] font-bold text-cyan-700 bg-cyan-50 border border-cyan-200 px-2 py-0.5 rounded-full font-title">
+                  💡 Doble clic para ir a esa línea
+                </span>
+              </div>
+              <LaTeXPedagogicalParser
+                content={chapter.motivacion || ''}
+                onElementDoubleClick={(snippet) =>
+                  handlePreviewDoubleClick(motivacionRef.current, chapter.motivacion || '', snippet)
+                }
+              />
             </div>
           </div>
         )}
@@ -1980,10 +2054,20 @@ export default function ChapterEditorPage() {
             </div>
 
             <div className="bg-slate-100/70 border border-slate-200 rounded-2xl p-6 space-y-3 max-h-[850px] overflow-y-auto custom-scrollbar min-w-0">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block font-title mb-2">
-                <i className="fa-solid fa-eye text-cyan-600 mr-1"></i> Vista Previa en Vivo (Estudiante)
-              </span>
-              <LaTeXPedagogicalParser content={chapter.teoria || ''} />
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block font-title">
+                  <i className="fa-solid fa-eye text-cyan-600 mr-1"></i> Vista Previa en Vivo (Estudiante)
+                </span>
+                <span className="text-[10px] font-bold text-cyan-700 bg-cyan-50 border border-cyan-200 px-2 py-0.5 rounded-full font-title">
+                  💡 Doble clic para ir a esa línea
+                </span>
+              </div>
+              <LaTeXPedagogicalParser
+                content={chapter.teoria || ''}
+                onElementDoubleClick={(snippet) =>
+                  handlePreviewDoubleClick(teoriaRef.current, chapter.teoria || '', snippet)
+                }
+              />
             </div>
           </div>
         )}

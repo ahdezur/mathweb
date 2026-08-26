@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { getCourseContentBySlug, CourseContent, ChapterData, UnitData } from '@/lib/classroomData';
 import { ClassroomSidebar } from '@/components/classroom/ClassroomSidebar';
@@ -107,9 +107,30 @@ export default function CourseClassroomPage() {
     setFontScale((prev) => Math.max(prev - 0.15, 0.75));
   }, []);
 
+  // Scroll Container & Per-Tab Scroll Memory
+  const mainContentRef = useRef<HTMLDivElement>(null);
+  const tabScrollMemoryRef = useRef<Record<string, number>>({});
+
+  const handleTabChange = useCallback((newTab: 'motivacion' | 'teoria' | 'practica' | 'ejercicios') => {
+    if (mainContentRef.current) {
+      tabScrollMemoryRef.current[activeTab] = mainContentRef.current.scrollTop;
+    }
+    setActiveTab(newTab);
+    setTimeout(() => {
+      if (mainContentRef.current) {
+        const savedScroll = tabScrollMemoryRef.current[newTab] ?? 0;
+        mainContentRef.current.scrollTop = savedScroll;
+      }
+    }, 10);
+  }, [activeTab]);
+
   const handleSelectChapter = useCallback((id: string) => {
+    tabScrollMemoryRef.current = {};
     setActiveChapterId(id);
     setActiveTab('motivacion');
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollTop = 0;
+    }
   }, []);
 
   const handleToggleSidebar = useCallback(() => {
@@ -212,7 +233,7 @@ export default function CourseClassroomPage() {
                     ? 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700 hover:text-white'
                     : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-cyan-400 hover:text-slate-900'
                 }`}
-                onClick={() => setActiveTab('motivacion')}
+                onClick={() => handleTabChange('motivacion')}
               >
                 <i className={`fa-solid fa-lightbulb text-sm sm:text-base ${activeTab === 'motivacion' ? 'text-white' : 'text-cyan-500'}`}></i>
                 <span>Motivación</span>
@@ -227,7 +248,7 @@ export default function CourseClassroomPage() {
                     ? 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700 hover:text-white'
                     : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-cyan-400 hover:text-slate-900'
                 }`}
-                onClick={() => setActiveTab('teoria')}
+                onClick={() => handleTabChange('teoria')}
               >
                 <i className={`fa-solid fa-book-open text-sm sm:text-base ${activeTab === 'teoria' ? 'text-white' : 'text-indigo-500'}`}></i>
                 <span>Teoría</span>
@@ -242,7 +263,7 @@ export default function CourseClassroomPage() {
                     ? 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700 hover:text-white'
                     : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-cyan-400 hover:text-slate-900'
                 }`}
-                onClick={() => setActiveTab('practica')}
+                onClick={() => handleTabChange('practica')}
               >
                 <i className={`fa-solid fa-person-chalkboard text-sm sm:text-base ${activeTab === 'practica' ? 'text-white' : 'text-emerald-500'}`}></i>
                 <span>Práctica</span>
@@ -257,7 +278,7 @@ export default function CourseClassroomPage() {
                     ? 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700 hover:text-white'
                     : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-cyan-400 hover:text-slate-900'
                 }`}
-                onClick={() => setActiveTab('ejercicios')}
+                onClick={() => handleTabChange('ejercicios')}
               >
                 <i className={`fa-solid fa-calculator text-sm sm:text-base ${activeTab === 'ejercicios' ? 'text-white' : 'text-amber-500'}`}></i>
                 <span>Ejercicios</span>
@@ -283,6 +304,7 @@ export default function CourseClassroomPage() {
 
         {/* Chapter Content Main Area (Full-Width Reading View - Tight Bottom Spacing) */}
         <div
+          ref={mainContentRef}
           style={{ paddingLeft: 'clamp(24px, 4vw, 64px)', paddingRight: 'clamp(24px, 4vw, 64px)', paddingTop: '30px' }}
           className="flex-1 overflow-y-auto overflow-x-hidden pb-10 sm:pb-14"
         >

@@ -108,6 +108,7 @@ export function PedagogicalToolbar({ onInsertSnippet }: PedagogicalToolbarProps)
           <button
             key={item.id}
             type="button"
+            onMouseDown={(e) => e.preventDefault()}
             onClick={() => onInsertSnippet(item.snippet)}
             className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer shadow-2xs font-title ${item.color}`}
             title={`Insertar plantilla de ${item.label}`}

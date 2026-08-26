@@ -14,14 +14,28 @@ import { MathFormula, MathText } from '@/components/math/MathFormula';
 
 interface LaTeXPedagogicalParserProps {
   content: string;
+  onElementDoubleClick?: (snippetText: string) => void;
 }
 
-export function LaTeXPedagogicalParser({ content }: LaTeXPedagogicalParserProps) {
+export function LaTeXPedagogicalParser({ content, onElementDoubleClick }: LaTeXPedagogicalParserProps) {
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!onElementDoubleClick) return;
+    const selectedText = window.getSelection()?.toString().trim();
+    if (selectedText && selectedText.length > 1) {
+      onElementDoubleClick(selectedText);
+      return;
+    }
+    const targetText = (e.target as HTMLElement)?.textContent?.trim();
+    if (targetText && targetText.length > 2) {
+      onElementDoubleClick(targetText);
+    }
+  };
 
   if (!content || content.trim().length === 0) {
     return (
@@ -66,7 +80,11 @@ export function LaTeXPedagogicalParser({ content }: LaTeXPedagogicalParserProps)
   const cardList = cards.length > 0 ? cards : [content.trim()];
 
   return (
-    <div suppressHydrationWarning className="space-y-6">
+    <div
+      suppressHydrationWarning
+      className={`space-y-6 ${onElementDoubleClick ? 'cursor-pointer select-text title="Haz doble clic para ir a esta línea en el editor"' : ''}`}
+      onDoubleClick={handleDoubleClick}
+    >
       {cardList.map((cardContent, idx) => (
         <WhiteBaseCard key={idx}>
           {parseCardInnerContent(cardContent)}
