@@ -91,6 +91,13 @@ export function PedagogicalToolbar({ onInsertSnippet }: PedagogicalToolbarProps)
       icon: 'fa-lightbulb',
       color: 'bg-emerald-100 text-emerald-800 border-emerald-300 hover:bg-emerald-200',
       snippet: `\\begin{aplicacion}{Título}\nTexto...\n\\end{aplicacion}`
+    },
+    {
+      id: 'html',
+      label: '+ Lienzo HTML / Canvas',
+      icon: 'fa-code',
+      color: 'bg-cyan-100 text-cyan-900 border-cyan-300 hover:bg-cyan-200 font-bold',
+      snippet: `\\begin{html}{Gráfico Canvas Interactivo}\n<div style="text-align:center; padding:10px;">\n  <canvas id="miLienzo" width="600" height="350" style="border:1px solid #cbd5e1; border-radius:8px; background:#fafafa;"></canvas>\n  <script>\n    const canvas = document.getElementById('miLienzo');\n    const ctx = canvas.getContext('2d');\n    ctx.fillStyle = '#1976d2';\n    ctx.fillRect(50, 50, 150, 100);\n  </script>\n</div>\n\\end{html}`
     }
   ];
 

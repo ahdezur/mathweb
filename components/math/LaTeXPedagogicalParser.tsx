@@ -8,7 +8,8 @@ import {
   MetodoResolucionCard,
   TrampaCognitivaCard,
   PreguntaGuiaCard,
-  EjercicioClaveCard
+  EjercicioClaveCard,
+  HTMLSandboxCard
 } from '@/components/classroom/PedagogicalCards';
 import { MathFormula, MathText } from '@/components/math/MathFormula';
 
@@ -99,7 +100,7 @@ function parseCardInnerContent(text: string) {
   const elements: React.ReactNode[] = [];
 
   // Tokenize by environment regexes or display math
-  const envRegex = /(\\begin\{(definicion|teorema|lema|corolario|propiedades|metodo|trampa|pregunta|ejercicio|aplicacion)\}[\s\S]*?\\end\{\2\}|\$\$[\s\S]*?\$\$)/g;
+  const envRegex = /(\\begin\{(definicion|teorema|lema|corolario|propiedades|metodo|trampa|pregunta|ejercicio|aplicacion|html)\}[\s\S]*?\\end\{\2\}|\$\$[\s\S]*?\$\$)/g;
 
   let lastIndex = 0;
   let match;
@@ -553,6 +554,12 @@ function extractBraceContentAt(text: string, startBraceIndex: number): { content
         </div>
       </div>
     );
+  }
+
+  // 9. Lienzo HTML / Canvas Interactivo: \begin{html}{Title} raw html code \end{html}
+  if (envType === 'html') {
+    const { title, body } = extractEnvironmentTitle(raw, 'html');
+    return <HTMLSandboxCard key={key} title={title || undefined} htmlContent={body} />;
   }
 
   return null;

@@ -81,6 +81,7 @@ function renderKaTeX(text: string) {
 // -----------------------------------------------------------------------------
 // 1. Tarjeta Blanca Base (Contenedor Narrativo Nivel 2)
 // -----------------------------------------------------------------------------
+export { HTMLSandboxCard } from './HTMLSandboxCard';
 export interface WhiteBaseCardProps {
   children: React.ReactNode;
   className?: string;

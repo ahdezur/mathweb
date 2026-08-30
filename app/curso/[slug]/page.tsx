@@ -137,8 +137,21 @@ export default function CourseClassroomPage() {
     setSidebarCollapsed((prev) => !prev);
   }, []);
 
+  useEffect(() => {
+    // Force light mode by default unless user toggles dark mode
+    document.body.classList.remove('theme-dark', 'dark');
+  }, []);
+
   const handleToggleTheme = useCallback(() => {
-    setIsDarkMode((prev) => !prev);
+    setIsDarkMode((prev) => {
+      const next = !prev;
+      if (next) {
+        document.body.classList.add('theme-dark', 'dark');
+      } else {
+        document.body.classList.remove('theme-dark', 'dark');
+      }
+      return next;
+    });
   }, []);  return (
     <div
       className={`h-screen w-screen max-w-[100vw] overflow-hidden flex flex-col lg:flex-row transition-colors duration-300 font-sans ${
