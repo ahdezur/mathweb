@@ -227,8 +227,8 @@ export function InteractivePractice({ exercises, fontScale = 1.0 }: InteractiveP
           </div>
 
           {/* Derecha: Barra de Precisión + Botón Reiniciar */}
-          <div className="flex items-center gap-4">
-            <div className="hidden sm:flex flex-col items-end gap-1">
+          <div className="flex flex-wrap items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+            <div className="flex flex-col items-start sm:items-end gap-1 flex-1 sm:flex-initial">
               <div className="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300">
                 <span>Precisión: {accuracy}% ({completedCount}/{totalCount})</span>
                 {completedCount > 0 && accuracy >= 80 && (
@@ -237,7 +237,7 @@ export function InteractivePractice({ exercises, fontScale = 1.0 }: InteractiveP
                   </span>
                 )}
               </div>
-              <div className="w-40 h-2.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+              <div className="w-full sm:w-40 h-2.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-emerald-500 to-cyan-500 transition-all duration-500 rounded-full"
                   style={{ width: `${(completedCount / totalCount) * 100}%` }}
@@ -248,7 +248,7 @@ export function InteractivePractice({ exercises, fontScale = 1.0 }: InteractiveP
             {/* Botón Reiniciar */}
             <button
               onClick={handleResetAll}
-              className="px-4 py-2.5 rounded-xl text-xs font-bold border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-2 cursor-pointer font-title shadow-xs"
+              className="px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-2 cursor-pointer font-title shadow-xs shrink-0"
             >
               <i className="fa-solid fa-rotate-left"></i>
               <span>Reiniciar</span>

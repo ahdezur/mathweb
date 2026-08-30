@@ -71,14 +71,14 @@ const ClassroomSidebarComponent: React.FC<ClassroomSidebarProps> = ({
       )}
 
       <aside
-        className={`h-full transition-all duration-300 ease-in-out border-r flex flex-col z-50 shrink-0 ${
+        className={`h-full transition-transform duration-300 ease-in-out border-r flex flex-col z-50 shrink-0 ${
           isDarkMode
             ? 'bg-slate-950 border-slate-800 text-slate-100'
             : 'bg-[#edf1f5] border-slate-200/80 text-slate-900 shadow-xs'
         } ${
           collapsed
-            ? '-translate-x-full lg:translate-x-0 w-0 lg:w-16 border-transparent lg:border-slate-200/80 overflow-hidden'
-            : 'fixed lg:relative inset-y-0 left-0 w-[300px] sm:w-[340px] shadow-2xl lg:shadow-xs'
+            ? 'fixed lg:relative inset-y-0 left-0 w-[300px] sm:w-[340px] lg:w-16 -translate-x-full lg:translate-x-0 pointer-events-none lg:pointer-events-auto border-transparent lg:border-slate-200/80'
+            : 'fixed lg:relative inset-y-0 left-0 w-[300px] sm:w-[340px] lg:w-[320px] translate-x-0 shadow-2xl lg:shadow-xs'
         }`}
       >
       {/* Sidebar Control Toolbar (Home, Theme, Font, Collapse) */}

@@ -83,10 +83,17 @@ export default function CourseClassroomPage() {
     });
   }, []);
 
-  // Sidebar Controls (Default: Light Mode as per user global preferences)
+  // Sidebar Controls (Default: Light Mode, Collapsed on mobile < 1024px)
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [fontScale, setFontScale] = useState<number>(1.0);
+
+  useEffect(() => {
+    // Collapse sidebar by default on mobile/tablet (< 1024px) for clean reading
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setSidebarCollapsed(true);
+    }
+  }, []);
 
   const hasUnits = Array.isArray(courseData.units) && courseData.units.length > 0;
   const unitChapters = hasUnits ? courseData.units!.flatMap((u) => u.chapters || []) : [];
