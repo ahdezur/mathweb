@@ -700,6 +700,12 @@ export default function AdminDashboardPage() {
         </div>
 
         <div className="flex items-center gap-4">
+          <Link
+            href="/admin/banco-ejercicios"
+            className="text-xs px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 text-white font-bold transition-all shadow-xs flex items-center gap-1.5 font-title"
+          >
+            <i className="fa-solid fa-vault"></i> Banco Central de Ejercicios
+          </Link>
           <Link href="/" className="text-xs text-slate-600 hover:text-slate-900 transition-colors">
             <i className="fa-solid fa-globe mr-1"></i> Ver Sitio Web
           </Link>

@@ -57,7 +57,7 @@ export interface CourseContent {
   chapters: ChapterData[];
 }
 
-const CALCULO_DIFERENCIAL_COURSE: CourseContent = {
+export const CALCULO_DIFERENCIAL_COURSE: CourseContent = {
   id: 'c1',
   slug: 'calculo-diferencial',
   title: 'Cálculo Diferencial',

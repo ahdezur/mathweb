@@ -11,6 +11,7 @@ import { LaTeXPedagogicalParser } from '@/components/math/LaTeXPedagogicalParser
 import { InteractivePractice, PracticeExercise } from '@/components/classroom/InteractivePractice';
 import { ExerciseImportModal } from '@/components/admin/ExerciseImportModal';
 import { GuideExerciseImportModal } from '@/components/admin/GuideExerciseImportModal';
+import { CentralBankImportModal } from '@/components/admin/CentralBankImportModal';
 
 function getOptionLabel(optId: string, index: number): string {
   if (!optId) return String.fromCharCode(65 + index);
@@ -196,6 +197,8 @@ export default function ChapterEditorPage() {
 
   const [importModalOpen, setImportModalOpen] = useState(false);
   const [guideImportModalOpen, setGuideImportModalOpen] = useState(false);
+  const [bankImportModalOpen, setBankImportModalOpen] = useState(false);
+  const [bankImportTab, setBankImportTab] = useState<'practica' | 'ejercicios'>('practica');
   const [allChaptersList, setAllChaptersList] = useState<ChapterData[]>([]);
 
   const syncAvailableTags = (chData: ChapterData) => {
@@ -839,6 +842,16 @@ export default function ChapterEditorPage() {
                   <i className="fa-solid fa-plus"></i> + Agregar Ejercicio
                 </button>
                 <button
+                  onClick={() => {
+                    setBankImportTab('ejercicios');
+                    setBankImportModalOpen(true);
+                  }}
+                  className="px-3.5 py-2 bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-2 cursor-pointer font-title shadow-xs"
+                  title="Seleccionar ejercicios de desarrollo del Banco Central"
+                >
+                  <i className="fa-solid fa-vault"></i> 🏛️ + Desde Banco Central
+                </button>
+                <button
                   onClick={() => setGuideImportModalOpen(true)}
                   className="px-3.5 py-2 bg-gradient-to-r from-amber-600 via-purple-600 to-indigo-600 hover:from-amber-500 hover:to-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-2 cursor-pointer font-title shadow-xs"
                   title="Importar varios ejercicios resueltos en bloque usando sintaxis LaTeX"
@@ -1184,6 +1197,16 @@ export default function ChapterEditorPage() {
                     className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-1.5 font-title cursor-pointer"
                   >
                     <i className="fa-solid fa-plus"></i> Emparejamiento
+                  </button>
+                  <button
+                    onClick={() => {
+                      setBankImportTab('practica');
+                      setBankImportModalOpen(true);
+                    }}
+                    className="px-3.5 py-1.5 bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-1.5 font-title cursor-pointer"
+                    title="Seleccionar ejercicios interactivos del Banco Central"
+                  >
+                    <i className="fa-solid fa-vault"></i> 🏛️ + Desde Banco Central
                   </button>
                   <button
                     onClick={() => setImportModalOpen(true)}
@@ -2085,6 +2108,18 @@ export default function ChapterEditorPage() {
         isOpen={guideImportModalOpen}
         onClose={() => setGuideImportModalOpen(false)}
         onImportProblems={handleBatchImportGuideExercises}
+      />
+
+      {/* Modal de Importación desde el Banco Central */}
+      <CentralBankImportModal
+        isOpen={bankImportModalOpen}
+        onClose={() => setBankImportModalOpen(false)}
+        chapterId={chapterId}
+        courseSlug={courseSlug}
+        tab={bankImportTab}
+        onExercisesImported={() => {
+          loadChapterData();
+        }}
       />
     </div>
   );

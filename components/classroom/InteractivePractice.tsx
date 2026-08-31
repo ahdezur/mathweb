@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
+import { recordStudentRating } from '@/lib/exerciseBank';
 
 // -----------------------------------------------------------------------------
 // Helper para Sanitización y Renderizado KaTeX
@@ -307,6 +308,8 @@ function ExerciseCard({
   onAnswerChange,
   onCheck,
 }: ExerciseCardProps) {
+  const [ratingVoted, setRatingVoted] = useState<number | null>(null);
+
   // Determinar si el ejercicio se respondió correctamente
   let isCorrect = false;
   if (isChecked) {
@@ -499,6 +502,48 @@ function ExerciseCard({
                 </div>
               );
             })()}
+
+            {/* Student Perceived Difficulty Widget */}
+            <div className="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between gap-2 flex-wrap">
+              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                ¿Qué te pareció la dificultad de este ejercicio?
+              </span>
+              {ratingVoted !== null ? (
+                <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-title">
+                  <i className="fa-solid fa-check-circle"></i> ¡Gracias por tu opinión!
+                </span>
+              ) : (
+                <div className="flex items-center gap-1.5 text-xs font-bold">
+                  <button
+                    onClick={() => {
+                      setRatingVoted(1);
+                      recordStudentRating(exercise.id, 1);
+                    }}
+                    className="px-2.5 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 hover:bg-emerald-200 text-emerald-800 dark:text-emerald-300 transition-all cursor-pointer font-title"
+                  >
+                    🟢 Fácil
+                  </button>
+                  <button
+                    onClick={() => {
+                      setRatingVoted(2);
+                      recordStudentRating(exercise.id, 2);
+                    }}
+                    className="px-2.5 py-1 rounded-lg bg-amber-100 dark:bg-amber-950/80 hover:bg-amber-200 text-amber-800 dark:text-amber-300 transition-all cursor-pointer font-title"
+                  >
+                    🟡 Adecuado
+                  </button>
+                  <button
+                    onClick={() => {
+                      setRatingVoted(3);
+                      recordStudentRating(exercise.id, 3);
+                    }}
+                    className="px-2.5 py-1 rounded-lg bg-rose-100 dark:bg-rose-950/80 hover:bg-rose-200 text-rose-800 dark:text-rose-300 transition-all cursor-pointer font-title"
+                  >
+                    🔴 Difícil
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
