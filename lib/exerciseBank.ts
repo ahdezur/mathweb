@@ -267,7 +267,17 @@ export function getAllBankExercises(): BankExercise[] {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
       return initial;
     }
-    return JSON.parse(raw) as BankExercise[];
+    const parsed = JSON.parse(raw) as BankExercise[];
+    const seen = new Set<string>();
+    const deduplicated = parsed.map((ex, i) => {
+      if (seen.has(ex.id)) {
+        const fixedId = `${ex.id}-uniq-${i}-${Math.random().toString(36).substring(2, 6)}`;
+        return { ...ex, id: fixedId };
+      }
+      seen.add(ex.id);
+      return ex;
+    });
+    return deduplicated;
   } catch (err) {
     console.error('Error reading Central Exercise Bank from localStorage:', err);
     return generateInitialExercises();
@@ -327,8 +337,9 @@ export function syncExercisesFromAllCourses(): BankExercise[] {
               else if (ex.type === 'multiple_choice') tipo = 'multiple_choice';
               else if (ex.type === 'matching') tipo = 'matching';
 
+              const uniqueId = ex.id || `bank-practica-${chap.id}-${idx + 1}-${Math.random().toString(36).substring(2, 7)}`;
               const newBankEx: BankExercise = {
-                id: ex.id || `bank-practica-${chap.id}-${idx + 1}-${Date.now()}`,
+                id: uniqueId,
                 tipoEjercicio: tipo,
                 titulo: ex.title || `Práctica ${idx + 1} - ${chap.title}`,
                 enunciadoLatex: statement,
@@ -411,8 +422,9 @@ export function syncExercisesFromAllCourses(): BankExercise[] {
               const conceptos = isObj && (prob as ProblemItem).conceptos ? (prob as ProblemItem).conceptos! : [];
               const habilidades = isObj && (prob as ProblemItem).habilidades ? (prob as ProblemItem).habilidades! : [];
 
+              const uniqueId = probId || `bank-desarrollo-${chap.id}-${idx + 1}-${Math.random().toString(36).substring(2, 7)}`;
               const newBankEx: BankExercise = {
-                id: probId || `bank-desarrollo-${chap.id}-${idx + 1}-${Date.now()}`,
+                id: uniqueId,
                 tipoEjercicio: 'desarrollo',
                 titulo: `Problema ${idx + 1}: ${statement.slice(0, 45).replace(/[\$\*\#]/g, '')}...`,
                 enunciadoLatex: statement,
@@ -446,8 +458,21 @@ export function syncExercisesFromAllCourses(): BankExercise[] {
     });
   });
 
-  saveAllBankExercises(existing);
-  return existing;
+  // Strict deduplication by ID to prevent duplicate React keys
+  const uniqueMap = new Map<string, BankExercise>();
+  existing.forEach((ex) => {
+    if (!uniqueMap.has(ex.id)) {
+      uniqueMap.set(ex.id, ex);
+    } else {
+      // Re-assign a guaranteed unique ID if collision occurs
+      const fixId = `${ex.id}-${Math.random().toString(36).substring(2, 7)}`;
+      uniqueMap.set(fixId, { ...ex, id: fixId });
+    }
+  });
+
+  const deduplicated = Array.from(uniqueMap.values());
+  saveAllBankExercises(deduplicated);
+  return deduplicated;
 }
 
 export function saveBankExercise(exercise: BankExercise): BankExercise[] {
