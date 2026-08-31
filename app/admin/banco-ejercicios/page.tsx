@@ -10,8 +10,10 @@ import {
   getAllBankExercises,
   saveBankExercise,
   deleteBankExercise,
+  toPracticeExercise,
 } from '@/lib/exerciseBank';
 import { MathText } from '@/components/math/MathFormula';
+import { InteractivePractice } from '@/components/classroom/InteractivePractice';
 
 export default function CentralExerciseBankPage() {
   const [exercises, setExercises] = useState<BankExercise[]>([]);
@@ -26,6 +28,13 @@ export default function CentralExerciseBankPage() {
   // Editing / Creating Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingEx, setEditingEx] = useState<Partial<BankExercise> | null>(null);
+
+  // Live Preview Toggle Memory
+  const [openPreviews, setOpenPreviews] = useState<Record<string, boolean>>({});
+
+  const togglePreview = (id: string) => {
+    setOpenPreviews((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   useEffect(() => {
     setExercises(getAllBankExercises());
@@ -328,6 +337,57 @@ export default function CentralExerciseBankPage() {
                         {t.tag}
                       </span>
                     ))}
+                  </div>
+
+                  {/* Vista Previa en Vivo (Estudiante) */}
+                  <div className="mt-3 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden bg-slate-50/70 dark:bg-slate-950/70">
+                    <button
+                      type="button"
+                      onClick={() => togglePreview(ex.id)}
+                      className="w-full px-4 py-2 bg-slate-100/90 dark:bg-slate-900/90 hover:bg-slate-200/90 dark:hover:bg-slate-800 flex items-center justify-between text-xs font-bold font-title text-slate-800 dark:text-slate-200 transition-all cursor-pointer"
+                    >
+                      <span className="flex items-center gap-2">
+                        <i className="fa-solid fa-eye text-cyan-600 dark:text-cyan-400"></i>
+                        <span>Vista Previa en Vivo (Estudiante)</span>
+                      </span>
+                      <i className={`fa-solid ${openPreviews[ex.id] ? 'fa-chevron-up' : 'fa-chevron-down'} text-slate-400 text-xs`}></i>
+                    </button>
+
+                    {openPreviews[ex.id] && (
+                      <div className="p-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                        {ex.tipoEjercicio !== 'desarrollo' ? (
+                          (() => {
+                            const practiceEx = toPracticeExercise(ex);
+                            if (!practiceEx) return null;
+                            return <InteractivePractice exercises={[practiceEx]} />;
+                          })()
+                        ) : (
+                          <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                            <div className="flex items-center gap-2">
+                              <span className="w-6 h-6 rounded-lg bg-cyan-600 text-white font-bold text-xs flex items-center justify-center font-title">
+                                1
+                              </span>
+                              <span className="font-bold text-xs text-slate-800 dark:text-slate-200 font-title">
+                                Ejercicio de Desarrollo
+                              </span>
+                            </div>
+                            <div className="text-xs text-slate-700 dark:text-slate-300">
+                              <MathText text={ex.enunciadoLatex} />
+                            </div>
+                            {ex.pautaDetalladaLatex && (
+                              <div className="pt-2 border-t border-slate-100 dark:border-slate-800 space-y-1">
+                                <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 block font-title">
+                                  ✓ Pauta / Solución Paso a Paso:
+                                </span>
+                                <div className="text-xs text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+                                  <MathText text={ex.pautaDetalladaLatex} />
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
 
