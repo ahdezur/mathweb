@@ -1,4 +1,4 @@
-import { CALCULO_DIFERENCIAL_COURSE, UnitData, ChapterData, ProblemItem } from './classroomData';
+import { CALCULO_DIFERENCIAL_COURSE, getCourseContentBySlug, CourseContent, UnitData, ChapterData, ProblemItem } from './classroomData';
 import type { PracticeExercise, TrueFalseExercise, SingleChoiceExercise, MultipleChoiceExercise, MatchingExercise } from '@/components/classroom/InteractivePractice';
 
 export type ExerciseType = 'true_false' | 'single_choice' | 'multiple_choice' | 'matching' | 'desarrollo';
@@ -272,6 +272,182 @@ export function getAllBankExercises(): BankExercise[] {
     console.error('Error reading Central Exercise Bank from localStorage:', err);
     return generateInitialExercises();
   }
+}
+
+export function syncExercisesFromAllCourses(): BankExercise[] {
+  let existing = getAllBankExercises();
+
+  // Gather courses from localStorage 'classroom_courses_v1' and predefined courses
+  let coursesToScan: CourseContent[] = [];
+
+  if (typeof window !== 'undefined') {
+    try {
+      const rawStored = localStorage.getItem('classroom_courses_v1');
+      if (rawStored) {
+        coursesToScan = JSON.parse(rawStored) as CourseContent[];
+      }
+    } catch (e) {
+      console.error('Error parsing stored courses:', e);
+    }
+  }
+
+  // Ensure default predefined courses are also scanned if not present
+  const defaultSlugs = ['calculo-diferencial', 'algebra-lineal', 'calculo-integral', 'ecuaciones-diferenciales'];
+  defaultSlugs.forEach((slug) => {
+    if (!coursesToScan.some((c) => c.slug === slug)) {
+      coursesToScan.push(getCourseContentBySlug(slug));
+    }
+  });
+
+  coursesToScan.forEach((course) => {
+    (course.units || []).forEach((unit: UnitData) => {
+      (unit.chapters || []).forEach((chap: ChapterData) => {
+        // 1. Practice Exercises
+        if (chap.practica && chap.practica.exercises && chap.practica.exercises.length > 0) {
+          chap.practica.exercises.forEach((ex: PracticeExercise, idx: number) => {
+            const statement = 'question' in ex ? ex.question : ('statement' in ex ? ex.statement : '');
+            const existingMatch = existing.find(
+              (b) => (ex.id && b.id === ex.id) || (statement && b.enunciadoLatex === statement)
+            );
+
+            if (existingMatch) {
+              const hasAsg = existingMatch.asignaciones.some(
+                (asg) => asg.chapterId === chap.id && asg.tab === 'practica'
+              );
+              if (!hasAsg) {
+                existingMatch.asignaciones.push({
+                  courseSlug: course.slug,
+                  chapterId: chap.id,
+                  tab: 'practica',
+                });
+              }
+            } else {
+              let tipo: ExerciseType = 'single_choice';
+              if (ex.type === 'true_false') tipo = 'true_false';
+              else if (ex.type === 'multiple_choice') tipo = 'multiple_choice';
+              else if (ex.type === 'matching') tipo = 'matching';
+
+              const newBankEx: BankExercise = {
+                id: ex.id || `bank-practica-${chap.id}-${idx + 1}-${Date.now()}`,
+                tipoEjercicio: tipo,
+                titulo: ex.title || `Práctica ${idx + 1} - ${chap.title}`,
+                enunciadoLatex: statement,
+                nivelDificultad: 'Intermedio',
+                materiaArea: course.category || course.title,
+                temaSubtema: `${unit.title} > ${chap.title}`,
+                tags: [
+                  { tag: 'Práctica Interactiva', mostrarAlEstudiante: true },
+                  { tag: course.slug, mostrarAlEstudiante: false },
+                ],
+                nivelCognitivo: 'Aplicar',
+                pautaDetalladaLatex: ex.explanation || '',
+                status: 'Listo',
+                asignaciones: [{ courseSlug: course.slug, chapterId: chap.id, tab: 'practica' }],
+                analytics: {
+                  tasaAciertoHistorica: 85,
+                  intentosPromedio: 1.2,
+                  usoDePistaCount: 3,
+                  dificultadPercibidaTotal: 10,
+                  dificultadPercibidaVotos: 5,
+                },
+              };
+
+              if (ex.type === 'true_false') {
+                newBankEx.correctAnswer = ex.correctAnswer;
+                newBankEx.trueFeedback = ex.trueFeedback;
+                newBankEx.falseFeedback = ex.falseFeedback;
+              } else if (ex.type === 'single_choice') {
+                newBankEx.options = ex.options;
+                newBankEx.correctOptionId = ex.correctOptionId;
+              } else if (ex.type === 'multiple_choice') {
+                newBankEx.options = ex.options;
+                newBankEx.correctOptionIds = ex.correctOptionIds;
+              } else if (ex.type === 'matching') {
+                newBankEx.columns = ex.columns;
+                newBankEx.col1Title = ex.col1Title;
+                newBankEx.col2Title = ex.col2Title;
+                newBankEx.col3Title = ex.col3Title;
+                newBankEx.col1Items = ex.col1Items;
+                newBankEx.col2Options = ex.col2Options;
+                newBankEx.col3Options = ex.col3Options;
+                newBankEx.correctMapping = ex.correctMapping;
+                newBankEx.correctMappingCol3 = ex.correctMappingCol3;
+              }
+
+              existing.push(newBankEx);
+            }
+          });
+        }
+
+        // 2. Development Exercises
+        if (chap.ejercicios && chap.ejercicios.problems && chap.ejercicios.problems.length > 0) {
+          chap.ejercicios.problems.forEach((prob: string | ProblemItem, idx: number) => {
+            const isObj = typeof prob === 'object' && prob !== null;
+            const statement = isObj ? prob.problem : String(prob);
+            const pauta = isObj ? prob.pauta : '';
+            const probId = isObj && (prob as ProblemItem).id ? (prob as ProblemItem).id : null;
+
+            const existingMatch = existing.find(
+              (b) => (probId && b.id === probId) || (statement && b.enunciadoLatex === statement)
+            );
+
+            if (existingMatch) {
+              const hasAsg = existingMatch.asignaciones.some(
+                (asg) => asg.chapterId === chap.id && asg.tab === 'ejercicios'
+              );
+              if (!hasAsg) {
+                existingMatch.asignaciones.push({
+                  courseSlug: course.slug,
+                  chapterId: chap.id,
+                  tab: 'ejercicios',
+                });
+              }
+            } else {
+              const diffRaw = isObj ? (prob as ProblemItem).dificultad : 'Medio';
+              let diff: DifficultyLevel = 'Intermedio';
+              if (diffRaw === 'Básico') diff = 'Básico';
+              else if (diffRaw === 'Alto') diff = 'Avanzado';
+
+              const conceptos = isObj && (prob as ProblemItem).conceptos ? (prob as ProblemItem).conceptos! : [];
+              const habilidades = isObj && (prob as ProblemItem).habilidades ? (prob as ProblemItem).habilidades! : [];
+
+              const newBankEx: BankExercise = {
+                id: probId || `bank-desarrollo-${chap.id}-${idx + 1}-${Date.now()}`,
+                tipoEjercicio: 'desarrollo',
+                titulo: `Problema ${idx + 1}: ${statement.slice(0, 45).replace(/[\$\*\#]/g, '')}...`,
+                enunciadoLatex: statement,
+                nivelDificultad: diff,
+                materiaArea: course.category || course.title,
+                temaSubtema: `${unit.title} > ${chap.title}`,
+                tags: [
+                  ...conceptos.map((c: string) => ({ tag: c, mostrarAlEstudiante: true })),
+                  ...habilidades.map((h: string) => ({ tag: h, mostrarAlEstudiante: false })),
+                ],
+                nivelCognitivo: diff === 'Avanzado' ? 'Analizar' : 'Aplicar',
+                pautaDetalladaLatex: pauta,
+                status: 'Listo',
+                asignaciones: [{ courseSlug: course.slug, chapterId: chap.id, tab: 'ejercicios' }],
+                conceptos,
+                habilidades,
+                analytics: {
+                  tasaAciertoHistorica: 78,
+                  intentosPromedio: 1.5,
+                  usoDePistaCount: 8,
+                  dificultadPercibidaTotal: 15,
+                  dificultadPercibidaVotos: 6,
+                },
+              };
+
+              existing.push(newBankEx);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  saveAllBankExercises(existing);
+  return existing;
 }
 
 export function saveBankExercise(exercise: BankExercise): BankExercise[] {

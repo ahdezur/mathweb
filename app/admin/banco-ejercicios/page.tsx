@@ -11,6 +11,7 @@ import {
   saveBankExercise,
   deleteBankExercise,
   toPracticeExercise,
+  syncExercisesFromAllCourses,
 } from '@/lib/exerciseBank';
 import { MathText } from '@/components/math/MathFormula';
 import { InteractivePractice } from '@/components/classroom/InteractivePractice';
@@ -37,7 +38,8 @@ export default function CentralExerciseBankPage() {
   };
 
   useEffect(() => {
-    setExercises(getAllBankExercises());
+    const synced = syncExercisesFromAllCourses();
+    setExercises(synced);
     setLoading(false);
   }, []);
 
@@ -171,13 +173,27 @@ export default function CentralExerciseBankPage() {
             </div>
           </div>
 
-          <button
-            onClick={handleOpenCreateModal}
-            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-700 hover:to-indigo-700 text-white text-xs font-bold font-title shadow-md flex items-center gap-2 transition-all cursor-pointer"
-          >
-            <i className="fa-solid fa-plus text-xs"></i>
-            <span>Nuevo Ejercicio / Borrador</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                const synced = syncExercisesFromAllCourses();
+                setExercises(synced);
+                alert(`¡Sincronización completada! ${synced.length} ejercicios registrados en el Banco Central.`);
+              }}
+              className="px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold font-title flex items-center gap-2 transition-all cursor-pointer shadow-2xs"
+              title="Escanear todos los cursos y traer ejercicios de capítulos previos"
+            >
+              <i className="fa-solid fa-arrows-rotate text-cyan-600"></i>
+              <span>Sincronizar Cursos</span>
+            </button>
+            <button
+              onClick={handleOpenCreateModal}
+              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-700 hover:to-indigo-700 text-white text-xs font-bold font-title shadow-md flex items-center gap-2 transition-all cursor-pointer"
+            >
+              <i className="fa-solid fa-plus text-xs"></i>
+              <span>Nuevo Ejercicio / Borrador</span>
+            </button>
+          </div>
         </div>
       </header>
 
