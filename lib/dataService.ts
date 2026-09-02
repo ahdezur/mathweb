@@ -117,6 +117,11 @@ function getBookingsCache(): DBBooking[] {
 }
 
 export const DataService = {
+  // Synchronous initial cache getter for instant zero-latency UI rendering
+  getCoursesSync(): Course[] {
+    return getCoursesCache();
+  },
+
   // COURSES
   async getCourses(): Promise<Course[]> {
     if (isSupabaseConfigured && supabase) {

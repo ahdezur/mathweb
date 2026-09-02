@@ -7,16 +7,21 @@ import { DataService } from '@/lib/dataService';
 import { MathFormula, MathText } from '../math/MathFormula';
 
 export const CourseCatalog: React.FC = () => {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [courses, setCourses] = useState<Course[]>(() => DataService.getCoursesSync());
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function loadCourses() {
-      const data = await DataService.getCourses();
-      setCourses(data);
-      setLoading(false);
+    async function refreshCourses() {
+      try {
+        const data = await DataService.getCourses();
+        if (data && data.length > 0) {
+          setCourses(data);
+        }
+      } catch (err) {
+        console.error('Error refreshing courses in background:', err);
+      }
     }
-    loadCourses();
+    refreshCourses();
   }, []);
 
   const getCourseIcon = (category?: string) => {

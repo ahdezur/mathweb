@@ -201,6 +201,44 @@ export default function ChapterEditorPage() {
   const [bankImportTab, setBankImportTab] = useState<'practica' | 'ejercicios'>('practica');
   const [allChaptersList, setAllChaptersList] = useState<ChapterData[]>([]);
 
+  // 3-Layer Draft Protection & Dirty State
+  const [isDirty, setIsDirty] = useState<boolean>(false);
+  const [hasDraft, setHasDraft] = useState<boolean>(false);
+  const draftKey = `editor_draft_${chapterId}`;
+  const isLoadedRef = React.useRef<boolean>(false);
+  const currentChapterIdRef = React.useRef<string>(chapterId);
+
+  // Reset loaded ref when chapterId changes
+  if (currentChapterIdRef.current !== chapterId) {
+    currentChapterIdRef.current = chapterId;
+    isLoadedRef.current = false;
+  }
+
+  // Auto-save local draft whenever chapter state changes
+  useEffect(() => {
+    if (!isLoadedRef.current) return;
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(draftKey, JSON.stringify(chapter));
+        setIsDirty(true);
+        setHasDraft(true);
+      } catch (e) {}
+    }
+  }, [chapter, draftKey]);
+
+  // Warn user before closing tab if there are unsaved edits
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (isDirty) {
+        e.preventDefault();
+        e.returnValue = 'Tienes cambios no guardados en este capítulo. ¿Seguro que deseas salir?';
+        return e.returnValue;
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [isDirty]);
+
   const syncAvailableTags = (chData: ChapterData) => {
     if (!chData.ejercicios?.problems) return;
     const extractedConceptos: string[] = [];
@@ -292,11 +330,39 @@ export default function ChapterEditorPage() {
       router.push('/admin/login');
       return;
     }
-    loadChapterData();
-  }, [chapterId, courseSlug]);
+    if (!isLoadedRef.current) {
+      loadChapterData();
+    }
+  }, [chapterId]);
 
   const loadChapterData = async () => {
+    // Protect unsaved local edits from being overwritten by background fetches
+    if (isLoadedRef.current) {
+      return;
+    }
+
     setLoading(true);
+
+    // Check if local draft exists first
+    let draftData: ChapterData | null = null;
+    if (typeof window !== 'undefined') {
+      const savedDraft = localStorage.getItem(draftKey);
+      if (savedDraft) {
+        try {
+          draftData = JSON.parse(savedDraft);
+          setHasDraft(true);
+        } catch (e) {}
+      }
+    }
+
+    if (draftData) {
+      setChapter(draftData);
+      setIsDirty(true);
+      setLoading(false);
+      isLoadedRef.current = true;
+      return;
+    }
+
     try {
       const res = await fetch(`/api/admin/courses?t=${Date.now()}`, { cache: 'no-store' });
       const data = await res.json();
@@ -319,6 +385,7 @@ export default function ChapterEditorPage() {
           if (foundChapter) {
             setChapter(foundChapter);
             setLoading(false);
+            isLoadedRef.current = true;
             return;
           }
         }
@@ -347,6 +414,19 @@ export default function ChapterEditorPage() {
     }
 
     setLoading(false);
+    isLoadedRef.current = true;
+  };
+
+  const handleDiscardDraft = () => {
+    if (confirm('¿Descartar el borrador local y recargar la versión guardada del servidor?')) {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem(draftKey);
+      }
+      setIsDirty(false);
+      setHasDraft(false);
+      isLoadedRef.current = false;
+      loadChapterData();
+    }
   };
 
   const handleSaveChapter = async () => {
@@ -361,6 +441,11 @@ export default function ChapterEditorPage() {
       const data = await res.json();
       if (data.success) {
         setSaveMessage('¡Capítulo guardado con éxito!');
+        setIsDirty(false);
+        setHasDraft(false);
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem(draftKey);
+        }
         setTimeout(() => setSaveMessage(null), 3500);
       } else {
         alert('Error al guardar: ' + (data.error || 'Intente nuevamente'));
@@ -729,6 +814,20 @@ export default function ChapterEditorPage() {
           </div>
 
           <div className="flex items-center gap-3">
+            {isDirty && (
+              <span className="text-[11px] font-bold text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/80 px-2.5 py-1.5 rounded-lg border border-amber-200 dark:border-amber-800 font-title flex items-center gap-1.5 shadow-2xs">
+                <i className="fa-solid fa-pen-line text-amber-600 dark:text-amber-400"></i> Borrador no guardado (Auto-guardado local)
+                <button
+                  type="button"
+                  onClick={handleDiscardDraft}
+                  className="ml-1 text-[10px] text-amber-900 dark:text-amber-200 underline hover:text-rose-600 transition-colors cursor-pointer"
+                  title="Descartar borrador local y recargar versión guardada del servidor"
+                >
+                  Descartar
+                </button>
+              </span>
+            )}
+
             {saveMessage && (
               <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-300 font-title">
                 <i className="fa-solid fa-circle-check mr-1.5"></i> {saveMessage}
