@@ -354,66 +354,63 @@ export default function ChapterEditorPage() {
       }
     }
 
+    // Helper to fetch and populate chapter list for navigation buttons (Anterior / Siguiente)
+    const fetchChapterList = async (): Promise<ChapterData[]> => {
+      try {
+        const res = await fetch(`/api/admin/courses?t=${Date.now()}`, { cache: 'no-store' });
+        const data = await res.json();
+        if (data.success && Array.isArray(data.courses)) {
+          const course = data.courses.find((c: any) => c.slug === courseSlug) || data.courses[0];
+          if (course) {
+            let chaptersOrdered: ChapterData[] = [];
+            if (course.units && course.units.length > 0) {
+              const sortedUnits = course.units.slice().sort((a: any, b: any) => a.number - b.number);
+              sortedUnits.forEach((u: any) => {
+                const unitChs = (u.chapters || []).slice().sort((a: any, b: any) => a.number - b.number);
+                chaptersOrdered.push(...unitChs);
+              });
+            } else if (course.chapters) {
+              chaptersOrdered = (course.chapters || []).slice().sort((a: any, b: any) => a.number - b.number);
+            }
+            setAllChaptersList(chaptersOrdered);
+            return chaptersOrdered;
+          }
+        }
+      } catch (err) {
+        console.error('Error loading chapter list in editor:', err);
+      }
+
+      // Fallback lookup from default course content
+      const defaultCourse = getCourseContentBySlug(courseSlug);
+      let fallbackOrdered: ChapterData[] = [];
+      if (defaultCourse.units && defaultCourse.units.length > 0) {
+        const sortedUnits = defaultCourse.units.slice().sort((a: any, b: any) => a.number - b.number);
+        sortedUnits.forEach((u) => {
+          const unitChs = (u.chapters || []).slice().sort((a, b) => a.number - b.number);
+          fallbackOrdered.push(...unitChs);
+        });
+      } else if (defaultCourse.chapters) {
+        fallbackOrdered = (defaultCourse.chapters || []).slice().sort((a, b) => a.number - b.number);
+      }
+      setAllChaptersList(fallbackOrdered);
+      return fallbackOrdered;
+    };
+
     if (draftData) {
       setChapter(draftData);
       setIsDirty(true);
       setLoading(false);
       isLoadedRef.current = true;
+      fetchChapterList();
       return;
     }
 
     setLoading(true);
-
-    try {
-      const res = await fetch(`/api/admin/courses?t=${Date.now()}`, { cache: 'no-store' });
-      const data = await res.json();
-      if (data.success && Array.isArray(data.courses)) {
-        const course = data.courses.find((c: any) => c.slug === courseSlug) || data.courses[0];
-        if (course) {
-          let chaptersOrdered: ChapterData[] = [];
-          if (course.units && course.units.length > 0) {
-            const sortedUnits = course.units.slice().sort((a: any, b: any) => a.number - b.number);
-            sortedUnits.forEach((u: any) => {
-              const unitChs = (u.chapters || []).slice().sort((a: any, b: any) => a.number - b.number);
-              chaptersOrdered.push(...unitChs);
-            });
-          } else if (course.chapters) {
-            chaptersOrdered = (course.chapters || []).slice().sort((a: any, b: any) => a.number - b.number);
-          }
-          setAllChaptersList(chaptersOrdered);
-
-          const foundChapter = chaptersOrdered.find((ch: any) => ch.id === chapterId);
-          if (foundChapter) {
-            setChapter(foundChapter);
-            setLoading(false);
-            isLoadedRef.current = true;
-            return;
-          }
-        }
-      }
-    } catch (err) {
-      console.error('Error loading chapter data in editor:', err);
+    const chaptersList = await fetchChapterList();
+    const foundChapter = chaptersList.find((ch: any) => ch.id === chapterId);
+    if (foundChapter) {
+      setChapter(foundChapter);
     }
-
-    // Fallback lookup from default course content
-    const defaultCourse = getCourseContentBySlug(courseSlug);
-    let fallbackOrdered: ChapterData[] = [];
-    if (defaultCourse.units && defaultCourse.units.length > 0) {
-      const sortedUnits = defaultCourse.units.slice().sort((a: any, b: any) => a.number - b.number);
-      sortedUnits.forEach((u) => {
-        const unitChs = (u.chapters || []).slice().sort((a, b) => a.number - b.number);
-        fallbackOrdered.push(...unitChs);
-      });
-    } else if (defaultCourse.chapters) {
-      fallbackOrdered = (defaultCourse.chapters || []).slice().sort((a, b) => a.number - b.number);
-    }
-    setAllChaptersList(fallbackOrdered);
-
-    const foundFallback = fallbackOrdered.find((ch) => ch.id === chapterId);
-    if (foundFallback) {
-      setChapter(foundFallback);
-    }
-
     setLoading(false);
     isLoadedRef.current = true;
   };
