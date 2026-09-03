@@ -117,7 +117,7 @@ function getBookingsCache(): DBBooking[] {
 }
 
 export const DataService = {
-  // Synchronous initial cache getter for instant zero-latency UI rendering
+  // Synchronous initial cache getter for instant zero-latency UI rendering with matched formulas & ordering
   getCoursesSync(): Course[] {
     return getCoursesCache();
   },

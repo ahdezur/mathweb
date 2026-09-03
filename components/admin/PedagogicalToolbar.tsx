@@ -62,7 +62,7 @@ export function PedagogicalToolbar({ onInsertSnippet }: PedagogicalToolbarProps)
       label: '+ Método de Resolución',
       icon: 'fa-gears',
       color: 'bg-orange-100 text-orange-800 border-orange-300 hover:bg-orange-200',
-      snippet: `\\begin{metodo}{Título}\n\n\\problema{Enunciado...}\n\n\\paso{1}{Título del Paso 1}\nDescripción...\n\\ejemplo{Cálculo...}\n\n\\end{metodo}`
+      snippet: `\\begin{metodo}{Título}\n\n\\problema{Enunciado...}\n\n\\paso{1}{Título del Paso 1}\nDescripción...\n\n\\begin{ejemplo}\nCálculos del ejemplo...\n\\end{ejemplo}\n\n\\end{metodo}`
     },
     {
       id: 'trampa',

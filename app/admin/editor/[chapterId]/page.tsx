@@ -8,6 +8,7 @@ import { MathFormula, MathText } from '@/components/math/MathFormula';
 import { TagAutocompleteSelector } from '@/components/admin/TagAutocompleteSelector';
 import { PedagogicalToolbar } from '@/components/admin/PedagogicalToolbar';
 import { LaTeXPedagogicalParser } from '@/components/math/LaTeXPedagogicalParser';
+import { renderKaTeX } from '@/components/classroom/PedagogicalCards';
 import { InteractivePractice, PracticeExercise } from '@/components/classroom/InteractivePractice';
 import { ExerciseImportModal } from '@/components/admin/ExerciseImportModal';
 import { GuideExerciseImportModal } from '@/components/admin/GuideExerciseImportModal';
@@ -341,9 +342,7 @@ export default function ChapterEditorPage() {
       return;
     }
 
-    setLoading(true);
-
-    // Check if local draft exists first
+    // Check if local draft exists first BEFORE setting loading state to avoid DOM unmounting
     let draftData: ChapterData | null = null;
     if (typeof window !== 'undefined') {
       const savedDraft = localStorage.getItem(draftKey);
@@ -362,6 +361,8 @@ export default function ChapterEditorPage() {
       isLoadedRef.current = true;
       return;
     }
+
+    setLoading(true);
 
     try {
       const res = await fetch(`/api/admin/courses?t=${Date.now()}`, { cache: 'no-store' });
@@ -1097,7 +1098,7 @@ export default function ChapterEditorPage() {
 
                         {/* Enunciado */}
                         <div className="bg-white border border-slate-200/90 rounded-xl p-4 text-sm leading-relaxed">
-                          <MathText text={prob.problem} />
+                          {renderKaTeX(prob.problem)}
                         </div>
 
                         {/* Pauta / Solución Paso a Paso */}
@@ -1107,8 +1108,8 @@ export default function ChapterEditorPage() {
                               <i className="fa-solid fa-square-check text-emerald-600"></i>
                               <span>Indicaciones / Solución Paso a Paso:</span>
                             </div>
-                            <div className="font-medium whitespace-pre-line">
-                              <MathText text={prob.pauta} />
+                            <div className="font-medium">
+                              {renderKaTeX(prob.pauta)}
                             </div>
                           </div>
                         )}

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
+import { HTMLSandboxCard } from './HTMLSandboxCard';
 
 function sanitizeLaTeX(str: string): string {
   if (!str) return '';
@@ -30,9 +31,39 @@ function sanitizeLaTeX(str: string): string {
     .replace(/\\\\(neq|geq|leq|notin|nabla|nu|neg|frac|sqrt|lim|sum|int|infty|alpha|beta|gamma|delta|epsilon|theta|pi|sigma|lambda|omega|mathbb|mathbf|mathcal|text|textbf|mathrm|left|right|begin|end)(?![a-zA-Z])/g, '\\$1');
 }
 
-// Helper to render inline & display KaTeX safely
-function renderKaTeX(text: string) {
+// Helper to render inline & display KaTeX safely (and embedded HTML sandbox blocks)
+export function renderKaTeX(text: string): React.ReactNode {
   if (!text) return null;
+
+  // Support embedded \begin{html}{Title} ... \end{html} blocks natively inside any card/step/example
+  if (text.includes('\\begin{html}')) {
+    const htmlRegex = /\\begin\{html\}(?:\{([\s\S]*?)\})?([\s\S]*?)\\end\{html\}/g;
+    const parts: React.ReactNode[] = [];
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = htmlRegex.exec(text)) !== null) {
+      const preText = text.slice(lastIndex, match.index);
+      if (preText) {
+        parts.push(<React.Fragment key={`pre-${lastIndex}`}>{renderKaTeX(preText)}</React.Fragment>);
+      }
+
+      const rawTitle = match[1] || '';
+      const htmlContent = match[2] || '';
+      parts.push(
+        <HTMLSandboxCard key={`html-${match.index}`} title={rawTitle} htmlContent={htmlContent} />
+      );
+
+      lastIndex = htmlRegex.lastIndex;
+    }
+
+    const postText = text.slice(lastIndex);
+    if (postText) {
+      parts.push(<React.Fragment key={`post-${lastIndex}`}>{renderKaTeX(postText)}</React.Fragment>);
+    }
+
+    return <div className="space-y-3">{parts}</div>;
+  }
 
   const cleanText = sanitizeLaTeX(text);
   const parts = cleanText.split(/(\$\$[\s\S]*?\$\$|\$[\s\S]*?\$)/g);
@@ -339,7 +370,7 @@ export function MetodoResolucionCard({ title, steps, fullExample }: MetodoResolu
         // Línea de continuación: pertenece al contexto activo (Paso actual o Header)
         if (activeContext.type === 'step' && activeContext.stepNum) {
           const existing = map.get(activeContext.stepNum) || '';
-          map.set(activeContext.stepNum, existing ? `${existing.endsWith('\n\n') ? existing : existing + ' '}${trimmed}` : trimmed);
+          map.set(activeContext.stepNum, existing ? `${existing}\n${trimmed}` : trimmed);
         } else if (activeContext.type === 'footer') {
           footers.push(trimmed);
         } else {

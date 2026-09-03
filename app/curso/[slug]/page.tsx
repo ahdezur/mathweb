@@ -15,6 +15,7 @@ import {
   TrampaCognitivaCard,
   PreguntaGuiaCard,
   EjercicioClaveCard,
+  renderKaTeX,
 } from '@/components/classroom/PedagogicalCards';
 import { InteractivePractice, PracticeExercise } from '@/components/classroom/InteractivePractice';
 import { LaTeXPedagogicalParser } from '@/components/math/LaTeXPedagogicalParser';
@@ -41,10 +42,32 @@ export default function CourseClassroomPage() {
   }, [slug, canonicalSlug, router]);
 
   useEffect(() => {
+    // 1. Instantly check local storage cache right after mount (guarantees 0 hydration error)
+    if (typeof window !== 'undefined') {
+      try {
+        const stored = localStorage.getItem('app_classroom_courses');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) {
+            const foundCache = parsed.find((c: any) => c.slug === canonicalSlug || c.slug === slug);
+            if (foundCache && ((Array.isArray(foundCache.units) && foundCache.units.length > 0) || (Array.isArray(foundCache.chapters) && foundCache.chapters.length > 0))) {
+              setCourseData(foundCache);
+            }
+          }
+        }
+      } catch (e) {}
+    }
+
+    // 2. Fetch live data from server
     fetch(`/api/admin/courses?t=${Date.now()}`, { cache: 'no-store' })
       .then((res) => res.json())
       .then((data) => {
         if (data.success && Array.isArray(data.courses)) {
+          if (typeof window !== 'undefined') {
+            try {
+              localStorage.setItem('app_classroom_courses', JSON.stringify(data.courses));
+            } catch (e) {}
+          }
           const found = data.courses.find((c: any) => c.slug === canonicalSlug || c.slug === slug);
           if (found) {
             setCourseData(found);
@@ -450,7 +473,7 @@ export default function CourseClassroomPage() {
                               </span>
                               <div className="flex-1 min-w-0">
                                 <div className="text-sm md:text-base leading-relaxed text-slate-900 dark:text-slate-100 font-medium">
-                                  <MathText text={problemText} />
+                                  {renderKaTeX(problemText)}
                                 </div>
 
                                 {/* Botón Ver Indicaciones / Pauta ubicado exactamente a 28px bajo el texto del problema */}
@@ -578,8 +601,8 @@ export default function CourseClassroomPage() {
                                 style={{ padding: '32px 36px' }}
                                 className="w-full bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 rounded-2xl transition-all duration-300 shadow-xs"
                               >
-                                <div className="px-4 py-3 md:px-6 md:py-4 text-slate-800 dark:text-slate-200 text-sm md:text-base leading-relaxed whitespace-pre-line space-y-2">
-                                  <MathText text={pautaText} />
+                                <div className="px-4 py-3 md:px-6 md:py-4 text-slate-800 dark:text-slate-200 text-sm md:text-base leading-relaxed space-y-2">
+                                  {renderKaTeX(pautaText)}
                                 </div>
                               </div>
                             </div>

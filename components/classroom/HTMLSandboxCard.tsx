@@ -10,7 +10,7 @@ interface HTMLSandboxCardProps {
 
 export function HTMLSandboxCard({ title, htmlContent }: HTMLSandboxCardProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [iframeHeight, setIframeHeight] = useState<number>(420);
+  const [iframeHeight, setIframeHeight] = useState<number>(320);
 
   let fullDoc = htmlContent.trim();
   const lowerDoc = fullDoc.toLowerCase();
@@ -43,28 +43,30 @@ export function HTMLSandboxCard({ title, htmlContent }: HTMLSandboxCardProps) {
 </html>`;
   }
 
-  useEffect(() => {
-    const handleIframeLoad = () => {
-      if (iframeRef.current && iframeRef.current.contentWindow) {
-        try {
-          const doc = iframeRef.current.contentWindow.document;
-          const bodyHeight = doc.body.scrollHeight;
-          const htmlHeight = doc.documentElement.scrollHeight;
-          const calculated = Math.max(bodyHeight, htmlHeight);
-          if (calculated && calculated > 100) {
-            setIframeHeight(Math.max(calculated + 25, 250));
-          }
-        } catch (e) {
-          // Fallback height on cross-origin restrictions
+  const handleIframeLoad = () => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      try {
+        const doc = iframeRef.current.contentWindow.document;
+        // Measure real body content height directly (ignoring documentElement scrollHeight WebKit viewport trap)
+        const realHeight = Math.max(doc.body.scrollHeight, doc.body.offsetHeight);
+        if (realHeight && realHeight > 40) {
+          setIframeHeight(realHeight);
         }
+      } catch (e) {
+        // Fallback height on cross-origin restrictions
       }
+    }
+  };
+
+  useEffect(() => {
+    handleIframeLoad();
+    const timer1 = setTimeout(handleIframeLoad, 300);
+    const timer2 = setTimeout(handleIframeLoad, 800);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
     };
-
-    const timer = setTimeout(() => {
-      handleIframeLoad();
-    }, 500);
-
-    return () => clearTimeout(timer);
   }, [htmlContent]);
 
   return (
@@ -84,6 +86,7 @@ export function HTMLSandboxCard({ title, htmlContent }: HTMLSandboxCardProps) {
         <iframe
           ref={iframeRef}
           srcDoc={fullDoc}
+          onLoad={handleIframeLoad}
           title={title || 'Lienzo HTML Interactivo'}
           style={{ height: `${iframeHeight}px` }}
           className="w-full max-w-[820px] border-0 transition-all duration-300 rounded-xl"

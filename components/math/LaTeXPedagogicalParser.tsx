@@ -445,10 +445,19 @@ function extractBraceContentAt(text: string, startBraceIndex: number): { content
       let stepDesc = stepBodyRaw.trim();
       let stepExample = '';
 
-      const ejExtraction = extractBalancedBraces(stepDesc, 'ejemplo');
-      if (ejExtraction.matchedContent !== null) {
-        stepExample = ejExtraction.matchedContent.trim();
-        stepDesc = ejExtraction.remainingText.trim();
+      // 1. Support \begin{ejemplo} ... \end{ejemplo} environment block (Option A)
+      const ejEnvRegex = /\\begin\{ejemplo\}([\s\S]*?)\\end\{ejemplo\}/;
+      const ejEnvMatch = stepDesc.match(ejEnvRegex);
+      if (ejEnvMatch) {
+        stepExample = ejEnvMatch[1].trim();
+        stepDesc = stepDesc.replace(ejEnvRegex, '').trim();
+      } else {
+        // 2. Fallback to macro \ejemplo{...}
+        const ejExtraction = extractBalancedBraces(stepDesc, 'ejemplo');
+        if (ejExtraction.matchedContent !== null) {
+          stepExample = ejExtraction.matchedContent.trim();
+          stepDesc = ejExtraction.remainingText.trim();
+        }
       }
 
       steps.push({

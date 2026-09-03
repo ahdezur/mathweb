@@ -403,6 +403,43 @@ export function getCourseContentBySlug(slug: string): CourseContent {
     ? 'calculo-multivariable'
     : slug;
 
+  // 1. Try reading real stored course data from disk on Server (SSR)
+  if (typeof window === 'undefined') {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const fs = require('fs');
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const path = require('path');
+      const filePath = path.join(process.cwd(), 'data', 'courses_storage.json');
+      if (fs.existsSync(filePath)) {
+        const fileData = fs.readFileSync(filePath, 'utf-8');
+        const parsed = JSON.parse(fileData);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const foundServer = parsed.find((c: any) => c.slug === canonicalSlug || c.slug === slug || (c.slug && c.slug.includes(slug)));
+          if (foundServer && ((Array.isArray(foundServer.units) && foundServer.units.length > 0) || (Array.isArray(foundServer.chapters) && foundServer.chapters.length > 0))) {
+            return foundServer;
+          }
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 2. Try reading real stored course data from localStorage on Client
+  if (typeof window !== 'undefined') {
+    try {
+      const stored = localStorage.getItem('app_classroom_courses');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          const foundClient = parsed.find((c: any) => c.slug === canonicalSlug || c.slug === slug || (c.slug && c.slug.includes(slug)));
+          if (foundClient && ((Array.isArray(foundClient.units) && foundClient.units.length > 0) || (Array.isArray(foundClient.chapters) && foundClient.chapters.length > 0))) {
+            return foundClient;
+          }
+        }
+      }
+    } catch (e) {}
+  }
+
   const course = MOCK_CLASSROOM_DATA[canonicalSlug] || MOCK_CLASSROOM_DATA[slug];
   if (course) {
     const unitsWithFormattedChapters = (course.units || []).map((unit) => ({
