@@ -13,6 +13,8 @@ import { InteractivePractice, PracticeExercise } from '@/components/classroom/In
 import { ExerciseImportModal } from '@/components/admin/ExerciseImportModal';
 import { GuideExerciseImportModal } from '@/components/admin/GuideExerciseImportModal';
 import { CentralBankImportModal } from '@/components/admin/CentralBankImportModal';
+import { GutterCodeEditor } from '@/components/admin/GutterCodeEditor';
+import { EnvironmentFoldBar, ensureUnfoldedContent } from '@/components/admin/EnvironmentFoldBar';
 
 function getOptionLabel(optId: string, index: number): string {
   if (!optId) return String.fromCharCode(65 + index);
@@ -431,10 +433,20 @@ export default function ChapterEditorPage() {
     setSaving(true);
     setSaveMessage(null);
     try {
+      const cleanChapter = {
+        ...chapter,
+        motivacion: ensureUnfoldedContent(chapter.motivacion || ''),
+        teoria: ensureUnfoldedContent(chapter.teoria || ''),
+        practica: {
+          ...chapter.practica,
+          text: ensureUnfoldedContent(chapter.practica?.text || '')
+        }
+      };
+
       const res = await fetch('/api/admin/chapters', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ courseSlug, chapter })
+        body: JSON.stringify({ courseSlug, chapter: cleanChapter })
       });
       const data = await res.json();
       if (data.success) {
@@ -746,18 +758,36 @@ export default function ChapterEditorPage() {
 
   const handleNavigateWithAutoSave = async (targetChapterId?: string | null, targetUrl?: string) => {
     try {
+      const cleanChapter = {
+        ...chapter,
+        motivacion: ensureUnfoldedContent(chapter.motivacion || ''),
+        teoria: ensureUnfoldedContent(chapter.teoria || ''),
+        practica: {
+          ...chapter.practica,
+          text: ensureUnfoldedContent(chapter.practica?.text || '')
+        }
+      };
+
       await fetch('/api/admin/chapters', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ courseSlug, chapter })
+        body: JSON.stringify({ courseSlug, chapter: cleanChapter })
       });
     } catch (err) {
       console.error('Auto-save on navigate error:', err);
     }
     if (targetChapterId) {
-      router.push(`/admin/editor/${targetChapterId}?slug=${courseSlug}`);
+      if (typeof window !== 'undefined') {
+        window.location.href = `/admin/editor/${targetChapterId}?slug=${courseSlug}`;
+      } else {
+        router.push(`/admin/editor/${targetChapterId}?slug=${courseSlug}`);
+      }
     } else if (targetUrl) {
-      router.push(targetUrl);
+      if (typeof window !== 'undefined') {
+        window.location.href = targetUrl;
+      } else {
+        router.push(targetUrl);
+      }
     }
   };
 
@@ -2111,13 +2141,11 @@ export default function ChapterEditorPage() {
                 }}
               />
 
-              <textarea
-                ref={motivacionRef}
-                rows={16}
+              <GutterCodeEditor
+                textareaRef={motivacionRef}
                 value={chapter.motivacion || ''}
-                onChange={(e) => setChapter((prev) => ({ ...prev, motivacion: e.target.value }))}
-                className="w-full rounded-2xl border border-slate-200 text-xs md:text-sm font-mono leading-relaxed bg-slate-50/50 min-w-0 shadow-2xs focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all"
-                style={{ paddingLeft: '36px', paddingRight: '36px', paddingTop: '24px', paddingBottom: '24px' }}
+                onChange={(val) => setChapter((prev) => ({ ...prev, motivacion: val }))}
+                rows={16}
                 placeholder="Utiliza la botonera superior o escribe en LaTeX nativo..."
               />
             </div>
@@ -2162,13 +2190,11 @@ export default function ChapterEditorPage() {
                 }}
               />
 
-              <textarea
-                ref={teoriaRef}
-                rows={16}
+              <GutterCodeEditor
+                textareaRef={teoriaRef}
                 value={chapter.teoria || ''}
-                onChange={(e) => setChapter((prev) => ({ ...prev, teoria: e.target.value }))}
-                className="w-full rounded-2xl border border-slate-200 text-xs md:text-sm font-mono leading-relaxed bg-slate-50/50 min-w-0 shadow-2xs focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all"
-                style={{ paddingLeft: '36px', paddingRight: '36px', paddingTop: '24px', paddingBottom: '24px' }}
+                onChange={(val) => setChapter((prev) => ({ ...prev, teoria: val }))}
+                rows={16}
                 placeholder="Utiliza la botonera superior o escribe en LaTeX nativo..."
               />
             </div>
