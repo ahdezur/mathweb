@@ -263,14 +263,23 @@ export function TheoreticalCard({ type, title, content, demostration, properties
           style={{ marginTop: '16px', paddingTop: '12px' }}
           className="border-t border-slate-200/60 dark:border-slate-800"
         >
-          <button
-            onClick={() => setShowDemo(!showDemo)}
-            className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs md:text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm hover:shadow transition-all duration-200"
-          >
-            <i className="fa-solid fa-pen-nib"></i>
-            <span>{showDemo ? 'Ocultar Demostraciones' : 'Ver Demostraciones'}</span>
-            <i className={`fa-solid fa-chevron-down text-xs transition-transform duration-300 ${showDemo ? 'rotate-180' : ''}`}></i>
-          </button>
+          {(() => {
+            const isPlural = type === 'propiedades' || (hasPropertyDemos && !demostration);
+            const demoBtnLabel = showDemo
+              ? (isPlural ? 'Ocultar Demostraciones' : 'Ocultar Demostración')
+              : (isPlural ? 'Ver Demostraciones' : 'Ver Demostración');
+
+            return (
+              <button
+                onClick={() => setShowDemo(!showDemo)}
+                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs md:text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm hover:shadow transition-all duration-200"
+              >
+                <i className="fa-solid fa-pen-nib"></i>
+                <span>{demoBtnLabel}</span>
+                <i className={`fa-solid fa-chevron-down text-xs transition-transform duration-300 ${showDemo ? 'rotate-180' : ''}`}></i>
+              </button>
+            );
+          })()}
 
           {showDemo && (
             <div

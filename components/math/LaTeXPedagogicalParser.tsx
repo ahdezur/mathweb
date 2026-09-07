@@ -27,14 +27,19 @@ export function LaTeXPedagogicalParser({ content, onElementDoubleClick }: LaTeXP
 
   const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!onElementDoubleClick) return;
-    const selectedText = window.getSelection()?.toString().trim();
-    if (selectedText && selectedText.length > 1) {
-      onElementDoubleClick(selectedText);
-      return;
-    }
-    const targetText = (e.target as HTMLElement)?.textContent?.trim();
-    if (targetText && targetText.length > 2) {
-      onElementDoubleClick(targetText);
+
+    const targetEl = e.target as HTMLElement;
+    const blockEl = targetEl?.closest('p, li, h1, h2, h3, h4, td, div') || targetEl;
+    const parentBlockText = blockEl?.textContent?.trim() || '';
+
+    const selectedText = window.getSelection()?.toString().trim() || targetEl?.textContent?.trim() || '';
+
+    if (selectedText && selectedText.length >= 1) {
+      if (parentBlockText && parentBlockText.length > selectedText.length) {
+        onElementDoubleClick(`${selectedText}|||${parentBlockText}`);
+      } else {
+        onElementDoubleClick(selectedText);
+      }
     }
   };
 

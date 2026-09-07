@@ -91,19 +91,23 @@ interface MathTextProps {
 }
 
 const MathTextComponent: React.FC<MathTextProps> = ({ text, className = '' }) => {
-  const hasBlockMath = text ? text.includes('$$') : false;
+  const hasBlockMath = text ? (text.includes('$$') || text.includes('\\[')) : false;
 
   const renderedText = React.useMemo(() => {
     if (!text) return '';
 
     const cleanText = sanitizeLaTeX(text);
-    const parts = cleanText.split(/(\$\$[\s\S]*?\$\$|\$[\s\S]*?\$|\\mathbb\{[^\}]+\}\^[0-3n]|\\varepsilon\s*-\s*\\delta)/g);
+    const parts = cleanText.split(/(\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[\s\S]*?\$|\\mathbb\{[^\}]+\}\^[0-3n]|\\varepsilon\s*-\s*\\delta)/g);
 
     return parts
       .map((part) => {
         if (!part) return '';
 
         if (part.startsWith('$$') && part.endsWith('$$')) {
+          const latexExpr = part.slice(2, -2).trim();
+          const katexHtml = renderKatexCached(latexExpr, true);
+          return `<div class="math-block text-center my-3 overflow-x-auto py-2">${katexHtml}</div>`;
+        } else if (part.startsWith('\\[') && part.endsWith('\\]')) {
           const latexExpr = part.slice(2, -2).trim();
           const katexHtml = renderKatexCached(latexExpr, true);
           return `<div class="math-block text-center my-3 overflow-x-auto py-2">${katexHtml}</div>`;

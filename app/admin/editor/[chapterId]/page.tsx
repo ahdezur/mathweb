@@ -88,23 +88,65 @@ export default function ChapterEditorPage() {
   ) => {
     if (!textarea || !fullContent || !clickedSnippet) return;
 
-    const cleanSnippet = clickedSnippet.replace(/\s+/g, ' ').trim();
-    if (!cleanSnippet) return;
+    let clickedWord = clickedSnippet;
+    let contextBlock = '';
 
-    let matchIndex = fullContent.indexOf(cleanSnippet);
-    let matchLength = cleanSnippet.length;
+    if (clickedSnippet.includes('|||')) {
+      const parts = clickedSnippet.split('|||');
+      clickedWord = parts[0].trim();
+      contextBlock = parts[1].trim();
+    }
 
-    if (matchIndex === -1 && cleanSnippet.length > 5) {
-      const words = cleanSnippet.split(' ').filter((w) => w.length > 2).slice(0, 4);
-      const searchKey = words.join(' ');
-      if (searchKey.length > 3) {
-        matchIndex = fullContent.indexOf(searchKey);
-        matchLength = searchKey.length;
+    const cleanWord = clickedWord.replace(/\s+/g, ' ').trim();
+    if (!cleanWord) return;
+
+    let matchIndex = -1;
+    let matchLength = cleanWord.length;
+
+    // 1. If contextBlock is available, build sequence matching across embedded LaTeX markup
+    if (contextBlock) {
+      const wordsInContext = contextBlock
+        .replace(/\\(mathbb|vec|textbf|textit|frac|dfrac|times|cdot|begin|end|[\w]+)/g, ' ')
+        .replace(/[$#{}\\()[\]]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .split(' ')
+        .filter((w) => w.length > 2);
+
+      const wordIdx = wordsInContext.findIndex((w) => w.toLowerCase() === cleanWord.toLowerCase());
+      const startW = Math.max(0, (wordIdx !== -1 ? wordIdx : 0) - 2);
+      const endW = Math.min(wordsInContext.length, (wordIdx !== -1 ? wordIdx : 0) + 3);
+      const windowWords = wordsInContext.slice(startW, endW);
+
+      if (windowWords.length > 1) {
+        const escWords = windowWords.map((w) => w.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'));
+        const sequencePattern = escWords.join('[\\s\\S]*?');
+        try {
+          const reg = new RegExp(sequencePattern, 'i');
+          const m = fullContent.match(reg);
+          if (m && m.index !== undefined) {
+            const matchRegion = m[0];
+            const wordOffsetInRegion = matchRegion.toLowerCase().indexOf(cleanWord.toLowerCase());
+            if (wordOffsetInRegion !== -1) {
+              matchIndex = m.index + wordOffsetInRegion;
+              matchLength = cleanWord.length;
+            } else {
+              matchIndex = m.index;
+              matchLength = matchRegion.length;
+            }
+          }
+        } catch (e) {}
       }
     }
 
+    // 2. Direct exact match fallback
     if (matchIndex === -1) {
-      const longWords = cleanSnippet.split(/\s+/).filter((w) => w.length > 4);
+      matchIndex = fullContent.indexOf(cleanWord);
+    }
+
+    // 3. First word fallback
+    if (matchIndex === -1 && cleanWord.length > 3) {
+      const longWords = cleanWord.split(/\s+/).filter((w) => w.length > 3);
       for (const word of longWords) {
         const idx = fullContent.indexOf(word);
         if (idx !== -1) {
@@ -119,15 +161,11 @@ export default function ChapterEditorPage() {
       textarea.focus();
       textarea.setSelectionRange(matchIndex, matchIndex + matchLength);
 
-      const linesBefore = fullContent.slice(0, matchIndex).split('\n').length;
-      const totalLines = Math.max(fullContent.split('\n').length, 1);
-      const scrollRatio = linesBefore / totalLines;
-      const targetScrollTop = scrollRatio * (textarea.scrollHeight - textarea.clientHeight);
+      const linesBefore = fullContent.slice(0, matchIndex).split('\n').length - 1;
+      const targetScrollTop = linesBefore * 21; // 21px per line in GutterCodeEditor
 
-      textarea.scrollTo({
-        top: Math.max(0, targetScrollTop - 40),
-        behavior: 'smooth',
-      });
+      textarea.scrollTop = Math.max(0, targetScrollTop - 42);
+      textarea.dispatchEvent(new Event('scroll'));
     }
   };
 
