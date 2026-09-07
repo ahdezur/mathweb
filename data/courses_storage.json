@@ -1515,7 +1515,36 @@
             },
             "ejercicios": {
               "problems": [
-                "Desarrolle el cálculo matricial para el sistema 3x3."
+                {
+                  "id": "prob-1788792344006-1",
+                  "problem": "Considere $(a_n)_{n \\in \\mathbb{N}}$ una progresión aritmética. Para cada $i, j, k \\in \\mathbb{N}$, defina $a_i = x$, $a_j = y$, $a_k = z$. Pruebe que:\n$$(j - k)x + (k - i)y + (i - j)z = 0$$",
+                  "pauta": "1. Expresamos los términos $x$, $y$, $z$ en función del primer término $a_0$ y la diferencia común $d$:\n$$x = a_0 + i \\cdot d, \\quad y = a_0 + j \\cdot d, \\quad z = a_0 + k \\cdot d$$\n\n2. Sustituimos estas expresiones en el lado izquierdo de la ecuación a probar:\n$$E = (j - k)(a_0 + i \\cdot d) + (k - i)(a_0 + j \\cdot d) + (i - j)(a_0 + k \\cdot d)$$\n\n3. Agrupamos los términos según $a_0$ y $d$:\n- Coeficiente de $a_0$: $(j - k) + (k - i) + (i - j) = 0$.\n- Coeficiente de $d$: $i(j - k) + j(k - i) + k(i - j) = ij - ik + jk - ji + ki - kj = 0$.\n\n4. Concluimos que $E = a_0 \\cdot 0 + d \\cdot 0 = 0$.",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Progresión Aritmética",
+                    "Término General",
+                    "Cancelación Algebraica"
+                  ],
+                  "habilidades": [
+                    "Demostración Rigurosa",
+                    "Manejo de Índices"
+                  ]
+                },
+                {
+                  "id": "prob-1788792344006-2",
+                  "problem": "Considere $(a_n)_{n \\in \\mathbb{N}}$ una progresión aritmética de términos positivos. Demuestre que:\n$$\\frac{1}{\\sqrt{a_0} + \\sqrt{a_1}} + \\frac{1}{\\sqrt{a_1} + \\sqrt{a_2}} + \\dots + \\frac{1}{\\sqrt{a_{n-1}} + \\sqrt{a_n}} = \\frac{n}{\\sqrt{a_0} + \\sqrt{a_n}}$$",
+                  "pauta": "1. Racionalizamos el término genérico $T_m$ multiplicando por la expresión conjugada $(\\sqrt{a_m} - \\sqrt{a_{m-1}})$:\n$$\\frac{1}{\\sqrt{a_{m-1}} + \\sqrt{a_m}} = \\frac{\\sqrt{a_m} - \\sqrt{a_{m-1}}}{a_m - a_{m-1}}$$\n\n2. Dado que $(a_n)$ es una progresión aritmética, la diferencia $a_m - a_{m-1} = d$ es constante:\n$$\\frac{1}{\\sqrt{a_{m-1}} + \\sqrt{a_m}} = \\frac{\\sqrt{a_m} - \\sqrt{a_{m-1}}}{d}$$\n\n3. Sumamos de $m=1$ a $n$, lo cual genera una suma telescópica:\n$$S_n = \\frac{1}{d} \\sum_{m=1}^{n} (\\sqrt{a_m} - \\sqrt{a_{m-1}}) = \\frac{\\sqrt{a_n} - \\sqrt{a_0}}{d}$$\n\n4. Como $a_n = a_0 + n \\cdot d$, despejamos $d = \\frac{a_n - a_0}{n}$ y sustituimos:\n$$S_n = n \\cdot \\frac{\\sqrt{a_n} - \\sqrt{a_0}}{a_n - a_0}$$\n\n5. Factorizamos el denominador usando diferencia de cuadrados $a_n - a_0 = (\\sqrt{a_n} - \\sqrt{a_0})(\\sqrt{a_n} + \\sqrt{a_0})$:\n$$S_n = n \\cdot \\frac{\\sqrt{a_n} - \\sqrt{a_0}}{(\\sqrt{a_n} - \\sqrt{a_0})(\\sqrt{a_n} + \\sqrt{a_0})} = \\frac{n}{\\sqrt{a_0} + \\sqrt{a_n}}$$",
+                  "dificultad": "Alto",
+                  "conceptos": [
+                    "Progresión Aritmética",
+                    "Racionalización",
+                    "Sumas Telescópicas"
+                  ],
+                  "habilidades": [
+                    "Demostración Rigurosa",
+                    "Simplificación Algebraica"
+                  ]
+                }
               ],
               "formulasClave": []
             }
@@ -1538,7 +1567,36 @@
         },
         "ejercicios": {
           "problems": [
-            "Desarrolle el cálculo matricial para el sistema 3x3."
+            {
+              "id": "prob-1788792344006-1",
+              "problem": "Considere $(a_n)_{n \\in \\mathbb{N}}$ una progresión aritmética. Para cada $i, j, k \\in \\mathbb{N}$, defina $a_i = x$, $a_j = y$, $a_k = z$. Pruebe que:\n$$(j - k)x + (k - i)y + (i - j)z = 0$$",
+              "pauta": "1. Expresamos los términos $x$, $y$, $z$ en función del primer término $a_0$ y la diferencia común $d$:\n$$x = a_0 + i \\cdot d, \\quad y = a_0 + j \\cdot d, \\quad z = a_0 + k \\cdot d$$\n\n2. Sustituimos estas expresiones en el lado izquierdo de la ecuación a probar:\n$$E = (j - k)(a_0 + i \\cdot d) + (k - i)(a_0 + j \\cdot d) + (i - j)(a_0 + k \\cdot d)$$\n\n3. Agrupamos los términos según $a_0$ y $d$:\n- Coeficiente de $a_0$: $(j - k) + (k - i) + (i - j) = 0$.\n- Coeficiente de $d$: $i(j - k) + j(k - i) + k(i - j) = ij - ik + jk - ji + ki - kj = 0$.\n\n4. Concluimos que $E = a_0 \\cdot 0 + d \\cdot 0 = 0$.",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Progresión Aritmética",
+                "Término General",
+                "Cancelación Algebraica"
+              ],
+              "habilidades": [
+                "Demostración Rigurosa",
+                "Manejo de Índices"
+              ]
+            },
+            {
+              "id": "prob-1788792344006-2",
+              "problem": "Considere $(a_n)_{n \\in \\mathbb{N}}$ una progresión aritmética de términos positivos. Demuestre que:\n$$\\frac{1}{\\sqrt{a_0} + \\sqrt{a_1}} + \\frac{1}{\\sqrt{a_1} + \\sqrt{a_2}} + \\dots + \\frac{1}{\\sqrt{a_{n-1}} + \\sqrt{a_n}} = \\frac{n}{\\sqrt{a_0} + \\sqrt{a_n}}$$",
+              "pauta": "1. Racionalizamos el término genérico $T_m$ multiplicando por la expresión conjugada $(\\sqrt{a_m} - \\sqrt{a_{m-1}})$:\n$$\\frac{1}{\\sqrt{a_{m-1}} + \\sqrt{a_m}} = \\frac{\\sqrt{a_m} - \\sqrt{a_{m-1}}}{a_m - a_{m-1}}$$\n\n2. Dado que $(a_n)$ es una progresión aritmética, la diferencia $a_m - a_{m-1} = d$ es constante:\n$$\\frac{1}{\\sqrt{a_{m-1}} + \\sqrt{a_m}} = \\frac{\\sqrt{a_m} - \\sqrt{a_{m-1}}}{d}$$\n\n3. Sumamos de $m=1$ a $n$, lo cual genera una suma telescópica:\n$$S_n = \\frac{1}{d} \\sum_{m=1}^{n} (\\sqrt{a_m} - \\sqrt{a_{m-1}}) = \\frac{\\sqrt{a_n} - \\sqrt{a_0}}{d}$$\n\n4. Como $a_n = a_0 + n \\cdot d$, despejamos $d = \\frac{a_n - a_0}{n}$ y sustituimos:\n$$S_n = n \\cdot \\frac{\\sqrt{a_n} - \\sqrt{a_0}}{a_n - a_0}$$\n\n5. Factorizamos el denominador usando diferencia de cuadrados $a_n - a_0 = (\\sqrt{a_n} - \\sqrt{a_0})(\\sqrt{a_n} + \\sqrt{a_0})$:\n$$S_n = n \\cdot \\frac{\\sqrt{a_n} - \\sqrt{a_0}}{(\\sqrt{a_n} - \\sqrt{a_0})(\\sqrt{a_n} + \\sqrt{a_0})} = \\frac{n}{\\sqrt{a_0} + \\sqrt{a_n}}$$",
+              "dificultad": "Alto",
+              "conceptos": [
+                "Progresión Aritmética",
+                "Racionalización",
+                "Sumas Telescópicas"
+              ],
+              "habilidades": [
+                "Demostración Rigurosa",
+                "Simplificación Algebraica"
+              ]
+            }
           ],
           "formulasClave": []
         }
