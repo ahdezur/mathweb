@@ -244,10 +244,10 @@ export function TheoreticalCard({ type, title, content, demostration, properties
               className="bg-white/80 dark:bg-slate-900/80 border border-blue-200/80 dark:border-blue-900/60 rounded-xl p-4 shadow-xs transition-all"
             >
               <div className="font-semibold text-blue-950 dark:text-blue-200 text-sm md:text-base mb-1.5 flex items-center gap-2">
-                <span className="w-6 h-6 rounded-lg bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-xs flex items-center justify-center font-bold">
+                <span className="w-6 h-6 rounded-lg bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-xs flex items-center justify-center font-bold shrink-0">
                   {idx + 1}
                 </span>
-                <span>{prop.title}</span>
+                <span>{renderKaTeX(prop.title)}</span>
               </div>
               <div className="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed pl-8">
                 {renderKaTeX(prop.content)}
@@ -304,8 +304,9 @@ export function TheoreticalCard({ type, title, content, demostration, properties
                       key={idx}
                       className="bg-white/90 dark:bg-slate-900/90 border border-emerald-300/70 dark:border-emerald-800/70 rounded-xl p-4 space-y-2"
                     >
-                      <div className="font-bold text-xs uppercase tracking-wide text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
-                        <span>✒️ Demostración Propiedad {idx + 1}: {prop.title}</span>
+                      <div className="font-bold text-xs tracking-wide text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
+                        <span className="uppercase text-[11px] tracking-wider text-emerald-700 dark:text-emerald-400">✒️ Demostración Propiedad {idx + 1}: </span>
+                        <span className="normal-case font-semibold text-slate-800 dark:text-slate-200">{renderKaTeX(prop.title)}</span>
                       </div>
                       <div className="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed">
                         {renderKaTeX(prop.demostration)}
