@@ -173,7 +173,7 @@ export function GutterCodeEditor({
       {/* Left Gutter: Line numbers & Fold Triangles JUNTO AL TEXTO */}
       <div
         ref={gutterRef}
-        className="w-14 shrink-0 bg-slate-100/90 border-r border-slate-200/90 text-slate-400 select-none py-6 font-mono text-xs text-right space-y-0.5 overflow-hidden transition-colors"
+        className="w-14 shrink-0 bg-slate-100/90 border-r border-slate-200/90 text-slate-400 select-none py-6 font-mono text-xs text-right space-y-0.5 overflow-hidden transition-colors h-full"
         style={{ paddingRight: '8px' }}
       >
         {lines.map((_, idx) => {
@@ -208,7 +208,7 @@ export function GutterCodeEditor({
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
         onScroll={handleScroll}
-        className="flex-1 w-full bg-transparent text-xs md:text-sm font-mono leading-[21px] text-slate-900 focus:outline-none resize-y py-6 px-4 overflow-x-auto custom-scrollbar"
+        className="flex-1 w-full h-full bg-transparent text-xs md:text-sm font-mono leading-[21px] text-slate-900 focus:outline-none resize-y py-6 px-4 overflow-x-auto custom-scrollbar"
         style={{ minHeight: `${rows * 21 + 48}px`, whiteSpace: 'pre' }}
         placeholder={placeholder}
       />

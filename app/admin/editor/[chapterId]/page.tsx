@@ -1073,7 +1073,7 @@ export default function ChapterEditorPage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
                       {/* Formulario Inputs Ejercicio */}
                       <div className="space-y-4">
                         <div>
@@ -1156,7 +1156,7 @@ export default function ChapterEditorPage() {
                       </div>
 
                       {/* Preview en Tiempo Real KaTeX */}
-                      <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+                      <div className="lg:sticky lg:top-24 bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3 max-h-[calc(100vh-7rem)] overflow-y-auto custom-scrollbar">
                         <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block font-title">
                           <i className="fa-solid fa-eye text-cyan-600 mr-1"></i> Vista Previa en Vivo (Estudiante)
                         </span>
@@ -2160,36 +2160,41 @@ export default function ChapterEditorPage() {
 
         {/* TAB: PESTAÑA 1 - MOTIVACIÓN */}
         {editorTab === 'motivacion' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-w-0">
-            <div className="bg-white border border-slate-200 rounded-2xl p-8 md:p-10 space-y-6 shadow-xs min-w-0">
-              <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-w-0 lg:h-[calc(100vh-13rem)] lg:min-h-[600px]">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 space-y-4 shadow-xs min-w-0 flex flex-col h-full overflow-hidden">
+              <div className="shrink-0">
                 <h2 className="text-lg font-bold text-slate-900 font-title mb-1">Editor de Pestaña 1: Motivación</h2>
-                <p className="text-xs text-slate-500 mb-3">Redacta en código LaTeX nativo. Utiliza los botones para insertar las tarjetas pedagógicas y componentes visuales.</p>
+                <p className="text-xs text-slate-500 mb-2">Redacta en código LaTeX nativo. Utiliza los botones para insertar las tarjetas pedagógicas y componentes visuales.</p>
               </div>
 
               {/* Botonera Pedagógica en LaTeX */}
-              <PedagogicalToolbar
-                onInsertSnippet={(snippet) => {
-                  insertSnippetAtCaret(
-                    motivacionRef.current,
-                    chapter.motivacion || '',
-                    snippet,
-                    (val) => setChapter((prev) => ({ ...prev, motivacion: val }))
-                  );
-                }}
-              />
+              <div className="shrink-0">
+                <PedagogicalToolbar
+                  onInsertSnippet={(snippet) => {
+                    insertSnippetAtCaret(
+                      motivacionRef.current,
+                      chapter.motivacion || '',
+                      snippet,
+                      (val) => setChapter((prev) => ({ ...prev, motivacion: val }))
+                    );
+                  }}
+                />
+              </div>
 
-              <GutterCodeEditor
-                textareaRef={motivacionRef}
-                value={chapter.motivacion || ''}
-                onChange={(val) => setChapter((prev) => ({ ...prev, motivacion: val }))}
-                rows={16}
-                placeholder="Utiliza la botonera superior o escribe en LaTeX nativo..."
-              />
+              <div className="flex-1 min-h-[300px] overflow-hidden flex flex-col">
+                <GutterCodeEditor
+                  textareaRef={motivacionRef}
+                  value={chapter.motivacion || ''}
+                  onChange={(val) => setChapter((prev) => ({ ...prev, motivacion: val }))}
+                  rows={16}
+                  className="h-full flex-1"
+                  placeholder="Utiliza la botonera superior o escribe en LaTeX nativo..."
+                />
+              </div>
             </div>
 
-            <div className="bg-slate-100/70 border border-slate-200 rounded-2xl p-6 space-y-3 max-h-[850px] overflow-y-auto custom-scrollbar min-w-0">
-              <div className="flex items-center justify-between mb-2">
+            <div className="bg-slate-100/70 border border-slate-200 rounded-2xl p-6 space-y-3 min-w-0 flex flex-col h-full overflow-hidden">
+              <div className="shrink-0 flex items-center justify-between mb-1 pb-2 border-b border-slate-200/80">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block font-title">
                   <i className="fa-solid fa-eye text-cyan-600 mr-1"></i> Vista Previa en Vivo (Estudiante)
                 </span>
@@ -2197,48 +2202,55 @@ export default function ChapterEditorPage() {
                   💡 Doble clic para ir a esa línea
                 </span>
               </div>
-              <LaTeXPedagogicalParser
-                content={chapter.motivacion || ''}
-                onElementDoubleClick={(snippet) =>
-                  handlePreviewDoubleClick(motivacionRef.current, chapter.motivacion || '', snippet)
-                }
-              />
+              <div className="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <LaTeXPedagogicalParser
+                  content={chapter.motivacion || ''}
+                  onElementDoubleClick={(snippet) =>
+                    handlePreviewDoubleClick(motivacionRef.current, chapter.motivacion || '', snippet)
+                  }
+                />
+              </div>
             </div>
           </div>
         )}
 
         {/* TAB: PESTAÑA 2 - TEORÍA */}
         {editorTab === 'teoria' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-w-0">
-            <div className="bg-white border border-slate-200 rounded-2xl p-8 md:p-10 space-y-6 shadow-xs min-w-0">
-              <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-w-0 lg:h-[calc(100vh-13rem)] lg:min-h-[600px]">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 space-y-4 shadow-xs min-w-0 flex flex-col h-full overflow-hidden">
+              <div className="shrink-0">
                 <h2 className="text-lg font-bold text-slate-900 font-title mb-1">Editor de Pestaña 2: Teoría y Teoremas</h2>
-                <p className="text-xs text-slate-500 mb-3">Redacta las definiciones, teoremas, métodos y trampas en LaTeX nativo con inserción rápida a un clic.</p>
+                <p className="text-xs text-slate-500 mb-2">Redacta las definiciones, teoremas, métodos y trampas en LaTeX nativo con inserción rápida a un clic.</p>
               </div>
 
               {/* Botonera Pedagógica en LaTeX */}
-              <PedagogicalToolbar
-                onInsertSnippet={(snippet) => {
-                  insertSnippetAtCaret(
-                    teoriaRef.current,
-                    chapter.teoria || '',
-                    snippet,
-                    (val) => setChapter((prev) => ({ ...prev, teoria: val }))
-                  );
-                }}
-              />
+              <div className="shrink-0">
+                <PedagogicalToolbar
+                  onInsertSnippet={(snippet) => {
+                    insertSnippetAtCaret(
+                      teoriaRef.current,
+                      chapter.teoria || '',
+                      snippet,
+                      (val) => setChapter((prev) => ({ ...prev, teoria: val }))
+                    );
+                  }}
+                />
+              </div>
 
-              <GutterCodeEditor
-                textareaRef={teoriaRef}
-                value={chapter.teoria || ''}
-                onChange={(val) => setChapter((prev) => ({ ...prev, teoria: val }))}
-                rows={16}
-                placeholder="Utiliza la botonera superior o escribe en LaTeX nativo..."
-              />
+              <div className="flex-1 min-h-[300px] overflow-hidden flex flex-col">
+                <GutterCodeEditor
+                  textareaRef={teoriaRef}
+                  value={chapter.teoria || ''}
+                  onChange={(val) => setChapter((prev) => ({ ...prev, teoria: val }))}
+                  rows={16}
+                  className="h-full flex-1"
+                  placeholder="Utiliza la botonera superior o escribe en LaTeX nativo..."
+                />
+              </div>
             </div>
 
-            <div className="bg-slate-100/70 border border-slate-200 rounded-2xl p-6 space-y-3 max-h-[850px] overflow-y-auto custom-scrollbar min-w-0">
-              <div className="flex items-center justify-between mb-2">
+            <div className="bg-slate-100/70 border border-slate-200 rounded-2xl p-6 space-y-3 min-w-0 flex flex-col h-full overflow-hidden">
+              <div className="shrink-0 flex items-center justify-between mb-1 pb-2 border-b border-slate-200/80">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block font-title">
                   <i className="fa-solid fa-eye text-cyan-600 mr-1"></i> Vista Previa en Vivo (Estudiante)
                 </span>
@@ -2246,12 +2258,14 @@ export default function ChapterEditorPage() {
                   💡 Doble clic para ir a esa línea
                 </span>
               </div>
-              <LaTeXPedagogicalParser
-                content={chapter.teoria || ''}
-                onElementDoubleClick={(snippet) =>
-                  handlePreviewDoubleClick(teoriaRef.current, chapter.teoria || '', snippet)
-                }
-              />
+              <div className="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <LaTeXPedagogicalParser
+                  content={chapter.teoria || ''}
+                  onElementDoubleClick={(snippet) =>
+                    handlePreviewDoubleClick(teoriaRef.current, chapter.teoria || '', snippet)
+                  }
+                />
+              </div>
             </div>
           </div>
         )}
