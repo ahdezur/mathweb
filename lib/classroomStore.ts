@@ -53,8 +53,8 @@ export async function getStoredCourses(): Promise<CourseContent[]> {
     
     // Map by ID to combine and eliminate duplicates while preserving latest edits
     const chapterMap = new Map<string, ChapterData>();
-    unitChapters.forEach((ch) => chapterMap.set(ch.id, ch));
     topChapters.forEach((ch) => chapterMap.set(ch.id, ch));
+    unitChapters.forEach((ch) => chapterMap.set(ch.id, ch));
 
     const finalChapters = Array.from(chapterMap.values());
 

@@ -184,7 +184,7 @@ export default function CourseClassroomPage() {
     });
   }, []);  return (
     <div
-      className={`h-screen w-screen max-w-[100vw] overflow-hidden flex flex-col lg:flex-row transition-colors duration-300 font-sans ${
+      className={`h-[100dvh] min-h-screen w-full max-w-[100vw] overflow-hidden flex flex-col lg:flex-row transition-colors duration-300 font-sans ${
         isDarkMode ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'
       }`}
     >
@@ -620,7 +620,7 @@ export default function CourseClassroomPage() {
 
         {/* Banner Inferior de Feedback y Sugerencias (SIEMPRE VISIBLE FIJO AL PIE) */}
         <div
-          style={{ paddingLeft: '56px', paddingRight: '56px' }}
+          style={{ paddingLeft: 'clamp(16px, 4vw, 56px)', paddingRight: 'clamp(16px, 4vw, 56px)' }}
           className={`py-3 md:py-3.5 border-t shrink-0 backdrop-blur-md transition-all z-20 ${
             isDarkMode
               ? 'bg-slate-950/95 border-slate-800 text-slate-100'
