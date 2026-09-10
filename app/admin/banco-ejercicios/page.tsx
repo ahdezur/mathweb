@@ -332,9 +332,9 @@ export default function CentralExerciseBankPage() {
                     <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100 font-title mb-1">
                       {ex.titulo}
                     </h3>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 bg-slate-50 dark:bg-slate-950/60 p-3 rounded-2xl border border-slate-100 dark:border-slate-800/80">
+                    <div className="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 bg-slate-50 dark:bg-slate-950/60 p-3 rounded-2xl border border-slate-100 dark:border-slate-800/80">
                       <MathText text={ex.enunciadoLatex} />
-                    </p>
+                    </div>
                   </div>
 
                   {/* Tags with Student Visibility Badges */}

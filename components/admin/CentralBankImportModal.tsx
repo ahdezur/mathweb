@@ -193,9 +193,9 @@ export function CentralBankImportModal({
                     <h4 className="text-sm font-bold text-slate-900 dark:text-slate-100 mb-1 font-title">
                       {ex.titulo}
                     </h4>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">
+                    <div className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">
                       <MathText text={ex.enunciadoLatex} />
-                    </p>
+                    </div>
                   </div>
                 </div>
               );

@@ -47,9 +47,9 @@ export const SplitFormulaPanel: React.FC<SplitFormulaPanelProps> = React.memo(({
             
             {/* Small Review / Description Text Area rendered with KaTeX LaTeX */}
             <div className="mt-3 pt-2.5 border-t border-slate-200/80 dark:border-slate-800 text-center">
-              <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+              <div className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
                 <MathText text={item.description || "Esta expresión matemática es fundamental para guiar el procedimiento y resolución paso a paso de los ejercicios del capítulo."} />
-              </p>
+              </div>
             </div>
           </div>
         ))}
