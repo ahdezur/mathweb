@@ -112,9 +112,14 @@ export async function saveStoredCourses(courses: CourseContent[]): Promise<boole
     await fs.mkdir(DATA_DIR, { recursive: true });
     
     const normalized = courses.map((course) => {
-      const allChaps = (course.chapters || []).length > 0
-        ? course.chapters
-        : (course.units || []).flatMap((u) => u.chapters || []);
+      const unitChapters = (course.units || []).flatMap((u) => u.chapters || []);
+      const topChapters = course.chapters || [];
+
+      const chapterMap = new Map<string, ChapterData>();
+      topChapters.forEach((ch) => chapterMap.set(ch.id, ch));
+      unitChapters.forEach((ch) => chapterMap.set(ch.id, ch));
+
+      const allChaps = Array.from(chapterMap.values());
 
       let units = (course.units && course.units.length > 0)
         ? course.units
