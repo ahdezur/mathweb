@@ -802,62 +802,6 @@
     "description": "Programa de estudio completo e interactivo para Cálculo Integral.",
     "units": [
       {
-        "id": "u-1",
-        "number": 1,
-        "title": "Unidad 1: Módulos Principales de Cálculo Integral",
-        "summary": "Contenido estructurado del curso de Cálculo Integral.",
-        "chapters": [
-          {
-            "id": "cap-1",
-            "number": 1,
-            "displayNumber": "1.1",
-            "title": "Fundamentos y Definiciones de Cálculo Integral",
-            "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-            "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-            "motivacion": "\\begin{card}\n\\begin{html}{Problema de la Colina (Trigonometría)}\n<div style=\"position: relative; width: 700px; height: 400px; margin: 0 auto;\">\n  <!-- 1. Lienzo Canvas 2D -->\n  <canvas id=\"lienzoGeo\" width=\"700\" height=\"400\" style=\"border: 1px solid #e0e0e0; background-color: #ffffff; border-radius: 8px;\"></canvas>\n  \n  <!-- 2. Etiquetas KaTeX Flotantes (Posicionadas exactamente sobre el gráfico) -->\n  <div id=\"lbl-piedra\" style=\"position: absolute; top: 310px; left: 70px; pointer-events: none;\"></div>\n  <div id=\"lbl-base\"   style=\"position: absolute; top: 310px; left: 280px; pointer-events: none;\"></div>\n  <div id=\"lbl-inicio\" style=\"position: absolute; top: 50px;  left: 550px; pointer-events: none;\"></div>\n  <div id=\"lbl-mitad\"  style=\"position: absolute; top: 180px; left: 420px; pointer-events: none;\"></div>\n  \n  <div id=\"lbl-alpha\"  style=\"position: absolute; top: 265px; left: 340px; pointer-events: none;\"></div>\n  <div id=\"lbl-beta\"   style=\"position: absolute; top: 55px;  left: 470px; pointer-events: none;\"></div>\n  <div id=\"lbl-gamma\"  style=\"position: absolute; top: 175px; left: 345px; pointer-events: none;\"></div>\n</div>\n\n<script>\n  function iniciarGrafico() {\n    // Si KaTeX no ha cargado aún desde la red, reintentar en 100ms\n    if (window.katex) {\n      katex.render(\"\\\\text{Piedra}\", document.getElementById('lbl-piedra'));\n      katex.render(\"\\\\text{Base}\", document.getElementById('lbl-base'));\n      katex.render(\"\\\\text{Inicio}\", document.getElementById('lbl-inicio'));\n      katex.render(\"\\\\text{Mitad}\", document.getElementById('lbl-mitad'));\n      \n      katex.render(\"\\\\alpha\", document.getElementById('lbl-alpha'));\n      katex.render(\"\\\\beta\", document.getElementById('lbl-beta'));\n      katex.render(\"\\\\gamma\", document.getElementById('lbl-gamma'));\n    } else {\n      setTimeout(iniciarGrafico, 100);\n      return;\n    }\n\n    dibujarDiagrama();\n  }\n\n  function dibujarDiagrama() {\n    const canvas = document.getElementById('lienzoGeo');\n    if (!canvas) return;\n    const ctx = canvas.getContext('2d');\n    const escala = 65; \n\n    const anguloColina = 45 * (Math.PI / 180); \n    const longitudColina = 5.5; \n    \n    const nivelSueloY = 300;\n    const S = { x: 100, y: nivelSueloY }; \n    const B = { x: S.x + (3 * escala), y: nivelSueloY }; \n    \n    const C = { \n      x: B.x + (longitudColina * escala * Math.cos(anguloColina)), \n      y: B.y - (longitudColina * escala * Math.sin(anguloColina)) \n    };\n    const M = { \n      x: B.x + ((longitudColina/2) * escala * Math.cos(anguloColina)), \n      y: B.y - ((longitudColina/2) * escala * Math.sin(anguloColina)) \n    };\n\n    ctx.strokeStyle = \"#2c3e50\";\n    ctx.lineWidth = 2;\n\n    // --- Suelo y Colina ---\n    ctx.beginPath();\n    ctx.moveTo(30, nivelSueloY); \n    ctx.lineTo(670, nivelSueloY); \n    \n    ctx.moveTo(B.x, B.y);\n    ctx.lineTo(C.x, C.y); \n    ctx.stroke();\n\n    // --- Líneas Punteadas ---\n    ctx.beginPath();\n    ctx.setLineDash([6, 4]); \n    ctx.lineWidth = 1.2;\n    \n    ctx.moveTo(C.x, C.y); ctx.lineTo(S.x, S.y);\n    ctx.moveTo(M.x, M.y); ctx.lineTo(S.x, S.y);\n    \n    ctx.moveTo(C.x, C.y); ctx.lineTo(C.x - 120, C.y);\n    ctx.moveTo(M.x, M.y); ctx.lineTo(M.x - 120, M.y);\n    ctx.stroke();\n    \n    ctx.setLineDash([]); \n\n    // --- Arcos de los Ángulos ---\n    ctx.beginPath();\n    ctx.lineWidth = 1.5;\n    \n    const anguloLineaColina = Math.atan2(C.y - B.y, C.x - B.x);\n    ctx.arc(B.x, B.y, 45, 0, anguloLineaColina, true);\n    ctx.stroke();\n\n    const anguloVisionC = Math.atan2(S.y - C.y, S.x - C.x);\n    ctx.beginPath();\n    ctx.arc(C.x, C.y, 50, Math.PI, anguloVisionC, true);\n    ctx.stroke();\n\n    const anguloVisionM = Math.atan2(S.y - M.y, S.x - M.x);\n    ctx.beginPath();\n    ctx.arc(M.x, M.y, 55, Math.PI, anguloVisionM, true);\n    ctx.stroke();\n\n    // --- Puntos Rojos ---\n    ctx.fillStyle = \"##1e293b\"; \n    const puntos = [S, B, C, M];\n    puntos.forEach(pt => {\n      ctx.beginPath();\n      ctx.arc(pt.x, pt.y, 4.5, 0, Math.PI * 2);\n      ctx.fill();\n    });\n  }\n\n  // Iniciar la secuencia de renderizado\n  iniciarGrafico();\n</script>\n\\end{html}\n\\end{card}\n\\begin{card}\n\\begin{html}{Gráfica Animada de Onda Senoidal $f(x,t) = \\sin(2x - t)$}\n<div class=\"contenedor-grafica\">\n    <canvas id=\"canvasAnimado\" width=\"600\" height=\"350\"></canvas>\n    \n    <div id=\"formula-principal\" class=\"etiqueta-latex\"></div>\n    <div id=\"tiempo-vivo\" class=\"etiqueta-latex\"></div>\n    <div id=\"eje-x\" class=\"etiqueta-latex\"></div>\n</div>\n\n<style>\n    .contenedor-grafica {\n        position: relative;\n        width: 600px;\n        height: 350px;\n        margin: 20px auto;\n        border-radius: 12px;\n        background-color: #1e1e2e; /* Fondo oscuro moderno */\n        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n        overflow: hidden;\n    }\n\n    canvas {\n        display: block;\n    }\n\n    .etiqueta-latex {\n        position: absolute;\n        pointer-events: none;\n        color: #cdd6f4;\n    }\n\n    /* Posiciones de las etiquetas LaTeX */\n    #formula-principal { top: 15px; left: 20px; font-size: 1.2em; }\n    #tiempo-vivo { bottom: 15px; right: 20px; font-size: 1.1em; color: #a6e3a1; }\n    #eje-x { bottom: 15px; left: 20px; font-size: 0.9em; color: #a6adc8; }\n</style>\n\n<script>\n    const canvas = document.getElementById('canvasAnimado');\n    const ctx = canvas.getContext('2d');\n    \n    const elemFormula = document.getElementById('formula-principal');\n    const elemTiempo = document.getElementById('tiempo-vivo');\n    const elemEjeX = document.getElementById('eje-x');\n\n    let t = 0; // Tiempo inicial\n    const origenX = 50;  // Posición del eje Y en pantalla\n    const origenY = 175; // Posición del eje X en pantalla (centro vertical)\n    const escalaX = 45;  // Píxeles por unidad en X\n    const escalaY = 80;  // Píxeles por unidad en Y (amplitud)\n\n    function iniciarAnimacion() {\n        // Verificar si KaTeX ya cargó desde la red\n        if (window.katex) {\n            katex.render(\"f(x, t) = \\\\sin(2x - t)\", elemFormula);\n            katex.render(\"x \\\\rightarrow\", elemEjeX);\n        } else {\n            setTimeout(iniciarAnimacion, 100);\n            return;\n        }\n\n        // Bucle de animación continuo\n        function animar() {\n            // A. Limpiar el canvas antes de dibujar el nuevo fotograma\n            ctx.clearRect(0, 0, canvas.width, canvas.height);\n\n            // B. Dibujar los ejes cartesianos\n            ctx.beginPath();\n            ctx.strokeStyle = \"#45475a\";\n            ctx.lineWidth = 1;\n            // Eje X\n            ctx.moveTo(0, origenY); \n            ctx.lineTo(canvas.width, origenY);\n            // Eje Y\n            ctx.moveTo(origenX, 0); \n            ctx.lineTo(origenX, canvas.height);\n            ctx.stroke();\n\n            // C. Dibujar la curva matemática animada\n            ctx.beginPath();\n            ctx.strokeStyle = \"#f38ba8\"; // Color rosa neón\n            ctx.lineWidth = 3;\n\n            for (let px = 0; px <= (canvas.width - origenX); px++) {\n                let x = px / escalaX;\n                let y = Math.sin(2 * x - t);\n                let py = origenY - (y * escalaY);\n\n                if (px === 0) {\n                    ctx.moveTo(origenX + px, py);\n                } else {\n                    ctx.lineTo(origenX + px, py);\n                }\n            }\n            ctx.stroke();\n\n            // D. Actualizar la etiqueta de tiempo en vivo con KaTeX\n            if (window.katex) {\n                katex.render(`t = ${t.toFixed(2)} \\\\text{ s}`, elemTiempo);\n            }\n\n            // E. Incrementar el tiempo para la onda\n            t += 0.04;\n\n            // F. Siguiente fotograma de animación\n            requestAnimationFrame(animar);\n        }\n\n        animar();\n    }\n\n    iniciarAnimacion();\n</script>\n\\end{html}\n\\end{card}",
-            "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
-            "practica": {
-              "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
-            },
-            "ejercicios": {
-              "problems": [
-                "Demuestre la propiedad fundamental del capítulo 1 de Cálculo Integral.",
-                "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
-              ],
-              "formulasClave": [
-                {
-                  "label": "Fórmula Principal",
-                  "latex": "A = P D P^{-1}"
-                },
-                {
-                  "label": "Criterio de Convergencia",
-                  "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
-                }
-              ]
-            }
-          },
-          {
-            "id": "cap-2",
-            "number": 2,
-            "displayNumber": "1.2",
-            "title": "Sumas de Riemann",
-            "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-            "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-            "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-            "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
-            "practica": {
-              "text": "<p>Resolución detallada de ejercicios complejos.</p>"
-            },
-            "ejercicios": {
-              "problems": [
-                "Desarrolle el cálculo matricial para el sistema 3x3."
-              ],
-              "formulasClave": []
-            }
-          }
-        ]
-      },
-      {
         "id": "unit-1789145602927-3",
         "number": 2,
         "title": "Unidad 2: Técnicas de integración",
@@ -941,35 +885,6 @@
     ],
     "chapters": [
       {
-        "id": "cap-1",
-        "number": 1,
-        "displayNumber": "1.1",
-        "title": "Fundamentos y Definiciones de Cálculo Integral",
-        "summary": "Introducción a conceptos clave y planteamiento de hipótesis principales.",
-        "mathKey": "f(x) = \\sum_{n=0}^{\\infty} a_n (x - c)^n",
-        "motivacion": "\\begin{card}\n\\begin{html}{Problema de la Colina (Trigonometría)}\n<div style=\"position: relative; width: 700px; height: 400px; margin: 0 auto;\">\n  <!-- 1. Lienzo Canvas 2D -->\n  <canvas id=\"lienzoGeo\" width=\"700\" height=\"400\" style=\"border: 1px solid #e0e0e0; background-color: #ffffff; border-radius: 8px;\"></canvas>\n  \n  <!-- 2. Etiquetas KaTeX Flotantes (Posicionadas exactamente sobre el gráfico) -->\n  <div id=\"lbl-piedra\" style=\"position: absolute; top: 310px; left: 70px; pointer-events: none;\"></div>\n  <div id=\"lbl-base\"   style=\"position: absolute; top: 310px; left: 280px; pointer-events: none;\"></div>\n  <div id=\"lbl-inicio\" style=\"position: absolute; top: 50px;  left: 550px; pointer-events: none;\"></div>\n  <div id=\"lbl-mitad\"  style=\"position: absolute; top: 180px; left: 420px; pointer-events: none;\"></div>\n  \n  <div id=\"lbl-alpha\"  style=\"position: absolute; top: 265px; left: 340px; pointer-events: none;\"></div>\n  <div id=\"lbl-beta\"   style=\"position: absolute; top: 55px;  left: 470px; pointer-events: none;\"></div>\n  <div id=\"lbl-gamma\"  style=\"position: absolute; top: 175px; left: 345px; pointer-events: none;\"></div>\n</div>\n\n<script>\n  function iniciarGrafico() {\n    // Si KaTeX no ha cargado aún desde la red, reintentar en 100ms\n    if (window.katex) {\n      katex.render(\"\\\\text{Piedra}\", document.getElementById('lbl-piedra'));\n      katex.render(\"\\\\text{Base}\", document.getElementById('lbl-base'));\n      katex.render(\"\\\\text{Inicio}\", document.getElementById('lbl-inicio'));\n      katex.render(\"\\\\text{Mitad}\", document.getElementById('lbl-mitad'));\n      \n      katex.render(\"\\\\alpha\", document.getElementById('lbl-alpha'));\n      katex.render(\"\\\\beta\", document.getElementById('lbl-beta'));\n      katex.render(\"\\\\gamma\", document.getElementById('lbl-gamma'));\n    } else {\n      setTimeout(iniciarGrafico, 100);\n      return;\n    }\n\n    dibujarDiagrama();\n  }\n\n  function dibujarDiagrama() {\n    const canvas = document.getElementById('lienzoGeo');\n    if (!canvas) return;\n    const ctx = canvas.getContext('2d');\n    const escala = 65; \n\n    const anguloColina = 45 * (Math.PI / 180); \n    const longitudColina = 5.5; \n    \n    const nivelSueloY = 300;\n    const S = { x: 100, y: nivelSueloY }; \n    const B = { x: S.x + (3 * escala), y: nivelSueloY }; \n    \n    const C = { \n      x: B.x + (longitudColina * escala * Math.cos(anguloColina)), \n      y: B.y - (longitudColina * escala * Math.sin(anguloColina)) \n    };\n    const M = { \n      x: B.x + ((longitudColina/2) * escala * Math.cos(anguloColina)), \n      y: B.y - ((longitudColina/2) * escala * Math.sin(anguloColina)) \n    };\n\n    ctx.strokeStyle = \"#2c3e50\";\n    ctx.lineWidth = 2;\n\n    // --- Suelo y Colina ---\n    ctx.beginPath();\n    ctx.moveTo(30, nivelSueloY); \n    ctx.lineTo(670, nivelSueloY); \n    \n    ctx.moveTo(B.x, B.y);\n    ctx.lineTo(C.x, C.y); \n    ctx.stroke();\n\n    // --- Líneas Punteadas ---\n    ctx.beginPath();\n    ctx.setLineDash([6, 4]); \n    ctx.lineWidth = 1.2;\n    \n    ctx.moveTo(C.x, C.y); ctx.lineTo(S.x, S.y);\n    ctx.moveTo(M.x, M.y); ctx.lineTo(S.x, S.y);\n    \n    ctx.moveTo(C.x, C.y); ctx.lineTo(C.x - 120, C.y);\n    ctx.moveTo(M.x, M.y); ctx.lineTo(M.x - 120, M.y);\n    ctx.stroke();\n    \n    ctx.setLineDash([]); \n\n    // --- Arcos de los Ángulos ---\n    ctx.beginPath();\n    ctx.lineWidth = 1.5;\n    \n    const anguloLineaColina = Math.atan2(C.y - B.y, C.x - B.x);\n    ctx.arc(B.x, B.y, 45, 0, anguloLineaColina, true);\n    ctx.stroke();\n\n    const anguloVisionC = Math.atan2(S.y - C.y, S.x - C.x);\n    ctx.beginPath();\n    ctx.arc(C.x, C.y, 50, Math.PI, anguloVisionC, true);\n    ctx.stroke();\n\n    const anguloVisionM = Math.atan2(S.y - M.y, S.x - M.x);\n    ctx.beginPath();\n    ctx.arc(M.x, M.y, 55, Math.PI, anguloVisionM, true);\n    ctx.stroke();\n\n    // --- Puntos Rojos ---\n    ctx.fillStyle = \"##1e293b\"; \n    const puntos = [S, B, C, M];\n    puntos.forEach(pt => {\n      ctx.beginPath();\n      ctx.arc(pt.x, pt.y, 4.5, 0, Math.PI * 2);\n      ctx.fill();\n    });\n  }\n\n  // Iniciar la secuencia de renderizado\n  iniciarGrafico();\n</script>\n\\end{html}\n\\end{card}\n\\begin{card}\n\\begin{html}{Gráfica Animada de Onda Senoidal $f(x,t) = \\sin(2x - t)$}\n<div class=\"contenedor-grafica\">\n    <canvas id=\"canvasAnimado\" width=\"600\" height=\"350\"></canvas>\n    \n    <div id=\"formula-principal\" class=\"etiqueta-latex\"></div>\n    <div id=\"tiempo-vivo\" class=\"etiqueta-latex\"></div>\n    <div id=\"eje-x\" class=\"etiqueta-latex\"></div>\n</div>\n\n<style>\n    .contenedor-grafica {\n        position: relative;\n        width: 600px;\n        height: 350px;\n        margin: 20px auto;\n        border-radius: 12px;\n        background-color: #1e1e2e; /* Fondo oscuro moderno */\n        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);\n        overflow: hidden;\n    }\n\n    canvas {\n        display: block;\n    }\n\n    .etiqueta-latex {\n        position: absolute;\n        pointer-events: none;\n        color: #cdd6f4;\n    }\n\n    /* Posiciones de las etiquetas LaTeX */\n    #formula-principal { top: 15px; left: 20px; font-size: 1.2em; }\n    #tiempo-vivo { bottom: 15px; right: 20px; font-size: 1.1em; color: #a6e3a1; }\n    #eje-x { bottom: 15px; left: 20px; font-size: 0.9em; color: #a6adc8; }\n</style>\n\n<script>\n    const canvas = document.getElementById('canvasAnimado');\n    const ctx = canvas.getContext('2d');\n    \n    const elemFormula = document.getElementById('formula-principal');\n    const elemTiempo = document.getElementById('tiempo-vivo');\n    const elemEjeX = document.getElementById('eje-x');\n\n    let t = 0; // Tiempo inicial\n    const origenX = 50;  // Posición del eje Y en pantalla\n    const origenY = 175; // Posición del eje X en pantalla (centro vertical)\n    const escalaX = 45;  // Píxeles por unidad en X\n    const escalaY = 80;  // Píxeles por unidad en Y (amplitud)\n\n    function iniciarAnimacion() {\n        // Verificar si KaTeX ya cargó desde la red\n        if (window.katex) {\n            katex.render(\"f(x, t) = \\\\sin(2x - t)\", elemFormula);\n            katex.render(\"x \\\\rightarrow\", elemEjeX);\n        } else {\n            setTimeout(iniciarAnimacion, 100);\n            return;\n        }\n\n        // Bucle de animación continuo\n        function animar() {\n            // A. Limpiar el canvas antes de dibujar el nuevo fotograma\n            ctx.clearRect(0, 0, canvas.width, canvas.height);\n\n            // B. Dibujar los ejes cartesianos\n            ctx.beginPath();\n            ctx.strokeStyle = \"#45475a\";\n            ctx.lineWidth = 1;\n            // Eje X\n            ctx.moveTo(0, origenY); \n            ctx.lineTo(canvas.width, origenY);\n            // Eje Y\n            ctx.moveTo(origenX, 0); \n            ctx.lineTo(origenX, canvas.height);\n            ctx.stroke();\n\n            // C. Dibujar la curva matemática animada\n            ctx.beginPath();\n            ctx.strokeStyle = \"#f38ba8\"; // Color rosa neón\n            ctx.lineWidth = 3;\n\n            for (let px = 0; px <= (canvas.width - origenX); px++) {\n                let x = px / escalaX;\n                let y = Math.sin(2 * x - t);\n                let py = origenY - (y * escalaY);\n\n                if (px === 0) {\n                    ctx.moveTo(origenX + px, py);\n                } else {\n                    ctx.lineTo(origenX + px, py);\n                }\n            }\n            ctx.stroke();\n\n            // D. Actualizar la etiqueta de tiempo en vivo con KaTeX\n            if (window.katex) {\n                katex.render(`t = ${t.toFixed(2)} \\\\text{ s}`, elemTiempo);\n            }\n\n            // E. Incrementar el tiempo para la onda\n            t += 0.04;\n\n            // F. Siguiente fotograma de animación\n            requestAnimationFrame(animar);\n        }\n\n        animar();\n    }\n\n    iniciarAnimacion();\n</script>\n\\end{html}\n\\end{card}",
-        "teoria": "\n        <h3>Teoremas Principales</h3>\n        <p>Consideremos la estructura formal definida por el conjunto de hipótesis básicas. El resultado central establece que:</p>\n        <p>$$\\lim_{n \\to \\infty} a_n = L \\quad \\implies \\quad \\forall \\varepsilon > 0, \\exists N \\in \\mathbb{N}$$</p>\n      ",
-        "practica": {
-          "text": "\n          <h3>Desarrollo Práctico Guiado</h3>\n          <p>Revisión paso a paso de los teoremas aplicados a ejercicios típicos de certámenes universitarios.</p>\n        "
-        },
-        "ejercicios": {
-          "problems": [
-            "Demuestre la propiedad fundamental del capítulo 1 de Cálculo Integral.",
-            "Resuelva el problema de frontera aplicando los criterios teóricos expuestos."
-          ],
-          "formulasClave": [
-            {
-              "label": "Fórmula Principal",
-              "latex": "A = P D P^{-1}"
-            },
-            {
-              "label": "Criterio de Convergencia",
-              "latex": "\\lim_{n \\to \\infty} \\left| \\frac{a_{n+1}}{a_n} \\right| < 1"
-            }
-          ]
-        }
-      },
-      {
         "id": "cap-1789145300176",
         "number": 1,
         "displayNumber": "1",
@@ -1034,25 +949,6 @@
               "latex": "y = f(x)"
             }
           ]
-        }
-      },
-      {
-        "id": "cap-2",
-        "number": 2,
-        "displayNumber": "1.2",
-        "title": "Sumas de Riemann",
-        "summary": "Técnicas avanzadas de resolución y problemas aplicados a ingeniería.",
-        "mathKey": "\\mathbf{A}\\mathbf{x} = \\mathbf{b}",
-        "motivacion": "<h3>Motivación de Aplicación Real</h3><p>Estudio de modelos matemáticos y simulaciones computacionales.</p>",
-        "teoria": "<h3>Ecuaciones de Estado</h3><p>$$\\det(A - \\lambda I) = 0$$</p>",
-        "practica": {
-          "text": "<p>Resolución detallada de ejercicios complejos.</p>"
-        },
-        "ejercicios": {
-          "problems": [
-            "Desarrolle el cálculo matricial para el sistema 3x3."
-          ],
-          "formulasClave": []
         }
       }
     ]

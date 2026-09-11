@@ -209,19 +209,21 @@ export function parseExerciseSyntaxText(rawText: string): ParseResult {
           correctMapping[itemId] = targetLetter;
         });
 
-        exercises.push({
-          id: uniqueId,
-          type: 'matching',
-          title: `Ejercicio ${exCount}: Casillas de Relación`,
-          question: statement.trim(),
-          columns: 2,
-          col1Title: 'Ítem / Concepto',
-          col2Title: 'Respuesta / Expresión',
-          col1Items,
-          col2Options,
-          correctMapping,
-          explanation: explanation.trim()
-        });
+        exercises.push(
+          shuffleMatchingExerciseOptions({
+            id: uniqueId,
+            type: 'matching',
+            title: `Ejercicio ${exCount}: Casillas de Relación`,
+            question: statement.trim(),
+            columns: 2,
+            col1Title: 'Ítem / Concepto',
+            col2Title: 'Respuesta / Expresión',
+            col1Items,
+            col2Options,
+            correctMapping,
+            explanation: explanation.trim()
+          })
+        );
       } else if (commandTag === 'NUM') {
         if (params.length < 3) {
           errors.push(`Ejercicio ${exCount} (\\NUM): Se requieren 3 parámetros {Enunciado}{Valor Exacto}{Explicación}. Se recibieron ${params.length}.`);
@@ -378,3 +380,100 @@ export const SAMPLE_IMPORT_TEMPLATE = `% =======================================
   \\casilla{Por $\\theta=0$ el límite da $0$, pero por $\\theta=\\pi/2$ da $\\pi/2$.}{V}{¡Correcto! Caminos distintos entregan valores distintos.}
 }
 `;
+
+/**
+ * Helper to scramble/shuffle the options (Col 2 and Col 3) of a matching exercise
+ * and automatically update the correct mapping so answers are never sequentially ordered (1A, 2B, 3C).
+ */
+export function shuffleMatchingExerciseOptions<T extends PracticeExercise>(ex: T): T {
+  if (ex.type !== 'matching' || !ex.col1Items || ex.col1Items.length <= 1 || !ex.col2Options || ex.col2Options.length <= 1) {
+    return ex;
+  }
+
+  // 1. Map itemId -> correct text for Col 2
+  const itemIdToCol2Text: Record<string, string> = {};
+  ex.col1Items.forEach((item) => {
+    const currentLetter = ex.correctMapping?.[item.id];
+    const opt = ex.col2Options.find((o) => o.letter === currentLetter) || ex.col2Options.find((o) => o.letter === item.id);
+    if (opt) {
+      itemIdToCol2Text[item.id] = opt.text;
+    }
+  });
+
+  const col2Texts = ex.col2Options.map((o) => o.text);
+
+  let shuffledCol2Texts = [...col2Texts];
+  for (let i = shuffledCol2Texts.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledCol2Texts[i], shuffledCol2Texts[j]] = [shuffledCol2Texts[j], shuffledCol2Texts[i]];
+  }
+
+  // Ensure order changed if length > 1
+  if (shuffledCol2Texts.every((t, i) => t === col2Texts[i]) && col2Texts.length > 1) {
+    const first = shuffledCol2Texts.shift()!;
+    shuffledCol2Texts.push(first);
+  }
+
+  const newCol2Options = shuffledCol2Texts.map((text, idx) => ({
+    letter: String.fromCharCode(65 + idx),
+    text
+  }));
+
+  const newCorrectMapping: Record<string, string> = {};
+  ex.col1Items.forEach((item) => {
+    const targetText = itemIdToCol2Text[item.id];
+    const newOpt = newCol2Options.find((o) => o.text === targetText) || newCol2Options[0];
+    if (newOpt) {
+      newCorrectMapping[item.id] = newOpt.letter;
+    }
+  });
+
+  let newCol3Options = ex.col3Options;
+  let newCorrectMappingCol3 = ex.correctMappingCol3;
+
+  if (ex.columns === 3 && ex.col3Options && ex.col3Options.length > 1) {
+    const itemIdToCol3Text: Record<string, string> = {};
+    ex.col1Items.forEach((item) => {
+      const currentLetter = ex.correctMappingCol3?.[item.id];
+      const opt = ex.col3Options?.find((o) => o.letter === currentLetter);
+      if (opt) {
+        itemIdToCol3Text[item.id] = opt.text;
+      }
+    });
+
+    const col3Texts = ex.col3Options.map((o) => o.text);
+    let shuffledCol3Texts = [...col3Texts];
+    for (let i = shuffledCol3Texts.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledCol3Texts[i], shuffledCol3Texts[j]] = [shuffledCol3Texts[j], shuffledCol3Texts[i]];
+    }
+
+    if (shuffledCol3Texts.every((t, i) => t === col3Texts[i]) && col3Texts.length > 1) {
+      const first = shuffledCol3Texts.shift()!;
+      shuffledCol3Texts.push(first);
+    }
+
+    const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+    newCol3Options = shuffledCol3Texts.map((text, idx) => ({
+      letter: romanNumerals[idx] || String(idx + 1),
+      text
+    }));
+
+    newCorrectMappingCol3 = {};
+    ex.col1Items.forEach((item) => {
+      const targetText = itemIdToCol3Text[item.id];
+      const newOpt = newCol3Options?.find((o) => o.text === targetText) || newCol3Options?.[0];
+      if (newOpt) {
+        newCorrectMappingCol3![item.id] = newOpt.letter;
+      }
+    });
+  }
+
+  return {
+    ...ex,
+    col2Options: newCol2Options,
+    correctMapping: newCorrectMapping,
+    col3Options: newCol3Options,
+    correctMappingCol3: newCorrectMappingCol3
+  };
+}

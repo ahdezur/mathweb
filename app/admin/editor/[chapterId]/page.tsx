@@ -15,6 +15,7 @@ import { GuideExerciseImportModal } from '@/components/admin/GuideExerciseImport
 import { CentralBankImportModal } from '@/components/admin/CentralBankImportModal';
 import { GutterCodeEditor } from '@/components/admin/GutterCodeEditor';
 import { EnvironmentFoldBar, ensureUnfoldedContent } from '@/components/admin/EnvironmentFoldBar';
+import { shuffleMatchingExerciseOptions } from '@/lib/exerciseParser';
 
 function getOptionLabel(optId: string, index: number): string {
   if (!optId) return String.fromCharCode(65 + index);
@@ -671,7 +672,7 @@ export default function ChapterEditorPage() {
           explanation: 'Las opciones A y B son teoremas fundamentales.'
         };
       } else {
-        newEx = {
+        newEx = shuffleMatchingExerciseOptions({
           id,
           type: 'matching',
           title: `Ejercicio ${currentList.length + 1}: Emparejamiento de Columnas`,
@@ -689,7 +690,7 @@ export default function ChapterEditorPage() {
           ],
           correctMapping: { '1': 'A', '2': 'B' },
           explanation: 'Límites trigonométricos notables.'
-        };
+        });
       }
 
       return {
@@ -1738,38 +1739,51 @@ export default function ChapterEditorPage() {
                       {/* 4. MATCHING EDIT FORM */}
                       {ex.type === 'matching' && (
                         <div className="space-y-4 pt-2 border-t border-slate-200/80">
-                          <div>
-                            <label className="block text-[11px] font-bold uppercase text-slate-600 font-title mb-1">
-                              Número de Columnas
-                            </label>
-                            <div className="flex gap-4">
-                              <label className="flex items-center gap-2 text-xs font-bold cursor-pointer">
-                                <input
-                                  type="radio"
-                                  name={`numCols-${ex.id}`}
-                                  checked={(ex.columns || 2) === 2}
-                                  onChange={() => handleUpdatePracticeExercise(exIdx, { ...ex, columns: 2 })}
-                                  className="text-purple-600 focus:ring-purple-500"
-                                />
-                                2 Columnas (Bipartito)
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <label className="block text-[11px] font-bold uppercase text-slate-600 font-title mb-1">
+                                Número de Columnas
                               </label>
-                              <label className="flex items-center gap-2 text-xs font-bold cursor-pointer">
-                                <input
-                                  type="radio"
-                                  name={`numCols-${ex.id}`}
-                                  checked={ex.columns === 3}
-                                  onChange={() => {
-                                    const col3 = ex.col3Options && ex.col3Options.length > 0 ? ex.col3Options : [
-                                      { letter: 'I', text: 'Clasificación I' },
-                                      { letter: 'II', text: 'Clasificación II' }
-                                    ];
-                                    handleUpdatePracticeExercise(exIdx, { ...ex, columns: 3, col3Title: ex.col3Title || 'Clasificación III', col3Options: col3 });
-                                  }}
-                                  className="text-purple-600 focus:ring-purple-500"
-                                />
-                                3 Columnas (Tripartito)
-                              </label>
+                              <div className="flex gap-4">
+                                <label className="flex items-center gap-2 text-xs font-bold cursor-pointer">
+                                  <input
+                                    type="radio"
+                                    name={`numCols-${ex.id}`}
+                                    checked={(ex.columns || 2) === 2}
+                                    onChange={() => handleUpdatePracticeExercise(exIdx, { ...ex, columns: 2 })}
+                                    className="text-purple-600 focus:ring-purple-500"
+                                  />
+                                  2 Columnas (Bipartito)
+                                </label>
+                                <label className="flex items-center gap-2 text-xs font-bold cursor-pointer">
+                                  <input
+                                    type="radio"
+                                    name={`numCols-${ex.id}`}
+                                    checked={ex.columns === 3}
+                                    onChange={() => {
+                                      const col3 = ex.col3Options && ex.col3Options.length > 0 ? ex.col3Options : [
+                                        { letter: 'I', text: 'Clasificación I' },
+                                        { letter: 'II', text: 'Clasificación II' }
+                                      ];
+                                      handleUpdatePracticeExercise(exIdx, { ...ex, columns: 3, col3Title: ex.col3Title || 'Clasificación III', col3Options: col3 });
+                                    }}
+                                    className="text-purple-600 focus:ring-purple-500"
+                                  />
+                                  3 Columnas (Tripartito)
+                                </label>
+                              </div>
                             </div>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const shuffled = shuffleMatchingExerciseOptions(ex);
+                                handleUpdatePracticeExercise(exIdx, shuffled);
+                              }}
+                              className="px-3 py-1.5 bg-indigo-50 dark:bg-indigo-950 hover:bg-indigo-100 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 rounded-xl text-xs font-bold font-title flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                              title="Mezclar y desordenar las respuestas de las opciones para que no queden en orden secuencial A, B, C..."
+                            >
+                              <i className="fa-solid fa-shuffle text-xs text-indigo-600"></i> Mezclar Opciones
+                            </button>
                           </div>
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
