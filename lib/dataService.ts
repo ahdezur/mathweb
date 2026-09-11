@@ -153,7 +153,7 @@ export const DataService = {
         if (res.ok) {
           const json = await res.json();
           if (json.success && Array.isArray(json.courses) && json.courses.length > 0) {
-            return json.courses.map((c: any) => {
+            const mappedCourses = json.courses.map((c: any) => {
               const allChapTitles = (c.units || [])
                 .flatMap((u: any) => u.chapters || [])
                 .map((ch: any) => ch.title);
@@ -180,6 +180,9 @@ export const DataService = {
                 chapters: chaptersList.length > 0 ? chaptersList : ['Módulo 1: Introducción']
               };
             });
+            coursesCache = mappedCourses;
+            saveLocalStore('app_courses_data', mappedCourses);
+            return mappedCourses;
           }
         }
       }
