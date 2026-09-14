@@ -125,7 +125,11 @@ export async function saveStoredCourses(courses: CourseContent[]): Promise<boole
     } catch {}
 
     const normalized = courses.map((course) => {
-      const existing = existingMap.get(course.slug) || existingMap.get(course.id);
+      const origSlug = (course as any).originalSlug;
+      const existing = existingMap.get(course.slug) ||
+                       existingMap.get(course.id) ||
+                       (origSlug ? existingMap.get(origSlug) : undefined) ||
+                       existingMap.get(`course_${course.slug}`);
 
       // Preserve existing units if incoming units array is empty or lacks chapters
       let units = (Array.isArray(course.units) && course.units.length > 0 && course.units.some((u) => u.chapters?.length > 0))

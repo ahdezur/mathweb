@@ -128,7 +128,7 @@ export const MOCK_COURSES: Course[] = [
     ]
   },
   {
-    id: 'c2',
+    id: 'course_algebra-lineal',
     slug: 'algebra-lineal',
     title: 'Álgebra Lineal',
     category: 'Álgebra Lineal',
@@ -148,7 +148,7 @@ export const MOCK_COURSES: Course[] = [
     ]
   },
   {
-    id: 'c3',
+    id: 'course_calculo-multivariable',
     slug: 'calculo-multivariable',
     title: 'Cálculo Multivariable',
     category: 'Multivariable',
@@ -169,7 +169,7 @@ export const MOCK_COURSES: Course[] = [
     ]
   },
   {
-    id: 'c4',
+    id: 'course_ecuaciones-diferenciales',
     slug: 'ecuaciones-diferenciales',
     title: 'Ecuaciones Diferenciales Ordinarias',
     category: 'Ecuaciones Diferenciales',
@@ -189,7 +189,7 @@ export const MOCK_COURSES: Course[] = [
     ]
   },
   {
-    id: 'c5',
+    id: 'course_topologia-rn',
     slug: 'topologia-rn',
     title: 'Topología en \\mathbb{R}^n',
     category: 'Topología',
@@ -208,7 +208,7 @@ export const MOCK_COURSES: Course[] = [
     ]
   },
   {
-    id: 'c-integral',
+    id: 'course_calculo-integral',
     slug: 'calculo-integral',
     title: 'Cálculo Integral',
     category: 'Cálculo',
@@ -228,7 +228,7 @@ export const MOCK_COURSES: Course[] = [
     ]
   },
   {
-    id: 'c-intro-calculo',
+    id: 'course_introduccion-calculo',
     slug: 'introduccion-calculo',
     title: 'Introducción al Cálculo',
     category: 'Cálculo',
@@ -247,7 +247,7 @@ export const MOCK_COURSES: Course[] = [
     ]
   },
   {
-    id: 'c-intro-algebra',
+    id: 'course_introduccion-algebra',
     slug: 'introduccion-algebra',
     title: 'Introducción al Álgebra',
     category: 'Álgebra Lineal',
@@ -266,7 +266,7 @@ export const MOCK_COURSES: Course[] = [
     ]
   },
   {
-    id: 'c-calculo-avanzado',
+    id: 'course_calculo-avanzado',
     slug: 'calculo-avanzado',
     title: 'Cálculo Avanzado',
     category: 'Multivariable',

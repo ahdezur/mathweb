@@ -272,7 +272,7 @@ export default function AdminDashboardPage() {
   // Course Handlers
   const handleOpenCourseModal = (course?: Partial<Course>) => {
     if (course) {
-      setEditingCourse({ ...course });
+      setEditingCourse({ ...course, originalSlug: course.slug } as any);
     } else {
       setEditingCourse({
         title: '',
@@ -317,12 +317,19 @@ export default function AdminDashboardPage() {
     }
 
     let updatedClassroomCourses = [...classroomCourses];
-    const existingIdx = updatedClassroomCourses.findIndex((c) => c && ((savedId && c.id === savedId) || c.slug === slug));
+    const existingIdx = updatedClassroomCourses.findIndex(
+      (c) => c && (
+        (savedId && (c.id === savedId || c.id === `course_${editingCourse.slug}` || c.id === editingCourse.id)) ||
+        (editingCourse.slug && (c.slug === editingCourse.slug || c.slug === slug)) ||
+        (editingCourse as any).originalSlug === c.slug
+      )
+    );
 
     if (existingIdx >= 0) {
       updatedClassroomCourses[existingIdx] = {
         ...updatedClassroomCourses[existingIdx],
         title: editingCourse.title,
+        slug: slug, // update slug if title changed while keeping id & units & chapters intact
         description: editingCourse.description || updatedClassroomCourses[existingIdx].description,
         category: editingCourse.category || updatedClassroomCourses[existingIdx].category,
         level: editingCourse.level || updatedClassroomCourses[existingIdx].level,
