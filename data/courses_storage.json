@@ -5464,7 +5464,7 @@
   {
     "id": "course_introduccion-algebra",
     "slug": "introduccion-algebra",
-    "title": "Introducción Álgebra",
+    "title": "Introducción al Álgebra",
     "category": "Álgebra Lineal",
     "level": "Pregrado",
     "description": "Programa de estudio completo e interactivo para Introducción Álgebra.",
@@ -5472,14 +5472,14 @@
       {
         "id": "u-1",
         "number": 1,
-        "title": "Unidad 1: Módulos Principales de Introducción Álgebra",
+        "title": "Sumatorias",
         "summary": "Contenido estructurado del curso de Introducción Álgebra.",
         "chapters": [
           {
             "id": "cap-1",
             "number": 1,
             "displayNumber": "1.1",
-            "title": "Sumatorias",
+            "title": "Introducción a Sumatorias",
             "summary": "Notación Sigma, propiedades algebraicas, cambio de índices y resolución de sumatorias.",
             "mathKey": "sum_{k=1}^{n} a_k",
             "motivacion": "\\begin{card}\n<p><strong>El poder de la compresión matemática</strong></p>\n<p>Imagina que estás analizando datos y necesitas sumar los ingresos diarios de una empresa durante todo un año, o que estás calculando el área bajo una curva dividiéndola en cientos de pequeños rectángulos. Escribir la suma elemento por elemento, como \n$$a_1 + a_2 + a_3 + \\dots + a_{365}$$\nno solo es tedioso y poco elegante, sino que resulta inútil si queremos manipular esa cadena de números algebraicamente.</p>\n<p>\nAquí es donde el álgebra introduce una de sus herramientas más potentes: el operador sumatoria.</p>\n<p>Piensa en este operador como el equivalente matemático a un archivo comprimido o a un ciclo repetitivo en programación. Su propósito no es simplemente abreviar la escritura, sino encapsular patrones numéricos extensos en una estructura compacta. Al aprender las reglas de este operador, seremos capaces de manipular, simplificar y calcular bloques gigantes de información en apenas un par de líneas de desarrollo.</p>\n\n\n\\begin{pregunta}\n¿Cómo podemos diseñar un lenguaje matemático que nos permita empaquetar una suma de mil términos, operar con ella y luego desempaquetarla sin perder ninguna pieza de información en el proceso?\n\\end{pregunta}\n\\end{card}\n",
@@ -5551,6 +5551,311 @@
               ],
               "formulasClave": []
             }
+          },
+          {
+            "id": "cap-1789357814665",
+            "number": 3,
+            "displayNumber": "3",
+            "title": "Teorema del Binomio de Newton",
+            "summary": "",
+            "mathKey": "f(x) = ...",
+            "motivacion": "\\begin{card}\n<p><strong>¿Por qué es necesario estudiar el Teorema del Binomio de Newton?</p></strong>\n\nDesde nuestros primeros pasos en álgebra aprendemos a memorizar los productos notables básicos: conocemos de memoria la expansión de un binomio al cuadrado $(a+b)^2$ e incluso la de un binomio al cubo $(a+b)^3$. Sin embargo, en el mundo del cálculo, la física y las finanzas, los problemas reales raramente se detienen en el exponente 3.\n\n¿Qué ocurre cuando necesitamos elevar un binomio a la potencia 10, 50 o 100? Intentar multiplicar el paréntesis por sí mismo decenas de veces a mano es un camino lento, propenso a cometer infinitos errores de signos y totalmente inviable en la práctica. Necesitamos un \\textbf{patrón general} que nos permita saltarnos la multiplicación manual y encontrar cualquier término de la expansión de forma inmediata.\n\n\\begin{pregunta}\n¿Cómo podemos expandir potencia elevadísimas como $(a+b)^{100}$ o calcular únicamente su término central sin tener que realizar cientos de multiplicaciones manuales?\n\\end{pregunta}\n\n1. Del álgebra de productos notables a la combinatoria\n\n\\begin{pregunta}\n¿Qué relación secreta existe entre el número de formas de elegir elementos en un grupo (combinaciones) y los coeficientes que acompañan a las potencias de un binomio?\n\\end{pregunta}\n\nCuando expandimos $(a+b)^n$, cada término del resultado se obtiene eligiendo $a$ o $b$ en cada uno de los $n$ factores.\nEl Teorema del Binomio revela una conexión profunda entre dos ramas de la matemática que parecen independientes: el \\textbf{álgebra de polinomios} y el \\textbf{análisis combinatorio}.\nNos enseña que los famosos coeficientes de la expansión no son más que combinaciones $\\binom{n}{k}$, los mismos números que ordenan el Triángulo de Pascal y que rigen el conteo de posibilidades.\n\n2. De las potencias enteras a las aproximaciones del Cálculo\n\n\\begin{pregunta}\n¿Cómo logran las calculadoras y computadoras evaluar raíces complejas como $\\sqrt{1.02}$ o $(1+x)^{-1/2}$ en una fracción de segundo?\n\\end{pregunta}\n\nEl genio de Isaac Newton no se detuvo en los exponentes enteros positivos ($n \\in \\mathbb{N}$). Newton extendió este teorema a exponentes negativos y fraccionarios, transformando sumas finitas en \\textbf{series infinitas de potencias}.\n\n<p>\\textbf{Aproximación de funciones} El Teorema del Binomio generalizado es la piedra angular del Cálculo Infinitesimal para aproximar funciones complejas mediante polinomios sencillos (Series de Taylor).<p>\n<p>\\textbf{Modelación de errores:} En física e ingeniería, permite truncar expansiones para estimar pequeñas perturbaciones y márgenes de error sin perder precisión.</p>\n<p>\\textbf{Probabilidad y Estadística:} Es el fundamento directo de la \\textbf{Distribución Binomial}, la herramienta probabilística más utilizada para modelar experimentos con dos resultados posibles (éxito/fracaso, encendida/apagada, sano/enfermo).\n\n\n\n\\begin{pregunta}\n\\textbf{En resumen}: estudiar el Teorema del Binomio no consiste en aprender una fórmula larga con sumatorias, sino en adquirir una herramienta poderosa para conectar el conteo combinatorio con la expansión algebraica y la aproximación de funciones en el cálculo.\n\\end{pregunta}\n\n\\end{card}",
+            "teoria": "\\begin{card}\n<p>\\textbf{Exploración Progresiva de las Expansiones}</p>\n\nComencemos expandiendo algebraicamente la potencia de un binomio $(a+b)^n$ para los primeros valores enteros no negativos de $n$:\n\n\\[\\begin{aligned}\n(a+b)^0 &= 1 \\\\\n(a+b)^1 &= 1a + 1b \\\\\n(a+b)^2 &= 1a^2 + 2ab + 1b^2 \\\\\n(a+b)^3 &= 1a^3 + 3a^2b + 3ab^2 + 1b^3 \\\\\n(a+b)^4 &= 1a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + 1b^4\n\\end{aligned}\\]\n\n<p>\\textbf{Observación de Patrones Fundamentales}</p>\n\nAl analizar minuciosamente los desarrollos anteriores, identificamos reglas universales:\n\n<p>\\textbf{Comportamiento de los Exponentes:} En cada término del desarrollo de $(a+b)^n$, el exponente de $a$ decrece paso a paso desde $n$ hasta $0$, mientras que el exponente de $b$ crece paso a paso desde $0$ hasta $n$. La suma de los exponentes de $a$ y $b$ en cada término es siempre constante e igual a $n$. El número total de términos en el desarrollo de $(a+b)^n$ es siempre $n + 1$.</p>\n<p>\\textbf{Patrón de los Coeficientes Numéricos (Triángulo de Pascal):} Si aislamos únicamente los coeficientes numéricos de cada fila, obtenemos un arreglo triangular simétrico:</p>\n\n$$\\begin{array}{c}\nn=0: &&&&&& 1 &&&&&& \\\\\nn=1: &&&&& 1 && 1 &&&&& \\\\\nn=2: &&&& 1 && 2 && 1 &&&& \\\\\nn=3: &&& 1 && 3 && 3 && 1 &&& \\\\\nn=4: && 1 && 4 && 6 && 4 && 1 &&\n\\end{array}$$\n\n\\textbf{Regla de Pascal:} Cada número del interior del triángulo se obtiene sumando los dos números situados directamente por encima de él en la fila anterior.\n\n\\begin{definicion}{Coeficiente Binomial}\nPara enteros $n, k$ tales que $n \\ge 0$ y $0 \\le k \\le n$, el \\textbf{coeficiente binomial} $\\binom{n}{k}$ (leído \"$n$ sobre $k$\") representa el número de combinaciones de $n$ elementos tomados de $k$ en $k$, y se define formalmente como:\n\n$$\\binom{n}{k} = \\frac{n!}{k!(n - k)!}$$\n\ndonde $n!$ es el factorial de $n$, con la convención $0! = 1$.\n\nLos números de la $n$-ésima fila del Triángulo de Pascal corresponden exactamente a los valores de los coeficientes binomiales:\n$$\\binom{n}{0}, \\quad \\binom{n}{1}, \\quad \\binom{n}{2}, \\quad \\dots, \\quad \\binom{n}{n}$$\n\\end{definicion}\n\n\n\n\\begin{teorema}{Teorema del Binomio de Newton}\nPara cualquier entero no negativo $n \\in \\mathbb{N}_0$ y para cualesquiera números reales o complejos $a, b$:\n$$(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k$$\nDesarrollado en forma explícita:\n$$(a+b)^n = \\binom{n}{0}a^n + \\binom{n}{1}a^{n-1}b + \\binom{n}{2}a^{n-2}b^2 + \\dots + \\binom{n}{n-1}ab^{n-1} + \\binom{n}{n}b^n$$\n\n\\demostracion{\n\\textbf{Demostración por Inducción Matemática sobre} $n$:\n\n\\textbf{Caso base} ($n=0$)\n$$(a+b)^0 = 1 \\quad \\text{y} \\quad \\sum_{k=0}^{0} \\binom{0}{k} a^{0-k}b^k = \\binom{0}{0}a^0b^0 = 1 \\cdot 1 \\cdot 1 = 1$$\nSe cumple la base inductiva.\n\n\\textbf{Hipótesis Inductiva:} Asumimos cierto para $n$:\n$$(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k$$\n\n\\textbf{Paso Inductivo} ($n+1$):\nMultiplicamos $(a+b)^n$ por $(a+b)$:\n$$(a+b)^{n+1} = (a+b) \\cdot (a+b)^n = a(a+b)^n + b(a+b)^n$$\nSustituyendo la hipótesis inductiva:\n$$(a+b)^{n+1} = a \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k + b \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k$$\n$$= \\sum_{k=0}^{n} \\binom{n}{k} a^{n+1-k} b^k + \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^{k+1}$$\n\nHaciendo un cambio de índice en la segunda suma ($j = k+1$):\n$$= \\sum_{k=0}^{n} \\binom{n}{k} a^{n+1-k} b^k + \\sum_{j=1}^{n+1} \\binom{n}{j-1} a^{n+1-j} b^j$$\n\nExtrayendo el primer término de la primera suma ($k=0$) y el último de la segunda ($j=n+1$), y uniendo los sumandos intermedios:\n$$= \\binom{n}{0}a^{n+1} + \\sum_{k=1}^{n} \\left[ \\binom{n}{k} + \\binom{n}{k-1} \\right] a^{n+1-k} b^k + \\binom{n}{n}b^{n+1}$$\n\nAplicando la \\textbf{Identidad de Pascal} $\\binom{n}{k} + \\binom{n}{k-1} = \\binom{n+1}{k}$ y notando que $\\binom{n}{0} = \\binom{n+1}{0} = 1$ y $\\binom{n}{n} = \\binom{n+1}{n+1} = 1$:\n$$(a+b)^{n+1} = \\sum_{k=0}^{n+1} \\binom{n+1}{k} a^{n+1-k} b^k$$\n}\n\\end{teorema}\n\n\\end{card}\n\\begin{card}\n\\begin{propiedades}{Propiedades Clave del Binomio y Término General}\n\n\n  \n\\propiedad{Simetría de Coeficientes Binomiales}\n{\nLos coeficientes de los términos equidistantes de los extremos son iguales:\n$$\\binom{n}{k} = \\binom{n}{n-k}$$\n}\n\\demostracionPropiedad{}{Directo de la definición $\\binom nk$}\n\n\\propiedad{Suma de Todos los Coeficientes Binomiales}\n{\nLa suma de todos los coeficientes binomiales de la $n$-ésima fila es igual a $2^n$:\n$$\\sum_{k=0}^{n} \\binom{n}{k} = \\binom{n}{0} + \\binom{n}{1} + \\dots + \\binom{n}{n} = 2^n$$\n}\n\\demostracionPropiedad{}{Demostración inmediata evaluando el Teorema del Binomio en $a=1$ y $b=1$.}\n\n\\end{propiedades}\n\n\\begin{trampa}{Desfase de Índice en la Posición del Término $T_{k+1}$}\n  \\error{\nConfundir el número de posición del término con el valor del parámetro $k$. Por ejemplo, para calcular el cuarto término ($T_4$), usar $k = 4$ en la fórmula.\n  }\n  \\correct{\nEl parámetro $k$ siempre vale uno menos que la posición deseada. Por ende:\n<p>- Para el primer término ($T_1$) se usa $k = 0$.</p>\n<p>- Para el cuarto término ($T_4$) se usa $k = 3$.</p>\n<p>- En general, para el $m$-ésimo término ($T_m$), se debe usar $k = m - 1$.<p>\n  }\n\\end{trampa}\n\n\\end{card}\n\n\\begin{card}\n\\begin{ejercicio}{Cálculo de Términos y Coeficientes en el Binomio de Newton}\nConsidere la expansión del binomio:\n$$\\left( \\frac{x}{y^{2}} - \\frac{y^{3}}{2x^{2}} \\right)^{10}$$\n\n- Encontrar el octavo sumando.\n- Encuentre el término central.\n- Encuentre el coeficiente del término central.\n- Encuentre el coeficiente que acompaña al término $\\frac{x}{y^{5}}$.\n\n\\solucion{\n\\textbf{1. Desarrollo del Término General} $T_{k+1}$\n\nAplicamos la fórmula del término general para el binomio $(a+b)^{10}$ con $a = \\frac{x}{y^2}$ y $b = -\\frac{y^3}{2x^2}$:\n$$T_{k+1} = \\binom{10}{k} \\left( \\frac{x}{y^2} \\right)^{10-k} \\left( -\\frac{y^3}{2x^2} \\right)^k$$\nSimplificando los exponentes y separando los coeficientes numéricos:\n$$\\begin{align*}T_{k+1} &= \\binom{10}{k} \\frac{x^{10-k}}{y^{20-2k}} \\cdot \\frac{(-1)^k y^{3k}}{2^k x^{2k}}\\\\\n& = \\binom{10}{k} \\frac{(-1)^k}{2^k} x^{(10-k)-2k} y^{3k-(20-2k)}\\\\\n&= \\binom{10}{k} \\frac{(-1)^k}{2^k} x^{10-3k} y^{5k-20}, \\quad \\text{para } k = 0, 1, 2, \\dots, 10\n\\end{align*}$$\n\n\\textbf{Octavo sumando} ($T_8$)\nEl octavo sumando corresponde a la posición $k+1 = 8$, es decir, $k = 7$:\n$$T_8 = \\binom{10}{7} \\frac{(-1)^7}{2^7} x^{10-3(7)} y^{5(7)-20}$$\nCalculando los valores:\n$\\binom{10}{7} = \\binom{10}{3} = \\frac{10 \\cdot 9 \\cdot 8}{3 \\cdot 2 \\cdot 1} = 120$\n$\\frac{(-1)^7}{2^7} = -\\frac{1}{128}$\nExponentes: $x^{10-21} = x^{-11}$, $y^{35-20} = y^{15}$\n$$T_8 = 120 \\cdot \\left( -\\frac{1}{128} \\right) x^{-11} y^{15} = -\\frac{15}{16} x^{-11} y^{15} = -\\frac{15 y^{15}}{16 x^{11}}$$\n\\textbf{2. Término Central} ($T_6$)\nEl desarrollo tiene $10 + 1 = 11$ términos ($k = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10$). El término central es el sexto término, correspondiente a $k = 5$:\n$$T_6 = \\binom{10}{5} \\frac{(-1)^5}{2^5} x^{10-3(5)} y^{5(5)-20}$$\nCalculando los valores:\n- $\\binom{10}{5} = \\frac{10 \\cdot 9 \\cdot 8 \\cdot 7 \\cdot 6}{5 \\cdot 4 \\cdot 3 \\cdot 2 \\cdot 1} = 252$\n- $\\frac{(-1)^5}{2^5} = -\\frac{1}{32}$\n- Exponentes: $x^{10-15} = x^{-5}$, $y^{25-20} = y^5$\n$$T_6 = 252 \\cdot \\left( -\\frac{1}{32} \\right) x^{-5} y^5 = -\\frac{63}{8} x^{-5} y^5 = -\\frac{63 y^5}{8 x^5}$$\n\n\\textbf{3. Coeficiente del término central:}\nEl coeficiente numérico del término central $T_6$ es:\n$ -\\frac{63}{8}$\n\n\\textbf{4. Coeficiente que acompaña al término} $\\dfrac{x}{y^5}$\nRequerimos que la parte algebraica sea igual a $\\frac{x}{y^5} = x^1 y^{-5}$:\n$$x^{10-3k} y^{5k-20} = x^1 y^{-5}$$\nIgualando los exponentes:\n$$10 - 3k = 1 \\implies 3k = 9 \\implies k = 3$$\n$$5k - 20 = -5 \\implies 5k = 15 \\implies k = 3$$\nSustituyendo $k = 3$ en la expresión del coeficiente:\n$$\\binom{10}{3} \\frac{(-1)^3}{2^3} = 120 \\cdot \\left( -\\frac{1}{8} \\right) = -15$$\n}\n\\end{ejercicio}\n\\end{card}\n\n\\begin{card}\n\\textbf{Corolarios e Identidades Combinatorias Derivadas del Binomio}\n\n\\begin{corolario}{Suma de Coeficientes Binomiales con Signos Alternados}\nPara todo entero $n \\ge 1$, la suma alternada de los coeficientes binomiales de la $n$-ésima fila es siempre igual a cero:\n\n$$\\sum_{k=0}^{n} (-1)^k \\binom{n}{k} = \\binom{n}{0} - \\binom{n}{1} + \\binom{n}{2} - \\binom{n}{3} + \\dots + (-1)^n \\binom{n}{n} = 0$$\n\n\\demostracion{\nEvaluamos la fórmula general del Teorema del Binomio de Newton:\n$$(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k$$\nAsignando los valores particulares $a = 1$ y $b = -1$:\n$$(1 + (-1))^n = \\sum_{k=0}^{n} \\binom{n}{k} (1)^{n-k} (-1)^k$$\nDado que $1 + (-1) = 0$ y $1^{n-k} = 1$ para todo $k$:\n$$0^n = \\sum_{k=0}^{n} (-1)^k \\binom{n}{k}$$\nComo $n \\ge 1$, tenemos $0^n = 0$, concluyendo que:\n$$\\binom{n}{0} - \\binom{n}{1} + \\binom{n}{2} - \\dots + (-1)^n \\binom{n}{n} = 0$$\n}\n\\end{corolario}\n\n\\begin{corolario}{Igualdad de Coeficientes Binomiales de Posiciones Pares e Impares}\nPara todo entero $n \\ge 1$, la suma de los coeficientes binomiales en posiciones pares es exactamente igual a la suma de los coeficientes en posiciones impares, y ambas equivalen a $2^{n-1}$:\n\n$$\\binom{n}{0} + \\binom{n}{2} + \\binom{n}{4} + \\dots = \\binom{n}{1} + \\binom{n}{3} + \\binom{n}{5} + \\dots = 2^{n-1}$$\n\n\\demostracion{\nConsideramos la propiedad fundamental de la suma total de coeficientes:\n$$\\binom{n}{0} + \\binom{n}{1} + \\binom{n}{2} + \\binom{n}{3} + \\dots + \\binom{n}{n} = 2^n \\quad \\text{\\textbf{(Ecuación A)}}$$\n\nPor el Corolario anterior de suma alternada:\n$$\\binom{n}{0} - \\binom{n}{1} + \\binom{n}{2} - \\binom{n}{3} + \\dots = 0 \\quad \\text{\\textbf{(Ecuación B)}}$$\n\nReordenando la Ecuación B agrupando los términos pares e impares:\n$$\\left[ \\binom{n}{0} + \\binom{n}{2} + \\binom{n}{4} + \\dots \\right] - \\left[ \\binom{n}{1} + \\binom{n}{3} + \\binom{n}{5} + \\dots \\right] = 0$$\n\nEsto demuestra la primera igualdad: la suma de términos pares $S_{\\text{par}}$ es igual a la suma de términos impares $S_{\\text{impar}}$.\n\nSustituyendo $S_{\\text{impar}} = S_{\\text{par}}$ en la Ecuación A:\n$$S_{\\text{par}} + S_{\\text{impar}} = 2 S_{\\text{par}} = 2^n \\implies S_{\\text{par}} = S_{\\text{impar}} = \\frac{2^n}{2} = 2^{n-1}$$\n}\n\\end{corolario}\n\n\n\\begin{corolario}{Suma de los Cuadrados de los Coeficientes Binomiales}\nPara todo entero $n \\ge 1$, la suma de los cuadrados de todos los coeficientes binomiales de la $n$-ésima fila es igual a $\\binom{2n}{n}$:\n\n$$\\sum_{k=0}^{n} \\binom{n}{k}^2 = \\binom{n}{0}^2 + \\binom{n}{1}^2 + \\dots + \\binom{n}{n}^2 = \\binom{2n}{n}$$\n\n\\demostracion{\nPartimos de la identidad algebraica de potencias de binomios:\n$$(1+x)^n \\cdot (1+x)^n = (1+x)^{2n}$$\nExpresamos el miembro izquierdo como el producto de dos sumatorias explícitas:\n$$\\left( \\sum_{i=0}^{n} \\binom{n}{i} x^i \\right) \\cdot \\left( \\sum_{j=0}^{n} \\binom{n}{j} x^{n-j} \\right) = \\sum_{k=0}^{2n} \\binom{2n}{k} x^k$$\nAnalizamos el coeficiente que acompaña a la potencia $x^n$ en ambos lados de la igualdad:\n- \\textbf{En el miembro derecho:} El coeficiente de $x^n$ se obtiene directamente cuando $k = n$, correspondiendo a $\\binom{2n}{n}$.\n\n- \\textbf{En el miembro izquierdo:} Al multiplicar los términos de ambos paréntesis, obtenemos una potencia $x^n$ multiplicando $x^i \\cdot x^{n-j} = x^{n + i - j}$. Esto ocurre únicamente cuando $i - j = 0$, es decir, cuando $i = j$. El coeficiente resultante de esa suma de productos es:\n$$\\sum_{i=0}^{n} \\binom{n}{i} \\cdot \\binom{n}{i} = \\sum_{i=0}^{n} \\binom{n}{i}^2$$\n\nIgualando los coeficientes de $x^n$ obtenidos en ambos lados:\n$$\\sum_{i=0}^{n} \\binom{n}{i}^2 = \\binom{2n}{n} $$\n}\n\\end{corolario}\n\\end{card}",
+            "practica": {
+              "text": "<p>Ejemplo resuelto...</p>",
+              "exercises": [
+                {
+                  "id": "imported-ex-1789361436223-1-z62k9",
+                  "type": "true_false",
+                  "title": "Ejercicio 1: Verdadero o Falso",
+                  "statement": "El número total de términos en el desarrollo del binomio $(a+b)^{12}$ es exactamente $13$.",
+                  "correctAnswer": true,
+                  "explanation": "Por la propiedad fundamental del Teorema del Binomio, la expansión de $(a+b)^n$ contiene siempre $n+1$ términos. Para $n=12$, se obtienen $12+1 = 13$ términos.",
+                  "trueFeedback": "¡Correcto! La afirmación es verdadera.",
+                  "falseFeedback": "¡Incorrecto! La afirmación es verdadera."
+                },
+                {
+                  "id": "imported-ex-1789361436223-4-7xo9q",
+                  "type": "single_choice",
+                  "title": "Ejercicio 4: Selección Múltiple",
+                  "question": "¿Cuál es el coeficiente numérico del término que contiene a $x^3$ en el desarrollo de $(1 + 2x)^5$?",
+                  "options": [
+                    {
+                      "id": "A",
+                      "text": "$40$",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "B",
+                      "text": "$80$",
+                      "feedback": "¡Excelente! Respuesta correcta."
+                    },
+                    {
+                      "id": "C",
+                      "text": "$20$",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    },
+                    {
+                      "id": "D",
+                      "text": "$160$",
+                      "feedback": "Incorrecto. Revisa el procedimiento."
+                    }
+                  ],
+                  "correctOptionId": "B",
+                  "explanation": "El término general es $T_{k+1} = \\binom{5}{k} 1^{5-k} (2x)^k = \\binom{5}{k} 2^k x^k$. Para obtener $x^3$, elegimos $k=3$. El coeficiente es $\\binom{5}{3} 2^3 = 10 \\cdot 8 = 80$."
+                },
+                {
+                  "id": "imported-ex-1789361436223-6-o1eql",
+                  "type": "multiple_choice",
+                  "title": "Ejercicio 6: Selección Múltiple (Casillas)",
+                  "question": "Considere la expansión del binomio $\\left(x^2 - \\frac{1}{x}\\right)^6$. Selecciona TODAS las afirmaciones que son verdaderas:",
+                  "options": [
+                    {
+                      "id": "A",
+                      "text": "El desarrollo contiene un término independiente de $x$ igual a $15$.",
+                      "isCorrect": true,
+                      "feedback": "¡Correcto! El término general es $T_{k+1} = \\binom{6}{k} (-1)^k x^{12-3k}$. Para $12-3k=0 \\implies k=4$, dando el término constante $\\binom{6}{4}(-1)^4 = 15$."
+                    },
+                    {
+                      "id": "B",
+                      "text": "El coeficiente del término central es $-20$.",
+                      "isCorrect": true,
+                      "feedback": "¡Correcto! La expansión tiene 7 términos, el central corresponde a $k=3$. Su coeficiente es $\\binom{6}{3}(-1)^3 = 20(-1) = -20$."
+                    },
+                    {
+                      "id": "C",
+                      "text": "La suma de todos los coeficientes del desarrollo es $0$.",
+                      "isCorrect": true,
+                      "feedback": "¡Correcto! Evaluando el binomio en $x=1$, se obtiene $(1^2 - 1/1)^6 = 0^6 = 0$."
+                    },
+                    {
+                      "id": "D",
+                      "text": "El término de mayor exponente de $x$ es $x^{12}$.",
+                      "isCorrect": true,
+                      "feedback": "¡Correcto! Para $k=0$, el primer término es $\\binom{6}{0}(x^2)^6 = x^{12}$."
+                    }
+                  ],
+                  "correctOptionIds": [
+                    "A",
+                    "B",
+                    "C",
+                    "D"
+                  ],
+                  "explanation": ""
+                },
+                {
+                  "id": "imported-ex-1789361436223-7-v512z",
+                  "type": "matching",
+                  "title": "Ejercicio 7: Casillas de Relación",
+                  "question": "Relaciona cada posición o propiedad de la expansión de $(x + 3)^8$ con su valor correspondiente",
+                  "columns": 2,
+                  "col1Title": "Ítem / Concepto",
+                  "col2Title": "Respuesta / Expresión",
+                  "col1Items": [
+                    {
+                      "id": "1",
+                      "num": 1,
+                      "text": "Primer término ($T_1$, $k=0$)"
+                    },
+                    {
+                      "id": "2",
+                      "num": 2,
+                      "text": "Coeficiente del término $x^7$ ($k=1$)"
+                    },
+                    {
+                      "id": "3",
+                      "num": 3,
+                      "text": "Término independiente ($T_9$, $k=8$)"
+                    },
+                    {
+                      "id": "4",
+                      "num": 4,
+                      "text": "Coeficiente del término $x^6$ ($k=2$)"
+                    }
+                  ],
+                  "col2Options": [
+                    {
+                      "letter": "A",
+                      "text": "$6561$"
+                    },
+                    {
+                      "letter": "B",
+                      "text": "$252$"
+                    },
+                    {
+                      "letter": "C",
+                      "text": "$x^8$"
+                    },
+                    {
+                      "letter": "D",
+                      "text": "$24$"
+                    }
+                  ],
+                  "correctMapping": {
+                    "1": "C",
+                    "2": "D",
+                    "3": "A",
+                    "4": "B"
+                  },
+                  "explanation": "1.A: $\\binom{8}{0} x^8 3^0 = x^8$. 2.B: $\\binom{8}{1} 3^1 = 8 \\cdot 3 = 24$. 3.C: $3^8 = 6561$. 4.D: $\\binom{8}{2} 3^2 = 28 \\cdot 9 = 252$."
+                }
+              ]
+            },
+            "ejercicios": {
+              "problems": [
+                {
+                  "id": "prob-1789361275533-1",
+                  "problem": "Determine el coeficiente de $x^2$ en el desarrollo del trinomio $(1 + x + x^2)^8$.",
+                  "pauta": "1. Aplicamos el Teorema del Binomio expresando el trinomio como $(1 + (x+x^2))^8$:\n$$(1+x+x^2)^8 = \\sum_{k=0}^{8} \\binom{8}{k} (x+x^2)^k = \\sum_{k=0}^{8} \\sum_{j=0}^{k} \\binom{8}{k} \\binom{k}{j} x^{k-j} (x^2)^j = \\sum_{k=0}^{8} \\sum_{j=0}^{k} \\binom{8}{k} \\binom{k}{j} x^{k+j}$$\n\n2. Para obtener el coeficiente de $x^2$, buscamos los pares de enteros $(k, j)$ con $0 \\le j \\le k \\le 8$ tales que $k + j = 2$:\n- Primer par: $k = 1$ y $j = 1 \\implies \\binom{8}{1}\\binom{1}{1} = 8 \\cdot 1 = 8$.\n- Segundo par: $k = 2$ y $j = 0 \\implies \\binom{8}{2}\\binom{2}{0} = 28 \\cdot 1 = 28$.\n\n3. Sumando ambos coeficientes: $8 + 28 = 36$.",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Teorema del Binomio",
+                    "Doble Sumatoria",
+                    "Coeficiente Polinómico"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico",
+                    "Manejo de Índices"
+                  ]
+                },
+                {
+                  "id": "prob-1789361275533-2",
+                  "problem": "Considere el desarrollo de $(3x+2)^{19}$. Determine si existen dos potencias consecutivas de $x$ cuyos coeficientes numéricos sean exactamente iguales.",
+                  "pauta": "1. Escribimos el término general $\\alpha_k$ del desarrollo $(3x+2)^{19} = \\sum_{k=0}^{19} \\binom{19}{k} 3^{19-k} 2^k x^{19-k}$:\n$$\\alpha_k = \\binom{19}{k} 3^{19-k} 2^k$$\n\n2. Igualamos dos coeficientes consecutivos $\\alpha_k = \\alpha_{k+1}$ para $k \\in \\{0, 1, \\dots, 18\\}$:\n$$\\binom{19}{k} 3^{19-k} 2^k = \\binom{19}{k+1} 3^{18-k} 2^{k+1}$$\n\n3. Simplificamos dividiendo por $3^{18-k} 2^k$ y desplegando los factoriales:\n$$\\frac{3}{19-k} = \\frac{2}{k+1} \\implies 3(k+1) = 2(19-k) \\implies 5k = 35 \\implies k = 7$$\n\n4. Por lo tanto, los coeficientes iguales corresponden a $k=7$ y $k=8$, es decir, al octavo término $T_8$ (potencia $x^{12}$) y al noveno término $T_9$ (potencia $x^{11}$).",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Término General",
+                    "Coeficientes Consecutivos",
+                    "Ecuación Combinatoria"
+                  ],
+                  "habilidades": [
+                    "Razonamiento Álgebraico",
+                    "Demostración Rigurosa"
+                  ]
+                },
+                {
+                  "id": "prob-1789361275533-3",
+                  "problem": "Considere la expresión $\\left(1 + \\frac{2}{x}\\right)^7$.\n(a) Encuentre el coeficiente del término $x^{-1}$ y el término independiente ($x^0$).\n(b) A partir del resultado anterior, encuentre el término independiente en el desarrollo de $(2x + 1)\\left(1 + \\frac{2}{x}\\right)^7$.",
+                  "pauta": "1. Desarrollamos el binomio $\\left(1 + \\frac{2}{x}\\right)^7 = \\sum_{k=0}^{7} \\binom{7}{k} 2^{7-k} x^{k-7}$.\n- Para $x^{-1}$: resolvemos $k - 7 = -1 \\implies k = 6$. Coeficiente $= \\binom{7}{6} 2^{1} = 14$.\n- Para $x^0$: resolvemos $k - 7 = 0 \\implies k = 7$. Coeficiente $= \\binom{7}{7} 2^{0} = 1$.\n\n2. Expandimos el producto $(2x+1)\\left(1 + \\frac{2}{x}\\right)^7 = 2x \\left(1 + \\frac{2}{x}\\right)^7 + 1 \\cdot \\left(1 + \\frac{2}{x}\\right)^7$.\n- El término independiente se forma sumando $2 \\cdot (\\text{coeficiente de } x^{-1}) + 1 \\cdot (\\text{coeficiente de } x^0)$:\n$$\\text{Término independiente} = 2(14) + 1(1) = 28 + 1 = 29$$",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Término Independiente",
+                    "Grado de Potencias",
+                    "Propiedad Distributiva"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico",
+                    "Modelación e Ingeniería"
+                  ]
+                },
+                {
+                  "id": "prob-1789361275533-4",
+                  "problem": "Dada la expresión $\\left(2\\sqrt{x} - \\frac{1}{x}\\right)^{48}$, calcule, en caso de que exista, el coeficiente del término que contiene a $\\sqrt{x^{15}}$.",
+                  "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{48}{k} (2x^{1/2})^{48-k} (-x^{-1})^k = \\binom{48}{k} 2^{48-k} (-1)^k x^{\\frac{48-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^{15}} = x^{15/2}$, igualamos los exponentes:\n$$\\frac{48 - 3k}{2} = \\frac{15}{2} \\implies 48 - 3k = 15 \\implies 3k = 33 \\implies k = 11$$\n\n3. Dado que $k = 11 \\in \\{0, 1, \\dots, 48\\}$ es entero y admisible, el coeficiente buscado es:\n$$\\text{Coeficiente} = -\\binom{48}{11} 2^{37}$$",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Exponentes Fraccionarios",
+                    "Término General",
+                    "Ecuación Exponencial"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                },
+                {
+                  "id": "prob-1789361275533-5",
+                  "problem": "Dada la expresión $\\left(2x - \\frac{1}{\\sqrt{x}}\\right)^{32}$, calcule, en caso de que exista, el coeficiente del término que contiene a $\\sqrt{x^7}$.",
+                  "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{32}{k} (2x)^{32-k} (-x^{-1/2})^k = \\binom{32}{k} 2^{32-k} (-1)^k x^{\\frac{64-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^7} = x^{7/2}$, igualamos los exponentes:\n$$\\frac{64 - 3k}{2} = \\frac{7}{2} \\implies 64 - 3k = 7 \\implies 3k = 57 \\implies k = 19$$\n\n3. Como $k = 19 \\in \\{0, 1, \\dots, 32\\}$ es entero admisible, el coeficiente es:\n$$\\text{Coeficiente} = -\\binom{32}{19} 2^{13}$$",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Término General",
+                    "Racionalización de Exponentes"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico"
+                  ]
+                },
+                {
+                  "id": "prob-1789361275533-6",
+                  "problem": "Encuentre el coeficiente del término que contiene a $x^{15}$ en el desarrollo de $\\left(\\frac{x^2}{y^3} - \\frac{3y^4}{x}\\right)^{21}$.",
+                  "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{21}{k} \\left(\\frac{x^2}{y^3}\\right)^{21-k} \\left(-\\frac{3y^4}{x}\\right)^k = \\binom{21}{k} (-3)^k x^{42-3k} y^{7k-63}$$\n\n2. Igualamos la potencia de $x$ a 15:\n$$42 - 3k = 15 \\implies 3k = 27 \\implies k = 9$$\n\n3. Verificamos el exponente de $y$ para $k=9$: $7(9) - 63 = 0$, por lo que la variable $y$ se anula ($y^0=1$).\n\n4. El coeficiente resulta:\n$$\\text{Coeficiente} = \\binom{21}{9} (-3)^9 = -\\binom{21}{9} 3^9$$",
+                  "dificultad": "Alto",
+                  "conceptos": [
+                    "Binomio Multivariable",
+                    "Cancelación de Exponentes"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico",
+                    "Simplificación"
+                  ]
+                },
+                {
+                  "id": "prob-1789361275534-7",
+                  "problem": "Usando propiedades de sumatorias y aplicando fórmulas de sumas notables, encuentre el valor simplificado de:\n$$\\sum_{j=3}^{n+2} \\frac{(j-2)(2j+3)}{4}$$",
+                  "pauta": "1. Realizamos el cambio de variable $i = j - 2$, con lo cual $j = i+2$ y los límites varían de $i=1$ a $i=n$:\n$$\\sum_{j=3}^{n+2} \\frac{(j-2)(2j+3)}{4} = \\frac{1}{4} \\sum_{i=1}^{n} i(2i+7) = \\frac{1}{4} \\left[ 2 \\sum_{i=1}^{n} i^2 + 7 \\sum_{i=1}^{n} i \\right]$$\n\n2. Sustituimos las fórmulas notables $\\sum_{i=1}^n i = \\frac{n(n+1)}{2}$ y $\\sum_{i=1}^n i^2 = \\frac{n(n+1)(2n+1)}{6}$:\n$$= \\frac{1}{4} \\left[ 2 \\cdot \\frac{n(n+1)(2n+1)}{6} + 7 \\cdot \\frac{n(n+1)}{2} \\right] = \\frac{n(n+1)}{4} \\left[ \\frac{2n+1}{3} + \\frac{7}{2} \\right]$$\n\n3. Reduciendo la fracción interna:\n$$\\text{Resultado} = \\frac{n(n+1)(4n + 23)}{24}$$",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Sumatorias Notables",
+                    "Cambio de Variable",
+                    "Álgebra de Polinomios"
+                  ],
+                  "habilidades": [
+                    "Cálculo Algorítmico",
+                    "Simplificación"
+                  ]
+                },
+                {
+                  "id": "prob-1789361275534-8",
+                  "problem": "Sea $b \\neq \\frac{1}{2}$. Encuentre el valor cerrado de la doble sumatoria:\n$$\\sum_{i=0}^{n} \\sum_{j=0}^{i} \\binom{i}{j} b^i$$",
+                  "pauta": "1. Aplicamos la propiedad de suma de coeficientes binomiales en la sumatoria interna:\n$$\\sum_{j=0}^{i} \\binom{i}{j} = 2^i$$\n\n2. Sustituimos en la suma externa:\n$$\\sum_{i=0}^{n} 2^i b^i = \\sum_{i=0}^{n} (2b)^i$$\n\n3. Por ser una suma geométrica de razón $r = 2b \\neq 1$, aplicamos su fórmula de suma finita:\n$$\\text{Resultado} = \\frac{1 - (2b)^{n+1}}{1 - 2b}$$",
+                  "dificultad": "Medio",
+                  "conceptos": [
+                    "Doble Sumatoria",
+                    "Serie Geométrica",
+                    "Coeficiente Binomial"
+                  ],
+                  "habilidades": [
+                    "Razonamiento Álgebraico"
+                  ]
+                },
+                {
+                  "id": "prob-1789361275534-9",
+                  "problem": "Considere el producto de desarrollos $(1+x)^{16} \\left(\\frac{a}{x^2} - bx^{10/3}\\right)^8$ con $a, b \\neq 0$.\n(a) Determine el coeficiente de $x^{16}$.\n(b) ¿Qué condición debe existir entre $a$ y $b$ para que no exista el término $x^{16}$?",
+                  "pauta": "1. Escribimos el término general del producto combinando las expansiones de ambos factores:\n$$T_{j, k} = \\binom{16}{j} \\binom{8}{k} a^{8-k} (-b)^k x^{j - 16 + \\frac{16}{3}k}$$\n\n2. Para obtener la potencia $x^{16}$, igualamos el exponente a 16:\n$$j - 16 + \\frac{16}{3}k = 16 \\implies j + \\frac{16}{3}k = 32$$\n\n3. Para que $j \\in \\{0, \\dots, 16\\}$ sea entero, $k$ debe ser múltiplo de 3 en $\\{0, \\dots, 8\\}$. Evaluamos las opciones:\n- Si $k=3 \\implies j = 16$. Término: $\\binom{16}{16} \\binom{8}{3} a^5 (-b)^3 = -56 a^5 b^3$.\n- Si $k=6 \\implies j = 0$. Término: $\\binom{16}{0} \\binom{8}{6} a^2 (-b)^6 = 28 a^2 b^6$.\n\n4. (a) Coeficiente de $x^{16} = 28 a^2 b^6 - 56 a^5 b^3 = 28 a^2 b^3 (b^3 - 2a^3)$.\n\n5. (b) Para que el término no exista, su coeficiente debe ser cero:\n$$28 a^2 b^3 (b^3 - 2a^3) = 0 \\implies b^3 = 2a^3 \\iff b = \\sqrt[3]{2} a$$",
+                  "dificultad": "Alto",
+                  "conceptos": [
+                    "Producto de Binomios",
+                    "Ecuaciones Diofánticas de Índices",
+                    "Anulación de Coeficientes"
+                  ],
+                  "habilidades": [
+                    "Demostración Rigurosa",
+                    "Análisis Multivariable"
+                  ]
+                },
+                {
+                  "id": "prob-1789361275534-10",
+                  "problem": "Encuentre una expresión reducida en forma cerrada para la sumatoria:\n$$\\sum_{k=1}^{n} \\frac{1}{k} \\binom{n}{k-1} 3^k$$",
+                  "pauta": "1. Aplicamos la identidad combinatoria $\\frac{1}{k} \\binom{n}{k-1} = \\frac{1}{n+1} \\binom{n+1}{k}$:\n$$\\sum_{k=1}^{n} \\frac{1}{k} \\binom{n}{k-1} 3^k = \\frac{1}{n+1} \\sum_{k=1}^{n} \\binom{n+1}{k} 3^k$$\n\n2. Por el Teorema del Binomio de Newton, la suma completa del binomio $(1+3)^{n+1} = 4^{n+1}$ es:\n$$4^{n+1} = \\sum_{k=0}^{n+1} \\binom{n+1}{k} 3^k = \\binom{n+1}{0}3^0 + \\sum_{k=1}^{n} \\binom{n+1}{k} 3^k + \\binom{n+1}{n+1}3^{n+1}$$\n\n3. Despejamos la suma central restando los términos de los extremos ($k=0$ y $k=n+1$):\n$$\\sum_{k=1}^{n} \\binom{n+1}{k} 3^k = 4^{n+1} - 1 - 3^{n+1}$$\n\n4. Sustituyendo en la expresión original obtenemos la forma reducida:\n$$\\text{Resultado} = \\frac{4^{n+1} - 3^{n+1} - 1}{n+1}$$",
+                  "dificultad": "Alto",
+                  "conceptos": [
+                    "Identidades Combinatorias",
+                    "Teorema del Binomio",
+                    "Sumas Creadas"
+                  ],
+                  "habilidades": [
+                    "Demostración Rigurosa",
+                    "Simplificación Algebraica"
+                  ]
+                }
+              ],
+              "formulasClave": [
+                {
+                  "label": "Fórmula Clave 1",
+                  "latex": "y = f(x)"
+                }
+              ]
+            }
           }
         ]
       }
@@ -5560,7 +5865,7 @@
         "id": "cap-1",
         "number": 1,
         "displayNumber": "1.1",
-        "title": "Sumatorias",
+        "title": "Introducción a Sumatorias",
         "summary": "Notación Sigma, propiedades algebraicas, cambio de índices y resolución de sumatorias.",
         "mathKey": "sum_{k=1}^{n} a_k",
         "motivacion": "\\begin{card}\n<p><strong>El poder de la compresión matemática</strong></p>\n<p>Imagina que estás analizando datos y necesitas sumar los ingresos diarios de una empresa durante todo un año, o que estás calculando el área bajo una curva dividiéndola en cientos de pequeños rectángulos. Escribir la suma elemento por elemento, como \n$$a_1 + a_2 + a_3 + \\dots + a_{365}$$\nno solo es tedioso y poco elegante, sino que resulta inútil si queremos manipular esa cadena de números algebraicamente.</p>\n<p>\nAquí es donde el álgebra introduce una de sus herramientas más potentes: el operador sumatoria.</p>\n<p>Piensa en este operador como el equivalente matemático a un archivo comprimido o a un ciclo repetitivo en programación. Su propósito no es simplemente abreviar la escritura, sino encapsular patrones numéricos extensos en una estructura compacta. Al aprender las reglas de este operador, seremos capaces de manipular, simplificar y calcular bloques gigantes de información en apenas un par de líneas de desarrollo.</p>\n\n\n\\begin{pregunta}\n¿Cómo podemos diseñar un lenguaje matemático que nos permita empaquetar una suma de mil términos, operar con ella y luego desempaquetarla sin perder ninguna pieza de información en el proceso?\n\\end{pregunta}\n\\end{card}\n",
@@ -5632,8 +5937,314 @@
           ],
           "formulasClave": []
         }
+      },
+      {
+        "id": "cap-1789357814665",
+        "number": 3,
+        "displayNumber": "3",
+        "title": "Teorema del Binomio de Newton",
+        "summary": "",
+        "mathKey": "f(x) = ...",
+        "motivacion": "\\begin{card}\n<p><strong>¿Por qué es necesario estudiar el Teorema del Binomio de Newton?</p></strong>\n\nDesde nuestros primeros pasos en álgebra aprendemos a memorizar los productos notables básicos: conocemos de memoria la expansión de un binomio al cuadrado $(a+b)^2$ e incluso la de un binomio al cubo $(a+b)^3$. Sin embargo, en el mundo del cálculo, la física y las finanzas, los problemas reales raramente se detienen en el exponente 3.\n\n¿Qué ocurre cuando necesitamos elevar un binomio a la potencia 10, 50 o 100? Intentar multiplicar el paréntesis por sí mismo decenas de veces a mano es un camino lento, propenso a cometer infinitos errores de signos y totalmente inviable en la práctica. Necesitamos un \\textbf{patrón general} que nos permita saltarnos la multiplicación manual y encontrar cualquier término de la expansión de forma inmediata.\n\n\\begin{pregunta}\n¿Cómo podemos expandir potencia elevadísimas como $(a+b)^{100}$ o calcular únicamente su término central sin tener que realizar cientos de multiplicaciones manuales?\n\\end{pregunta}\n\n1. Del álgebra de productos notables a la combinatoria\n\n\\begin{pregunta}\n¿Qué relación secreta existe entre el número de formas de elegir elementos en un grupo (combinaciones) y los coeficientes que acompañan a las potencias de un binomio?\n\\end{pregunta}\n\nCuando expandimos $(a+b)^n$, cada término del resultado se obtiene eligiendo $a$ o $b$ en cada uno de los $n$ factores.\nEl Teorema del Binomio revela una conexión profunda entre dos ramas de la matemática que parecen independientes: el \\textbf{álgebra de polinomios} y el \\textbf{análisis combinatorio}.\nNos enseña que los famosos coeficientes de la expansión no son más que combinaciones $\\binom{n}{k}$, los mismos números que ordenan el Triángulo de Pascal y que rigen el conteo de posibilidades.\n\n2. De las potencias enteras a las aproximaciones del Cálculo\n\n\\begin{pregunta}\n¿Cómo logran las calculadoras y computadoras evaluar raíces complejas como $\\sqrt{1.02}$ o $(1+x)^{-1/2}$ en una fracción de segundo?\n\\end{pregunta}\n\nEl genio de Isaac Newton no se detuvo en los exponentes enteros positivos ($n \\in \\mathbb{N}$). Newton extendió este teorema a exponentes negativos y fraccionarios, transformando sumas finitas en \\textbf{series infinitas de potencias}.\n\n<p>\\textbf{Aproximación de funciones} El Teorema del Binomio generalizado es la piedra angular del Cálculo Infinitesimal para aproximar funciones complejas mediante polinomios sencillos (Series de Taylor).<p>\n<p>\\textbf{Modelación de errores:} En física e ingeniería, permite truncar expansiones para estimar pequeñas perturbaciones y márgenes de error sin perder precisión.</p>\n<p>\\textbf{Probabilidad y Estadística:} Es el fundamento directo de la \\textbf{Distribución Binomial}, la herramienta probabilística más utilizada para modelar experimentos con dos resultados posibles (éxito/fracaso, encendida/apagada, sano/enfermo).\n\n\n\n\\begin{pregunta}\n\\textbf{En resumen}: estudiar el Teorema del Binomio no consiste en aprender una fórmula larga con sumatorias, sino en adquirir una herramienta poderosa para conectar el conteo combinatorio con la expansión algebraica y la aproximación de funciones en el cálculo.\n\\end{pregunta}\n\n\\end{card}",
+        "teoria": "\\begin{card}\n<p>\\textbf{Exploración Progresiva de las Expansiones}</p>\n\nComencemos expandiendo algebraicamente la potencia de un binomio $(a+b)^n$ para los primeros valores enteros no negativos de $n$:\n\n\\[\\begin{aligned}\n(a+b)^0 &= 1 \\\\\n(a+b)^1 &= 1a + 1b \\\\\n(a+b)^2 &= 1a^2 + 2ab + 1b^2 \\\\\n(a+b)^3 &= 1a^3 + 3a^2b + 3ab^2 + 1b^3 \\\\\n(a+b)^4 &= 1a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + 1b^4\n\\end{aligned}\\]\n\n<p>\\textbf{Observación de Patrones Fundamentales}</p>\n\nAl analizar minuciosamente los desarrollos anteriores, identificamos reglas universales:\n\n<p>\\textbf{Comportamiento de los Exponentes:} En cada término del desarrollo de $(a+b)^n$, el exponente de $a$ decrece paso a paso desde $n$ hasta $0$, mientras que el exponente de $b$ crece paso a paso desde $0$ hasta $n$. La suma de los exponentes de $a$ y $b$ en cada término es siempre constante e igual a $n$. El número total de términos en el desarrollo de $(a+b)^n$ es siempre $n + 1$.</p>\n<p>\\textbf{Patrón de los Coeficientes Numéricos (Triángulo de Pascal):} Si aislamos únicamente los coeficientes numéricos de cada fila, obtenemos un arreglo triangular simétrico:</p>\n\n$$\\begin{array}{c}\nn=0: &&&&&& 1 &&&&&& \\\\\nn=1: &&&&& 1 && 1 &&&&& \\\\\nn=2: &&&& 1 && 2 && 1 &&&& \\\\\nn=3: &&& 1 && 3 && 3 && 1 &&& \\\\\nn=4: && 1 && 4 && 6 && 4 && 1 &&\n\\end{array}$$\n\n\\textbf{Regla de Pascal:} Cada número del interior del triángulo se obtiene sumando los dos números situados directamente por encima de él en la fila anterior.\n\n\\begin{definicion}{Coeficiente Binomial}\nPara enteros $n, k$ tales que $n \\ge 0$ y $0 \\le k \\le n$, el \\textbf{coeficiente binomial} $\\binom{n}{k}$ (leído \"$n$ sobre $k$\") representa el número de combinaciones de $n$ elementos tomados de $k$ en $k$, y se define formalmente como:\n\n$$\\binom{n}{k} = \\frac{n!}{k!(n - k)!}$$\n\ndonde $n!$ es el factorial de $n$, con la convención $0! = 1$.\n\nLos números de la $n$-ésima fila del Triángulo de Pascal corresponden exactamente a los valores de los coeficientes binomiales:\n$$\\binom{n}{0}, \\quad \\binom{n}{1}, \\quad \\binom{n}{2}, \\quad \\dots, \\quad \\binom{n}{n}$$\n\\end{definicion}\n\n\n\n\\begin{teorema}{Teorema del Binomio de Newton}\nPara cualquier entero no negativo $n \\in \\mathbb{N}_0$ y para cualesquiera números reales o complejos $a, b$:\n$$(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k$$\nDesarrollado en forma explícita:\n$$(a+b)^n = \\binom{n}{0}a^n + \\binom{n}{1}a^{n-1}b + \\binom{n}{2}a^{n-2}b^2 + \\dots + \\binom{n}{n-1}ab^{n-1} + \\binom{n}{n}b^n$$\n\n\\demostracion{\n\\textbf{Demostración por Inducción Matemática sobre} $n$:\n\n\\textbf{Caso base} ($n=0$)\n$$(a+b)^0 = 1 \\quad \\text{y} \\quad \\sum_{k=0}^{0} \\binom{0}{k} a^{0-k}b^k = \\binom{0}{0}a^0b^0 = 1 \\cdot 1 \\cdot 1 = 1$$\nSe cumple la base inductiva.\n\n\\textbf{Hipótesis Inductiva:} Asumimos cierto para $n$:\n$$(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k$$\n\n\\textbf{Paso Inductivo} ($n+1$):\nMultiplicamos $(a+b)^n$ por $(a+b)$:\n$$(a+b)^{n+1} = (a+b) \\cdot (a+b)^n = a(a+b)^n + b(a+b)^n$$\nSustituyendo la hipótesis inductiva:\n$$(a+b)^{n+1} = a \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k + b \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k$$\n$$= \\sum_{k=0}^{n} \\binom{n}{k} a^{n+1-k} b^k + \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^{k+1}$$\n\nHaciendo un cambio de índice en la segunda suma ($j = k+1$):\n$$= \\sum_{k=0}^{n} \\binom{n}{k} a^{n+1-k} b^k + \\sum_{j=1}^{n+1} \\binom{n}{j-1} a^{n+1-j} b^j$$\n\nExtrayendo el primer término de la primera suma ($k=0$) y el último de la segunda ($j=n+1$), y uniendo los sumandos intermedios:\n$$= \\binom{n}{0}a^{n+1} + \\sum_{k=1}^{n} \\left[ \\binom{n}{k} + \\binom{n}{k-1} \\right] a^{n+1-k} b^k + \\binom{n}{n}b^{n+1}$$\n\nAplicando la \\textbf{Identidad de Pascal} $\\binom{n}{k} + \\binom{n}{k-1} = \\binom{n+1}{k}$ y notando que $\\binom{n}{0} = \\binom{n+1}{0} = 1$ y $\\binom{n}{n} = \\binom{n+1}{n+1} = 1$:\n$$(a+b)^{n+1} = \\sum_{k=0}^{n+1} \\binom{n+1}{k} a^{n+1-k} b^k$$\n}\n\\end{teorema}\n\n\\end{card}\n\\begin{card}\n\\begin{propiedades}{Propiedades Clave del Binomio y Término General}\n\n\n  \n\\propiedad{Simetría de Coeficientes Binomiales}\n{\nLos coeficientes de los términos equidistantes de los extremos son iguales:\n$$\\binom{n}{k} = \\binom{n}{n-k}$$\n}\n\\demostracionPropiedad{}{Directo de la definición $\\binom nk$}\n\n\\propiedad{Suma de Todos los Coeficientes Binomiales}\n{\nLa suma de todos los coeficientes binomiales de la $n$-ésima fila es igual a $2^n$:\n$$\\sum_{k=0}^{n} \\binom{n}{k} = \\binom{n}{0} + \\binom{n}{1} + \\dots + \\binom{n}{n} = 2^n$$\n}\n\\demostracionPropiedad{}{Demostración inmediata evaluando el Teorema del Binomio en $a=1$ y $b=1$.}\n\n\\end{propiedades}\n\n\\begin{trampa}{Desfase de Índice en la Posición del Término $T_{k+1}$}\n  \\error{\nConfundir el número de posición del término con el valor del parámetro $k$. Por ejemplo, para calcular el cuarto término ($T_4$), usar $k = 4$ en la fórmula.\n  }\n  \\correct{\nEl parámetro $k$ siempre vale uno menos que la posición deseada. Por ende:\n<p>- Para el primer término ($T_1$) se usa $k = 0$.</p>\n<p>- Para el cuarto término ($T_4$) se usa $k = 3$.</p>\n<p>- En general, para el $m$-ésimo término ($T_m$), se debe usar $k = m - 1$.<p>\n  }\n\\end{trampa}\n\n\\end{card}\n\n\\begin{card}\n\\begin{ejercicio}{Cálculo de Términos y Coeficientes en el Binomio de Newton}\nConsidere la expansión del binomio:\n$$\\left( \\frac{x}{y^{2}} - \\frac{y^{3}}{2x^{2}} \\right)^{10}$$\n\n- Encontrar el octavo sumando.\n- Encuentre el término central.\n- Encuentre el coeficiente del término central.\n- Encuentre el coeficiente que acompaña al término $\\frac{x}{y^{5}}$.\n\n\\solucion{\n\\textbf{1. Desarrollo del Término General} $T_{k+1}$\n\nAplicamos la fórmula del término general para el binomio $(a+b)^{10}$ con $a = \\frac{x}{y^2}$ y $b = -\\frac{y^3}{2x^2}$:\n$$T_{k+1} = \\binom{10}{k} \\left( \\frac{x}{y^2} \\right)^{10-k} \\left( -\\frac{y^3}{2x^2} \\right)^k$$\nSimplificando los exponentes y separando los coeficientes numéricos:\n$$\\begin{align*}T_{k+1} &= \\binom{10}{k} \\frac{x^{10-k}}{y^{20-2k}} \\cdot \\frac{(-1)^k y^{3k}}{2^k x^{2k}}\\\\\n& = \\binom{10}{k} \\frac{(-1)^k}{2^k} x^{(10-k)-2k} y^{3k-(20-2k)}\\\\\n&= \\binom{10}{k} \\frac{(-1)^k}{2^k} x^{10-3k} y^{5k-20}, \\quad \\text{para } k = 0, 1, 2, \\dots, 10\n\\end{align*}$$\n\n\\textbf{Octavo sumando} ($T_8$)\nEl octavo sumando corresponde a la posición $k+1 = 8$, es decir, $k = 7$:\n$$T_8 = \\binom{10}{7} \\frac{(-1)^7}{2^7} x^{10-3(7)} y^{5(7)-20}$$\nCalculando los valores:\n$\\binom{10}{7} = \\binom{10}{3} = \\frac{10 \\cdot 9 \\cdot 8}{3 \\cdot 2 \\cdot 1} = 120$\n$\\frac{(-1)^7}{2^7} = -\\frac{1}{128}$\nExponentes: $x^{10-21} = x^{-11}$, $y^{35-20} = y^{15}$\n$$T_8 = 120 \\cdot \\left( -\\frac{1}{128} \\right) x^{-11} y^{15} = -\\frac{15}{16} x^{-11} y^{15} = -\\frac{15 y^{15}}{16 x^{11}}$$\n\\textbf{2. Término Central} ($T_6$)\nEl desarrollo tiene $10 + 1 = 11$ términos ($k = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10$). El término central es el sexto término, correspondiente a $k = 5$:\n$$T_6 = \\binom{10}{5} \\frac{(-1)^5}{2^5} x^{10-3(5)} y^{5(5)-20}$$\nCalculando los valores:\n- $\\binom{10}{5} = \\frac{10 \\cdot 9 \\cdot 8 \\cdot 7 \\cdot 6}{5 \\cdot 4 \\cdot 3 \\cdot 2 \\cdot 1} = 252$\n- $\\frac{(-1)^5}{2^5} = -\\frac{1}{32}$\n- Exponentes: $x^{10-15} = x^{-5}$, $y^{25-20} = y^5$\n$$T_6 = 252 \\cdot \\left( -\\frac{1}{32} \\right) x^{-5} y^5 = -\\frac{63}{8} x^{-5} y^5 = -\\frac{63 y^5}{8 x^5}$$\n\n\\textbf{3. Coeficiente del término central:}\nEl coeficiente numérico del término central $T_6$ es:\n$ -\\frac{63}{8}$\n\n\\textbf{4. Coeficiente que acompaña al término} $\\dfrac{x}{y^5}$\nRequerimos que la parte algebraica sea igual a $\\frac{x}{y^5} = x^1 y^{-5}$:\n$$x^{10-3k} y^{5k-20} = x^1 y^{-5}$$\nIgualando los exponentes:\n$$10 - 3k = 1 \\implies 3k = 9 \\implies k = 3$$\n$$5k - 20 = -5 \\implies 5k = 15 \\implies k = 3$$\nSustituyendo $k = 3$ en la expresión del coeficiente:\n$$\\binom{10}{3} \\frac{(-1)^3}{2^3} = 120 \\cdot \\left( -\\frac{1}{8} \\right) = -15$$\n}\n\\end{ejercicio}\n\\end{card}\n\n\\begin{card}\n\\textbf{Corolarios e Identidades Combinatorias Derivadas del Binomio}\n\n\\begin{corolario}{Suma de Coeficientes Binomiales con Signos Alternados}\nPara todo entero $n \\ge 1$, la suma alternada de los coeficientes binomiales de la $n$-ésima fila es siempre igual a cero:\n\n$$\\sum_{k=0}^{n} (-1)^k \\binom{n}{k} = \\binom{n}{0} - \\binom{n}{1} + \\binom{n}{2} - \\binom{n}{3} + \\dots + (-1)^n \\binom{n}{n} = 0$$\n\n\\demostracion{\nEvaluamos la fórmula general del Teorema del Binomio de Newton:\n$$(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k$$\nAsignando los valores particulares $a = 1$ y $b = -1$:\n$$(1 + (-1))^n = \\sum_{k=0}^{n} \\binom{n}{k} (1)^{n-k} (-1)^k$$\nDado que $1 + (-1) = 0$ y $1^{n-k} = 1$ para todo $k$:\n$$0^n = \\sum_{k=0}^{n} (-1)^k \\binom{n}{k}$$\nComo $n \\ge 1$, tenemos $0^n = 0$, concluyendo que:\n$$\\binom{n}{0} - \\binom{n}{1} + \\binom{n}{2} - \\dots + (-1)^n \\binom{n}{n} = 0$$\n}\n\\end{corolario}\n\n\\begin{corolario}{Igualdad de Coeficientes Binomiales de Posiciones Pares e Impares}\nPara todo entero $n \\ge 1$, la suma de los coeficientes binomiales en posiciones pares es exactamente igual a la suma de los coeficientes en posiciones impares, y ambas equivalen a $2^{n-1}$:\n\n$$\\binom{n}{0} + \\binom{n}{2} + \\binom{n}{4} + \\dots = \\binom{n}{1} + \\binom{n}{3} + \\binom{n}{5} + \\dots = 2^{n-1}$$\n\n\\demostracion{\nConsideramos la propiedad fundamental de la suma total de coeficientes:\n$$\\binom{n}{0} + \\binom{n}{1} + \\binom{n}{2} + \\binom{n}{3} + \\dots + \\binom{n}{n} = 2^n \\quad \\text{\\textbf{(Ecuación A)}}$$\n\nPor el Corolario anterior de suma alternada:\n$$\\binom{n}{0} - \\binom{n}{1} + \\binom{n}{2} - \\binom{n}{3} + \\dots = 0 \\quad \\text{\\textbf{(Ecuación B)}}$$\n\nReordenando la Ecuación B agrupando los términos pares e impares:\n$$\\left[ \\binom{n}{0} + \\binom{n}{2} + \\binom{n}{4} + \\dots \\right] - \\left[ \\binom{n}{1} + \\binom{n}{3} + \\binom{n}{5} + \\dots \\right] = 0$$\n\nEsto demuestra la primera igualdad: la suma de términos pares $S_{\\text{par}}$ es igual a la suma de términos impares $S_{\\text{impar}}$.\n\nSustituyendo $S_{\\text{impar}} = S_{\\text{par}}$ en la Ecuación A:\n$$S_{\\text{par}} + S_{\\text{impar}} = 2 S_{\\text{par}} = 2^n \\implies S_{\\text{par}} = S_{\\text{impar}} = \\frac{2^n}{2} = 2^{n-1}$$\n}\n\\end{corolario}\n\n\n\\begin{corolario}{Suma de los Cuadrados de los Coeficientes Binomiales}\nPara todo entero $n \\ge 1$, la suma de los cuadrados de todos los coeficientes binomiales de la $n$-ésima fila es igual a $\\binom{2n}{n}$:\n\n$$\\sum_{k=0}^{n} \\binom{n}{k}^2 = \\binom{n}{0}^2 + \\binom{n}{1}^2 + \\dots + \\binom{n}{n}^2 = \\binom{2n}{n}$$\n\n\\demostracion{\nPartimos de la identidad algebraica de potencias de binomios:\n$$(1+x)^n \\cdot (1+x)^n = (1+x)^{2n}$$\nExpresamos el miembro izquierdo como el producto de dos sumatorias explícitas:\n$$\\left( \\sum_{i=0}^{n} \\binom{n}{i} x^i \\right) \\cdot \\left( \\sum_{j=0}^{n} \\binom{n}{j} x^{n-j} \\right) = \\sum_{k=0}^{2n} \\binom{2n}{k} x^k$$\nAnalizamos el coeficiente que acompaña a la potencia $x^n$ en ambos lados de la igualdad:\n- \\textbf{En el miembro derecho:} El coeficiente de $x^n$ se obtiene directamente cuando $k = n$, correspondiendo a $\\binom{2n}{n}$.\n\n- \\textbf{En el miembro izquierdo:} Al multiplicar los términos de ambos paréntesis, obtenemos una potencia $x^n$ multiplicando $x^i \\cdot x^{n-j} = x^{n + i - j}$. Esto ocurre únicamente cuando $i - j = 0$, es decir, cuando $i = j$. El coeficiente resultante de esa suma de productos es:\n$$\\sum_{i=0}^{n} \\binom{n}{i} \\cdot \\binom{n}{i} = \\sum_{i=0}^{n} \\binom{n}{i}^2$$\n\nIgualando los coeficientes de $x^n$ obtenidos en ambos lados:\n$$\\sum_{i=0}^{n} \\binom{n}{i}^2 = \\binom{2n}{n} $$\n}\n\\end{corolario}\n\\end{card}",
+        "practica": {
+          "text": "<p>Ejemplo resuelto...</p>",
+          "exercises": [
+            {
+              "id": "imported-ex-1789361436223-1-z62k9",
+              "type": "true_false",
+              "title": "Ejercicio 1: Verdadero o Falso",
+              "statement": "El número total de términos en el desarrollo del binomio $(a+b)^{12}$ es exactamente $13$.",
+              "correctAnswer": true,
+              "explanation": "Por la propiedad fundamental del Teorema del Binomio, la expansión de $(a+b)^n$ contiene siempre $n+1$ términos. Para $n=12$, se obtienen $12+1 = 13$ términos.",
+              "trueFeedback": "¡Correcto! La afirmación es verdadera.",
+              "falseFeedback": "¡Incorrecto! La afirmación es verdadera."
+            },
+            {
+              "id": "imported-ex-1789361436223-4-7xo9q",
+              "type": "single_choice",
+              "title": "Ejercicio 4: Selección Múltiple",
+              "question": "¿Cuál es el coeficiente numérico del término que contiene a $x^3$ en el desarrollo de $(1 + 2x)^5$?",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "$40$",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "B",
+                  "text": "$80$",
+                  "feedback": "¡Excelente! Respuesta correcta."
+                },
+                {
+                  "id": "C",
+                  "text": "$20$",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                },
+                {
+                  "id": "D",
+                  "text": "$160$",
+                  "feedback": "Incorrecto. Revisa el procedimiento."
+                }
+              ],
+              "correctOptionId": "B",
+              "explanation": "El término general es $T_{k+1} = \\binom{5}{k} 1^{5-k} (2x)^k = \\binom{5}{k} 2^k x^k$. Para obtener $x^3$, elegimos $k=3$. El coeficiente es $\\binom{5}{3} 2^3 = 10 \\cdot 8 = 80$."
+            },
+            {
+              "id": "imported-ex-1789361436223-6-o1eql",
+              "type": "multiple_choice",
+              "title": "Ejercicio 6: Selección Múltiple (Casillas)",
+              "question": "Considere la expansión del binomio $\\left(x^2 - \\frac{1}{x}\\right)^6$. Selecciona TODAS las afirmaciones que son verdaderas:",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "El desarrollo contiene un término independiente de $x$ igual a $15$.",
+                  "isCorrect": true,
+                  "feedback": "¡Correcto! El término general es $T_{k+1} = \\binom{6}{k} (-1)^k x^{12-3k}$. Para $12-3k=0 \\implies k=4$, dando el término constante $\\binom{6}{4}(-1)^4 = 15$."
+                },
+                {
+                  "id": "B",
+                  "text": "El coeficiente del término central es $-20$.",
+                  "isCorrect": true,
+                  "feedback": "¡Correcto! La expansión tiene 7 términos, el central corresponde a $k=3$. Su coeficiente es $\\binom{6}{3}(-1)^3 = 20(-1) = -20$."
+                },
+                {
+                  "id": "C",
+                  "text": "La suma de todos los coeficientes del desarrollo es $0$.",
+                  "isCorrect": true,
+                  "feedback": "¡Correcto! Evaluando el binomio en $x=1$, se obtiene $(1^2 - 1/1)^6 = 0^6 = 0$."
+                },
+                {
+                  "id": "D",
+                  "text": "El término de mayor exponente de $x$ es $x^{12}$.",
+                  "isCorrect": true,
+                  "feedback": "¡Correcto! Para $k=0$, el primer término es $\\binom{6}{0}(x^2)^6 = x^{12}$."
+                }
+              ],
+              "correctOptionIds": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              "explanation": ""
+            },
+            {
+              "id": "imported-ex-1789361436223-7-v512z",
+              "type": "matching",
+              "title": "Ejercicio 7: Casillas de Relación",
+              "question": "Relaciona cada posición o propiedad de la expansión de $(x + 3)^8$ con su valor correspondiente",
+              "columns": 2,
+              "col1Title": "Ítem / Concepto",
+              "col2Title": "Respuesta / Expresión",
+              "col1Items": [
+                {
+                  "id": "1",
+                  "num": 1,
+                  "text": "Primer término ($T_1$, $k=0$)"
+                },
+                {
+                  "id": "2",
+                  "num": 2,
+                  "text": "Coeficiente del término $x^7$ ($k=1$)"
+                },
+                {
+                  "id": "3",
+                  "num": 3,
+                  "text": "Término independiente ($T_9$, $k=8$)"
+                },
+                {
+                  "id": "4",
+                  "num": 4,
+                  "text": "Coeficiente del término $x^6$ ($k=2$)"
+                }
+              ],
+              "col2Options": [
+                {
+                  "letter": "A",
+                  "text": "$6561$"
+                },
+                {
+                  "letter": "B",
+                  "text": "$252$"
+                },
+                {
+                  "letter": "C",
+                  "text": "$x^8$"
+                },
+                {
+                  "letter": "D",
+                  "text": "$24$"
+                }
+              ],
+              "correctMapping": {
+                "1": "C",
+                "2": "D",
+                "3": "A",
+                "4": "B"
+              },
+              "explanation": "1.A: $\\binom{8}{0} x^8 3^0 = x^8$. 2.B: $\\binom{8}{1} 3^1 = 8 \\cdot 3 = 24$. 3.C: $3^8 = 6561$. 4.D: $\\binom{8}{2} 3^2 = 28 \\cdot 9 = 252$."
+            }
+          ]
+        },
+        "ejercicios": {
+          "problems": [
+            {
+              "id": "prob-1789361275533-1",
+              "problem": "Determine el coeficiente de $x^2$ en el desarrollo del trinomio $(1 + x + x^2)^8$.",
+              "pauta": "1. Aplicamos el Teorema del Binomio expresando el trinomio como $(1 + (x+x^2))^8$:\n$$(1+x+x^2)^8 = \\sum_{k=0}^{8} \\binom{8}{k} (x+x^2)^k = \\sum_{k=0}^{8} \\sum_{j=0}^{k} \\binom{8}{k} \\binom{k}{j} x^{k-j} (x^2)^j = \\sum_{k=0}^{8} \\sum_{j=0}^{k} \\binom{8}{k} \\binom{k}{j} x^{k+j}$$\n\n2. Para obtener el coeficiente de $x^2$, buscamos los pares de enteros $(k, j)$ con $0 \\le j \\le k \\le 8$ tales que $k + j = 2$:\n- Primer par: $k = 1$ y $j = 1 \\implies \\binom{8}{1}\\binom{1}{1} = 8 \\cdot 1 = 8$.\n- Segundo par: $k = 2$ y $j = 0 \\implies \\binom{8}{2}\\binom{2}{0} = 28 \\cdot 1 = 28$.\n\n3. Sumando ambos coeficientes: $8 + 28 = 36$.",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Teorema del Binomio",
+                "Doble Sumatoria",
+                "Coeficiente Polinómico"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico",
+                "Manejo de Índices"
+              ]
+            },
+            {
+              "id": "prob-1789361275533-2",
+              "problem": "Considere el desarrollo de $(3x+2)^{19}$. Determine si existen dos potencias consecutivas de $x$ cuyos coeficientes numéricos sean exactamente iguales.",
+              "pauta": "1. Escribimos el término general $\\alpha_k$ del desarrollo $(3x+2)^{19} = \\sum_{k=0}^{19} \\binom{19}{k} 3^{19-k} 2^k x^{19-k}$:\n$$\\alpha_k = \\binom{19}{k} 3^{19-k} 2^k$$\n\n2. Igualamos dos coeficientes consecutivos $\\alpha_k = \\alpha_{k+1}$ para $k \\in \\{0, 1, \\dots, 18\\}$:\n$$\\binom{19}{k} 3^{19-k} 2^k = \\binom{19}{k+1} 3^{18-k} 2^{k+1}$$\n\n3. Simplificamos dividiendo por $3^{18-k} 2^k$ y desplegando los factoriales:\n$$\\frac{3}{19-k} = \\frac{2}{k+1} \\implies 3(k+1) = 2(19-k) \\implies 5k = 35 \\implies k = 7$$\n\n4. Por lo tanto, los coeficientes iguales corresponden a $k=7$ y $k=8$, es decir, al octavo término $T_8$ (potencia $x^{12}$) y al noveno término $T_9$ (potencia $x^{11}$).",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Término General",
+                "Coeficientes Consecutivos",
+                "Ecuación Combinatoria"
+              ],
+              "habilidades": [
+                "Razonamiento Álgebraico",
+                "Demostración Rigurosa"
+              ]
+            },
+            {
+              "id": "prob-1789361275533-3",
+              "problem": "Considere la expresión $\\left(1 + \\frac{2}{x}\\right)^7$.\n(a) Encuentre el coeficiente del término $x^{-1}$ y el término independiente ($x^0$).\n(b) A partir del resultado anterior, encuentre el término independiente en el desarrollo de $(2x + 1)\\left(1 + \\frac{2}{x}\\right)^7$.",
+              "pauta": "1. Desarrollamos el binomio $\\left(1 + \\frac{2}{x}\\right)^7 = \\sum_{k=0}^{7} \\binom{7}{k} 2^{7-k} x^{k-7}$.\n- Para $x^{-1}$: resolvemos $k - 7 = -1 \\implies k = 6$. Coeficiente $= \\binom{7}{6} 2^{1} = 14$.\n- Para $x^0$: resolvemos $k - 7 = 0 \\implies k = 7$. Coeficiente $= \\binom{7}{7} 2^{0} = 1$.\n\n2. Expandimos el producto $(2x+1)\\left(1 + \\frac{2}{x}\\right)^7 = 2x \\left(1 + \\frac{2}{x}\\right)^7 + 1 \\cdot \\left(1 + \\frac{2}{x}\\right)^7$.\n- El término independiente se forma sumando $2 \\cdot (\\text{coeficiente de } x^{-1}) + 1 \\cdot (\\text{coeficiente de } x^0)$:\n$$\\text{Término independiente} = 2(14) + 1(1) = 28 + 1 = 29$$",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Término Independiente",
+                "Grado de Potencias",
+                "Propiedad Distributiva"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico",
+                "Modelación e Ingeniería"
+              ]
+            },
+            {
+              "id": "prob-1789361275533-4",
+              "problem": "Dada la expresión $\\left(2\\sqrt{x} - \\frac{1}{x}\\right)^{48}$, calcule, en caso de que exista, el coeficiente del término que contiene a $\\sqrt{x^{15}}$.",
+              "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{48}{k} (2x^{1/2})^{48-k} (-x^{-1})^k = \\binom{48}{k} 2^{48-k} (-1)^k x^{\\frac{48-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^{15}} = x^{15/2}$, igualamos los exponentes:\n$$\\frac{48 - 3k}{2} = \\frac{15}{2} \\implies 48 - 3k = 15 \\implies 3k = 33 \\implies k = 11$$\n\n3. Dado que $k = 11 \\in \\{0, 1, \\dots, 48\\}$ es entero y admisible, el coeficiente buscado es:\n$$\\text{Coeficiente} = -\\binom{48}{11} 2^{37}$$",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Exponentes Fraccionarios",
+                "Término General",
+                "Ecuación Exponencial"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            },
+            {
+              "id": "prob-1789361275533-5",
+              "problem": "Dada la expresión $\\left(2x - \\frac{1}{\\sqrt{x}}\\right)^{32}$, calcule, en caso de que exista, el coeficiente del término que contiene a $\\sqrt{x^7}$.",
+              "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{32}{k} (2x)^{32-k} (-x^{-1/2})^k = \\binom{32}{k} 2^{32-k} (-1)^k x^{\\frac{64-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^7} = x^{7/2}$, igualamos los exponentes:\n$$\\frac{64 - 3k}{2} = \\frac{7}{2} \\implies 64 - 3k = 7 \\implies 3k = 57 \\implies k = 19$$\n\n3. Como $k = 19 \\in \\{0, 1, \\dots, 32\\}$ es entero admisible, el coeficiente es:\n$$\\text{Coeficiente} = -\\binom{32}{19} 2^{13}$$",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Término General",
+                "Racionalización de Exponentes"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico"
+              ]
+            },
+            {
+              "id": "prob-1789361275533-6",
+              "problem": "Encuentre el coeficiente del término que contiene a $x^{15}$ en el desarrollo de $\\left(\\frac{x^2}{y^3} - \\frac{3y^4}{x}\\right)^{21}$.",
+              "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{21}{k} \\left(\\frac{x^2}{y^3}\\right)^{21-k} \\left(-\\frac{3y^4}{x}\\right)^k = \\binom{21}{k} (-3)^k x^{42-3k} y^{7k-63}$$\n\n2. Igualamos la potencia de $x$ a 15:\n$$42 - 3k = 15 \\implies 3k = 27 \\implies k = 9$$\n\n3. Verificamos el exponente de $y$ para $k=9$: $7(9) - 63 = 0$, por lo que la variable $y$ se anula ($y^0=1$).\n\n4. El coeficiente resulta:\n$$\\text{Coeficiente} = \\binom{21}{9} (-3)^9 = -\\binom{21}{9} 3^9$$",
+              "dificultad": "Alto",
+              "conceptos": [
+                "Binomio Multivariable",
+                "Cancelación de Exponentes"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico",
+                "Simplificación"
+              ]
+            },
+            {
+              "id": "prob-1789361275534-7",
+              "problem": "Usando propiedades de sumatorias y aplicando fórmulas de sumas notables, encuentre el valor simplificado de:\n$$\\sum_{j=3}^{n+2} \\frac{(j-2)(2j+3)}{4}$$",
+              "pauta": "1. Realizamos el cambio de variable $i = j - 2$, con lo cual $j = i+2$ y los límites varían de $i=1$ a $i=n$:\n$$\\sum_{j=3}^{n+2} \\frac{(j-2)(2j+3)}{4} = \\frac{1}{4} \\sum_{i=1}^{n} i(2i+7) = \\frac{1}{4} \\left[ 2 \\sum_{i=1}^{n} i^2 + 7 \\sum_{i=1}^{n} i \\right]$$\n\n2. Sustituimos las fórmulas notables $\\sum_{i=1}^n i = \\frac{n(n+1)}{2}$ y $\\sum_{i=1}^n i^2 = \\frac{n(n+1)(2n+1)}{6}$:\n$$= \\frac{1}{4} \\left[ 2 \\cdot \\frac{n(n+1)(2n+1)}{6} + 7 \\cdot \\frac{n(n+1)}{2} \\right] = \\frac{n(n+1)}{4} \\left[ \\frac{2n+1}{3} + \\frac{7}{2} \\right]$$\n\n3. Reduciendo la fracción interna:\n$$\\text{Resultado} = \\frac{n(n+1)(4n + 23)}{24}$$",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Sumatorias Notables",
+                "Cambio de Variable",
+                "Álgebra de Polinomios"
+              ],
+              "habilidades": [
+                "Cálculo Algorítmico",
+                "Simplificación"
+              ]
+            },
+            {
+              "id": "prob-1789361275534-8",
+              "problem": "Sea $b \\neq \\frac{1}{2}$. Encuentre el valor cerrado de la doble sumatoria:\n$$\\sum_{i=0}^{n} \\sum_{j=0}^{i} \\binom{i}{j} b^i$$",
+              "pauta": "1. Aplicamos la propiedad de suma de coeficientes binomiales en la sumatoria interna:\n$$\\sum_{j=0}^{i} \\binom{i}{j} = 2^i$$\n\n2. Sustituimos en la suma externa:\n$$\\sum_{i=0}^{n} 2^i b^i = \\sum_{i=0}^{n} (2b)^i$$\n\n3. Por ser una suma geométrica de razón $r = 2b \\neq 1$, aplicamos su fórmula de suma finita:\n$$\\text{Resultado} = \\frac{1 - (2b)^{n+1}}{1 - 2b}$$",
+              "dificultad": "Medio",
+              "conceptos": [
+                "Doble Sumatoria",
+                "Serie Geométrica",
+                "Coeficiente Binomial"
+              ],
+              "habilidades": [
+                "Razonamiento Álgebraico"
+              ]
+            },
+            {
+              "id": "prob-1789361275534-9",
+              "problem": "Considere el producto de desarrollos $(1+x)^{16} \\left(\\frac{a}{x^2} - bx^{10/3}\\right)^8$ con $a, b \\neq 0$.\n(a) Determine el coeficiente de $x^{16}$.\n(b) ¿Qué condición debe existir entre $a$ y $b$ para que no exista el término $x^{16}$?",
+              "pauta": "1. Escribimos el término general del producto combinando las expansiones de ambos factores:\n$$T_{j, k} = \\binom{16}{j} \\binom{8}{k} a^{8-k} (-b)^k x^{j - 16 + \\frac{16}{3}k}$$\n\n2. Para obtener la potencia $x^{16}$, igualamos el exponente a 16:\n$$j - 16 + \\frac{16}{3}k = 16 \\implies j + \\frac{16}{3}k = 32$$\n\n3. Para que $j \\in \\{0, \\dots, 16\\}$ sea entero, $k$ debe ser múltiplo de 3 en $\\{0, \\dots, 8\\}$. Evaluamos las opciones:\n- Si $k=3 \\implies j = 16$. Término: $\\binom{16}{16} \\binom{8}{3} a^5 (-b)^3 = -56 a^5 b^3$.\n- Si $k=6 \\implies j = 0$. Término: $\\binom{16}{0} \\binom{8}{6} a^2 (-b)^6 = 28 a^2 b^6$.\n\n4. (a) Coeficiente de $x^{16} = 28 a^2 b^6 - 56 a^5 b^3 = 28 a^2 b^3 (b^3 - 2a^3)$.\n\n5. (b) Para que el término no exista, su coeficiente debe ser cero:\n$$28 a^2 b^3 (b^3 - 2a^3) = 0 \\implies b^3 = 2a^3 \\iff b = \\sqrt[3]{2} a$$",
+              "dificultad": "Alto",
+              "conceptos": [
+                "Producto de Binomios",
+                "Ecuaciones Diofánticas de Índices",
+                "Anulación de Coeficientes"
+              ],
+              "habilidades": [
+                "Demostración Rigurosa",
+                "Análisis Multivariable"
+              ]
+            },
+            {
+              "id": "prob-1789361275534-10",
+              "problem": "Encuentre una expresión reducida en forma cerrada para la sumatoria:\n$$\\sum_{k=1}^{n} \\frac{1}{k} \\binom{n}{k-1} 3^k$$",
+              "pauta": "1. Aplicamos la identidad combinatoria $\\frac{1}{k} \\binom{n}{k-1} = \\frac{1}{n+1} \\binom{n+1}{k}$:\n$$\\sum_{k=1}^{n} \\frac{1}{k} \\binom{n}{k-1} 3^k = \\frac{1}{n+1} \\sum_{k=1}^{n} \\binom{n+1}{k} 3^k$$\n\n2. Por el Teorema del Binomio de Newton, la suma completa del binomio $(1+3)^{n+1} = 4^{n+1}$ es:\n$$4^{n+1} = \\sum_{k=0}^{n+1} \\binom{n+1}{k} 3^k = \\binom{n+1}{0}3^0 + \\sum_{k=1}^{n} \\binom{n+1}{k} 3^k + \\binom{n+1}{n+1}3^{n+1}$$\n\n3. Despejamos la suma central restando los términos de los extremos ($k=0$ y $k=n+1$):\n$$\\sum_{k=1}^{n} \\binom{n+1}{k} 3^k = 4^{n+1} - 1 - 3^{n+1}$$\n\n4. Sustituyendo en la expresión original obtenemos la forma reducida:\n$$\\text{Resultado} = \\frac{4^{n+1} - 3^{n+1} - 1}{n+1}$$",
+              "dificultad": "Alto",
+              "conceptos": [
+                "Identidades Combinatorias",
+                "Teorema del Binomio",
+                "Sumas Creadas"
+              ],
+              "habilidades": [
+                "Demostración Rigurosa",
+                "Simplificación Algebraica"
+              ]
+            }
+          ],
+          "formulasClave": [
+            {
+              "label": "Fórmula Clave 1",
+              "latex": "y = f(x)"
+            }
+          ]
+        }
       }
-    ]
+    ],
+    "mathFormulaLatex": "y = f(x)"
   },
   {
     "id": "course_topologia-rn",
