@@ -2,15 +2,22 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Course } from '@/lib/mockData';
+import { Course, MOCK_COURSES } from '@/lib/mockData';
 import { DataService } from '@/lib/dataService';
 import { MathFormula, MathText } from '../math/MathFormula';
 
 export const CourseCatalog: React.FC = () => {
-  const [courses, setCourses] = useState<Course[]>(() => DataService.getCoursesSync());
+  const [courses, setCourses] = useState<Course[]>(MOCK_COURSES);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // 1. Sync cached courses from localStorage after hydration
+    const cached = DataService.getCoursesSync();
+    if (cached && cached.length > 0) {
+      setCourses(cached);
+    }
+
+    // 2. Fetch fresh course data in background
     async function refreshCourses() {
       try {
         const data = await DataService.getCourses();
