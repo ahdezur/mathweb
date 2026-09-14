@@ -111,19 +111,40 @@ export async function saveStoredCourses(courses: CourseContent[]): Promise<boole
   try {
     await fs.mkdir(DATA_DIR, { recursive: true });
     
+    // Read existing stored courses to avoid wiping rich chapter content
+    const existingMap = new Map<string, CourseContent>();
+    try {
+      const existingData = await fs.readFile(STORAGE_FILE, 'utf-8');
+      const existingParsed: CourseContent[] = JSON.parse(existingData);
+      if (Array.isArray(existingParsed)) {
+        existingParsed.forEach((c) => {
+          if (c.slug) existingMap.set(c.slug, c);
+          if (c.id) existingMap.set(c.id, c);
+        });
+      }
+    } catch {}
+
     const normalized = courses.map((course) => {
-      const unitChapters = (course.units || []).flatMap((u) => u.chapters || []);
-      const topChapters = course.chapters || [];
+      const existing = existingMap.get(course.slug) || existingMap.get(course.id);
+
+      // Preserve existing units if incoming units array is empty or lacks chapters
+      let units = (Array.isArray(course.units) && course.units.length > 0 && course.units.some((u) => u.chapters?.length > 0))
+        ? course.units
+        : (existing?.units || course.units || []);
+
+      const unitChapters = (units || []).flatMap((u) => u.chapters || []);
+      const topChapters = (Array.isArray(course.chapters) ? course.chapters : []).filter((ch) => typeof ch === 'object' && ch && ch.id);
 
       const chapterMap = new Map<string, ChapterData>();
-      topChapters.forEach((ch) => chapterMap.set(ch.id, ch));
-      unitChapters.forEach((ch) => chapterMap.set(ch.id, ch));
+      (existing?.chapters || []).forEach((ch) => { if (ch && typeof ch === 'object' && ch.id) chapterMap.set(ch.id, ch); });
+      topChapters.forEach((ch) => { if (ch && typeof ch === 'object' && ch.id) chapterMap.set(ch.id, ch); });
+      unitChapters.forEach((ch) => { if (ch && typeof ch === 'object' && ch.id) chapterMap.set(ch.id, ch); });
 
       const allChaps = Array.from(chapterMap.values());
 
-      let units = (course.units && course.units.length > 0)
-        ? course.units
-        : [{ id: 'u-1', number: 1, title: `Unidad 1: Módulos Principales`, chapters: allChaps }];
+      if (units.length === 0) {
+        units = [{ id: 'u-1', number: 1, title: `Unidad 1: Módulos Principales`, chapters: allChaps }];
+      }
 
       const assignedIds = new Set(units.flatMap((u) => (u.chapters || []).map((c: ChapterData) => c.id)));
       const unassigned = allChaps.filter((c: ChapterData) => !assignedIds.has(c.id));
@@ -138,6 +159,7 @@ export async function saveStoredCourses(courses: CourseContent[]): Promise<boole
       }
 
       return {
+        ...existing,
         ...course,
         units,
         chapters: allChaps
