@@ -5736,7 +5736,7 @@
                 {
                   "id": "prob-1789361275533-3",
                   "problem": "Considere la expresión $\\left(1 + \\frac{2}{x}\\right)^7$.\n(a) Encuentre el coeficiente del término $x^{-1}$ y el término independiente ($x^0$).\n(b) A partir del resultado anterior, encuentre el término independiente en el desarrollo de $(2x + 1)\\left(1 + \\frac{2}{x}\\right)^7$.",
-                  "pauta": "1. Desarrollamos el binomio $\\left(1 + \\frac{2}{x}\\right)^7 = \\sum_{k=0}^{7} \\binom{7}{k} 2^{7-k} x^{k-7}$.\n- Para $x^{-1}$: resolvemos $k - 7 = -1 \\implies k = 6$. Coeficiente $= \\binom{7}{6} 2^{1} = 14$.\n- Para $x^0$: resolvemos $k - 7 = 0 \\implies k = 7$. Coeficiente $= \\binom{7}{7} 2^{0} = 1$.\n\n2. Expandimos el producto $(2x+1)\\left(1 + \\frac{2}{x}\\right)^7 = 2x \\left(1 + \\frac{2}{x}\\right)^7 + 1 \\cdot \\left(1 + \\frac{2}{x}\\right)^7$.\n- El término independiente se forma sumando $2 \\cdot (\\text{coeficiente de } x^{-1}) + 1 \\cdot (\\text{coeficiente de } x^0)$:\n$$\\text{Término independiente} = 2(14) + 1(1) = 28 + 1 = 29$$",
+                  "pauta": "1. Desarrollamos el binomio $\\left(1 + \\frac{2}{x}\\right)^7 = \\sum_{k=0}^{7} \\binom{7}{k} 2^{7-k} x^{k-7}$.\n- Para $x^{-1}$: resolvemos $k - 7 = -1 \\implies k = 6$. Coeficiente $= \\binom{7}{6} 2^{1} = 14$.\n- Para $x^0$: resolvemos $k - 7 = 0 \\implies k = 7$. Coeficiente $= \\binom{7}{7} 2^{0} = 1$.\n\n2. Expandimos el producto $(2x+1)\\left(1 + \\frac{2}{x}\\right)^7 = 2x \\left(1 + \\frac{2}{x}\\right)^7 + 1 \\cdot \\left(1 + \\frac{2}{x}\\right)^7$.\n- El término independiente se forma sumando $2 \\cdot (\\text{coeficiente de } x^{-1}) + 1 \\cdot (\\text{coeficiente de } x^0)$:\n$$ 2(14) + 1(1) = 28 + 1 = 29$$",
                   "dificultad": "Medio",
                   "conceptos": [
                     "Término Independiente",
@@ -5751,7 +5751,7 @@
                 {
                   "id": "prob-1789361275533-4",
                   "problem": "Dada la expresión $\\left(2\\sqrt{x} - \\frac{1}{x}\\right)^{48}$, calcule, en caso de que exista, el coeficiente del término que contiene a $\\sqrt{x^{15}}$.",
-                  "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{48}{k} (2x^{1/2})^{48-k} (-x^{-1})^k = \\binom{48}{k} 2^{48-k} (-1)^k x^{\\frac{48-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^{15}} = x^{15/2}$, igualamos los exponentes:\n$$\\frac{48 - 3k}{2} = \\frac{15}{2} \\implies 48 - 3k = 15 \\implies 3k = 33 \\implies k = 11$$\n\n3. Dado que $k = 11 \\in \\{0, 1, \\dots, 48\\}$ es entero y admisible, el coeficiente buscado es:\n$$\\text{Coeficiente} = -\\binom{48}{11} 2^{37}$$",
+                  "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{48}{k} (2x^{1/2})^{48-k} (-x^{-1})^k = \\binom{48}{k} 2^{48-k} (-1)^k x^{\\frac{48-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^{15}} = x^{15/2}$, igualamos los exponentes:\n$$\\frac{48 - 3k}{2} = \\frac{15}{2} \\implies 48 - 3k = 15 \\implies 3k = 33 \\implies k = 11$$\n\n3. Dado que $k = 11 \\in \\{0, 1, \\dots, 48\\}$ es entero y admisible, el coeficiente buscado es:\n$$ -\\binom{48}{11} 2^{37}$$",
                   "dificultad": "Medio",
                   "conceptos": [
                     "Exponentes Fraccionarios",
@@ -5765,7 +5765,7 @@
                 {
                   "id": "prob-1789361275533-5",
                   "problem": "Dada la expresión $\\left(2x - \\frac{1}{\\sqrt{x}}\\right)^{32}$, calcule, en caso de que exista, el coeficiente del término que contiene a $\\sqrt{x^7}$.",
-                  "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{32}{k} (2x)^{32-k} (-x^{-1/2})^k = \\binom{32}{k} 2^{32-k} (-1)^k x^{\\frac{64-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^7} = x^{7/2}$, igualamos los exponentes:\n$$\\frac{64 - 3k}{2} = \\frac{7}{2} \\implies 64 - 3k = 7 \\implies 3k = 57 \\implies k = 19$$\n\n3. Como $k = 19 \\in \\{0, 1, \\dots, 32\\}$ es entero admisible, el coeficiente es:\n$$\\text{Coeficiente} = -\\binom{32}{19} 2^{13}$$",
+                  "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{32}{k} (2x)^{32-k} (-x^{-1/2})^k = \\binom{32}{k} 2^{32-k} (-1)^k x^{\\frac{64-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^7} = x^{7/2}$, igualamos los exponentes:\n$$\\frac{64 - 3k}{2} = \\frac{7}{2} \\implies 64 - 3k = 7 \\implies 3k = 57 \\implies k = 19$$\n\n3. Como $k = 19 \\in \\{0, 1, \\dots, 32\\}$ es entero admisible, el coeficiente es:\n$$ -\\binom{32}{19} 2^{13}$$",
                   "dificultad": "Medio",
                   "conceptos": [
                     "Término General",
@@ -5778,7 +5778,7 @@
                 {
                   "id": "prob-1789361275533-6",
                   "problem": "Encuentre el coeficiente del término que contiene a $x^{15}$ en el desarrollo de $\\left(\\frac{x^2}{y^3} - \\frac{3y^4}{x}\\right)^{21}$.",
-                  "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{21}{k} \\left(\\frac{x^2}{y^3}\\right)^{21-k} \\left(-\\frac{3y^4}{x}\\right)^k = \\binom{21}{k} (-3)^k x^{42-3k} y^{7k-63}$$\n\n2. Igualamos la potencia de $x$ a 15:\n$$42 - 3k = 15 \\implies 3k = 27 \\implies k = 9$$\n\n3. Verificamos el exponente de $y$ para $k=9$: $7(9) - 63 = 0$, por lo que la variable $y$ se anula ($y^0=1$).\n\n4. El coeficiente resulta:\n$$\\text{Coeficiente} = \\binom{21}{9} (-3)^9 = -\\binom{21}{9} 3^9$$",
+                  "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{21}{k} \\left(\\frac{x^2}{y^3}\\right)^{21-k} \\left(-\\frac{3y^4}{x}\\right)^k = \\binom{21}{k} (-3)^k x^{42-3k} y^{7k-63}$$\n\n2. Igualamos la potencia de $x$ a 15:\n$$42 - 3k = 15 \\implies 3k = 27 \\implies k = 9$$\n\n3. Verificamos el exponente de $y$ para $k=9$: $7(9) - 63 = 0$, por lo que la variable $y$ se anula ($y^0=1$).\n\n4. El coeficiente resulta:\n$$\\binom{21}{9} (-3)^9 = -\\binom{21}{9} 3^9$$",
                   "dificultad": "Alto",
                   "conceptos": [
                     "Binomio Multivariable",
@@ -5792,7 +5792,7 @@
                 {
                   "id": "prob-1789361275534-7",
                   "problem": "Usando propiedades de sumatorias y aplicando fórmulas de sumas notables, encuentre el valor simplificado de:\n$$\\sum_{j=3}^{n+2} \\frac{(j-2)(2j+3)}{4}$$",
-                  "pauta": "1. Realizamos el cambio de variable $i = j - 2$, con lo cual $j = i+2$ y los límites varían de $i=1$ a $i=n$:\n$$\\sum_{j=3}^{n+2} \\frac{(j-2)(2j+3)}{4} = \\frac{1}{4} \\sum_{i=1}^{n} i(2i+7) = \\frac{1}{4} \\left[ 2 \\sum_{i=1}^{n} i^2 + 7 \\sum_{i=1}^{n} i \\right]$$\n\n2. Sustituimos las fórmulas notables $\\sum_{i=1}^n i = \\frac{n(n+1)}{2}$ y $\\sum_{i=1}^n i^2 = \\frac{n(n+1)(2n+1)}{6}$:\n$$= \\frac{1}{4} \\left[ 2 \\cdot \\frac{n(n+1)(2n+1)}{6} + 7 \\cdot \\frac{n(n+1)}{2} \\right] = \\frac{n(n+1)}{4} \\left[ \\frac{2n+1}{3} + \\frac{7}{2} \\right]$$\n\n3. Reduciendo la fracción interna:\n$$\\text{Resultado} = \\frac{n(n+1)(4n + 23)}{24}$$",
+                  "pauta": "1. Realizamos el cambio de variable $i = j - 2$, con lo cual $j = i+2$ y los límites varían de $i=1$ a $i=n$:\n$$\\sum_{j=3}^{n+2} \\frac{(j-2)(2j+3)}{4} = \\frac{1}{4} \\sum_{i=1}^{n} i(2i+7) = \\frac{1}{4} \\left[ 2 \\sum_{i=1}^{n} i^2 + 7 \\sum_{i=1}^{n} i \\right]$$\n\n2. Sustituimos las fórmulas notables $\\sum_{i=1}^n i = \\frac{n(n+1)}{2}$ y $\\sum_{i=1}^n i^2 = \\frac{n(n+1)(2n+1)}{6}$:\n$$= \\frac{1}{4} \\left[ 2 \\cdot \\frac{n(n+1)(2n+1)}{6} + 7 \\cdot \\frac{n(n+1)}{2} \\right] = \\frac{n(n+1)}{4} \\left[ \\frac{2n+1}{3} + \\frac{7}{2} \\right]$$\n\n3. Reduciendo la fracción interna:\n$$ \\frac{n(n+1)(4n + 23)}{24}$$",
                   "dificultad": "Medio",
                   "conceptos": [
                     "Sumatorias Notables",
@@ -5807,7 +5807,7 @@
                 {
                   "id": "prob-1789361275534-8",
                   "problem": "Sea $b \\neq \\frac{1}{2}$. Encuentre el valor cerrado de la doble sumatoria:\n$$\\sum_{i=0}^{n} \\sum_{j=0}^{i} \\binom{i}{j} b^i$$",
-                  "pauta": "1. Aplicamos la propiedad de suma de coeficientes binomiales en la sumatoria interna:\n$$\\sum_{j=0}^{i} \\binom{i}{j} = 2^i$$\n\n2. Sustituimos en la suma externa:\n$$\\sum_{i=0}^{n} 2^i b^i = \\sum_{i=0}^{n} (2b)^i$$\n\n3. Por ser una suma geométrica de razón $r = 2b \\neq 1$, aplicamos su fórmula de suma finita:\n$$\\text{Resultado} = \\frac{1 - (2b)^{n+1}}{1 - 2b}$$",
+                  "pauta": "1. Aplicamos la propiedad de suma de coeficientes binomiales en la sumatoria interna:\n$$\\sum_{j=0}^{i} \\binom{i}{j} = 2^i$$\n\n2. Sustituimos en la suma externa:\n$$\\sum_{i=0}^{n} 2^i b^i = \\sum_{i=0}^{n} (2b)^i$$\n\n3. Por ser una suma geométrica de razón $r = 2b \\neq 1$, aplicamos su fórmula de suma finita:\n$$ \\frac{1 - (2b)^{n+1}}{1 - 2b}$$",
                   "dificultad": "Medio",
                   "conceptos": [
                     "Doble Sumatoria",
@@ -5851,8 +5851,24 @@
               ],
               "formulasClave": [
                 {
-                  "label": "Fórmula Clave 1",
-                  "latex": "y = f(x)"
+                  "label": "Coeficiente Binomial",
+                  "latex": "\\binom{n}{k} = \\frac{n!}{k!(n-k)!}",
+                  "description": "Representa el número de combinaciones no ordenadas de $n$ elementos tomados de $k$ en $k$, con $0 \\le k \\le n$ y $0! = 1$"
+                },
+                {
+                  "label": "Simetría de Coeficientes Binomiales",
+                  "latex": "\\binom{n}{k} = \\binom{n}{n-k}",
+                  "description": "Indica que los coeficientes de la $n$-ésima fila son simétricos respecto al centro"
+                },
+                {
+                  "label": "Teorema del Binomio de Newton",
+                  "latex": "(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k",
+                  "description": "Expansión algebraica completa de la potencia $n$-ésima del binomio $a+b$ para todo $n \\in \\mathbb{N}$."
+                },
+                {
+                  "label": "Término Central del Binomio",
+                  "latex": "T_{\\text{central}} = T_{\\frac{n}{2} + 1} = \\binom{n}{n/2} a^{n/2} b^{n/2}",
+                  "description": "Término medio del desarrollo cuando el exponente $n$ es un número par (el desarrollo posee $n+1$ términos)."
                 }
               ]
             }
@@ -6122,7 +6138,7 @@
             {
               "id": "prob-1789361275533-3",
               "problem": "Considere la expresión $\\left(1 + \\frac{2}{x}\\right)^7$.\n(a) Encuentre el coeficiente del término $x^{-1}$ y el término independiente ($x^0$).\n(b) A partir del resultado anterior, encuentre el término independiente en el desarrollo de $(2x + 1)\\left(1 + \\frac{2}{x}\\right)^7$.",
-              "pauta": "1. Desarrollamos el binomio $\\left(1 + \\frac{2}{x}\\right)^7 = \\sum_{k=0}^{7} \\binom{7}{k} 2^{7-k} x^{k-7}$.\n- Para $x^{-1}$: resolvemos $k - 7 = -1 \\implies k = 6$. Coeficiente $= \\binom{7}{6} 2^{1} = 14$.\n- Para $x^0$: resolvemos $k - 7 = 0 \\implies k = 7$. Coeficiente $= \\binom{7}{7} 2^{0} = 1$.\n\n2. Expandimos el producto $(2x+1)\\left(1 + \\frac{2}{x}\\right)^7 = 2x \\left(1 + \\frac{2}{x}\\right)^7 + 1 \\cdot \\left(1 + \\frac{2}{x}\\right)^7$.\n- El término independiente se forma sumando $2 \\cdot (\\text{coeficiente de } x^{-1}) + 1 \\cdot (\\text{coeficiente de } x^0)$:\n$$\\text{Término independiente} = 2(14) + 1(1) = 28 + 1 = 29$$",
+              "pauta": "1. Desarrollamos el binomio $\\left(1 + \\frac{2}{x}\\right)^7 = \\sum_{k=0}^{7} \\binom{7}{k} 2^{7-k} x^{k-7}$.\n- Para $x^{-1}$: resolvemos $k - 7 = -1 \\implies k = 6$. Coeficiente $= \\binom{7}{6} 2^{1} = 14$.\n- Para $x^0$: resolvemos $k - 7 = 0 \\implies k = 7$. Coeficiente $= \\binom{7}{7} 2^{0} = 1$.\n\n2. Expandimos el producto $(2x+1)\\left(1 + \\frac{2}{x}\\right)^7 = 2x \\left(1 + \\frac{2}{x}\\right)^7 + 1 \\cdot \\left(1 + \\frac{2}{x}\\right)^7$.\n- El término independiente se forma sumando $2 \\cdot (\\text{coeficiente de } x^{-1}) + 1 \\cdot (\\text{coeficiente de } x^0)$:\n$$ 2(14) + 1(1) = 28 + 1 = 29$$",
               "dificultad": "Medio",
               "conceptos": [
                 "Término Independiente",
@@ -6137,7 +6153,7 @@
             {
               "id": "prob-1789361275533-4",
               "problem": "Dada la expresión $\\left(2\\sqrt{x} - \\frac{1}{x}\\right)^{48}$, calcule, en caso de que exista, el coeficiente del término que contiene a $\\sqrt{x^{15}}$.",
-              "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{48}{k} (2x^{1/2})^{48-k} (-x^{-1})^k = \\binom{48}{k} 2^{48-k} (-1)^k x^{\\frac{48-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^{15}} = x^{15/2}$, igualamos los exponentes:\n$$\\frac{48 - 3k}{2} = \\frac{15}{2} \\implies 48 - 3k = 15 \\implies 3k = 33 \\implies k = 11$$\n\n3. Dado que $k = 11 \\in \\{0, 1, \\dots, 48\\}$ es entero y admisible, el coeficiente buscado es:\n$$\\text{Coeficiente} = -\\binom{48}{11} 2^{37}$$",
+              "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{48}{k} (2x^{1/2})^{48-k} (-x^{-1})^k = \\binom{48}{k} 2^{48-k} (-1)^k x^{\\frac{48-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^{15}} = x^{15/2}$, igualamos los exponentes:\n$$\\frac{48 - 3k}{2} = \\frac{15}{2} \\implies 48 - 3k = 15 \\implies 3k = 33 \\implies k = 11$$\n\n3. Dado que $k = 11 \\in \\{0, 1, \\dots, 48\\}$ es entero y admisible, el coeficiente buscado es:\n$$ -\\binom{48}{11} 2^{37}$$",
               "dificultad": "Medio",
               "conceptos": [
                 "Exponentes Fraccionarios",
@@ -6151,7 +6167,7 @@
             {
               "id": "prob-1789361275533-5",
               "problem": "Dada la expresión $\\left(2x - \\frac{1}{\\sqrt{x}}\\right)^{32}$, calcule, en caso de que exista, el coeficiente del término que contiene a $\\sqrt{x^7}$.",
-              "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{32}{k} (2x)^{32-k} (-x^{-1/2})^k = \\binom{32}{k} 2^{32-k} (-1)^k x^{\\frac{64-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^7} = x^{7/2}$, igualamos los exponentes:\n$$\\frac{64 - 3k}{2} = \\frac{7}{2} \\implies 64 - 3k = 7 \\implies 3k = 57 \\implies k = 19$$\n\n3. Como $k = 19 \\in \\{0, 1, \\dots, 32\\}$ es entero admisible, el coeficiente es:\n$$\\text{Coeficiente} = -\\binom{32}{19} 2^{13}$$",
+              "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{32}{k} (2x)^{32-k} (-x^{-1/2})^k = \\binom{32}{k} 2^{32-k} (-1)^k x^{\\frac{64-3k}{2}}$$\n\n2. Para obtener la potencia $\\sqrt{x^7} = x^{7/2}$, igualamos los exponentes:\n$$\\frac{64 - 3k}{2} = \\frac{7}{2} \\implies 64 - 3k = 7 \\implies 3k = 57 \\implies k = 19$$\n\n3. Como $k = 19 \\in \\{0, 1, \\dots, 32\\}$ es entero admisible, el coeficiente es:\n$$ -\\binom{32}{19} 2^{13}$$",
               "dificultad": "Medio",
               "conceptos": [
                 "Término General",
@@ -6164,7 +6180,7 @@
             {
               "id": "prob-1789361275533-6",
               "problem": "Encuentre el coeficiente del término que contiene a $x^{15}$ en el desarrollo de $\\left(\\frac{x^2}{y^3} - \\frac{3y^4}{x}\\right)^{21}$.",
-              "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{21}{k} \\left(\\frac{x^2}{y^3}\\right)^{21-k} \\left(-\\frac{3y^4}{x}\\right)^k = \\binom{21}{k} (-3)^k x^{42-3k} y^{7k-63}$$\n\n2. Igualamos la potencia de $x$ a 15:\n$$42 - 3k = 15 \\implies 3k = 27 \\implies k = 9$$\n\n3. Verificamos el exponente de $y$ para $k=9$: $7(9) - 63 = 0$, por lo que la variable $y$ se anula ($y^0=1$).\n\n4. El coeficiente resulta:\n$$\\text{Coeficiente} = \\binom{21}{9} (-3)^9 = -\\binom{21}{9} 3^9$$",
+              "pauta": "1. Escribimos el término general $T_{k+1}$:\n$$T_{k+1} = \\binom{21}{k} \\left(\\frac{x^2}{y^3}\\right)^{21-k} \\left(-\\frac{3y^4}{x}\\right)^k = \\binom{21}{k} (-3)^k x^{42-3k} y^{7k-63}$$\n\n2. Igualamos la potencia de $x$ a 15:\n$$42 - 3k = 15 \\implies 3k = 27 \\implies k = 9$$\n\n3. Verificamos el exponente de $y$ para $k=9$: $7(9) - 63 = 0$, por lo que la variable $y$ se anula ($y^0=1$).\n\n4. El coeficiente resulta:\n$$\\binom{21}{9} (-3)^9 = -\\binom{21}{9} 3^9$$",
               "dificultad": "Alto",
               "conceptos": [
                 "Binomio Multivariable",
@@ -6178,7 +6194,7 @@
             {
               "id": "prob-1789361275534-7",
               "problem": "Usando propiedades de sumatorias y aplicando fórmulas de sumas notables, encuentre el valor simplificado de:\n$$\\sum_{j=3}^{n+2} \\frac{(j-2)(2j+3)}{4}$$",
-              "pauta": "1. Realizamos el cambio de variable $i = j - 2$, con lo cual $j = i+2$ y los límites varían de $i=1$ a $i=n$:\n$$\\sum_{j=3}^{n+2} \\frac{(j-2)(2j+3)}{4} = \\frac{1}{4} \\sum_{i=1}^{n} i(2i+7) = \\frac{1}{4} \\left[ 2 \\sum_{i=1}^{n} i^2 + 7 \\sum_{i=1}^{n} i \\right]$$\n\n2. Sustituimos las fórmulas notables $\\sum_{i=1}^n i = \\frac{n(n+1)}{2}$ y $\\sum_{i=1}^n i^2 = \\frac{n(n+1)(2n+1)}{6}$:\n$$= \\frac{1}{4} \\left[ 2 \\cdot \\frac{n(n+1)(2n+1)}{6} + 7 \\cdot \\frac{n(n+1)}{2} \\right] = \\frac{n(n+1)}{4} \\left[ \\frac{2n+1}{3} + \\frac{7}{2} \\right]$$\n\n3. Reduciendo la fracción interna:\n$$\\text{Resultado} = \\frac{n(n+1)(4n + 23)}{24}$$",
+              "pauta": "1. Realizamos el cambio de variable $i = j - 2$, con lo cual $j = i+2$ y los límites varían de $i=1$ a $i=n$:\n$$\\sum_{j=3}^{n+2} \\frac{(j-2)(2j+3)}{4} = \\frac{1}{4} \\sum_{i=1}^{n} i(2i+7) = \\frac{1}{4} \\left[ 2 \\sum_{i=1}^{n} i^2 + 7 \\sum_{i=1}^{n} i \\right]$$\n\n2. Sustituimos las fórmulas notables $\\sum_{i=1}^n i = \\frac{n(n+1)}{2}$ y $\\sum_{i=1}^n i^2 = \\frac{n(n+1)(2n+1)}{6}$:\n$$= \\frac{1}{4} \\left[ 2 \\cdot \\frac{n(n+1)(2n+1)}{6} + 7 \\cdot \\frac{n(n+1)}{2} \\right] = \\frac{n(n+1)}{4} \\left[ \\frac{2n+1}{3} + \\frac{7}{2} \\right]$$\n\n3. Reduciendo la fracción interna:\n$$ \\frac{n(n+1)(4n + 23)}{24}$$",
               "dificultad": "Medio",
               "conceptos": [
                 "Sumatorias Notables",
@@ -6193,7 +6209,7 @@
             {
               "id": "prob-1789361275534-8",
               "problem": "Sea $b \\neq \\frac{1}{2}$. Encuentre el valor cerrado de la doble sumatoria:\n$$\\sum_{i=0}^{n} \\sum_{j=0}^{i} \\binom{i}{j} b^i$$",
-              "pauta": "1. Aplicamos la propiedad de suma de coeficientes binomiales en la sumatoria interna:\n$$\\sum_{j=0}^{i} \\binom{i}{j} = 2^i$$\n\n2. Sustituimos en la suma externa:\n$$\\sum_{i=0}^{n} 2^i b^i = \\sum_{i=0}^{n} (2b)^i$$\n\n3. Por ser una suma geométrica de razón $r = 2b \\neq 1$, aplicamos su fórmula de suma finita:\n$$\\text{Resultado} = \\frac{1 - (2b)^{n+1}}{1 - 2b}$$",
+              "pauta": "1. Aplicamos la propiedad de suma de coeficientes binomiales en la sumatoria interna:\n$$\\sum_{j=0}^{i} \\binom{i}{j} = 2^i$$\n\n2. Sustituimos en la suma externa:\n$$\\sum_{i=0}^{n} 2^i b^i = \\sum_{i=0}^{n} (2b)^i$$\n\n3. Por ser una suma geométrica de razón $r = 2b \\neq 1$, aplicamos su fórmula de suma finita:\n$$ \\frac{1 - (2b)^{n+1}}{1 - 2b}$$",
               "dificultad": "Medio",
               "conceptos": [
                 "Doble Sumatoria",
@@ -6237,8 +6253,24 @@
           ],
           "formulasClave": [
             {
-              "label": "Fórmula Clave 1",
-              "latex": "y = f(x)"
+              "label": "Coeficiente Binomial",
+              "latex": "\\binom{n}{k} = \\frac{n!}{k!(n-k)!}",
+              "description": "Representa el número de combinaciones no ordenadas de $n$ elementos tomados de $k$ en $k$, con $0 \\le k \\le n$ y $0! = 1$"
+            },
+            {
+              "label": "Simetría de Coeficientes Binomiales",
+              "latex": "\\binom{n}{k} = \\binom{n}{n-k}",
+              "description": "Indica que los coeficientes de la $n$-ésima fila son simétricos respecto al centro"
+            },
+            {
+              "label": "Teorema del Binomio de Newton",
+              "latex": "(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k",
+              "description": "Expansión algebraica completa de la potencia $n$-ésima del binomio $a+b$ para todo $n \\in \\mathbb{N}$."
+            },
+            {
+              "label": "Término Central del Binomio",
+              "latex": "T_{\\text{central}} = T_{\\frac{n}{2} + 1} = \\binom{n}{n/2} a^{n/2} b^{n/2}",
+              "description": "Término medio del desarrollo cuando el exponente $n$ es un número par (el desarrollo posee $n+1$ términos)."
             }
           ]
         }
