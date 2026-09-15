@@ -78,7 +78,7 @@ const MathFormulaComponent: React.FC<MathFormulaProps> = ({ latex, block = false
 
   return (
     <span
-      className={`math-inline inline-block ${className}`}
+      className={`math-inline inline ${className}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
@@ -92,6 +92,10 @@ interface MathTextProps {
 }
 
 const MathTextComponent: React.FC<MathTextProps> = ({ text, className = '' }) => {
+  const hasStructuredHTML = React.useMemo(() => {
+    return /<\/?(ul|ol|li|p|div|table|tr|td|th|tbody|thead|blockquote|section|h1|h2|h3|h4|h5|h6)\b/i.test(text || '');
+  }, [text]);
+
   const hasBlockMath = text ? (text.includes('$$') || text.includes('\\[')) : false;
 
   const renderedText = React.useMemo(() => {
@@ -107,29 +111,35 @@ const MathTextComponent: React.FC<MathTextProps> = ({ text, className = '' }) =>
         if (part.startsWith('$$') && part.endsWith('$$')) {
           const latexExpr = part.slice(2, -2).trim();
           const katexHtml = renderKatexCached(latexExpr, true);
-          return `<div class="math-block text-center my-3 overflow-x-auto py-2">${katexHtml}</div>`;
+          return `<span class="math-block text-center my-3 block overflow-x-auto py-2">${katexHtml}</span>`;
         } else if (part.startsWith('\\[') && part.endsWith('\\]')) {
           const latexExpr = part.slice(2, -2).trim();
           const katexHtml = renderKatexCached(latexExpr, true);
-          return `<div class="math-block text-center my-3 overflow-x-auto py-2">${katexHtml}</div>`;
+          return `<span class="math-block text-center my-3 block overflow-x-auto py-2">${katexHtml}</span>`;
         } else if (part.startsWith('$') && part.endsWith('$')) {
           const latexExpr = part.slice(1, -1).trim();
           const katexHtml = renderKatexCached(latexExpr, false);
-          return `<span class="inline-block px-0.5">${katexHtml}</span>`;
+          return `<span class="inline px-0.5">${katexHtml}</span>`;
         } else if (part.startsWith('\\mathbb') || part.includes('\\varepsilon')) {
           const katexHtml = renderKatexCached(part.trim(), false);
-          return `<span class="inline-block px-0.5">${katexHtml}</span>`;
+          return `<span class="inline px-0.5">${katexHtml}</span>`;
         }
 
-        return part
+        let formatted = part
           .replace(/\\textit\{([^\}]+)\}/g, '<i>$1</i>')
           .replace(/\\emph\{([^\}]+)\}/g, '<i>$1</i>')
           .replace(/\\textbf\{([^\}]+)\}/g, '<b>$1</b>');
+
+        if (!hasStructuredHTML) {
+          formatted = formatted.replace(/\n/g, '<br />');
+        }
+
+        return formatted;
       })
       .join('');
-  }, [text]);
+  }, [text, hasStructuredHTML]);
 
-  if (hasBlockMath) {
+  if (hasBlockMath || hasStructuredHTML) {
     return <div suppressHydrationWarning className={`block ${className}`} dangerouslySetInnerHTML={{ __html: renderedText }} />;
   }
 

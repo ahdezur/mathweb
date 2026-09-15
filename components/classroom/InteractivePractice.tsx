@@ -35,43 +35,60 @@ function sanitizeLaTeX(str: string): string {
     .replace(/\\\\(neq|geq|leq|notin|not|nabla|nu|neg|frac|sqrt|lim|sum|int|infty|alpha|beta|gamma|delta|epsilon|theta|pi|sigma|lambda|omega|mathbb|mathbf|mathcal|text|textbf|mathrm|left|right|begin|end)(?![a-zA-Z])/g, '\\$1');
 }
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function renderKaTeX(text: string) {
   if (!text) return null;
 
   const cleanText = sanitizeLaTeX(text);
-  const parts = cleanText.split(/(\$\$[\s\S]*?\$\$|\$[\s\S]*?\$)/g);
+  const hasStructuredHTML = /<\/?(ul|ol|li|p|div|table|tr|td|th|tbody|thead|blockquote|section|h1|h2|h3|h4|h5|h6)\b/i.test(cleanText);
+  const hasBlockMath = cleanText.includes('$$');
 
-  return parts.map((part, index) => {
+  const rawParts = cleanText.split(/(\$\$[\s\S]*?\$\$|\$[\s\S]*?\$)/g);
+  const htmlBuffer: string[] = [];
+
+  for (const part of rawParts) {
+    if (!part) continue;
+
     if (part.startsWith('$$') && part.endsWith('$$')) {
       const math = part.slice(2, -2).trim();
       try {
         const html = katex.renderToString(math, { displayMode: true, throwOnError: false });
-        return <span key={index} dangerouslySetInnerHTML={{ __html: html }} className="my-3 block overflow-x-auto" />;
+        htmlBuffer.push(`<span class="my-3 block overflow-x-auto">${html}</span>`);
       } catch (e) {
-        return <code key={index} className="text-rose-500">{part}</code>;
+        htmlBuffer.push(`<code class="text-rose-500">${escapeHtml(part)}</code>`);
       }
     } else if (part.startsWith('$') && part.endsWith('$')) {
       const math = part.slice(1, -1).trim();
       try {
         const html = katex.renderToString(math, { displayMode: false, throwOnError: false });
-        return <span key={index} dangerouslySetInnerHTML={{ __html: html }} className="inline-block px-0.5" />;
+        htmlBuffer.push(`<span class="inline px-0.5">${html}</span>`);
       } catch (e) {
-        return <code key={index} className="text-rose-500">{part}</code>;
+        htmlBuffer.push(`<code class="text-rose-500">${escapeHtml(part)}</code>`);
       }
+    } else {
+      let formatted = part;
+      if (!hasStructuredHTML) {
+        formatted = formatted.replace(/\n/g, '<br />');
+      }
+      htmlBuffer.push(formatted);
     }
+  }
 
-    const lines = part.split('\n');
-    return (
-      <React.Fragment key={index}>
-        {lines.map((line, lIdx) => (
-          <React.Fragment key={lIdx}>
-            {lIdx > 0 && <br />}
-            {line}
-          </React.Fragment>
-        ))}
-      </React.Fragment>
-    );
-  });
+  const fullHtml = htmlBuffer.join('');
+
+  if (hasStructuredHTML || hasBlockMath) {
+    return <div dangerouslySetInnerHTML={{ __html: fullHtml }} className="w-full" />;
+  }
+
+  return <span dangerouslySetInnerHTML={{ __html: fullHtml }} />;
 }
 
 // -----------------------------------------------------------------------------
